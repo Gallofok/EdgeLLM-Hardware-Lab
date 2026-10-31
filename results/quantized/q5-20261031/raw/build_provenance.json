@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source_commit": "866a07461309a46fa130defd61607aa3d3494019",
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "build_type": "Release",
+  "language": "C++17",
+  "target_compile_flags": {
+    "src/kernels/quantized/q5.cpp": [
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror",
+      "-fno-tree-vectorize"
+    ],
+    "benchmarks/q5_bench.cpp": [
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror"
+    ],
+    "tests/kernels/test_q5.cpp": [
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror"
+    ]
+  },
+  "binary_sha256": {
+    "q5-bench": "1c3f233ede168d613f40d6647b4d918de096da9b61945fbd52a04979a296163d",
+    "test-q5": "405b3942225dd821fc3b4c06b0c3f94aa89e1878915677e1cf9c5ebafead40ad"
+  },
+  "upstream_libraries_sha256": {
+    "libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "libggml.so": "7f20f88a786da4351666a005fbf6156d58dd2a667d4e8a8a73c8b00fa8d3a04d",
+    "libllama.so": "7826f24b180a87b288acdf574b14bd2e08d44d0e6cade3eb169e631129d7cbf1"
+  },
+  "private_compiler_metadata_sha256": {
+    "CMakeCache.txt": "155b9d736a54106b29dd80ad48fd539648f6f73f27a170154b8b2c407fea97b8",
+    "compile_commands.json": "a767291b3579779dd851123afca0bbac355ada3c200894e17ae2bb887b6f251b"
+  },
+  "private_reference_object_sha256": "6cfe4ff1bf7121c942238aa0b9e5ef166a23ede735bc34eb17f3232f5f22b8f3",
+  "private_static_disassembly_sha256": "9e91045f5cd16fb24e915c6c112ea40e2121bf295dd2095f812662dcf63b1bd2",
+  "note": "Allowlisted build fields only. Complete compiler metadata and static disassembly retained privately; none of their paths or instruction listings are published in this dataset."
+}

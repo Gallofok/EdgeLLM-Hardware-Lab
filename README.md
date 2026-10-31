@@ -52,6 +52,14 @@ See the [real report](reports/pi3-profile-20261031/inference_profile.md),
 [source analysis / next target](docs/inference_profile_analysis.md).
 The next candidate is Q5_0×Q8_0 against upstream's existing ARM vectorized path;
 no custom quantized kernel or end-to-end improvement is claimed.
+The [Q5_0×Q8_0 correctness and upstream baseline](docs/q5_reference.md)
+now adds an independent packed decoder/oracle and shape-matched paired row-dot tests.
+Its deliberately scalar reference is a correctness baseline, not an optimized
+candidate; the original ARM GGML library is the comparator.
+The [real Pi report](reports/pi3-q5-20261031/q5_baseline.md) records 108 pairs
+across 18 processes, with all outputs checked against the independent oracle.
+The [baseline analysis](docs/q5_baseline_analysis.md) describes operating
+conditions and the next candidate's acceptance gate.
 
 ## Raspberry Pi quick start
 

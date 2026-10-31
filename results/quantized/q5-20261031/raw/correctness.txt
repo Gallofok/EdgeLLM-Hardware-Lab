@@ -1,0 +1,1 @@
+Q5/Q8 correctness passed: exhaustive half/bit fixtures, odd/even block tails, decoded FP64 oracle; upstream=checked
