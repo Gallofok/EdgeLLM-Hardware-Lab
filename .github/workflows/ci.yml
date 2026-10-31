@@ -38,6 +38,10 @@ jobs:
         run: |
           python scripts/quantized/neon_run.py --fixture --sessions 1 --output results/quantized/neon-ci-fixture
           python scripts/quantized/neon_report.py --input results/quantized/neon-ci-fixture --reports reports/q5-neon-ci-fixture
+      - name: Fixture original/integrated paired inference report
+        run: |
+          python scripts/integration/perf_run.py --fixture --output build/e2e-fixture
+          python scripts/integration/perf_report.py --input build/e2e-fixture --reports build/e2e-report
       - name: Validate recorded Pi evidence (no inference)
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
@@ -88,10 +92,11 @@ jobs:
           git -C vendor/llama.cpp checkout --detach FETCH_HEAD
           python3 scripts/integration/prepare.py
           cmake -S integrations/ggml -B build/ggml-emulated -DCMAKE_BUILD_TYPE=Release \
-            -DGGML_EDGELLM_Q5_ROW4=ON -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DGGML_EDGELLM_Q5_ROW4=ON -DEDGELLM_BUILD_LLAMA_BENCH=ON -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
             -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
             '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
-          cmake --build build/ggml-emulated --target test-ggml-row4 --parallel 2
+          cmake --build build/ggml-emulated --target test-ggml-row4 edgellm-llama-bench --parallel 2
+          qemu-aarch64 -L /usr/aarch64-linux-gnu build/ggml-emulated/edgellm-llama-bench --help
           ctest --test-dir build/ggml-emulated --output-on-failure
           cmake -S integrations/ggml -B build/ggml-default -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \

@@ -1,0 +1,341 @@
+#!/usr/bin/env python3
+"""Verify and summarize paired original/integrated prefill and decode evidence."""
+
+import argparse
+import csv
+import json
+import statistics as stats
+import sys
+from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from scripts.integration.perf_run import parse_bench, plan
+from scripts.integration.run import native_rows
+from scripts.integration.validate import check, validate_model
+from scripts.pi.common import sha256, write_json
+from scripts.pi.monitor import read_metrics
+
+
+def summarize(source):
+    source = Path(source).resolve()
+    m = json.loads((source / "manifest.json").read_text())
+    check(m["schema"] == 1 and m["status"] == "completed", "Incomplete experiment")
+    check(m["data_kind"] in ("real", "fixture"), "Unknown provenance")
+    fixture = m["data_kind"] == "fixture"
+    for name, digest in m["files"].items():
+        p = (source / name).resolve()
+        check(
+            p.is_relative_to(source / "raw") and sha256(p) == digest,
+            "Raw evidence hash/path mismatch",
+        )
+    check(
+        set(m["files"])
+        == {p.relative_to(source).as_posix() for p in (source / "raw").iterdir() if p.is_file()},
+        "Unhashed raw file",
+    )
+    check(
+        m["protocol"]
+        == dict(
+            sessions=4,
+            repetitions=3,
+            prompt=128,
+            gen=16,
+            depth=0,
+            threads=[1, 2, 4],
+            warmup=True,
+            audit_formal=False,
+            random_tokens="Pinned official harness, fresh process default C RNG seed1",
+        ),
+        "Protocol differs",
+    )
+    check(len(m["pairs"]) == 12, "Incomplete paired matrix")
+    if not fixture:
+        check(
+            validate_model(native_rows(source / "raw/numerical.jsonl")) == m["numerical_gate"],
+            "Numerical gate changed",
+        )
+        check(len(m["gates"]) == 8, "Missing smoke or dispatch proofs")
+        expected_gates = {"smoke-original", "smoke-compatible"} | {
+            f"proof-{phase}-t{t}" for phase in ("prefill", "decode") for t in (1, 2, 4)
+        }
+        check({g["id"] for g in m["gates"]} == expected_gates, "Gate matrix differs")
+        numerical_process = json.loads((source / "raw/numerical.process.json").read_text())
+        check(
+            numerical_process["returncode"] == 0
+            and not numerical_process["timed_out"]
+            and not numerical_process["interrupted"],
+            "Numerical process failed",
+        )
+        for gate in m["gates"]:
+            raw = source / gate["raw"]
+            process = json.loads(raw.with_suffix(".process.json").read_text())
+            check(
+                process == gate["process"]
+                and process["returncode"] == 0
+                and not process["timed_out"]
+                and not process["interrupted"],
+                "Gate process failed",
+            )
+
+        for t in (1, 2, 4):
+            for phase in ("prefill", "decode"):
+                a = json.loads((source / f"raw/proof-{phase}-t{t}.audit.json").read_text())
+                check(
+                    a["enabled"] is True
+                    and a["audit"] is True
+                    and a["handled"] > 0
+                    and a["rows"] > 0
+                    and 0 < a["thread_mask"] < (1 << t),
+                    "Missing execution proof",
+                )
+    groups = {(p, t): [] for p in ("prefill", "decode") for t in (1, 2, 4)}
+    exports = []
+    telemetry = []
+    processes = []
+    ignored = {
+        "build_number",
+        "test_time",
+        "avg_ns",
+        "stddev_ns",
+        "avg_ts",
+        "stddev_ts",
+        "samples_ns",
+        "samples_ts",
+    }
+    for pair, expected in zip(m["pairs"], plan()):
+        check(all(pair[k] == expected[k] for k in expected), "Changed pair ordering or case")
+        check(
+            [r["variant"] for r in pair["runs"]] == pair["order"],
+            "Missing, duplicate or misordered variants",
+        )
+        collected = {}
+        native = {}
+        for r in pair["runs"]:
+            check(not r["audit"], "Audited run cannot enter performance statistics")
+            check(
+                r["threads"] == pair["threads"] and r["id"] == pair["id"] + "-" + r["variant"],
+                "Run identity differs",
+            )
+            path = source / r["raw"]
+            check(r["raw"] in m["files"], "Unhashed measurement")
+            process = json.loads(path.with_suffix(".process.json").read_text())
+            check(
+                process == r["process"]
+                and process["returncode"] == 0
+                and not process["timed_out"]
+                and not process["interrupted"],
+                "Failed or altered process",
+            )
+            processes.append(process)
+            telemetry += read_metrics(path.with_suffix(".metrics.csv"))
+            rows = parse_bench(path, m["versions"], pair["threads"], 3, fixture=fixture)
+            collected[r["variant"]] = {v["phase"]: v for v in rows}
+            native[r["variant"]] = [
+                {k: v for k, v in n.items() if k not in ignored}
+                for n in json.loads(path.read_text())
+            ]
+            for row in rows:
+                for i, (rate, ns) in enumerate(zip(row["samples_ts"], row["samples_ns"])):
+                    exports.append(
+                        dict(
+                            data_kind=m["data_kind"],
+                            pair=pair["id"],
+                            session=pair["session"],
+                            variant=r["variant"],
+                            threads=pair["threads"],
+                            phase=row["phase"],
+                            repetition=i,
+                            tokens_per_second=rate,
+                            duration_ns=ns,
+                            raw=r["raw"],
+                            raw_row_index=row["raw_row_index"],
+                            raw_sha256=m["files"][r["raw"]],
+                        )
+                    )
+        check(
+            native["original"] == native["compatible"],
+            "Build/workload settings differ between variants",
+        )
+        for phase in ("prefill", "decode"):
+            a, b = collected["original"][phase], collected["compatible"][phase]
+            groups[(phase, pair["threads"])].append(
+                dict(
+                    pair=pair["id"],
+                    order=pair["order"],
+                    original=a["mean_ts"],
+                    compatible=b["mean_ts"],
+                    ratio=b["mean_ts"] / a["mean_ts"],
+                )
+            )
+    summaries = []
+    for (phase, threads), pairs in groups.items():
+        a = [p["original"] for p in pairs]
+        b = [p["compatible"] for p in pairs]
+        ratios = [p["ratio"] for p in pairs]
+        summaries.append(
+            dict(
+                phase=phase,
+                threads=threads,
+                pairs=pairs,
+                original_mean_ts=stats.mean(a),
+                original_process_sd=stats.stdev(a),
+                compatible_mean_ts=stats.mean(b),
+                compatible_process_sd=stats.stdev(b),
+                paired_ratio_mean=stats.mean(ratios),
+                paired_ratio_sd=stats.stdev(ratios),
+                paired_ratio_min=min(ratios),
+                paired_ratio_max=max(ratios),
+                change_pct=(stats.mean(ratios) - 1) * 100,
+            )
+        )
+    samples = [s for s in telemetry if s["data_kind"] == m["data_kind"]]
+    check(
+        len(samples) == len(telemetry) and bool(samples),
+        "Missing or mismatched monitoring provenance",
+    )
+    temp = [s["temperature_c"] for s in samples if s["temperature_c"] is not None]
+    freq = [s["frequency_mhz"] for s in samples if s["frequency_mhz"] is not None]
+    current = sorted(
+        {
+            k
+            for s in samples
+            for k, v in (s["throttled_states"] or {}).items()
+            if v and k.endswith("_now")
+        }
+    )
+    summary = dict(
+        data_kind=m["data_kind"],
+        source_commit=m["source_commit"],
+        groups=summaries,
+        formal_processes=len(processes),
+        formal_native_repetitions=len(exports),
+        sensor_samples=len(samples),
+        max_temperature_c=max(temp, default=None),
+        frequencies_mhz=sorted(set(freq)),
+        throttled_raw=sorted(
+            {s["throttled_raw"] for s in samples if s["throttled_raw"] is not None}
+        ),
+        current_throttle_flags=current,
+        missing_throttle_samples=sum(s["throttled_states"] is None for s in samples),
+        peak_child_rss_mb=max(p["peak_rss_mb"] for p in processes),
+        oom_cgroup_deltas=[p["oom_kill_cgroup_delta"] for p in processes],
+    )
+    return summary, exports, telemetry
+
+
+def generate(source, destination):
+    summary, rows, telemetry = summarize(source)
+    destination = Path(destination)
+    destination.mkdir(parents=True, exist_ok=True)
+    write_json(destination / "e2e.json", summary)
+    with (destination / "e2e.csv").open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+    from scripts.pi.monitor import write_metrics
+
+    write_metrics(destination / "system_metrics.csv", telemetry)
+    label = (
+        "Fixture: synthetic software data"
+        if summary["data_kind"] == "fixture"
+        else "Physical Raspberry Pi 3"
+    )
+    table = []
+    for g in summary["groups"]:
+        table.append(
+            f"| {g['phase']} | {g['threads']} | "
+            f"{g['original_mean_ts']:.6f} ± {g['original_process_sd']:.6f} | "
+            f"{g['compatible_mean_ts']:.6f} ± {g['compatible_process_sd']:.6f} | "
+            f"{g['paired_ratio_mean']:.6f} ± {g['paired_ratio_sd']:.6f} | "
+            f"{g['change_pct']:+.3f}% |"
+        )
+    table_text = "\n".join(table)
+    text = f"""# Original versus compatible GGML inference
+
+{label}. Original official llama-bench versus the pinned official source wrapped
+around the compatible integration. Fixture runs execute neither model nor gates.
+
+| Phase | Threads | Original t/s ± SD | Compatible t/s ± SD | Paired ratio ± SD | Change |
+|---|---:|---:|---:|---:|---:|
+{table_text}
+
+Ratios are compatible/original throughput within each process pair, averaged over
+four pairs. Each process has three native repetitions. SD describes four process
+means or paired ratios; it is not a confidence interval. CSV rows retain the
+native file, row index, SHA256 and integer duration. Every pair and execution
+order is preserved in e2e.json.
+
+Source: `{summary["source_commit"]}`. Formal processes:
+{summary["formal_processes"]}; native throughput repetitions across both phases:
+{summary["formal_native_repetitions"]}. Smoke, numerical and audited proof runs
+are excluded from timing statistics. Both use the same verified model, ARMv8-A,
+Release, OpenMP/llamafile, batch/ubatch128, mmap1, poll0, GPU0, depth0 and warmup.
+Fresh processes use the pinned official random-token harness with libc default
+seed1. Decode begins at depth0; it is not conditioned on a 128-token prompt.
+
+Compile and runtime integration defaults remain off. Formal compatible processes
+explicitly enable the upstream-order profile with auditing off. Separate audited
+runs without warmup prove actual dispatch for both phases at every thread count. The numerical
+model gate is rerun before real timing. This comparison includes integration,
+wrapper/build and inference overhead. It does not isolate one kernel instruction
+or transfer the preceding FMA microbenchmark ratios.
+
+Formal monitoring: {summary["sensor_samples"]} samples. Maximum temperature:
+{summary["max_temperature_c"]} °C. Sampled MHz: {summary["frequencies_mhz"]}.
+Raw throttle: {summary["throttled_raw"]}. Current flags:
+{summary["current_throttle_flags"]}. Missing throttle samples:
+{summary["missing_throttle_samples"]}. Peak child lifecycle RSS:
+{summary["peak_child_rss_mb"]} MiB. Cgroup OOM observations and unavailable reasons
+remain in raw process JSON; unknown evidence is null.
+
+Four pairs per configuration are a small sample. AB/BA order alternates across
+four sessions; thread order reverses in odd sessions. Temperature, governor and
+scheduling can drift. No affinity, governor, cooling, clock, voltage or swap
+setting is changed. Lifecycle sampling cannot locate every timed-region event or
+exclude brief throttling. Random-token pp128/tg16 at depth0 does not represent
+arbitrary prompts, contexts or model quality. Official warmup and timing regions
+remain unchanged. Complete stderr, loader paths and compiler dumps stay private;
+public provenance contains allowlisted settings and hashes.
+"""
+    (destination / "e2e.md").write_text(text)
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    for ax, phase in zip(axes, ("prefill", "decode")):
+        gs = [g for g in summary["groups"] if g["phase"] == phase]
+        x = list(range(3))
+        for offset, key, title in (
+            (-0.18, "original", "Original"),
+            (0.18, "compatible", "Compatible"),
+        ):
+            ax.bar(
+                [v + offset for v in x],
+                [g[key + "_mean_ts"] for g in gs],
+                width=0.34,
+                yerr=[g[key + "_process_sd"] for g in gs],
+                capsize=3,
+                label=title,
+            )
+        ax.set_xticks(x, ["1", "2", "4"])
+        ax.set_xlabel("CPU threads")
+        ax.set_ylabel("Tokens / second")
+        ax.set_title(phase.capitalize())
+        ax.legend()
+    fig.suptitle(label + " — process mean ± sample SD")
+    fig.tight_layout()
+    fig.savefig(destination / "e2e.png", dpi=150)
+    plt.close(fig)
+    return summary
+
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--input", type=Path, required=True)
+    p.add_argument("--reports", type=Path, required=True)
+    a = p.parse_args()
+    generate(a.input, a.reports)
