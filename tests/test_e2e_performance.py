@@ -69,6 +69,40 @@ class EndToEndPerformanceTests(unittest.TestCase):
         finally:
             p.write_bytes(saved)
 
+    def test_recorded_physical_evidence_and_privacy(self):
+        import re
+
+        source = ROOT / "results/integration/e2e-20261031"
+        if not source.exists():
+            self.skipTest("Physical release not present in this source checkout")
+        summary, rows, _ = summarize(source)
+        self.assertEqual(summary["data_kind"], "real")
+        self.assertEqual(summary["formal_processes"], 24)
+        self.assertEqual(len(rows), 144)
+        self.assertEqual(len(summary["groups"]), 6)
+        m = json.loads((source / "manifest.json").read_text())
+        previous = json.loads(
+            (ROOT / "results/integration/ggml-20261031/manifest.json").read_text()
+        )
+        original = {
+            k.removeprefix("original/"): v
+            for k, v in m["artifact_hashes"].items()
+            if k.startswith("original/")
+        }
+        self.assertEqual(original, previous["original_libraries_sha256"])
+        review = json.loads((source / "SOURCE.json").read_text())
+        self.assertEqual(sha256(source / "manifest.json"), review["original_manifest_sha256"])
+        self.assertIs(review["retained_capture_bytes_changed"], False)
+        expected = set(m["files"]) | {"manifest.json", "SOURCE.json"}
+        self.assertEqual(
+            {p.relative_to(source).as_posix() for p in source.rglob("*") if p.is_file()}, expected
+        )
+        pattern = (
+            r"/home/|/Users/|BEGIN .*PRIVATE KEY|" + r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])"
+        )
+        for name in expected:
+            self.assertIsNone(re.search(pattern, (source / name).read_bytes().decode("utf8")), name)
+
     def test_fixture_cannot_be_relabelled_as_hardware(self):
         m = json.loads(self.original_manifest)
         p = self.source / m["pairs"][0]["runs"][0]["raw"]

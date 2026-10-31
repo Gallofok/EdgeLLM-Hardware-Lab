@@ -1,7 +1,7 @@
-# Reviewed GGML numerical evidence
+# Reviewed GGML evidence
 
-The public integration dataset is a numerical feasibility experiment, not a
-throughput benchmark. Only the following field groups are collected publicly:
+The first public integration dataset is a numerical feasibility experiment.
+The subsequent end-to-end dataset records separate native throughput measurements. Only the following field groups are collected publicly:
 
 | Record | Allowed contents |
 |---|---|
@@ -48,3 +48,28 @@ field review and byte scan found no prohibited identifier/path/key material.
 The release explicitly includes the rejected prototype row and ordinary exit 1;
 it is not omitted or converted into a passing numerical result. Private hashes
 also preserve the earlier loader-preflight and direct-integration failure records.
+
+## End-to-end release
+
+For `results/integration/e2e-20261031`, the reviewed release has 105 raw files,
+one unchanged capture manifest, and a new SOURCE record. The 106 original
+capture files total 696,967 bytes and match the private originals exactly.
+The additional allowed native benchmark fields are public model/engine identities,
+CPU/build settings, UTC test times, token counts, thread counts, integer repetition
+durations and derived throughput. Pair IDs, AB/BA order, formal audit-off status,
+before/after artifact hashes and explicit numerical/smoke/proof gate identities
+are retained in the manifest. Audit JSON contains only the driver's counter object
+extracted from stderr; complete stderr remains private.
+
+All retained fields were reviewed and scanned for private paths, IPv4 literals
+and key material. Tests enforce the exact manifest file set, unchanged-manifest
+hash, original-engine library hashes, full pair grid, native configuration
+equality, gate outcomes and raw-file hashes. Generated reports preserve every
+repetition and both throughput phases, including the measured regression.
+The six separate audited proof processes have warmup disabled; the 24 formal
+processes retain official warmup and disable auditing. The numerical/smoke/proof
+processes contribute no formal performance samples.
+
+This original-versus-compatible comparison includes wrapper/build and integration
+overhead. It does not isolate one kernel instruction or establish a root cause.
+Lifecycle telemetry and unavailable OOM evidence retain the limitations above.

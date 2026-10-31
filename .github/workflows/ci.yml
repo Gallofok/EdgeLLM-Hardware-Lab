@@ -51,6 +51,7 @@ jobs:
           python scripts/quantized/report.py --input results/quantized/q5-20261031 --reports build/verified-reports/q5
           python scripts/quantized/neon_report.py --input results/quantized/neon-20261031 --reports build/verified-reports/q5-neon
           python scripts/integration/report.py --input results/integration/ggml-20261031 --reports build/verified-reports/ggml
+          python scripts/integration/perf_report.py --input results/integration/e2e-20261031 --reports build/verified-reports/e2e
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
