@@ -242,9 +242,10 @@ def generate(root, reports):
         "",
         "## Independent numerical checks",
         "",
-        "Both implementations pass single-lane golden fixtures for all 32 Q5 integers "
-        "at all 32 positions, Q8 extrema, every finite binary16 conversion, negative "
-        "zero, odd/even block tails and randomized decoded FP64 oracles. Formal "
+        "The real-device gate exhausts finite binary16 patterns and signed zero in "
+        "the reference decoder. Both dots then face single-lane golden fixtures for "
+        "all 32 Q5 integers at all 32 positions, Q8 extrema, odd/even block tails and "
+        "randomized decoded FP64 oracles. Fixture gates are synthetic replay. Formal "
         "outputs are checked before timing and after every paired batch. The oracle "
         "decodes each operand, multiplies in FP64 and sums per element; it does not "
         "reuse the scalar integer block dot. The bound is `1e-6 + gamma * "

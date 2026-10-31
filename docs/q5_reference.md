@@ -86,6 +86,9 @@ The runner never installs software or changes power/security settings. Partial
 runs preserve errors and process records; the strict report loader refuses to
 present failed/incomplete data as a complete baseline. Review paths/logs before
 publishing. Original timing/process/sensor bytes must remain traceable via hashes.
+For the curated public baseline, complete compiler caches, command dumps and
+instruction listings stay private. An allowlisted build-provenance JSON retains
+software versions, flags and artifact hashes; see [publication review](q5_evidence_review.md).
 
 ## Measurement protocol and limits
 

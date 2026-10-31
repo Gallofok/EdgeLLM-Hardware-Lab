@@ -1,0 +1,28 @@
+{
+  "data_kind": "real_physical_pi3_synthetic_packed_operands",
+  "source_commit": "866a07461309a46fa130defd61607aa3d3494019",
+  "original_manifest_sha256": "b0bc0a07299b0e9bacfe937f405a66039573734d0bb125a0e9d2e48ac895d3a3",
+  "publication": "Public measurement JSON, telemetry, process records, gate output, stderr and setup records are byte-identical to the original run. Full compiler cache, compiler commands, redundant engine help and static disassembly are omitted; their hashes are retained and build_provenance.json publishes only allowlisted software/flag/hash fields. Manifest input list updated explicitly. Full original run remains private.",
+  "normalized_files": [],
+  "omitted_private_evidence": [
+    {
+      "path": "raw/CMakeCache.txt",
+      "original_sha256": "155b9d736a54106b29dd80ad48fd539648f6f73f27a170154b8b2c407fea97b8"
+    },
+    {
+      "path": "raw/compile_commands.json",
+      "original_sha256": "a767291b3579779dd851123afca0bbac355ada3c200894e17ae2bb887b6f251b"
+    },
+    {
+      "path": "raw/llama-bench-help.txt",
+      "original_sha256": "6d66610d32373d4a03f4bb0c38309760d730196dd66afec938528362c25abca6"
+    },
+    {
+      "path": "raw/q5-reference.disassembly.txt",
+      "original_sha256": "9e91045f5cd16fb24e915c6c112ea40e2121bf295dd2095f812662dcf63b1bd2"
+    }
+  ],
+  "added_public_evidence": [
+    "raw/build_provenance.json"
+  ]
+}

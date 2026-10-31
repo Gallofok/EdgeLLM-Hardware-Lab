@@ -1,6 +1,7 @@
 import copy
 import csv
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -132,3 +133,47 @@ class QuantizedWorkflowTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(ValueError, "kind differs"):
             load_run(self.root)
+
+
+class RecordedQuantizedTests(unittest.TestCase):
+    def test_reviewed_pi_measurements_and_original_upstream_identity(self):
+        root = ROOT / "results/quantized/q5-20261031"
+        manifest, cases, metrics = load_run(root)
+        self.assertEqual(manifest["data_kind"], "real")
+        self.assertEqual(manifest["sessions"], 3)
+        self.assertEqual(len(cases), 18)
+        self.assertEqual(sum(c["repetitions"] for c in cases), 108)
+        self.assertEqual(len(metrics), 76)
+        self.assertEqual({s["throttled_raw"] for s in metrics}, {"0x20000"})
+        prior = json.loads((ROOT / "results/profiling/pi3-20261031/manifest.json").read_text())
+        self.assertEqual(manifest["upstream_libraries_sha256"], prior["shared_libraries_sha256"])
+        for name in ("q5-bench", "test-q5"):
+            self.assertEqual(len(manifest["binary_sha256"][name]), 64)
+
+    def test_public_dataset_omits_identifiers_and_complete_build_dumps(self):
+        root = ROOT / "results/quantized/q5-20261031"
+        for name in (
+            "CMakeCache.txt",
+            "compile_commands.json",
+            "llama-bench-help.txt",
+            "q5-reference.disassembly.txt",
+        ):
+            self.assertFalse((root / "raw" / name).exists())
+        for path in root.rglob("*"):
+            if path.is_file():
+                self.assertIsNone(
+                    re.search(
+                        r"/home/|(?:\d{1,3}\.){3}\d{1,3}|BEGIN .*PRIVATE KEY",
+                        path.read_bytes().decode("utf-8"),
+                    ),
+                    str(path),
+                )
+        metadata = json.loads((root / "raw/build_provenance.json").read_text())
+        self.assertEqual(
+            set(metadata["target_compile_flags"]),
+            {
+                "src/kernels/quantized/q5.cpp",
+                "benchmarks/q5_bench.cpp",
+                "tests/kernels/test_q5.cpp",
+            },
+        )
