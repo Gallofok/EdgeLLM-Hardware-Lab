@@ -15,4 +15,11 @@ namespace edgellm {
 void gemv_scalar(const float* weights, const float* x, float* y,
                  std::size_t rows, std::size_t cols, std::size_t row_stride);
 
+#ifdef EDGELLM_HAS_NEON
+// ARM64 NEON implementation with the same storage/argument contract. Vector
+// reduction changes summation order; bitwise equality with scalar is not promised.
+void gemv_neon(const float* weights, const float* x, float* y,
+               std::size_t rows, std::size_t cols, std::size_t row_stride);
+#endif
+
 }  // namespace edgellm

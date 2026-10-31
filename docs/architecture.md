@@ -24,5 +24,9 @@ single-thread FP32 scalar library. `gemv-bench` calibrates repeated calls and
 emits integer batch timings after independent correctness checks.
 `scripts/kernels/benchmark.py` reuses diagnostics/monitoring and writes kernel
 provenance, hashes, JSON and CSV into a fresh directory. Scalar numerical tests
-run through CTest. NEON, quantization and GGML integration remain future work;
+run through CTest. An optional ARM64 NEON library shares the API/validation,
+while the native paired mode alternates timed kernel batches on common buffers.
+`scripts/kernels/paired.py` validates native pair order and statistics;
+`scripts/kernels/report.py` validates all evidence and regenerates Markdown/PNG.
+Quantization and GGML integration remain future work;
 the LLM workflow still uses GGML unchanged. See [kernel protocol](scalar_gemv.md).

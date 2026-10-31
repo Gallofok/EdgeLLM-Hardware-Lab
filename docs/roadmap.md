@@ -37,7 +37,7 @@ not establish that it passed.
 - [x] Independent numerical checks, stride/tail/boundary tests and CTest integration.
 - [x] Calibrated native microbenchmark and monitored JSON/CSV evidence workflow.
 - [x] Publish reviewed physical Pi scalar measurements and inspect generated assembly.
-- [ ] Implement ARM NEON GEMV and validate it against the independent oracle.
+- [x] Implement ARM NEON GEMV and validate it against the independent oracle.
 - [ ] Compare paired scalar/NEON runs under recorded operating conditions.
 - [ ] Profile the actual inference workload before choosing an integration target.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
@@ -45,7 +45,8 @@ not establish that it passed.
 
 The [scalar protocol](scalar_gemv.md) defines the first milestone. FP32 synthetic
 microbenchmarks are separate from the quantized LLM baseline. No claimed speedup
-in advance; NEON and INT4 are not implemented yet.
+in advance. NEON now has a [paired measurement protocol](neon_gemv.md);
+INT4 and GGML integration remain future work.
 
 The [physical scalar baseline](scalar_gemv_baseline.md) contains 15 measured
 batch samples, operating-condition caveats and links to native/checksummed data.

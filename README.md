@@ -27,8 +27,9 @@ and [validation notes](docs/validation.md) for interpretation and limitations.
 tests and a monitored native microbenchmark. See [build instructions and protocol](docs/scalar_gemv.md).
 The [physical scalar baseline](docs/scalar_gemv_baseline.md) includes all 15 batch
 samples and the inspected ARM64 disassembly.
-NEON, INT4 and GGML integration remain upcoming; the microbenchmark does not
-establish an LLM speedup.
+An [ARM64 NEON implementation and paired protocol](docs/neon_gemv.md) now compare
+both kernels on identical inputs with alternating execution order. INT4 and GGML
+integration remain upcoming; the microbenchmark does not establish an LLM speedup.
 
 Agent work must not install or benchmark on a private Pi without device-operation
 authorization. Setup does not reimage the system, expose SSH, change clocks,
