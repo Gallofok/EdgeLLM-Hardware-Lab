@@ -370,8 +370,8 @@ def report(args):
     lines = [
         "# Existing Q5 paths: physical Pi 3 kernel comparison",
         "",
-        "Single-thread width576, identical synthetic packed inputs. Original/prototype/compatible "
-        "Code is loaded from the prior experiment's unchanged libraries in isolated namespaces. "
+        "Single-thread width 576, identical synthetic packed inputs. Original/prototype/compatible "
+        "code comes from the prior experiment's unchanged libraries in isolated namespaces. "
         "Both candidate paths use the same bridge and chunk output copy. "
         "Auditing/configuration/oracle/allocation/quantization are excluded from timing.",
         "",
@@ -401,7 +401,7 @@ def report(args):
         f"{summary['matched_triplets']} matched triplets, "
         f"{summary['timed_batches']} timed batches. Each shape has three processes/seeds "
         "with six balanced orders each; the middle session reverses shape order. "
-        "JSON preserves per-process ratio SD and every triplet; "
+        "JSON preserves SD across process mean ratios and every triplet; "
         "SD is descriptive, not a confidence interval.",
         "",
         "All five tail smoke processes and every formal process must pass the independent "

@@ -195,3 +195,12 @@ workload; keep the integration default off and use the original engine.
 [Report and chart](reports/pi3-e2e-20261031/e2e.md),
 [raw evidence](results/integration/e2e-20261031) and
 [reproduction protocol](docs/e2e_performance.md) retain the negative result.
+
+The [existing-library Q5 path study](docs/q5_path_profile_analysis.md) reproduces
+the loss without running the LLM: compatible kernel calls take 14.9–23.4% longer
+than original on six primary shapes, while the rejected FMA prototype remains
+faster. Twenty-four monitored processes retain all observations. Reviewed
+assembly shows conditional even/odd accumulator selection in the compatible
+four-row loop, with no stack accesses or helper calls in that hot loop; it does
+not establish an instruction-level cause. See the
+[replayable report](reports/pi3-q5-path-profile-20261031/path_profile.md).

@@ -1,0 +1,6 @@
+tree d41958be50a896e9696708fd47bcac7185baf3d7
+parent 4a22e177b098bd614f0503f16112a38339d10886
+author Codex <codex@openai.com> 1793478212 +0000
+committer Codex <codex@openai.com> 1793478212 +0000
+
+Add existing-library Q5 path comparison and fixed capture protocol

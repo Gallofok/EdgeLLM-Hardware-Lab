@@ -1,9 +1,15 @@
 """Synthetic validator tests; none of these fixtures are physical measurements."""
 
 import copy
+import hashlib
+import json
+import shutil
+import tempfile
 import unittest
+from pathlib import Path
 
-from scripts.quantized.path_profile import KINDS, ORDERS, cases, native_summary
+from scripts.pi.common import ROOT
+from scripts.quantized.path_profile import KINDS, ORDERS, cases, native_summary, replay
 
 
 def fixture():
@@ -72,6 +78,47 @@ class PathProfileTests(unittest.TestCase):
             [(c["rows"], c["vectors"], c["chunk"]) for c in grid[:8]],
             [(c["rows"], c["vectors"], c["chunk"]) for c in grid[8:16]][::-1],
         )
+
+
+@unittest.skipUnless(
+    (ROOT / "results/quantized/path-profile-20261031/manifest.json").exists(),
+    "Recorded physical dataset is not present in this checkout",
+)
+class RecordedPathProfileTests(unittest.TestCase):
+    dataset = ROOT / "results/quantized/path-profile-20261031"
+
+    def test_complete_capture_replays_without_device_or_libraries(self):
+        _, summary, rows = replay(self.dataset)
+        self.assertEqual(summary["formal_processes"], 24)
+        self.assertEqual(summary["matched_triplets"], 144)
+        self.assertEqual(summary["timed_batches"], 432)
+        self.assertEqual(len(summary["groups"]), 8)
+        self.assertEqual(len(rows), 144)
+
+    def test_publication_preserves_original_source_commit_identity(self):
+        review = json.loads((self.dataset / "SOURCE.json").read_text())
+        mapping = review["source_publication"]
+        blob = (self.dataset / mapping["capture_commit_object"]).read_bytes()
+        header = b"commit " + str(len(blob)).encode() + b"\0"
+        self.assertEqual(hashlib.sha1(header + blob).hexdigest(), mapping["capture_source_commit"])
+        self.assertEqual(hashlib.sha256(blob).hexdigest(), mapping["capture_commit_object_sha256"])
+        self.assertEqual(blob.splitlines()[0].decode(), "tree " + mapping["capture_source_tree"])
+        manifest = json.loads((self.dataset / "manifest.json").read_text())
+        self.assertEqual(mapping["capture_source_commit"], manifest["source_commit"])
+
+    def test_changed_bytes_and_unlisted_evidence_rejected(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            dataset = Path(temporary) / "capture"
+            shutil.copytree(self.dataset, dataset)
+            raw = dataset / "raw/s0-r192-v1-c16.json"
+            original = raw.read_bytes()
+            raw.write_bytes(original + b"\n")
+            with self.assertRaisesRegex(ValueError, "hash mismatch"):
+                replay(dataset)
+            raw.write_bytes(original)
+            (dataset / "raw/unlisted.txt").write_text("Synthetic tamper test\n")
+            with self.assertRaisesRegex(ValueError, "Unexpected/missing"):
+                replay(dataset)
 
 
 if __name__ == "__main__":
