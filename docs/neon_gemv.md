@@ -107,6 +107,12 @@ binary and compiler-cache hashes, environment snapshots, session identifiers,
 commands, exit status and evidence hashes. Partial failures remain recorded;
 the report refuses incomplete/failed runs rather than publishing success.
 
+Standard deviation recomputation allows at most two floating-point ULPs because
+CPython 3.10 and newer versions use different square-root rounding paths.
+Native timings, per-call samples, ratios, means, structure and evidence SHA256
+checks remain exact. Original measurements and exports are never rewritten to
+accommodate this numerical comparison.
+
 `scripts/kernels/report.py` rechecks evidence hashes, paths, native parameters,
 process status, throttle parsing and derived JSON/CSV before generating
 `neon_gemv.md` and `neon_gemv.png`. Reports distinguish physical Pi results,

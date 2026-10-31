@@ -28,6 +28,14 @@ AddressSanitizer/UBSan checks passed locally with leak detection disabled becaus
 the local executor runs under tracing. CI additionally cross-builds ARM64 and
 executes correctness checks under QEMU; those timings are never Pi evidence.
 
+Recorded-evidence CI exposed a cross-version summary issue: Python 3.10 computed
+one paired standard deviation as 0.04204500502998296, while the device's newer
+statistics implementation stored 0.04204500502998295 (one floating-point ULP).
+The report now permits two ULPs only for standard deviation recomputation;
+timings, ratios, means and evidence hashes remain exact. Regression tests cover
+both this rounding difference and rejection of larger changes. The original
+exports and all raw evidence were retained unchanged.
+
 ## Evidence about implementation and accuracy
 
 Both device object files are archived next to the results. The Scalar hot loop

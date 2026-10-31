@@ -1,16 +1,52 @@
 import hashlib
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
 
 from scripts.kernels.paired import summarize_paired
-from scripts.kernels.report import generate, load_run
+from scripts.kernels.report import generate, load_run, same_summary
 from scripts.pi.monitor import write_metrics
 from tests import test_paired_gemv
 
 
 class PairedReportTest(unittest.TestCase):
+    def test_cross_python_stddev_rounding_is_bounded_and_other_fields_stay_exact(self):
+        # Actual 3.10 variance->sqrt versus 3.13 exact-fraction sqrt difference
+        # exposed by the recorded session01 2048x512 paired-ratio standard deviation.
+        modern, older = 0.04204500502998295, 0.04204500502998296
+        self.assertTrue(
+            same_summary(
+                {"stddev_paired_latency_ratio": modern}, {"stddev_paired_latency_ratio": older}
+            )
+        )
+        self.assertFalse(
+            same_summary(
+                {"mean_paired_latency_ratio": modern}, {"mean_paired_latency_ratio": older}
+            )
+        )
+        self.assertFalse(
+            same_summary({"samples_ns_per_call": [modern]}, {"samples_ns_per_call": [older]})
+        )
+        too_far = modern
+        for _ in range(8):
+            too_far = math.nextafter(too_far, math.inf)
+        for bad in (too_far, math.nan, math.inf, -modern):
+            self.assertFalse(
+                same_summary(
+                    {"stddev_paired_latency_ratio": modern}, {"stddev_paired_latency_ratio": bad}
+                )
+            )
+        self.assertFalse(same_summary({"rows": 1}, {"rows": True}))
+
+    def test_recorded_neon_data_revalidates_across_python_versions(self):
+        root = Path(__file__).resolve().parents[1] / "results/kernels/neon-20261031"
+        manifest, cases, _ = load_run(root)
+        self.assertFalse(manifest["working_tree_dirty"])
+        self.assertEqual(len(cases), 9)
+        self.assertEqual(sum(case["repetitions"] for case in cases), 54)
+
     def fixture(self, root):
         # Entire evidence bundle is synthetic and explicitly marked Fixture.
         raw = test_paired_gemv.PairedGemvTest().fixture()

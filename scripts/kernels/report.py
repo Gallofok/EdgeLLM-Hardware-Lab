@@ -19,6 +19,27 @@ from scripts.kernels.paired import summarize_paired
 from scripts.pi.monitor import parse_throttled, read_metrics
 
 
+def same_summary(expected, actual, field=""):
+    """Keep structure/timings exact; allow only stddev sqrt rounding across CPython versions."""
+    if type(expected) is not type(actual):
+        return False
+    if isinstance(expected, dict):
+        return expected.keys() == actual.keys() and all(
+            same_summary(value, actual[key], key) for key, value in expected.items()
+        )
+    if isinstance(expected, list):
+        return len(expected) == len(actual) and all(
+            same_summary(a, b, field) for a, b in zip(expected, actual)
+        )
+    if isinstance(expected, float) and field.startswith("stddev_"):
+        # Python 3.10 rounds variance to float before sqrt; newer statistics
+        # computes sqrt from the exact fraction. This can shift the last bit.
+        return math.isfinite(actual) and math.isclose(
+            expected, actual, rel_tol=0, abs_tol=2 * max(math.ulp(expected), math.ulp(actual))
+        )
+    return expected == actual
+
+
 def load_run(root):
     root = Path(root).resolve()
     manifest = json.loads((root / "manifest.json").read_text())
@@ -75,7 +96,7 @@ def load_run(root):
         raise ValueError("No paired cases")
     if "benchmark.json" not in hashes or "benchmark.csv" not in hashes:
         raise ValueError("Exports are not checksummed")
-    if json.loads((root / "benchmark.json").read_text()) != expected:
+    if not same_summary(expected, json.loads((root / "benchmark.json").read_text())):
         raise ValueError("Exported summaries disagree with native timings")
     with (root / "benchmark.csv").open(newline="") as stream:
         exported = list(csv.DictReader(stream))
