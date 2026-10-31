@@ -32,3 +32,20 @@ and public software/artifact identities are intentional experimental evidence.
 A recorded-data test also rejects reintroducing the omitted complete dumps or
 those identifier patterns. These checks support this specific reviewed release;
 they do not automatically approve future logs or newly collected fields.
+
+## Reviewed four-row NEON candidate release
+
+`results/quantized/neon-20261031` has also received a separate field-level review.
+Its 82 checksummed inputs plus manifest total about 118 KB. Native records replace the
+two-method pairs with original/row1/row4 triplets, exact order/calibration records
+and numerical checks. Sensor/process schemas stay the same; the release contains
+94 sensor observations and 18 formal processes. Build metadata is allowlisted at
+collection time. Original engine help uses a private temporary directory and
+never enters the public run. There are no complete compiler dumps, command logs,
+static instruction listings, perf traces, identifiers, credentials or home paths.
+
+All original raw bytes match the private captured run exactly. SOURCE adds the
+original manifest hash and hashes of the private post-run static inspection;
+those hashes expose no instruction listing or runtime address. Recorded-data
+privacy tests reject complete dumps, home prefixes, IPv4 literals and private-key
+headers. This review applies to this specific candidate dataset and its fields.

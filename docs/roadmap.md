@@ -41,7 +41,8 @@ not establish that it passed.
 - [x] Compare paired scalar/NEON runs under recorded operating conditions.
 - [x] Profile actual inference and publish mixed-type inventory / user-cycle evidence.
 - [x] Build a Q5_0×Q8_0 correctness and shape-matched benchmark against upstream ARM kernels.
-- [ ] Develop a quantized ARM candidate and compare it against the unchanged upstream baseline.
+- [x] Develop a quantized ARM candidate and compare it against the unchanged upstream baseline.
+- [ ] Validate GGML integration feasibility, including views/strides/threaded partitioning.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [ ] Evaluate GGML CPU integration with measured end-to-end impact.
 
@@ -52,7 +53,7 @@ INT4 and GGML integration remain future work. The
 [physical inference profile](inference_profile_analysis.md) prioritizes Q5_0×Q8_0
 because of the observed workload, rather than assuming Q4_K from the filename.
 The [physical Q5 correctness and upstream baseline](q5_baseline_analysis.md) now
-provides the comparator for the next candidate. Q8_0×Q8_0 is a secondary decode candidate. This does not remove the later INT4
+provides the comparator for the [measured four-row candidate](q5_neon_analysis.md). Q8_0×Q8_0 is a secondary decode candidate. This does not remove the later INT4
 packing/layout study.
 
 The [physical paired report](../reports/pi3-neon-20261031/neon_gemv.md) includes

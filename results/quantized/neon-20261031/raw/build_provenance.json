@@ -1,0 +1,59 @@
+{
+  "source_commit": "3edd72745e2ac661cfd236f8039a93dcb9db2992",
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "build_type": "Release",
+  "target_compile_flags": {
+    "src/kernels/quantized/q5_neon.cpp": [
+      "-DEDGELLM_HAS_Q5_NEON=1",
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-march=armv8-a",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror"
+    ],
+    "benchmarks/q5_neon_bench.cpp": [
+      "-DEDGELLM_HAS_Q5_NEON=1",
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror"
+    ],
+    "tests/kernels/test_q5_neon.cpp": [
+      "-DEDGELLM_HAS_Q5_NEON=1",
+      "-O3",
+      "-DNDEBUG",
+      "-std=c++17",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror"
+    ]
+  },
+  "binary_sha256": {
+    "q5-neon-bench": "b85d313f56832ec5829979f79a8890aeea9127158060070267fc0e201127e433",
+    "test-q5-neon": "e74525e60ba0d18c80e529307f554fbccc90396ec5cced68329eb00453735a66"
+  },
+  "upstream_libraries_sha256": {
+    "libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "libggml.so": "7f20f88a786da4351666a005fbf6156d58dd2a667d4e8a8a73c8b00fa8d3a04d",
+    "libllama.so": "7826f24b180a87b288acdf574b14bd2e08d44d0e6cade3eb169e631129d7cbf1"
+  },
+  "private_compiler_metadata_sha256": {
+    "CMakeCache.txt": "d087cc9d3e6874e938eff47476864be52c58e9384296a689b6aaad424833ab81",
+    "compile_commands.json": "3127db2535f08210241cfeda69b4baf8534ccfe1aabe55fca463c0779008b11c"
+  },
+  "note": "Allowlisted software/flag/hash fields only; complete build metadata and assembly remain private"
+}

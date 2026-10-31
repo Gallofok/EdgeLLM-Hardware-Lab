@@ -60,6 +60,14 @@ The [real Pi report](reports/pi3-q5-20261031/q5_baseline.md) records 108 pairs
 across 18 processes, with all outputs checked against the independent oracle.
 The [baseline analysis](docs/q5_baseline_analysis.md) describes operating
 conditions and the next candidate's acceptance gate.
+An [ARM NEON Q5 candidate and row1 ablation](docs/q5_neon.md) now implement
+four-row activation reuse in the original packed format. They are measured
+against the original ARM GGML function; integration remains a separate gate.
+The [physical candidate report](reports/pi3-q5-neon-20261031/q5_neon.md) records
+108 balanced triplets. Mean upstream/row4 latency ratios were 1.265–1.402 across
+six shapes; the slower row1 ablation is retained. These are standalone packed
+kernel results, with [limits and next integration gate](docs/q5_neon_analysis.md),
+not an end-to-end LLM improvement.
 
 ## Raspberry Pi quick start
 

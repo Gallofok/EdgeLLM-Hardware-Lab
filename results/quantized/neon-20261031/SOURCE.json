@@ -1,0 +1,12 @@
+{
+  "data_kind": "real_physical_pi3_synthetic_packed_buffer_kernels",
+  "source_commit": "3edd72745e2ac661cfd236f8039a93dcb9db2992",
+  "original_manifest_sha256": "61302f0a8bd512a06c7ff91323e1b3f3ae19a9977d4577c237027db5d08488bb",
+  "publication": "All original raw native timing, numerical/gate, process, sensor and allowlisted build-provenance bytes are unchanged. No path normalization was needed. Complete build dumps, commands, logs, original help and assembly remain private and are not included. SOURCE.json is added; manifest evidence hashes explicitly include it.",
+  "normalized_files": [],
+  "private_postrun_reference": {
+    "object_sha256": "bf08aad3734558b62866e9aefd4eb9038bcf9f79c7092d7798a392d751a15b2e",
+    "disassembly_sha256": "682257aeea3af2b7fd8e6b39e653afa1967b0977f8e36fc7c8f17ea28430f5ab",
+    "note": "Candidate object/disassembly inspected after the experiment, not published. Static code inspection is not dynamic instruction or cache profiling."
+  }
+}

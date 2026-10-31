@@ -1,0 +1,935 @@
+{
+  "schema_version": 1,
+  "experiment": "q5_neon_candidate",
+  "data_kind": "real",
+  "status": "completed",
+  "started_at": "2026-10-31T14:07:09.909620+00:00",
+  "versions": {
+    "llama_repository": "https://github.com/ggml-org/llama.cpp.git",
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "llama_reference": "b6500",
+    "model_repository": "bartowski/SmolLM2-135M-Instruct-GGUF",
+    "model_revision": "09816acd5d99df7be770d85ea30822623dab342c",
+    "model_filename": "SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "model_size_bytes": 105454432,
+    "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d"
+  },
+  "project_commit": "3edd72745e2ac661cfd236f8039a93dcb9db2992",
+  "working_tree_dirty": false,
+  "sessions": 3,
+  "repetitions": 6,
+  "min_sample_ms": 100,
+  "gates": [
+    {
+      "id": "correctness",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 1.0189597510034218,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "smoke",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 1.0178412729874253,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "s01-m192-v1",
+      "session": 1,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.036730872001499,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s01-m192-v8",
+      "session": 1,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.036916762008332,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s01-m576-v1",
+      "session": 1,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.0403044410049915,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s01-m576-v8",
+      "session": 1,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039496748009697,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s01-m1536-v1",
+      "session": 1,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039570607012138,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s01-m1536-v8",
+      "session": 1,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 42,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "42",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.0391128059709445,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m1536-v8",
+      "session": 2,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.04037972597871,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m1536-v1",
+      "session": 2,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039505261986051,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m576-v8",
+      "session": 2,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039194385986775,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m576-v1",
+      "session": 2,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.040869324002415,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m192-v8",
+      "session": 2,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.037304627010599,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s02-m192-v1",
+      "session": 2,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 43,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "43",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.037447026988957,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m192-v1",
+      "session": 3,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039795757969841,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m192-v8",
+      "session": 3,
+      "rows": 192,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "192",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.0375222460133955,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m576-v1",
+      "session": 3,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.03937291004695,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m576-v8",
+      "session": 3,
+      "rows": 576,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "576",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.04052998701809,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m1536-v1",
+      "session": 3,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 1,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "1",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.0392219859641045,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "s03-m1536-v8",
+      "session": 3,
+      "rows": 1536,
+      "cols": 576,
+      "vectors": 8,
+      "seed": 44,
+      "command": [
+        "<build>/q5-neon-bench",
+        "--upstream",
+        "<project>/build/llama/bin/libggml-cpu.so",
+        "--rows",
+        "1536",
+        "--cols",
+        "576",
+        "--vectors",
+        "8",
+        "--seed",
+        "44",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039516675984487,
+        "peak_rss_mb": 20.34375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    }
+  ],
+  "notice": "Single-thread synthetic packed-buffer kernel comparison, not full GGML dispatch or LLM speedup",
+  "environment_before": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T14:07:09.940975+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 634.53125,
+    "storage_free_bytes": 22238261248,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 42.394,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "operating_conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "setup_sha256": "990d4ac56a042b1d382ecfa80db15c225da949d11f99e49d70f6d77f50a1838b",
+  "upstream_libraries_sha256": {
+    "libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "libggml.so": "7f20f88a786da4351666a005fbf6156d58dd2a667d4e8a8a73c8b00fa8d3a04d",
+    "libllama.so": "7826f24b180a87b288acdf574b14bd2e08d44d0e6cade3eb169e631129d7cbf1"
+  },
+  "binary_sha256": {
+    "q5-neon-bench": "b85d313f56832ec5829979f79a8890aeea9127158060070267fc0e201127e433",
+    "test-q5-neon": "e74525e60ba0d18c80e529307f554fbccc90396ec5cced68329eb00453735a66"
+  },
+  "environment_after": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T14:08:26.522118+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 627.45703125,
+    "storage_free_bytes": 22237995008,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 44.008,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "operating_conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "finished_at": "2026-10-31T14:08:28.057216+00:00",
+  "evidence_sha256": {
+    "SOURCE.json": "c5a601cd5815a0b10f512210d2540733bc5f2b48f4ca5879d6cb83293da04083",
+    "raw/build_provenance.json": "e9a5f350ee31b721d79e48725522b4628d3e4e315ce97e5cb4c5a5d920c5aa0e",
+    "raw/correctness.metrics.csv": "41fe1d6765af6fd70e26638f3b95998826700b9a67542aa53bae6d7d1007cd0e",
+    "raw/correctness.process.json": "e4b217632e65308abb9b33291e7b4a35161f8d1acc8ad6f3909103fc5ad81df2",
+    "raw/correctness.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/correctness.txt": "a6367ae7a73cbd1e217e97d90602d82d71d2359acea50ef910ec2503e6dd4ee4",
+    "raw/s01-m1536-v1.json": "2fc9084fed6c1cee2356fc3e77f0bc36a4ddf627364b21893fec6eb87f7b2529",
+    "raw/s01-m1536-v1.metrics.csv": "80da5e363804e4aee53d9d6d6a294233947fe6c522ea706d04746ab6a791e95d",
+    "raw/s01-m1536-v1.process.json": "0dda9840887577878909257d27472a0671477acffc071e73a25b96a7c54b4e62",
+    "raw/s01-m1536-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s01-m1536-v8.json": "df2463802112efafc452f74dce8be7d78e8a9f46ab19a8232d717b38b3808b9a",
+    "raw/s01-m1536-v8.metrics.csv": "d8f01b811f2464d263b24b13c10f2be0e38dfccd332d09ba2db043639c156758",
+    "raw/s01-m1536-v8.process.json": "0cc476007e567b0d9aa9c28613c962370048ddd7781c3cdf1ce7c63add7325f4",
+    "raw/s01-m1536-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s01-m192-v1.json": "bec7b971f4bd2ab8924b55f18fa33d43096a699b8e03b03cc90f2d8a1a4e4da5",
+    "raw/s01-m192-v1.metrics.csv": "77f869b7b15d9bc1250dc9d9c02933f617fc666dc836fdb074c660b56cd11034",
+    "raw/s01-m192-v1.process.json": "51eda34f89b96ea7c31f826a642a41342b129a6892364de0a8a1525dc9860d7f",
+    "raw/s01-m192-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s01-m192-v8.json": "d42fd0a16a89065a1ccf64817a7e087c440a4923151cf8982ffaf775b4ed3e58",
+    "raw/s01-m192-v8.metrics.csv": "647d2f69a0b200b82dfa869065c85917a90d5c7322e3e2cc200f0a99e65401ce",
+    "raw/s01-m192-v8.process.json": "96b8013568e6a682e74e83cb9b9c92085ab5a9a894a65a0f424d08284f68e8da",
+    "raw/s01-m192-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s01-m576-v1.json": "59914c6d71340a524bc9caca9f232adecacb41a8f03853d47ac113f6491ecdce",
+    "raw/s01-m576-v1.metrics.csv": "c8149fe4604a3ed9e644bdfd01f4f8e5f8847690c7d10ffa66b7fa67fcbe83f7",
+    "raw/s01-m576-v1.process.json": "b25ccbc211e177ecbee8d329109b58621689c6c570fd7d1f758aa9904946b368",
+    "raw/s01-m576-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s01-m576-v8.json": "cb3be11bf6bc6df66c31b67b9049c1980e1d70d2ad0f634dd09cfd9a66328a44",
+    "raw/s01-m576-v8.metrics.csv": "198f876f16157c456e9b7ade00ab1fac4a3041daca6412b5dc14b136090963b3",
+    "raw/s01-m576-v8.process.json": "0e0024629379592eda962b6d331e5988ec53f33d1360948f19e08b4228df35d3",
+    "raw/s01-m576-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m1536-v1.json": "2c38471abba7f845906a30203d814dca218969cbc3ad8530bc8091bceb37cac0",
+    "raw/s02-m1536-v1.metrics.csv": "d9ad2c9f8a391083f59bca4839eabd808d290139b3405258941a57ec6f78d752",
+    "raw/s02-m1536-v1.process.json": "3d56dc579f15ba6e25753a80d1ac4d7d5959d3acc2163ea58e1c1d6afd895120",
+    "raw/s02-m1536-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m1536-v8.json": "f173ae186667f694bc5b886189830ad05d952e9c3ae80acccb53cecc40f09c2d",
+    "raw/s02-m1536-v8.metrics.csv": "f2d5291536536d3c2262f29a9712b04540744c7767746063a5a31a4190b9dcce",
+    "raw/s02-m1536-v8.process.json": "84445d91b3800564786f67058c9b9165788a25081c93469ad43b112d3d2834d5",
+    "raw/s02-m1536-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m192-v1.json": "11ce065705386d7d35cf3a06412356de8752f45fa8fe063d3346b5ad91d84268",
+    "raw/s02-m192-v1.metrics.csv": "dcc782bf33e6c6fecf1b6b9b9b7f5b5c0b2ab9bc50f88d1ce023365283b47cdc",
+    "raw/s02-m192-v1.process.json": "07a53f136be524da7568c202b96767180844772bfb0679fb45f3806047565540",
+    "raw/s02-m192-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m192-v8.json": "f5adb57d477ed4babf6e77df7fb86061aa1018de721acb2c49ddc7d2b083b239",
+    "raw/s02-m192-v8.metrics.csv": "8f9d8ccbe9a84b6ce172a5ecc25a607a2f6ac09180cd1bdf681fa757c5fbca27",
+    "raw/s02-m192-v8.process.json": "e3b203385d15221bf67508be927c1c98c705cc20da322c2deeb153ab9032b961",
+    "raw/s02-m192-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m576-v1.json": "352c1ca054db5aeabcf13bad51597de660a811ff44d0a39584a089de6232d00e",
+    "raw/s02-m576-v1.metrics.csv": "2790116c55cff3fabf33e1a0cd2bb32fb131fc18ebeb0f34afbdb5c00ed073b2",
+    "raw/s02-m576-v1.process.json": "b5e0ece5a61e8637f7cfe31e9d055a9d890d2304b0983c2dfa14ff60c5041371",
+    "raw/s02-m576-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s02-m576-v8.json": "fcc8b6d654331d786b86a309fcd2a1a219c56ab9c1503bb7b55aeaf062293468",
+    "raw/s02-m576-v8.metrics.csv": "edc3340be296159fbe5d774d261679f7db51ea35caed4c647c69bf98d41a7cdb",
+    "raw/s02-m576-v8.process.json": "66ee0239dc4d49941970d36f06c5f3184922a76cbf4ba582674a9bd75f3ad1d1",
+    "raw/s02-m576-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m1536-v1.json": "983e7442f0f98b63f919f224bcffa6a487424dfddb9a6519438918e4e8cd1ed3",
+    "raw/s03-m1536-v1.metrics.csv": "f26a185137fe55770137754233caf282060b6dec3d5ef7086556ba7272247f47",
+    "raw/s03-m1536-v1.process.json": "f42bbb417c69c79a2dbcede95f0058f78e96ca9ae52058b676d97321191a73de",
+    "raw/s03-m1536-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m1536-v8.json": "1ab01974e5966fc10afcfd9c5fb5da03f9070029fe99b07fc947bd690c21eafb",
+    "raw/s03-m1536-v8.metrics.csv": "cebe17d9d2a8cc8f14f1ef25075b468ad472710f2eb3cf1d062d0221c64dddab",
+    "raw/s03-m1536-v8.process.json": "b7df1d002bc353120daf5c701a8c775cd390060bbaac2cf55f182f0731f09454",
+    "raw/s03-m1536-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m192-v1.json": "3a1283cf80c4f8b84c4bc2fbdbb923b2b87f37233b379330d7b4026a99a90cf8",
+    "raw/s03-m192-v1.metrics.csv": "857dd7dc4d318fde9e94161240e0d144737355cac34896a1b83da1d69c2afb59",
+    "raw/s03-m192-v1.process.json": "2c19d59e69c0bfd66991d9fb8e7b2dcf498c82d336cb5bb590134d84f9b45a6f",
+    "raw/s03-m192-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m192-v8.json": "45e3afd8933a0b26b496c0208aec72012292bf9304500fd38e39d1070fcaa788",
+    "raw/s03-m192-v8.metrics.csv": "447cad8bb9f81b2164a5f7e45bc1f21002d321354f13c68ff4d83f3619bc3d7c",
+    "raw/s03-m192-v8.process.json": "4558add550a1b1bc8f91025876bb1fc73561257b6e7082df46fa0b7827abf6fa",
+    "raw/s03-m192-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m576-v1.json": "8178e2275646722c014c6d9c5575fcdc0bfede568da32e520b963496d1a4064b",
+    "raw/s03-m576-v1.metrics.csv": "ebef08dcf82482f64546674474d1031761a72804f9db4775a6c75d5802a992fb",
+    "raw/s03-m576-v1.process.json": "42ac598e863452ae05fe08beeb87b4f07a0bada07461d7b212233b8a178a7d91",
+    "raw/s03-m576-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/s03-m576-v8.json": "55b982cee74d3dbf5127ce8c9d9e2fdf1bf1ae826e36a3d4098fdfe4bdd18447",
+    "raw/s03-m576-v8.metrics.csv": "a0dbde2a1e5fe1ad233a5b56ec2849f34469851ce62da7165517b62dcd0c4033",
+    "raw/s03-m576-v8.process.json": "9b71fe27b5bbd3f7ebf519d0e69cab0c5cfa514909bd46dfeaf56bec9c1b932e",
+    "raw/s03-m576-v8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/smoke.json": "2efa95c1e2464d7620f5b9817ad895c2c7df873a7333cc996c939181dd588dda",
+    "raw/smoke.metrics.csv": "b262782fae4556ff24815eb9da48507e340fe4bc5c661b765d56e1744c66c303",
+    "raw/smoke.process.json": "746a61cc71be028b8536f004b9eecebb1eedba63bd0e8c6fd246498d6a28f38a",
+    "raw/smoke.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
