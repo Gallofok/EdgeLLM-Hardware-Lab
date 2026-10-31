@@ -30,8 +30,12 @@ jobs:
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
           python scripts/report.py --input results/pi3/context-20261031 --reports build/verified-reports/context
-      - name: C++17 extension boundary configuration
-        run: cmake -S . -B build/api && cmake --build build/api
+      - name: C++17 scalar kernel correctness and benchmark smoke (host only)
+        run: |
+          cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          cmake --build build/kernels --parallel 2
+          ctest --test-dir build/kernels --output-on-failure
+          python scripts/kernels/benchmark.py --build build/kernels --output results/kernels/ci-host --min-ms 1 --repetitions 2
       - uses: actions/upload-artifact@v4
         with:
           name: fixture-only-python-${{ matrix.python }}

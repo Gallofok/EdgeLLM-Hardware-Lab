@@ -31,12 +31,21 @@ accepted based on x86 runners, Fixture charts or compilation on another ARM host
 Workflow success must be checked on the actual PR; merely adding the YAML does
 not establish that it passed.
 
-## Phase 2 — not implemented
+## Phase 2 — scalar reference milestone
 
-Scalar GEMV reference, ARM NEON GEMV, INT4 packing/decoding, cache/layout work,
-numerical correctness checks, controlled performance comparisons, and evaluation
-of a GGML CPU integration. Require measured bottlenecks and reproducible baseline
-before implementation. No claimed speedup in advance.
+- [x] Single-thread FP32 Scalar GEMV reference with an explicit API contract.
+- [x] Independent numerical checks, stride/tail/boundary tests and CTest integration.
+- [x] Calibrated native microbenchmark and monitored JSON/CSV evidence workflow.
+- [ ] Publish reviewed physical Pi scalar measurements and inspect generated assembly.
+- [ ] Implement ARM NEON GEMV and validate it against the independent oracle.
+- [ ] Compare paired scalar/NEON runs under recorded operating conditions.
+- [ ] Profile the actual inference workload before choosing an integration target.
+- [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
+- [ ] Evaluate GGML CPU integration with measured end-to-end impact.
+
+The [scalar protocol](scalar_gemv.md) defines the first milestone. FP32 synthetic
+microbenchmarks are separate from the quantized LLM baseline. No claimed speedup
+in advance; NEON and INT4 are not implemented yet.
 
 ## Later platforms — not implemented
 

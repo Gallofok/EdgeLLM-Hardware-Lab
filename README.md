@@ -23,6 +23,11 @@ capping was observed near 80 Celsius in the final four-thread decode case; that
 comparison is explicitly qualified. See [analysis](docs/pi3_baseline_analysis.md)
 and [validation notes](docs/validation.md) for interpretation and limitations.
 
+**Phase 2 has started with a scalar FP32 GEMV reference**, independent numerical
+tests and a monitored native microbenchmark. See [build instructions and protocol](docs/scalar_gemv.md).
+NEON, INT4 and GGML integration remain upcoming; the microbenchmark does not
+establish an LLM speedup.
+
 Agent work must not install or benchmark on a private Pi without device-operation
 authorization. Setup does not reimage the system, expose SSH, change clocks,
 voltages, boot configuration or install a public runner.
@@ -38,8 +43,6 @@ sudo apt-get update
 sudo apt-get install -y --no-install-recommends git
 git clone https://github.com/Gallofok/EdgeLLM-Hardware-Lab.git
 cd EdgeLLM-Hardware-Lab
-# Until the implementation PR is merged:
-git switch feat/pi3-phase1
 bash scripts/pi/diagnose.sh
 bash scripts/pi/setup.sh
 bash scripts/pi/benchmark.sh --suite baseline
@@ -102,6 +105,8 @@ bash scripts/pi/benchmark.sh --fixture --output results/pi3/fixture-01 \
   --reports reports/fixture-01
 python scripts/report.py --input results/pi3/fixture-01 --reports reports/fixture-01
 cmake -S . -B build/api
+cmake --build build/api --parallel 2
+ctest --test-dir build/api --output-on-failure
 ```
 
 Fixture replay runs the scheduler, strict native parser, statistics, exporters and

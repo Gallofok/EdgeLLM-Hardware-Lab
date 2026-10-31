@@ -19,6 +19,10 @@ scaling, exports repetition-level CSV and summary JSON, and renders Markdown and
 an Agg PNG plot. It does not infer performance when no successful samples exist.
 Fixture replay bypasses device access and labels all downstream artifacts.
 
-The root CMake C++17 interface target and `src/kernels/{scalar,neon}` reserve a
-Phase 2 extension boundary. The current workflow uses GGML unchanged; no kernel
-implementation or integration is implied by these directories.
+The root CMake C++17 interface target exposes `kernels/gemv.h` to an independent
+single-thread FP32 scalar library. `gemv-bench` calibrates repeated calls and
+emits integer batch timings after independent correctness checks.
+`scripts/kernels/benchmark.py` reuses diagnostics/monitoring and writes kernel
+provenance, hashes, JSON and CSV into a fresh directory. Scalar numerical tests
+run through CTest. NEON, quantization and GGML integration remain future work;
+the LLM workflow still uses GGML unchanged. See [kernel protocol](scalar_gemv.md).
