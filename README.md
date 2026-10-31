@@ -25,6 +25,9 @@ Run these commands **on the Raspberry Pi terminal** (Raspberry Pi OS Lite 64-bit
 recommended). Inspect the diagnostic output before installing dependencies.
 
 ```bash
+# Fresh Lite images may not include Git.
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends git
 git clone https://github.com/Gallofok/EdgeLLM-Hardware-Lab.git
 cd EdgeLLM-Hardware-Lab
 # Until the implementation PR is merged:

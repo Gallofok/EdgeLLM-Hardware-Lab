@@ -44,7 +44,15 @@ def telemetry_summary(path):
         return {"samples": 0, "warnings": ["Telemetry missing; sensors cannot be assessed"]}
     with path.open(newline="") as stream:
         rows = list(csv.DictReader(stream))
-    result = {"samples": len(rows)}
+    result = {
+        "samples": len(rows),
+        "aggregation": {
+            "temperature_c": "maximum",
+            "frequency_mhz": "minimum",
+            "available_memory_mb": "minimum",
+            "cpu_utilization_pct": "mean",
+        },
+    }
     for field, op in (
         ("temperature_c", max),
         ("frequency_mhz", min),
