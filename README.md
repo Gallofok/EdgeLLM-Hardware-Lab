@@ -60,6 +60,9 @@ The [real Pi report](reports/pi3-q5-20261031/q5_baseline.md) records 108 pairs
 across 18 processes, with all outputs checked against the independent oracle.
 The [baseline analysis](docs/q5_baseline_analysis.md) describes operating
 conditions and the next candidate's acceptance gate.
+An [ARM NEON Q5 candidate and row1 ablation](docs/q5_neon.md) now implement
+four-row activation reuse in the original packed format. They are measured
+against the original ARM GGML function; integration remains a separate gate.
 
 ## Raspberry Pi quick start
 

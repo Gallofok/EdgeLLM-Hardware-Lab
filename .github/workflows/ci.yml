@@ -34,6 +34,10 @@ jobs:
         run: |
           python scripts/quantized/run.py --fixture --sessions 1 --output results/quantized/ci-fixture
           python scripts/quantized/report.py --input results/quantized/ci-fixture --reports reports/q5-ci-fixture
+      - name: Fixture Q5 NEON triplet reports (synthetic, no ARM kernel)
+        run: |
+          python scripts/quantized/neon_run.py --fixture --sessions 1 --output results/quantized/neon-ci-fixture
+          python scripts/quantized/neon_report.py --input results/quantized/neon-ci-fixture --reports reports/q5-neon-ci-fixture
       - name: Validate recorded Pi evidence (no inference)
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
@@ -57,6 +61,8 @@ jobs:
             reports/profiling-ci-fixture/
             results/quantized/ci-fixture/
             reports/q5-ci-fixture/
+            results/quantized/neon-ci-fixture/
+            reports/q5-neon-ci-fixture/
   neon-correctness-emulated:
     runs-on: ubuntu-24.04
     steps:
