@@ -1,0 +1,32 @@
+[
+{
+  "directory": "<project>/build/neon",
+  "command": "/usr/bin/c++  -I<project>/src -O3 -DNDEBUG -std=c++17 -fno-fast-math -fno-tree-vectorize -ffp-contract=off -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/edgellm_scalar.dir/src/kernels/scalar/gemv.cpp.o -c <project>/src/kernels/scalar/gemv.cpp",
+  "file": "<project>/src/kernels/scalar/gemv.cpp",
+  "output": "CMakeFiles/edgellm_scalar.dir/src/kernels/scalar/gemv.cpp.o"
+},
+{
+  "directory": "<project>/build/neon",
+  "command": "/usr/bin/c++ -DEDGELLM_HAS_NEON=1 -I<project>/src -O3 -DNDEBUG -std=c++17 -fno-fast-math -ffp-contract=off -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/edgellm_neon.dir/src/kernels/neon/gemv.cpp.o -c <project>/src/kernels/neon/gemv.cpp",
+  "file": "<project>/src/kernels/neon/gemv.cpp",
+  "output": "CMakeFiles/edgellm_neon.dir/src/kernels/neon/gemv.cpp.o"
+},
+{
+  "directory": "<project>/build/neon",
+  "command": "/usr/bin/c++ -DEDGELLM_HAS_NEON=1 -I<project>/src -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/gemv-bench.dir/benchmarks/gemv_bench.cpp.o -c <project>/benchmarks/gemv_bench.cpp",
+  "file": "<project>/benchmarks/gemv_bench.cpp",
+  "output": "CMakeFiles/gemv-bench.dir/benchmarks/gemv_bench.cpp.o"
+},
+{
+  "directory": "<project>/build/neon",
+  "command": "/usr/bin/c++  -I<project>/src -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/test-scalar-gemv.dir/tests/kernels/test_scalar_gemv.cpp.o -c <project>/tests/kernels/test_scalar_gemv.cpp",
+  "file": "<project>/tests/kernels/test_scalar_gemv.cpp",
+  "output": "CMakeFiles/test-scalar-gemv.dir/tests/kernels/test_scalar_gemv.cpp.o"
+},
+{
+  "directory": "<project>/build/neon",
+  "command": "/usr/bin/c++ -DEDGELLM_HAS_NEON=1 -I<project>/src -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/test-neon-gemv.dir/tests/kernels/test_neon_gemv.cpp.o -c <project>/tests/kernels/test_neon_gemv.cpp",
+  "file": "<project>/tests/kernels/test_neon_gemv.cpp",
+  "output": "CMakeFiles/test-neon-gemv.dir/tests/kernels/test_neon_gemv.cpp.o"
+}
+]

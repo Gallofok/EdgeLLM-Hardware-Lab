@@ -97,10 +97,9 @@ be documented and evidence hashes updated explicitly. The manifest itself is
 not included in its own hash list. Keep the built binary or rebuild from the
 recorded clean commit and compiler configuration to investigate later changes.
 
-## Next milestone
+## Follow-up milestones
 
-Implement an ARM64 NEON FP32 GEMV with vector-width tails behind the same
-interface. Compare both kernels against the independent oracle, inspect assembly
-and measure paired runs under recorded thermal/frequency conditions on the Pi.
-Only then investigate INT4 packing, cache layout and GGML integration using
-profile evidence from the actual inference workload.
+The [ARM64 NEON implementation and paired protocol](neon_gemv.md) now use this
+reference, with [physical results](../reports/pi3-neon-20261031/neon_gemv.md).
+INT4 packing, cache layout and GGML integration still require profiling evidence
+from the actual quantized inference workload.

@@ -1,0 +1,443 @@
+[
+  {
+    "case_id": "session01-paired-m512-n512",
+    "rows": 512,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        2059666.90625,
+        2053374.625,
+        2053635.84375,
+        2056500.421875,
+        2054435.8125,
+        2054999.765625
+      ],
+      "mean_ns_per_call": 2055435.5625,
+      "stddev_ns_per_call": 2354.3179630609384,
+      "mean_gflop_s": 0.2550741955411966,
+      "stddev_gflop_s": 0.00029185097919493365,
+      "max_abs_error": 0.00018310546875,
+      "max_bound_fraction": 0.0007072298475462059
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        491703.7734375,
+        476339.89453125,
+        477349.41015625,
+        476689.41796875,
+        473851.30078125,
+        476046.921875
+      ],
+      "mean_ns_per_call": 478663.453125,
+      "stddev_ns_per_call": 6497.314030808531,
+      "mean_gflop_s": 1.0954813839594595,
+      "stddev_gflop_s": 0.014572850874710053,
+      "max_abs_error": 1.52587890625e-05,
+      "max_bound_fraction": 6.305785104211756e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.188836892283485,
+      4.310734096753866,
+      4.302164829485778,
+      4.314130635914005,
+      4.335612900318734,
+      4.316800868139213
+    ],
+    "mean_paired_latency_ratio": 4.294713370482514,
+    "stddev_paired_latency_ratio": 0.05302768303021339,
+    "median_paired_latency_ratio": 4.312432366333935
+  },
+  {
+    "case_id": "session01-paired-m2048-n512",
+    "rows": 2048,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        8253553.5625,
+        8278341.8125,
+        8290148.375,
+        8261558.0625,
+        8272843.875,
+        8276219.5
+      ],
+      "mean_ns_per_call": 8272110.864583333,
+      "stddev_ns_per_call": 12940.863770642922,
+      "mean_gflop_s": 0.25352129731291634,
+      "stddev_gflop_s": 0.00039668850270775034,
+      "max_abs_error": 0.0003204345703125,
+      "max_bound_fraction": 0.0011686405752056467
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        1970788.859375,
+        1969079.078125,
+        1999524.03125,
+        1967298.484375,
+        1970060.515625,
+        2019259.421875
+      ],
+      "mean_ns_per_call": 1982668.3984375,
+      "stddev_ns_per_call": 21651.79621144194,
+      "mean_gflop_s": 1.0578463314695496,
+      "stddev_gflop_s": 0.01144448734447196,
+      "max_abs_error": 3.0517578125e-05,
+      "max_bound_fraction": 0.00011686016818279545
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.187944093167578,
+      4.204169301510642,
+      4.146060885208478,
+      4.199443108463865,
+      4.199284138424269,
+      4.098641021724216
+    ],
+    "mean_paired_latency_ratio": 4.172590424749841,
+    "stddev_paired_latency_ratio": 0.04204500502998295,
+    "median_paired_latency_ratio": 4.193614115795924
+  },
+  {
+    "case_id": "session01-paired-m2048-n2048",
+    "rows": 2048,
+    "cols": 2048,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        33049656.75,
+        32990373.25,
+        32964136.25,
+        32981831.5,
+        32989579.0,
+        32982092.0
+      ],
+      "mean_ns_per_call": 32992944.791666668,
+      "stddev_ns_per_call": 29344.191962557372,
+      "mean_gflop_s": 0.25425476800375885,
+      "stddev_gflop_s": 0.00022588868351867204,
+      "max_abs_error": 0.00115966796875,
+      "max_bound_fraction": 0.0002848850529072972
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        7746720.6875,
+        7943236.4375,
+        7786547.9375,
+        7866781.8125,
+        7943776.8125,
+        7761574.125
+      ],
+      "mean_ns_per_call": 7841439.635416667,
+      "stddev_ns_per_call": 89264.76350255053,
+      "mean_gflop_s": 1.0698943840396216,
+      "stddev_gflop_s": 0.012155868774716307,
+      "max_abs_error": 0.0001678466796875,
+      "max_bound_fraction": 4.1130919471466976e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.266277058798372,
+      4.153265927506895,
+      4.233472459759065,
+      4.192544332117257,
+      4.152883417883665,
+      4.249407590370723
+    ],
+    "mean_paired_latency_ratio": 4.207975131072663,
+    "stddev_paired_latency_ratio": 0.04905543925695357,
+    "median_paired_latency_ratio": 4.213008395938161
+  },
+  {
+    "case_id": "session02-paired-m512-n512",
+    "rows": 512,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        2055640.21875,
+        2054620.546875,
+        2053198.84375,
+        2054958.265625,
+        2052608.828125,
+        2056301.03125
+      ],
+      "mean_ns_per_call": 2054554.6223958333,
+      "stddev_ns_per_call": 1415.626243356817,
+      "mean_gflop_s": 0.2551833870645952,
+      "stddev_gflop_s": 0.0001758533790631587,
+      "max_abs_error": 0.00018310546875,
+      "max_bound_fraction": 0.0007072298475462059
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        474873.22265625,
+        475964.52734375,
+        476887.37109375,
+        473568.91015625,
+        475912.6484375,
+        474941.7890625
+      ],
+      "mean_ns_per_call": 475358.078125,
+      "stddev_ns_per_call": 1150.9621453576945,
+      "mean_gflop_s": 1.1029381577498614,
+      "stddev_gflop_s": 0.0026721633126539288,
+      "max_abs_error": 1.52587890625e-05,
+      "max_bound_fraction": 6.305785104211756e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.328818978782536,
+      4.316751414945502,
+      4.305416683693994,
+      4.33930146501168,
+      4.312994905397145,
+      4.32958539047277
+    ],
+    "mean_paired_latency_ratio": 4.322144806383938,
+    "stddev_paired_latency_ratio": 0.01254509666813447,
+    "median_paired_latency_ratio": 4.322785196864019
+  },
+  {
+    "case_id": "session02-paired-m2048-n512",
+    "rows": 2048,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        8273221.375,
+        8275350.3125,
+        8255226.6875,
+        8255780.0625,
+        8249959.875,
+        8272293.625
+      ],
+      "mean_ns_per_call": 8263638.65625,
+      "stddev_ns_per_call": 11167.162981591246,
+      "mean_gflop_s": 0.2537810859154288,
+      "stddev_gflop_s": 0.00034298375793321396,
+      "max_abs_error": 0.0003204345703125,
+      "max_bound_fraction": 0.0011686405752056467
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        1959969.421875,
+        1954818.078125,
+        1960709.984375,
+        1991518.703125,
+        1960740.890625,
+        2009598.03125
+      ],
+      "mean_ns_per_call": 1972892.5182291667,
+      "stddev_ns_per_call": 22288.99925475696,
+      "mean_gflop_s": 1.0630954677861308,
+      "stddev_gflop_s": 0.011903517177342775,
+      "max_abs_error": 3.0517578125e-05,
+      "max_bound_fraction": 0.00011686016818279545
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.221097167467767,
+      4.2333096900952825,
+      4.210325215501697,
+      4.1454695100505,
+      4.207572716234967,
+      4.116392182099477
+    ],
+    "mean_paired_latency_ratio": 4.189027746908282,
+    "stddev_paired_latency_ratio": 0.046818973838617564,
+    "median_paired_latency_ratio": 4.208948965868332
+  },
+  {
+    "case_id": "session02-paired-m2048-n2048",
+    "rows": 2048,
+    "cols": 2048,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        33050542.0,
+        33049070.75,
+        33145085.75,
+        33001961.75,
+        33105528.75,
+        33067625.25
+      ],
+      "mean_ns_per_call": 33069969.041666668,
+      "stddev_ns_per_call": 49702.40708316265,
+      "mean_gflop_s": 0.2536628859455317,
+      "stddev_gflop_s": 0.0003811144602137236,
+      "max_abs_error": 0.00115966796875,
+      "max_bound_fraction": 0.0002848850529072972
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        7731802.1875,
+        7939222.75,
+        7760206.9375,
+        7745425.125,
+        7759279.1875,
+        7873152.1875
+      ],
+      "mean_ns_per_call": 7801514.729166667,
+      "stddev_ns_per_call": 84369.99612628578,
+      "mean_gflop_s": 1.0753576962875522,
+      "stddev_gflop_s": 0.011533746163954162,
+      "max_abs_error": 0.0001678466796875,
+      "max_bound_fraction": 4.1130919471466976e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.274623328236824,
+      4.162758974107383,
+      4.271160036961321,
+      4.260832842277331,
+      4.266572699604901,
+      4.200049035315311
+    ],
+    "mean_paired_latency_ratio": 4.239332819417179,
+    "stddev_paired_latency_ratio": 0.04662493608332521,
+    "median_paired_latency_ratio": 4.263702770941116
+  },
+  {
+    "case_id": "session03-paired-m512-n512",
+    "rows": 512,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        2058495.828125,
+        2059684.78125,
+        2058572.328125,
+        2058454.328125,
+        2059596.09375,
+        2054404.875
+      ],
+      "mean_ns_per_call": 2058201.3723958333,
+      "stddev_ns_per_call": 1941.516978618355,
+      "mean_gflop_s": 0.2547313379014273,
+      "stddev_gflop_s": 0.00024059188306423013,
+      "max_abs_error": 0.00018310546875,
+      "max_bound_fraction": 0.0007072298475462059
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        472506.09375,
+        476141.1171875,
+        471608.47265625,
+        472333.16015625,
+        473086.9375,
+        472882.26953125
+      ],
+      "mean_ns_per_call": 473093.0084635417,
+      "stddev_ns_per_call": 1578.676625623467,
+      "mean_gflop_s": 1.1082236169960193,
+      "stddev_gflop_s": 0.0036828547952826507,
+      "max_abs_error": 1.52587890625e-05,
+      "max_bound_fraction": 6.305785104211756e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.356548741600224,
+      4.325786425285584,
+      4.365002851900563,
+      4.358055926973354,
+      4.353525600672498,
+      4.344432023295043
+    ],
+    "mean_paired_latency_ratio": 4.350558594954545,
+    "stddev_paired_latency_ratio": 0.013861650668637879,
+    "median_paired_latency_ratio": 4.355037171136361
+  },
+  {
+    "case_id": "session03-paired-m2048-n512",
+    "rows": 2048,
+    "cols": 512,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        8264679.8125,
+        8268296.25,
+        8264604.875,
+        8281955.0625,
+        8259139.4375,
+        8262218.8125
+      ],
+      "mean_ns_per_call": 8266815.708333333,
+      "stddev_ns_per_call": 8011.222983519225,
+      "mean_gflop_s": 0.2536833665380212,
+      "stddev_gflop_s": 0.0002455714772219261,
+      "max_abs_error": 0.0003204345703125,
+      "max_bound_fraction": 0.0011686405752056467
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        1989879.71875,
+        1967372.53125,
+        1964088.046875,
+        1969909.9375,
+        1966910.28125,
+        2012830.421875
+      ],
+      "mean_ns_per_call": 1978498.4895833333,
+      "stddev_ns_per_call": 19223.483343940872,
+      "mean_gflop_s": 1.060054092286275,
+      "stddev_gflop_s": 0.010201470247907428,
+      "max_abs_error": 3.0517578125e-05,
+      "max_bound_fraction": 0.00011686016818279545
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.153356474074571,
+      4.2027100199201275,
+      4.20785864877573,
+      4.204230307610192,
+      4.199042282829086,
+      4.10477639979405
+    ],
+    "mean_paired_latency_ratio": 4.178662355500626,
+    "stddev_paired_latency_ratio": 0.04147118856134444,
+    "median_paired_latency_ratio": 4.200876151374606
+  },
+  {
+    "case_id": "session03-paired-m2048-n2048",
+    "rows": 2048,
+    "cols": 2048,
+    "repetitions": 6,
+    "scalar": {
+      "samples_ns_per_call": [
+        33001089.25,
+        32991037.0,
+        32960008.75,
+        32978888.75,
+        32968576.25,
+        32968198.75
+      ],
+      "mean_ns_per_call": 32977966.458333332,
+      "stddev_ns_per_call": 15571.875950264202,
+      "mean_gflop_s": 0.2543701282780342,
+      "stddev_gflop_s": 0.0001200899661564283,
+      "max_abs_error": 0.00115966796875,
+      "max_bound_fraction": 0.0002848850529072972
+    },
+    "neon": {
+      "samples_ns_per_call": [
+        7728088.0,
+        7952263.0,
+        7729126.375,
+        7728325.5625,
+        8045957.125,
+        7738459.0
+      ],
+      "mean_ns_per_call": 7820369.84375,
+      "stddev_ns_per_call": 141639.1693264622,
+      "mean_gflop_s": 1.0729505822111591,
+      "stddev_gflop_s": 0.019167819226203066,
+      "max_abs_error": 0.0001678466796875,
+      "max_bound_fraction": 4.1130919471466976e-05
+    },
+    "paired_latency_ratios_scalar_over_neon": [
+      4.270278657541167,
+      4.1486350489162644,
+      4.264389938895261,
+      4.267274778125653,
+      4.097533175706551,
+      4.260305410935175
+    ],
+    "mean_paired_latency_ratio": 4.218069501686679,
+    "stddev_paired_latency_ratio": 0.07540100692965576,
+    "median_paired_latency_ratio": 4.262347674915217
+  }
+]

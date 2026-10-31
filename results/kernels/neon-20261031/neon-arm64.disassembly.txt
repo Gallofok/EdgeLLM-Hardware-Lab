@@ -1,0 +1,205 @@
+
+build/neon/CMakeFiles/edgellm_neon.dir/src/kernels/neon/gemv.cpp.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm>:
+   0:	b5000043 	cbnz	x3, 8 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x8>
+   4:	d65f03c0 	ret
+   8:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   c:	f100005f 	cmp	x2, #0x0
+  10:	92fc0006 	mov	x6, #0x1fffffffffffffff    	// #2305843009213693951
+  14:	910003fd 	mov	x29, sp
+  18:	fa461062 	ccmp	x3, x6, #0x2, ne	// ne = any
+  1c:	540014c8 	b.hi	2b4 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x2b4>  // b.pmore
+  20:	eb0600bf 	cmp	x5, x6
+  24:	9a8690a7 	csel	x7, x5, x6, ls	// ls = plast
+  28:	eb07009f 	cmp	x4, x7
+  2c:	54001448 	b.hi	2b4 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x2b4>  // b.pmore
+  30:	b4000164 	cbz	x4, 5c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x5c>
+  34:	f100001f 	cmp	x0, #0x0
+  38:	fa401824 	ccmp	x1, #0x0, #0x4, ne	// ne = any
+  3c:	54001220 	b.eq	280 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x280>  // b.none
+  40:	f100047f 	cmp	x3, #0x1
+  44:	540000c0 	b.eq	5c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x5c>  // b.none
+  48:	cb0400c6 	sub	x6, x6, x4
+  4c:	d1000467 	sub	x7, x3, #0x1
+  50:	9ac708c6 	udiv	x6, x6, x7
+  54:	eb0600bf 	cmp	x5, x6
+  58:	54001148 	b.hi	280 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x280>  // b.pmore
+  5c:	aa0203e9 	mov	x9, x2
+  60:	d37ef4af 	lsl	x15, x5, #2
+  64:	8b03084b 	add	x11, x2, x3, lsl #2
+  68:	aa0003e6 	mov	x6, x0
+  6c:	d280000d 	mov	x13, #0x0                   	// #0
+  70:	b5000124 	cbnz	x4, 94 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x94>
+  74:	d503201f 	nop
+  78:	d503201f 	nop
+  7c:	d503201f 	nop
+  80:	b800453f 	str	wzr, [x9], #4
+  84:	eb0b013f 	cmp	x9, x11
+  88:	54ffffc1 	b.ne	80 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x80>  // b.any
+  8c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  90:	d65f03c0 	ret
+  94:	d1004082 	sub	x2, x4, #0x10
+  98:	d1001092 	sub	x18, x4, #0x4
+  9c:	927cec51 	and	x17, x2, #0xfffffffffffffff0
+  a0:	927e0490 	and	x16, x4, #0xc
+  a4:	d344fc4e 	lsr	x14, x2, #4
+  a8:	910005ce 	add	x14, x14, #0x1
+  ac:	d37ae5ce 	lsl	x14, x14, #6
+  b0:	f1003c9f 	cmp	x4, #0xf
+  b4:	54000d29 	b.ls	258 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x258>  // b.plast
+  b8:	d503201f 	nop
+  bc:	d503201f 	nop
+  c0:	4f00041e 	movi	v30.4s, #0x0
+  c4:	aa0103e3 	mov	x3, x1
+  c8:	8b0601c7 	add	x7, x14, x6
+  cc:	aa0603e2 	mov	x2, x6
+  d0:	4ebe1fc2 	mov	v2.16b, v30.16b
+  d4:	4ebe1fdc 	mov	v28.16b, v30.16b
+  d8:	4ebe1fc3 	mov	v3.16b, v30.16b
+  dc:	d503201f 	nop
+  e0:	ad404453 	ldp	q19, q17, [x2]
+  e4:	ad404072 	ldp	q18, q16, [x3]
+  e8:	ad411467 	ldp	q7, q5, [x3, #32]
+  ec:	91010063 	add	x3, x3, #0x40
+  f0:	ad411046 	ldp	q6, q4, [x2, #32]
+  f4:	91010042 	add	x2, x2, #0x40
+  f8:	6e32de72 	fmul	v18.4s, v19.4s, v18.4s
+  fc:	6e30de30 	fmul	v16.4s, v17.4s, v16.4s
+ 100:	6e26dce6 	fmul	v6.4s, v7.4s, v6.4s
+ 104:	6e24dca4 	fmul	v4.4s, v5.4s, v4.4s
+ 108:	4e32d463 	fadd	v3.4s, v3.4s, v18.4s
+ 10c:	4e30d79c 	fadd	v28.4s, v28.4s, v16.4s
+ 110:	4e26d442 	fadd	v2.4s, v2.4s, v6.4s
+ 114:	4e24d7de 	fadd	v30.4s, v30.4s, v4.4s
+ 118:	eb07005f 	cmp	x2, x7
+ 11c:	54fffe21 	b.ne	e0 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0xe0>  // b.any
+ 120:	91004223 	add	x3, x17, #0x10
+ 124:	b40001d0 	cbz	x16, 15c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x15c>
+ 128:	cb030247 	sub	x7, x18, x3
+ 12c:	91001068 	add	x8, x3, #0x4
+ 130:	927ef4e7 	and	x7, x7, #0xfffffffffffffffc
+ 134:	d37ef462 	lsl	x2, x3, #2
+ 138:	8b0800e3 	add	x3, x7, x8
+ 13c:	d37ef467 	lsl	x7, x3, #2
+ 140:	3ce268da 	ldr	q26, [x6, x2]
+ 144:	3ce26839 	ldr	q25, [x1, x2]
+ 148:	91004042 	add	x2, x2, #0x10
+ 14c:	6e39df59 	fmul	v25.4s, v26.4s, v25.4s
+ 150:	4e39d463 	fadd	v3.4s, v3.4s, v25.4s
+ 154:	eb07005f 	cmp	x2, x7
+ 158:	54ffff41 	b.ne	140 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x140>  // b.any
+ 15c:	4e23d783 	fadd	v3.4s, v28.4s, v3.4s
+ 160:	4e3ed442 	fadd	v2.4s, v2.4s, v30.4s
+ 164:	4e22d462 	fadd	v2.4s, v3.4s, v2.4s
+ 168:	6e22d442 	faddp	v2.4s, v2.4s, v2.4s
+ 16c:	6e22d442 	faddp	v2.4s, v2.4s, v2.4s
+ 170:	1e20405f 	fmov	s31, s2
+ 174:	eb03009f 	cmp	x4, x3
+ 178:	54000629 	b.ls	23c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x23c>  // b.plast
+ 17c:	cb03008c 	sub	x12, x4, x3
+ 180:	d1000582 	sub	x2, x12, #0x1
+ 184:	f100085f 	cmp	x2, #0x2
+ 188:	54000309 	b.ls	1e8 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x1e8>  // b.plast
+ 18c:	8b0301a8 	add	x8, x13, x3
+ 190:	d342fd87 	lsr	x7, x12, #2
+ 194:	8b03082a 	add	x10, x1, x3, lsl #2
+ 198:	d2800002 	mov	x2, #0x0                   	// #0
+ 19c:	8b080808 	add	x8, x0, x8, lsl #2
+ 1a0:	d37cece7 	lsl	x7, x7, #4
+ 1a4:	3ce26941 	ldr	q1, [x10, x2]
+ 1a8:	3ce2691d 	ldr	q29, [x8, x2]
+ 1ac:	91004042 	add	x2, x2, #0x10
+ 1b0:	6e3ddc3d 	fmul	v29.4s, v1.4s, v29.4s
+ 1b4:	1e3d2bff 	fadd	s31, s31, s29
+ 1b8:	5e0c07a0 	mov	s0, v29.s[1]
+ 1bc:	5e1407bb 	mov	s27, v29.s[2]
+ 1c0:	5e1c07bd 	mov	s29, v29.s[3]
+ 1c4:	1e3f281f 	fadd	s31, s0, s31
+ 1c8:	1e3f2b7f 	fadd	s31, s27, s31
+ 1cc:	1e3d2bff 	fadd	s31, s31, s29
+ 1d0:	eb07005f 	cmp	x2, x7
+ 1d4:	54fffe81 	b.ne	1a4 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x1a4>  // b.any
+ 1d8:	927ef582 	and	x2, x12, #0xfffffffffffffffc
+ 1dc:	8b020063 	add	x3, x3, x2
+ 1e0:	f240059f 	tst	x12, #0x3
+ 1e4:	540002c0 	b.eq	23c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x23c>  // b.none
+ 1e8:	d37ef462 	lsl	x2, x3, #2
+ 1ec:	91000467 	add	x7, x3, #0x1
+ 1f0:	bc6268c0 	ldr	s0, [x6, x2]
+ 1f4:	bc626838 	ldr	s24, [x1, x2]
+ 1f8:	1e380818 	fmul	s24, s0, s24
+ 1fc:	1e382bff 	fadd	s31, s31, s24
+ 200:	eb0400ff 	cmp	x7, x4
+ 204:	540001c2 	b.cs	23c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x23c>  // b.hs, b.nlast
+ 208:	91001047 	add	x7, x2, #0x4
+ 20c:	91000863 	add	x3, x3, #0x2
+ 210:	bc676837 	ldr	s23, [x1, x7]
+ 214:	bc6768d6 	ldr	s22, [x6, x7]
+ 218:	1e360af6 	fmul	s22, s23, s22
+ 21c:	1e362bff 	fadd	s31, s31, s22
+ 220:	eb03009f 	cmp	x4, x3
+ 224:	540000c9 	b.ls	23c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x23c>  // b.plast
+ 228:	91002042 	add	x2, x2, #0x8
+ 22c:	bc626835 	ldr	s21, [x1, x2]
+ 230:	bc6268d4 	ldr	s20, [x6, x2]
+ 234:	1e340ab4 	fmul	s20, s21, s20
+ 238:	1e342bff 	fadd	s31, s31, s20
+ 23c:	8b0f00c6 	add	x6, x6, x15
+ 240:	8b0501ad 	add	x13, x13, x5
+ 244:	bc00453f 	str	s31, [x9], #4
+ 248:	eb0b013f 	cmp	x9, x11
+ 24c:	54fff200 	b.eq	8c <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x8c>  // b.none
+ 250:	f1003c9f 	cmp	x4, #0xf
+ 254:	54fff368 	b.hi	c0 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0xc0>  // b.pmore
+ 258:	0f00041f 	movi	v31.2s, #0x0
+ 25c:	d2800003 	mov	x3, #0x0                   	// #0
+ 260:	f1000c9f 	cmp	x4, #0x3
+ 264:	54fffc29 	b.ls	1e8 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x1e8>  // b.plast
+ 268:	4f00041e 	movi	v30.4s, #0x0
+ 26c:	d2800003 	mov	x3, #0x0                   	// #0
+ 270:	4ebe1fc2 	mov	v2.16b, v30.16b
+ 274:	4ebe1fdc 	mov	v28.16b, v30.16b
+ 278:	4ebe1fc3 	mov	v3.16b, v30.16b
+ 27c:	17ffffab 	b	128 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm+0x128>
+ 280:	d2800200 	mov	x0, #0x10                  	// #16
+ 284:	f9000bf3 	str	x19, [sp, #16]
+ 288:	94000000 	bl	0 <__cxa_allocate_exception>
+ 28c:	aa0003f3 	mov	x19, x0
+ 290:	90000001 	adrp	x1, 0 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm>
+ 294:	91000021 	add	x1, x1, #0x0
+ 298:	94000000 	bl	0 <_ZNSt16invalid_argumentC1EPKc>
+ 29c:	90000002 	adrp	x2, 0 <_ZNSt16invalid_argumentD1Ev>
+ 2a0:	f9400042 	ldr	x2, [x2]
+ 2a4:	aa1303e0 	mov	x0, x19
+ 2a8:	90000001 	adrp	x1, 0 <_ZTISt16invalid_argument>
+ 2ac:	f9400021 	ldr	x1, [x1]
+ 2b0:	94000000 	bl	0 <__cxa_throw>
+ 2b4:	d2800200 	mov	x0, #0x10                  	// #16
+ 2b8:	f9000bf3 	str	x19, [sp, #16]
+ 2bc:	94000000 	bl	0 <__cxa_allocate_exception>
+ 2c0:	aa0003f3 	mov	x19, x0
+ 2c4:	90000001 	adrp	x1, 0 <_ZN7edgellm9gemv_neonEPKfS1_Pfmmm>
+ 2c8:	91000021 	add	x1, x1, #0x0
+ 2cc:	94000000 	bl	0 <_ZNSt16invalid_argumentC1EPKc>
+ 2d0:	90000002 	adrp	x2, 0 <_ZNSt16invalid_argumentD1Ev>
+ 2d4:	f9400042 	ldr	x2, [x2]
+ 2d8:	aa1303e0 	mov	x0, x19
+ 2dc:	90000001 	adrp	x1, 0 <_ZTISt16invalid_argument>
+ 2e0:	f9400021 	ldr	x1, [x1]
+ 2e4:	94000000 	bl	0 <__cxa_throw>
+ 2e8:	aa0003e1 	mov	x1, x0
+ 2ec:	aa1303e0 	mov	x0, x19
+ 2f0:	aa0103f3 	mov	x19, x1
+ 2f4:	94000000 	bl	0 <__cxa_free_exception>
+ 2f8:	aa1303e0 	mov	x0, x19
+ 2fc:	94000000 	bl	0 <_Unwind_Resume>
+ 300:	aa0003e1 	mov	x1, x0
+ 304:	aa1303e0 	mov	x0, x19
+ 308:	aa0103f3 	mov	x19, x1
+ 30c:	94000000 	bl	0 <__cxa_free_exception>
+ 310:	aa1303e0 	mov	x0, x19
+ 314:	94000000 	bl	0 <_Unwind_Resume>

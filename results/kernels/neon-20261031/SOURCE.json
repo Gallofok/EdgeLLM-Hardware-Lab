@@ -1,0 +1,18 @@
+{
+  "data_kind": "real_physical_pi3_measurement",
+  "source_commit": "c1e477a773dec4e12d1f45866a4d07c849f14a9f",
+  "original_manifest_sha256": "395243edc32ca007b22bbab994da589261019f1d2f5b2ef4698cb2d93e772eaf",
+  "privacy_normalization": "Absolute project prefix in two compiler metadata files replaced with <project>. Native JSON, telemetry/process files, stderr, summary JSON and CSV bytes unchanged. Published manifest cache/evidence hashes updated; original metadata hashes retained here. Both device disassemblies added after measurements.",
+  "normalized_files": [
+    {
+      "path": "CMakeCache.txt",
+      "original_sha256": "20732caa45f6635d930942aa61a27299a4777156bad8ce2f35b648c48f847477",
+      "published_sha256": "173da4b2e02846e562d41d9d15ce6edef0b31cacdef644394b52b7b01d96929a"
+    },
+    {
+      "path": "compile_commands.json",
+      "original_sha256": "291305704b152349bd73e68f76e1913f2f3b85c2265b08ccb8c38911bd83c832",
+      "published_sha256": "537cf0f6c3420b9d59a2fefe4b07aed828ea080f0d36868cdaa34529f933d1e9"
+    }
+  ]
+}

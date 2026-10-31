@@ -4,6 +4,12 @@ This milestone adds a single-thread FP32 NEON kernel behind the existing GEMV
 contract. The scalar and NEON targets remain independent of llama.cpp and GGUF.
 It does not implement INT4 decoding or establish an inference speedup.
 
+The [physical paired report](../reports/pi3-neon-20261031/neon_gemv.md) records
+three process sessions and 54 pairs / 108 timed batches, with
+[checksummed native evidence and both disassemblies](../results/kernels/neon-20261031).
+The [interpretation](neon_gemv_analysis.md) distinguishes measured kernel results
+from the remaining inference integration work.
+
 ## Implementation and numerical checks
 
 `src/kernels/neon/gemv.cpp` uses explicit ARM Advanced SIMD intrinsics: vector
