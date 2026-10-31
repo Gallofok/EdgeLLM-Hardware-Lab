@@ -175,3 +175,7 @@ Do not commit SSH keys, Wi-Fi settings, tokens or private host configuration.
 
 Upstream sources: [llama.cpp benchmark at the pinned commit](https://github.com/ggml-org/llama.cpp/tree/a7a98e0fffed794396b3fbad4dcdbbc184963645/tools/llama-bench),
 [model repository at the pinned revision](https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/tree/09816acd5d99df7be770d85ea30822623dab342c).
+
+An experimental, default-off [GGML integration feasibility workflow](docs/ggml_integration.md)
+checks real graph layouts, thread partitions, fallback behavior and model logits
+before any end-to-end timing experiment. It uses a separate pinned engine build.

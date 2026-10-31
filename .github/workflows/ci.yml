@@ -78,3 +78,20 @@ jobs:
             '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
           cmake --build build/arm64-emulated --parallel 2
           ctest --test-dir build/arm64-emulated --output-on-failure
+
+      - name: Pinned GGML row4 graph correctness under ARM64 emulation
+        run: |
+          git init vendor/llama.cpp
+          git -C vendor/llama.cpp remote add origin https://github.com/ggml-org/llama.cpp.git
+          git -C vendor/llama.cpp fetch --depth 1 origin a7a98e0fffed794396b3fbad4dcdbbc184963645
+          git -C vendor/llama.cpp checkout --detach FETCH_HEAD
+          python3 scripts/integration/prepare.py
+          cmake -S integrations/ggml -B build/ggml-emulated -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_EDGELLM_Q5_ROW4=ON -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
+          cmake --build build/ggml-emulated --target test-ggml-row4 --parallel 2
+          ctest --test-dir build/ggml-emulated --output-on-failure
+          cmake -S integrations/ggml -B build/ggml-default -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/ggml-default --target test-ggml-row4 --parallel 2
+          ctest --test-dir build/ggml-default --output-on-failure

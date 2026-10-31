@@ -11,3 +11,6 @@
 /results/quantized/** -text whitespace=cr-at-eol
 /results/quantized/*/raw/CMakeCache.txt whitespace=cr-at-eol,-blank-at-eof
 /reports/pi3-q5-neon-20261031/*.csv -text whitespace=cr-at-eol
+
+# Unified diff context uses a mandatory space on otherwise blank lines.
+/integrations/ggml/*.patch whitespace=-blank-at-eol
