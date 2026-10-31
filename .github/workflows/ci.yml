@@ -26,6 +26,10 @@ jobs:
         run: |
           bash scripts/pi/benchmark.sh --fixture --output results/pi3/ci-fixture --reports reports/ci-fixture
           python scripts/report.py --input results/pi3/ci-fixture --reports reports/ci-fixture
+      - name: Fixture inference-profile workflow (no model or PMU)
+        run: |
+          python scripts/profiling/run.py --fixture --output results/profiling/ci-fixture
+          python scripts/profiling/report.py --input results/profiling/ci-fixture --reports reports/profiling-ci-fixture
       - name: Validate recorded Pi evidence (no inference)
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline

@@ -41,6 +41,11 @@ Agent work must not install or benchmark on a private Pi without device-operatio
 authorization. Setup does not reimage the system, expose SSH, change clocks,
 voltages, boot configuration or install a public runner.
 
+The next milestone [profiles actual quantized inference](docs/inference_profiling.md)
+with separate Prefill/Decode and 1/4-thread control/sample runs, a bounded GGUF
+tensor inventory and traceable flat user-cycle sampling. This investigates which
+quantized paths to benchmark before choosing an INT4 or GGML integration target.
+
 ## Raspberry Pi quick start
 
 Run these commands **on the Raspberry Pi terminal** (Raspberry Pi OS Lite 64-bit
