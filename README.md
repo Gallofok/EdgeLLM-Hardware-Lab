@@ -41,6 +41,18 @@ Agent work must not install or benchmark on a private Pi without device-operatio
 authorization. Setup does not reimage the system, expose SSH, change clocks,
 voltages, boot configuration or install a public runner.
 
+[Actual quantized inference profiling](docs/inference_profiling.md) is complete on
+the physical Pi: nine processes and 15,166 user-cycle samples, with separate
+Prefill/Decode and 1/4-thread controls. The dominant resolved function is
+`ggml_vec_dot_q5_0_q8_0` (64.5–66.7% of prefill sampled periods; 39.7–51.4% of
+decode). The file named Q4_K_M actually stores 51.8% of tensor bytes as Q5_0.
+These are whole-process sampling shares, including load/warmup/teardown.
+See the [real report](reports/pi3-profile-20261031/inference_profile.md),
+[checksummed evidence](results/profiling/pi3-20261031) and
+[source analysis / next target](docs/inference_profile_analysis.md).
+The next candidate is Q5_0×Q8_0 against upstream's existing ARM vectorized path;
+no custom quantized kernel or end-to-end improvement is claimed.
+
 ## Raspberry Pi quick start
 
 Run these commands **on the Raspberry Pi terminal** (Raspberry Pi OS Lite 64-bit

@@ -39,14 +39,19 @@ not establish that it passed.
 - [x] Publish reviewed physical Pi scalar measurements and inspect generated assembly.
 - [x] Implement ARM NEON GEMV and validate it against the independent oracle.
 - [x] Compare paired scalar/NEON runs under recorded operating conditions.
-- [ ] Profile the actual inference workload before choosing an integration target.
+- [x] Profile actual inference and publish mixed-type inventory / user-cycle evidence.
+- [ ] Build a Q5_0×Q8_0 correctness and shape-matched benchmark against upstream ARM kernels.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [ ] Evaluate GGML CPU integration with measured end-to-end impact.
 
 The [scalar protocol](scalar_gemv.md) defines the first milestone. FP32 synthetic
 microbenchmarks are separate from the quantized LLM baseline. No claimed speedup
 in advance. NEON now has a [paired measurement protocol](neon_gemv.md);
-INT4 and GGML integration remain future work.
+INT4 and GGML integration remain future work. The
+[physical inference profile](inference_profile_analysis.md) prioritizes Q5_0×Q8_0
+because of the observed workload, rather than assuming Q4_K from the filename.
+Q8_0×Q8_0 is a secondary decode candidate. This does not remove the later INT4
+packing/layout study.
 
 The [physical paired report](../reports/pi3-neon-20261031/neon_gemv.md) includes
 three process sessions, nine native processes and 54 measured pairs (108 batches),

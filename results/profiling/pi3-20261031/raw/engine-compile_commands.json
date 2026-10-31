@@ -1,0 +1,518 @@
+[
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -o CMakeFiles/ggml-base.dir/ggml.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml.c",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml-base.dir/ggml.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -o CMakeFiles/ggml-base.dir/ggml-alloc.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml-alloc.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-alloc.c",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml-base.dir/ggml-backend.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-backend.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-backend.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml-base.dir/ggml-opt.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-opt.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-opt.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml-base.dir/ggml-threading.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-threading.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-threading.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -o CMakeFiles/ggml-base.dir/ggml-quants.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml-quants.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-quants.c",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_COMMIT=\\\"a7a98e0\\\" -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_VERSION=\\\"0.0.1\\\" -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml-base.dir/gguf.cpp.o -c <project>/vendor/llama.cpp/ggml/src/gguf.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/gguf.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-base.dir/gguf.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/repack.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/repack.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/repack.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/repack.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/hbm.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/hbm.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/hbm.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/hbm.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/quants.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/quants.c",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/traits.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/traits.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/traits.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/traits.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/amx/amx.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/amx/amx.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/amx/mmq.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/amx/mmq.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/binary-ops.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/binary-ops.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/unary-ops.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/unary-ops.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/unary-ops.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/unary-ops.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/vec.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/vec.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/vec.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/vec.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/ops.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/ops.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu11 -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/arm/quants.c.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/arch/arm/quants.c",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/arch/arm/quants.c",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/arm/quants.c.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/.. -I<project>/vendor/llama.cpp/ggml/src/. -I<project>/vendor/llama.cpp/ggml/src/ggml-cpu -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=armv8-a -fopenmp -o CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/arm/repack.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp",
+  "output": "ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/arm/repack.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_EXPORTS -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -std=gnu++17 -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o -c <project>/vendor/llama.cpp/ggml/src/ggml-backend-reg.cpp",
+  "file": "<project>/vendor/llama.cpp/ggml/src/ggml-backend-reg.cpp",
+  "output": "ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama.cpp.o -c <project>/vendor/llama.cpp/src/llama.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-adapter.cpp.o -c <project>/vendor/llama.cpp/src/llama-adapter.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-adapter.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-adapter.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-arch.cpp.o -c <project>/vendor/llama.cpp/src/llama-arch.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-arch.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-arch.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-batch.cpp.o -c <project>/vendor/llama.cpp/src/llama-batch.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-batch.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-batch.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-chat.cpp.o -c <project>/vendor/llama.cpp/src/llama-chat.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-chat.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-chat.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-context.cpp.o -c <project>/vendor/llama.cpp/src/llama-context.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-context.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-context.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-cparams.cpp.o -c <project>/vendor/llama.cpp/src/llama-cparams.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-cparams.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-cparams.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-grammar.cpp.o -c <project>/vendor/llama.cpp/src/llama-grammar.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-grammar.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-grammar.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-graph.cpp.o -c <project>/vendor/llama.cpp/src/llama-graph.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-graph.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-graph.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-hparams.cpp.o -c <project>/vendor/llama.cpp/src/llama-hparams.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-hparams.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-hparams.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-impl.cpp.o -c <project>/vendor/llama.cpp/src/llama-impl.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-impl.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-impl.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-io.cpp.o -c <project>/vendor/llama.cpp/src/llama-io.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-io.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-io.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-kv-cache.cpp.o -c <project>/vendor/llama.cpp/src/llama-kv-cache.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-kv-cache.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-kv-cache.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-kv-cache-iswa.cpp.o -c <project>/vendor/llama.cpp/src/llama-kv-cache-iswa.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-kv-cache-iswa.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-kv-cache-iswa.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-memory.cpp.o -c <project>/vendor/llama.cpp/src/llama-memory.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-memory.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-memory.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-memory-hybrid.cpp.o -c <project>/vendor/llama.cpp/src/llama-memory-hybrid.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-memory-hybrid.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-memory-hybrid.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-memory-recurrent.cpp.o -c <project>/vendor/llama.cpp/src/llama-memory-recurrent.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-memory-recurrent.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-memory-recurrent.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-mmap.cpp.o -c <project>/vendor/llama.cpp/src/llama-mmap.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-mmap.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-mmap.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-model-loader.cpp.o -c <project>/vendor/llama.cpp/src/llama-model-loader.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-model-loader.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-model-loader.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-model-saver.cpp.o -c <project>/vendor/llama.cpp/src/llama-model-saver.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-model-saver.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-model-saver.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-model.cpp.o -c <project>/vendor/llama.cpp/src/llama-model.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-model.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-model.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-quant.cpp.o -c <project>/vendor/llama.cpp/src/llama-quant.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-quant.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-quant.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-sampling.cpp.o -c <project>/vendor/llama.cpp/src/llama-sampling.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-sampling.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-sampling.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/llama-vocab.cpp.o -c <project>/vendor/llama.cpp/src/llama-vocab.cpp",
+  "file": "<project>/vendor/llama.cpp/src/llama-vocab.cpp",
+  "output": "src/CMakeFiles/llama.dir/llama-vocab.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/unicode-data.cpp.o -c <project>/vendor/llama.cpp/src/unicode-data.cpp",
+  "file": "<project>/vendor/llama.cpp/src/unicode-data.cpp",
+  "output": "src/CMakeFiles/llama.dir/unicode-data.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I<project>/vendor/llama.cpp/src/. -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama.dir/unicode.cpp.o -c <project>/vendor/llama.cpp/src/unicode.cpp",
+  "file": "<project>/vendor/llama.cpp/src/unicode.cpp",
+  "output": "src/CMakeFiles/llama.dir/unicode.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/build_info.dir/build-info.cpp.o -c <project>/build/llama/common/build-info.cpp",
+  "file": "<project>/build/llama/common/build-info.cpp",
+  "output": "common/CMakeFiles/build_info.dir/build-info.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/arg.cpp.o -c <project>/vendor/llama.cpp/common/arg.cpp",
+  "file": "<project>/vendor/llama.cpp/common/arg.cpp",
+  "output": "common/CMakeFiles/common.dir/arg.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/chat-parser.cpp.o -c <project>/vendor/llama.cpp/common/chat-parser.cpp",
+  "file": "<project>/vendor/llama.cpp/common/chat-parser.cpp",
+  "output": "common/CMakeFiles/common.dir/chat-parser.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/chat.cpp.o -c <project>/vendor/llama.cpp/common/chat.cpp",
+  "file": "<project>/vendor/llama.cpp/common/chat.cpp",
+  "output": "common/CMakeFiles/common.dir/chat.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/common.cpp.o -c <project>/vendor/llama.cpp/common/common.cpp",
+  "file": "<project>/vendor/llama.cpp/common/common.cpp",
+  "output": "common/CMakeFiles/common.dir/common.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/console.cpp.o -c <project>/vendor/llama.cpp/common/console.cpp",
+  "file": "<project>/vendor/llama.cpp/common/console.cpp",
+  "output": "common/CMakeFiles/common.dir/console.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/json-partial.cpp.o -c <project>/vendor/llama.cpp/common/json-partial.cpp",
+  "file": "<project>/vendor/llama.cpp/common/json-partial.cpp",
+  "output": "common/CMakeFiles/common.dir/json-partial.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/json-schema-to-grammar.cpp.o -c <project>/vendor/llama.cpp/common/json-schema-to-grammar.cpp",
+  "file": "<project>/vendor/llama.cpp/common/json-schema-to-grammar.cpp",
+  "output": "common/CMakeFiles/common.dir/json-schema-to-grammar.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/llguidance.cpp.o -c <project>/vendor/llama.cpp/common/llguidance.cpp",
+  "file": "<project>/vendor/llama.cpp/common/llguidance.cpp",
+  "output": "common/CMakeFiles/common.dir/llguidance.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/log.cpp.o -c <project>/vendor/llama.cpp/common/log.cpp",
+  "file": "<project>/vendor/llama.cpp/common/log.cpp",
+  "output": "common/CMakeFiles/common.dir/log.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/ngram-cache.cpp.o -c <project>/vendor/llama.cpp/common/ngram-cache.cpp",
+  "file": "<project>/vendor/llama.cpp/common/ngram-cache.cpp",
+  "output": "common/CMakeFiles/common.dir/ngram-cache.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/regex-partial.cpp.o -c <project>/vendor/llama.cpp/common/regex-partial.cpp",
+  "file": "<project>/vendor/llama.cpp/common/regex-partial.cpp",
+  "output": "common/CMakeFiles/common.dir/regex-partial.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/sampling.cpp.o -c <project>/vendor/llama.cpp/common/sampling.cpp",
+  "file": "<project>/vendor/llama.cpp/common/sampling.cpp",
+  "output": "common/CMakeFiles/common.dir/sampling.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/common.dir/speculative.cpp.o -c <project>/vendor/llama.cpp/common/speculative.cpp",
+  "file": "<project>/vendor/llama.cpp/common/speculative.cpp",
+  "output": "common/CMakeFiles/common.dir/speculative.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/batched-bench",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-batched-bench.dir/batched-bench.cpp.o -c <project>/vendor/llama.cpp/tools/batched-bench/batched-bench.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/batched-bench/batched-bench.cpp",
+  "output": "tools/batched-bench/CMakeFiles/llama-batched-bench.dir/batched-bench.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/gguf-split",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-gguf-split.dir/gguf-split.cpp.o -c <project>/vendor/llama.cpp/tools/gguf-split/gguf-split.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/gguf-split/gguf-split.cpp",
+  "output": "tools/gguf-split/CMakeFiles/llama-gguf-split.dir/gguf-split.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/imatrix",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-imatrix.dir/imatrix.cpp.o -c <project>/vendor/llama.cpp/tools/imatrix/imatrix.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/imatrix/imatrix.cpp",
+  "output": "tools/imatrix/CMakeFiles/llama-imatrix.dir/imatrix.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/llama-bench",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-bench.dir/llama-bench.cpp.o -c <project>/vendor/llama.cpp/tools/llama-bench/llama-bench.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/llama-bench/llama-bench.cpp",
+  "output": "tools/llama-bench/CMakeFiles/llama-bench.dir/llama-bench.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/main",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-cli.dir/main.cpp.o -c <project>/vendor/llama.cpp/tools/main/main.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/main/main.cpp",
+  "output": "tools/main/CMakeFiles/llama-cli.dir/main.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/perplexity",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-perplexity.dir/perplexity.cpp.o -c <project>/vendor/llama.cpp/tools/perplexity/perplexity.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/perplexity/perplexity.cpp",
+  "output": "tools/perplexity/CMakeFiles/llama-perplexity.dir/perplexity.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/quantize",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/tools/quantize/../../common -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-quantize.dir/quantize.cpp.o -c <project>/vendor/llama.cpp/tools/quantize/quantize.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/quantize/quantize.cpp",
+  "output": "tools/quantize/CMakeFiles/llama-quantize.dir/quantize.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/run",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-run.dir/run.cpp.o -c <project>/vendor/llama.cpp/tools/run/run.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/run/run.cpp",
+  "output": "tools/run/CMakeFiles/llama-run.dir/run.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/run",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-run.dir/linenoise.cpp/linenoise.cpp.o -c <project>/vendor/llama.cpp/tools/run/linenoise.cpp/linenoise.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/run/linenoise.cpp/linenoise.cpp",
+  "output": "tools/run/CMakeFiles/llama-run.dir/linenoise.cpp/linenoise.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/tokenize",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-tokenize.dir/tokenize.cpp.o -c <project>/vendor/llama.cpp/tools/tokenize/tokenize.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/tokenize/tokenize.cpp",
+  "output": "tools/tokenize/CMakeFiles/llama-tokenize.dir/tokenize.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/tts",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-tts.dir/tts.cpp.o -c <project>/vendor/llama.cpp/tools/tts/tts.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/tts/tts.cpp",
+  "output": "tools/tts/CMakeFiles/llama-tts.dir/tts.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dmtmd_EXPORTS -I<project>/vendor/llama.cpp/tools/mtmd/. -I<project>/vendor/llama.cpp/tools/mtmd/../.. -I<project>/vendor/llama.cpp/tools/mtmd/../../vendor -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -Wno-cast-qual -o CMakeFiles/mtmd.dir/mtmd.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/mtmd.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/mtmd.cpp",
+  "output": "tools/mtmd/CMakeFiles/mtmd.dir/mtmd.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dmtmd_EXPORTS -I<project>/vendor/llama.cpp/tools/mtmd/. -I<project>/vendor/llama.cpp/tools/mtmd/../.. -I<project>/vendor/llama.cpp/tools/mtmd/../../vendor -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -Wno-cast-qual -o CMakeFiles/mtmd.dir/mtmd-audio.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/mtmd-audio.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/mtmd-audio.cpp",
+  "output": "tools/mtmd/CMakeFiles/mtmd.dir/mtmd-audio.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dmtmd_EXPORTS -I<project>/vendor/llama.cpp/tools/mtmd/. -I<project>/vendor/llama.cpp/tools/mtmd/../.. -I<project>/vendor/llama.cpp/tools/mtmd/../../vendor -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -Wno-cast-qual -o CMakeFiles/mtmd.dir/clip.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/clip.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/clip.cpp",
+  "output": "tools/mtmd/CMakeFiles/mtmd.dir/clip.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dmtmd_EXPORTS -I<project>/vendor/llama.cpp/tools/mtmd/. -I<project>/vendor/llama.cpp/tools/mtmd/../.. -I<project>/vendor/llama.cpp/tools/mtmd/../../vendor -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/src/../include -O3 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -Wno-cast-qual -o CMakeFiles/mtmd.dir/mtmd-helper.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/mtmd-helper.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/mtmd-helper.cpp",
+  "output": "tools/mtmd/CMakeFiles/mtmd.dir/mtmd-helper.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-llava-cli.dir/deprecation-warning.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "output": "tools/mtmd/CMakeFiles/llama-llava-cli.dir/deprecation-warning.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-gemma3-cli.dir/deprecation-warning.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "output": "tools/mtmd/CMakeFiles/llama-gemma3-cli.dir/deprecation-warning.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-minicpmv-cli.dir/deprecation-warning.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "output": "tools/mtmd/CMakeFiles/llama-minicpmv-cli.dir/deprecation-warning.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-qwen2vl-cli.dir/deprecation-warning.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/deprecation-warning.cpp",
+  "output": "tools/mtmd/CMakeFiles/llama-qwen2vl-cli.dir/deprecation-warning.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/mtmd",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -I<project>/vendor/llama.cpp/tools/mtmd/. -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-mtmd-cli.dir/mtmd-cli.cpp.o -c <project>/vendor/llama.cpp/tools/mtmd/mtmd-cli.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/mtmd/mtmd-cli.cpp",
+  "output": "tools/mtmd/CMakeFiles/llama-mtmd-cli.dir/mtmd-cli.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/cvector-generator",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-cvector-generator.dir/cvector-generator.cpp.o -c <project>/vendor/llama.cpp/tools/cvector-generator/cvector-generator.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/cvector-generator/cvector-generator.cpp",
+  "output": "tools/cvector-generator/CMakeFiles/llama-cvector-generator.dir/cvector-generator.cpp.o"
+},
+{
+  "directory": "<project>/build/llama/tools/export-lora",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I<project>/vendor/llama.cpp/common/. -I<project>/vendor/llama.cpp/common/../vendor -I<project>/vendor/llama.cpp/src/../include -I<project>/vendor/llama.cpp/ggml/src/../include -O3 -DNDEBUG -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -o CMakeFiles/llama-export-lora.dir/export-lora.cpp.o -c <project>/vendor/llama.cpp/tools/export-lora/export-lora.cpp",
+  "file": "<project>/vendor/llama.cpp/tools/export-lora/export-lora.cpp",
+  "output": "tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o"
+}
+]

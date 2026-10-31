@@ -1,0 +1,116 @@
+
+build/llama/bin/libggml-cpu.so:     file format elf64-littleaarch64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .text:
+
+0000000000070a24 <ggml_vec_dot_q8_0_q8_0>:
+   70a24:	7100001f 	cmp	w0, #0x0
+   70a28:	11007c07 	add	w7, w0, #0x1f
+   70a2c:	1a80b0e7 	csel	w7, w7, w0, lt	// lt = tstop
+   70a30:	13057ce7 	asr	w7, w7, #5
+   70a34:	7100fc1f 	cmp	w0, #0x3f
+   70a38:	54000bed 	b.le	70bb4 <ggml_vec_dot_q8_0_q8_0+0x190>
+   70a3c:	4f000416 	movi	v22.4s, #0x0
+   70a40:	aa0303e2 	mov	x2, x3
+   70a44:	aa0503e0 	mov	x0, x5
+   70a48:	52800006 	mov	w6, #0x0                   	// #0
+   70a4c:	4eb61ed5 	mov	v21.16b, v22.16b
+   70a50:	3cc02006 	ldur	q6, [x0, #2]
+   70a54:	11000cc4 	add	w4, w6, #0x3
+   70a58:	3cc02054 	ldur	q20, [x2, #2]
+   70a5c:	110008c6 	add	w6, w6, #0x2
+   70a60:	3cc12007 	ldur	q7, [x0, #18]
+   70a64:	91011042 	add	x2, x2, #0x44
+   70a68:	3cdce057 	ldur	q23, [x2, #-50]
+   70a6c:	91011000 	add	x0, x0, #0x44
+   70a70:	3cde0010 	ldur	q16, [x0, #-32]
+   70a74:	3cde0058 	ldur	q24, [x2, #-32]
+   70a78:	3cdf0011 	ldur	q17, [x0, #-16]
+   70a7c:	3cdf0059 	ldur	q25, [x2, #-16]
+   70a80:	4e26c29e 	smull2	v30.8h, v20.16b, v6.16b
+   70a84:	7c5bc01a 	ldur	h26, [x0, #-68]
+   70a88:	4e27c2fc 	smull2	v28.8h, v23.16b, v7.16b
+   70a8c:	7c5bc052 	ldur	h18, [x2, #-68]
+   70a90:	4e30c31f 	smull2	v31.8h, v24.16b, v16.16b
+   70a94:	7c5de01b 	ldur	h27, [x0, #-34]
+   70a98:	4e31c33d 	smull2	v29.8h, v25.16b, v17.16b
+   70a9c:	7c5de053 	ldur	h19, [x2, #-34]
+   70aa0:	4e602bde 	saddlp	v30.4s, v30.8h
+   70aa4:	0e26c294 	smull	v20.8h, v20.8b, v6.8b
+   70aa8:	1ee2435a 	fcvt	s26, h26
+   70aac:	4e602b9c 	saddlp	v28.4s, v28.8h
+   70ab0:	0e27c2f7 	smull	v23.8h, v23.8b, v7.8b
+   70ab4:	1ee24252 	fcvt	s18, h18
+   70ab8:	4e602bff 	saddlp	v31.4s, v31.8h
+   70abc:	0e30c318 	smull	v24.8h, v24.8b, v16.8b
+   70ac0:	1ee2437b 	fcvt	s27, h27
+   70ac4:	4e602bbd 	saddlp	v29.4s, v29.8h
+   70ac8:	0e31c339 	smull	v25.8h, v25.8b, v17.8b
+   70acc:	1ee24273 	fcvt	s19, h19
+   70ad0:	4e606a9e 	sadalp	v30.4s, v20.8h
+   70ad4:	1e320b5a 	fmul	s26, s26, s18
+   70ad8:	4e606afc 	sadalp	v28.4s, v23.8h
+   70adc:	4e606b1f 	sadalp	v31.4s, v24.8h
+   70ae0:	4e606b3d 	sadalp	v29.4s, v25.8h
+   70ae4:	1e330b7b 	fmul	s27, s27, s19
+   70ae8:	4ebc87de 	add	v30.4s, v30.4s, v28.4s
+   70aec:	4ebd87ff 	add	v31.4s, v31.4s, v29.4s
+   70af0:	4e21dbde 	scvtf	v30.4s, v30.4s
+   70af4:	4e21dbff 	scvtf	v31.4s, v31.4s
+   70af8:	4f9a93de 	fmul	v30.4s, v30.4s, v26.s[0]
+   70afc:	4f9b93ff 	fmul	v31.4s, v31.4s, v27.s[0]
+   70b00:	4e3ed6b5 	fadd	v21.4s, v21.4s, v30.4s
+   70b04:	4e3fd6d6 	fadd	v22.4s, v22.4s, v31.4s
+   70b08:	6b0400ff 	cmp	w7, w4
+   70b0c:	54fffa2c 	b.gt	70a50 <ggml_vec_dot_q8_0_q8_0+0x2c>
+   70b10:	6e35d6b5 	faddp	v21.4s, v21.4s, v21.4s
+   70b14:	510008e0 	sub	w0, w7, #0x2
+   70b18:	6e36d6d6 	faddp	v22.4s, v22.4s, v22.4s
+   70b1c:	121f7800 	and	w0, w0, #0xfffffffe
+   70b20:	11000800 	add	w0, w0, #0x2
+   70b24:	6e35d6b5 	faddp	v21.4s, v21.4s, v21.4s
+   70b28:	6e36d6d6 	faddp	v22.4s, v22.4s, v22.4s
+   70b2c:	1e352ad6 	fadd	s22, s22, s21
+   70b30:	6b0000ff 	cmp	w7, w0
+   70b34:	540003cd 	b.le	70bac <ggml_vec_dot_q8_0_q8_0+0x188>
+   70b38:	52800442 	mov	w2, #0x22                  	// #34
+   70b3c:	9ba27c00 	umull	x0, w0, w2
+   70b40:	91000802 	add	x2, x0, #0x2
+   70b44:	8b020066 	add	x6, x3, x2
+   70b48:	8b0200a4 	add	x4, x5, x2
+   70b4c:	7c6068be 	ldr	h30, [x5, x0]
+   70b50:	3ce268bf 	ldr	q31, [x5, x2]
+   70b54:	3ce2687c 	ldr	q28, [x3, x2]
+   70b58:	1ee243de 	fcvt	s30, h30
+   70b5c:	3dc0049d 	ldr	q29, [x4, #16]
+   70b60:	0e3fc399 	smull	v25.8h, v28.8b, v31.8b
+   70b64:	7c60687b 	ldr	h27, [x3, x0]
+   70b68:	4e3fc39c 	smull2	v28.8h, v28.16b, v31.16b
+   70b6c:	3dc004d8 	ldr	q24, [x6, #16]
+   70b70:	1ee2437b 	fcvt	s27, h27
+   70b74:	0f10a73f 	sxtl	v31.4s, v25.4h
+   70b78:	0e38c3ba 	smull	v26.8h, v29.8b, v24.8b
+   70b7c:	4e38c3bd 	smull2	v29.8h, v29.16b, v24.16b
+   70b80:	4e7913ff 	saddw2	v31.4s, v31.4s, v25.8h
+   70b84:	1e3b0bde 	fmul	s30, s30, s27
+   70b88:	0e7c13ff 	saddw	v31.4s, v31.4s, v28.4h
+   70b8c:	4e7c13ff 	saddw2	v31.4s, v31.4s, v28.8h
+   70b90:	0e7a13ff 	saddw	v31.4s, v31.4s, v26.4h
+   70b94:	4e7a13ff 	saddw2	v31.4s, v31.4s, v26.8h
+   70b98:	0e7d13ff 	saddw	v31.4s, v31.4s, v29.4h
+   70b9c:	4e7d13ff 	saddw2	v31.4s, v31.4s, v29.8h
+   70ba0:	4eb1bbff 	addv	s31, v31.4s
+   70ba4:	5e21dbff 	scvtf	s31, s31
+   70ba8:	1f1e5bf6 	fmadd	s22, s31, s30, s22
+   70bac:	bd000036 	str	s22, [x1]
+   70bb0:	d65f03c0 	ret
+   70bb4:	0f000416 	movi	v22.2s, #0x0
+   70bb8:	52800000 	mov	w0, #0x0                   	// #0
+   70bbc:	17ffffdd 	b	70b30 <ggml_vec_dot_q8_0_q8_0+0x10c>
+
+Disassembly of section .fini:

@@ -1,0 +1,256 @@
+phase,threads,dso,symbol,samples,period_cycles,sampled_period_pct
+prefill,1,libggml-cpu.so,ggml_vec_dot_q5_0_q8_0,4289,51363831775,66.73054740245469
+prefill,1,libggml-cpu.so,ggml_vec_dot_q6_K_q8_K,726,8691698575,11.292027555646385
+prefill,1,libggml-cpu.so,ggml_vec_dot_q4_K_q8_K,562,6728162576,8.741052919804087
+prefill,1,libggml-cpu.so,ggml_vec_dot_f16,188,2249754774,2.922822585509991
+prefill,1,libggml-cpu.so,ggml_compute_forward_mul_mat,108,1293773456,1.6808366500348704
+prefill,1,libggml-cpu.so,"void (anonymous namespace)::tinyBLAS<4, __Float32x4_t, __Float32x4_t, unsigned short, float, float>::gemm_bloc<4, 6>(long, long)",100,1196055200,1.5538836465545687
+prefill,1,libggml-cpu.so,ggml_vec_dot_q8_0_q8_0,80,957119978,1.2434652527783572
+prefill,1,libggml-cpu.so,ggml_vec_swiglu_f32,49,587755427,0.7635964846680969
+prefill,1,libc.so.6,[unresolved],43,570323815,0.7409497900841978
+prefill,1,libggml-cpu.so,ggml_cpu_fp32_to_fp16,39,466492973,0.6060554746781938
+prefill,1,libggml-cpu.so,ggml_vec_soft_max_f32,36,430615941,0.5594449726614683
+prefill,1,libggml-base.so,quantize_row_q8_K_ref,33,395785396,0.5141940391961207
+prefill,1,libggml-cpu.so,ggml_compute_forward_soft_max,25,298869395,0.3882833044379204
+prefill,1,libggml-cpu.so,quantize_row_q8_0,19,227535889,0.29560867836313537
+prefill,1,libggml-cpu.so,ggml_compute_forward_rms_norm,17,203498230,0.2643795802232207
+prefill,1,libggml-cpu.so,"void (anonymous namespace)::tinyBLAS<4, __Float32x4_t, __Float32x4_t, unsigned short, float, float>::gemm_bloc<4, 5>(long, long)",13,155535446,0.20206758517413845
+prefill,1,libggml-cpu.so,ggml_compute_forward_add_non_quantized,9,107940785,0.14023384590256593
+prefill,1,libggml-cpu.so,ggml_compute_forward_set_rows,9,107769759,0.1400116533946151
+prefill,1,libggml-cpu.so,ggml_compute_forward_mul,7,83840059,0.1089228127650548
+prefill,1,libggml-cpu.so,"ggml_compute_forward_rope_f32(ggml_compute_params const*, ggml_tensor*, bool)",6,71744272,0.0932082825230498
+prefill,1,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, true>*, unsigned long)",4,45049689,0.05852737818410826
+prefill,1,libllama.so,"std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, true>*, unsigned long)",4,41924605,0.05446735075250699
+prefill,1,libggml-base.so,ggml_is_contiguous_0,3,35875124,0.04660802319300758
+prefill,1,llama-bench,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)",3,35012284,0.04548704402282117
+prefill,1,libc.so.6,cfree,3,34968839,0.045430601414633384
+prefill,1,libllama.so,"std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",3,31994991,0.0415670558403664
+prefill,1,libstdc++.so.6.0.33,"std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)",2,27225531,0.03537069809960648
+prefill,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long)",2,25599005,0.03325755804378313
+prefill,1,libstdc++.so.6.0.33,std::ostream::sentry::sentry(std::ostream&),2,24244748,0.03149814275464593
+prefill,1,libggml-cpu.so,__aarch64_ldadd4_relax,2,23984969,0.031160644669425197
+prefill,1,libm.so.6,sincosf32,2,23915484,0.03107037157401886
+prefill,1,libggml-base.so,ggml_blck_size@plt,2,23873410,0.031015710133188087
+prefill,1,libstdc++.so.6.0.33,"std::_Hash_bytes(void const*, unsigned long, unsigned long)",2,23614366,0.03067916694075175
+prefill,1,libllama.so,"unicode_utf8_to_byte(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",2,23553339,0.03059988225782216
+prefill,1,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node(unsigned long, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, unsigned long) const [clone .isra.0]",2,23515678,0.030550954071219327
+prefill,1,libllama.so,"llama_vocab::impl::load(llama_model_loader&, LLM_KV const&)",2,23490709,0.030518514999200896
+prefill,1,libllama.so,"void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [clone .isra.0]",2,22999157,0.029879903491779505
+prefill,1,libc.so.6,memcmp,2,22493948,0.029223549167002365
+prefill,1,libggml-cpu.so,ggml_cpu_init,1,14297058,0.018574363975878513
+prefill,1,libllama.so,"gguf_kv_to_str[abi:cxx11](gguf_context const*, int)",1,12785836,0.016611023862384177
+prefill,1,libggml-cpu.so,ggml_compute_forward_glu,1,12001013,0.015591402338946216
+prefill,1,libggml-base.so,ggml_is_contiguous_0@plt,1,11999490,0.015589423697163042
+prefill,1,libggml-base.so,ggml_type_size,1,11978972,0.015562767247979085
+prefill,1,libggml-cpu.so,ggml_compute_forward_dup,1,11952103,0.015527859745633647
+prefill,1,libllama.so,llama_vocab::impl::print_info() const,1,11947623,0.015522039446757337
+prefill,1,libggml-cpu.so,memcpy@plt,1,11934045,0.015504399264136236
+prefill,1,libstdc++.so.6.0.33,std::ostream::put(char),1,11931614,0.015501240972491523
+prefill,1,libggml-base.so,ggml_blck_size,1,11927082,0.015495353116574686
+prefill,1,libllama.so,"std::_Rb_tree<unsigned int, unsigned int, std::_Identity<unsigned int>, std::less<unsigned int>, std::allocator<unsigned int> >::_M_erase(std::_Rb_tree_node<unsigned int>*) [clone .isra.0]",1,11922046,0.015488810477034261
+prefill,1,libllama.so,"replace_all(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",1,11919805,0.01548589902842225
+prefill,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)",1,11919575,0.015485600218435296
+prefill,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned long) const",1,11913884,0.015478206620018985
+prefill,1,libllama.so,"unicode_cpts_from_utf8(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",1,11863301,0.015412490508844794
+prefill,1,libllama.so,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)@plt",1,11835384,0.015376221472297932
+prefill,1,libc.so.6,malloc,1,11652886,0.0151391248418674
+prefill,1,libllama.so,llama_vocab::~llama_vocab(),1,11348142,0.014743209404197278
+prefill,1,libllama.so,"unicode_cpt_from_utf8(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long&)",1,11312402,0.014696776930572432
+prefill,1,libc.so.6,vsnprintf,1,10885125,0.014141669822765955
+prefill,1,libggml-base.so,ggml_gallocr_allocate_node,1,10820919,0.014058255066147128
+prefill,1,libggml-base.so,gguf_free,1,10499154,0.013640226390268599
+prefill,1,libggml-base.so,ggml_backend_sched_split_graph,1,9869172,0.01282177024591695
+prefill,1,ld-linux-aarch64.so.1,[unresolved],5,36022,4.6798840652328315e-05
+decode,1,libggml-cpu.so,ggml_vec_dot_q5_0_q8_0,446,5265612668,51.36247112169908
+decode,1,libggml-cpu.so,ggml_vec_dot_q8_0_q8_0,141,1665796206,16.248709299350782
+decode,1,libggml-cpu.so,ggml_vec_dot_q6_K_q8_K,72,850692432,8.297926229474037
+decode,1,libggml-cpu.so,ggml_vec_dot_q4_K_q8_K,64,756003903,7.374304014366081
+decode,1,libc.so.6,[unresolved],22,322858627,3.1492663724499597
+decode,1,libggml-cpu.so,ggml_compute_forward_mul_mat,18,212806958,2.0757871731046262
+decode,1,libggml-cpu.so,ggml_vec_dot_f16,12,141733517,1.3825140839032457
+decode,1,libggml-base.so,quantize_row_q8_K_ref,5,59057762,0.5760683108484912
+decode,1,libggml-cpu.so,ggml_vec_swiglu_f32,4,47296042,0.4613407298562939
+decode,1,llama-bench,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)",4,46323164,0.45185096649340756
+decode,1,libllama.so,llama_vocab::~llama_vocab(),4,43792803,0.4271690155060522
+decode,1,libstdc++.so.6.0.33,"std::_Hash_bytes(void const*, unsigned long, unsigned long)",4,42965393,0.4190981935694006
+decode,1,libllama.so,"unicode_utf8_to_byte(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",3,35653510,0.3477757467599228
+decode,1,libggml-cpu.so,"ggml_compute_forward_rope_f32(ggml_compute_params const*, ggml_tensor*, bool)",3,35459311,0.34588146756426913
+decode,1,libggml-cpu.so,ggml_graph_compute_thread.isra.0,3,35399950,0.34530244137292315
+decode,1,libggml-cpu.so,ggml_cpu_fp32_to_fp16,3,35354051,0.3448547278378312
+decode,1,libllama.so,"llama_vocab::impl::load(llama_model_loader&, LLM_KV const&)",3,34143867,0.3330502058057253
+decode,1,libstdc++.so.6.0.33,std::ostream::put(char),2,26881952,0.26221516285954455
+decode,1,libllama.so,"replace_all(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",2,25077414,0.2446131216998759
+decode,1,libstdc++.so.6.0.33,"std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)",2,23949051,0.2336067078870068
+decode,1,libggml-cpu.so,ggml_compute_forward_add_non_quantized,2,23654164,0.23073028571609588
+decode,1,libggml-base.so,ggml_is_contiguous_0,2,23599904,0.23020101631122683
+decode,1,libggml-base.so,ggml_is_empty,2,23582618,0.2300324031351751
+decode,1,libllama.so,"llama_vocab::impl::token_to_piece(int, char*, int, int, bool) const",2,23137401,0.22568961403403995
+decode,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)",2,23120588,0.22552561465136278
+decode,1,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, true>*, unsigned long)",2,23068522,0.2250177462246412
+decode,1,libllama.so,"std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, true>*, unsigned long)",2,21101417,0.2058299745205319
+decode,1,libllama.so,"std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",2,21090516,0.20572364267787657
+decode,1,libllama.so,"gguf_kv_to_str[abi:cxx11](gguf_context const*, int)",1,13701530,0.13364910853106707
+decode,1,libm.so.6,expf,1,13236883,0.12911679299173426
+decode,1,libstdc++.so.6.0.33,"std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)",1,12863348,0.1254732130590441
+decode,1,libstdc++.so.6.0.33,std::ostream::sentry::sentry(std::ostream&),1,11985997,0.11691525062573627
+decode,1,libstdc++.so.6.0.33,free@plt,1,11891882,0.11599722279604123
+decode,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned long) const",1,11866558,0.11575020439558226
+decode,1,libllama.so,"void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [clone .isra.0]",1,11846948,0.11555892217977903
+decode,1,libggml-cpu.so,ggml_graph_plan,1,11841665,0.11550739010705653
+decode,1,libggml-cpu.so,ggml_backend_cpu_get_extra_buffer_types()@plt,1,11828843,0.11538232021562211
+decode,1,libggml-base.so,ggml_type_size@plt,1,11826521,0.1153596706845107
+decode,1,libllama.so,"int& std::vector<int, std::allocator<int> >::emplace_back<int>(int&&) [clone .isra.0]",1,11822075,0.11531630297765393
+decode,1,libggml-cpu.so,ggml_compute_forward_soft_max,1,11821997,0.11531554214069153
+decode,1,libggml-base.so,ggml_is_contiguous_0@plt,1,11820499,0.11530093016928546
+decode,1,libllama.so,"llama_vocab::impl::token_to_piece_for_cache[abi:cxx11](int, bool) const",1,11818093,0.11527746127529144
+decode,1,libggml-cpu.so,ggml_row_size@plt,1,11816813,0.11526497574565206
+decode,1,libggml-cpu.so,ggml_vec_soft_max_f32,1,11813598,0.11523361560675317
+decode,1,libggml-cpu.so,ggml_cpu_extra_compute_forward,1,11813388,0.1152315671995467
+decode,1,libggml-cpu.so,ggml_compute_forward_rope,1,11812259,0.11522055457223199
+decode,1,libggml-cpu.so,quantize_row_q8_0,1,11791188,0.11501502129486382
+decode,1,libggml-cpu.so,ggml_compute_forward_rms_norm,1,11789990,0.11500333561946698
+decode,1,llama-bench,strlen@plt,1,11774964,0.11485676720668477
+decode,1,libggml-cpu.so,ggml_compute_forward_set_rows,1,11772407,0.11483182541036611
+decode,1,libc.so.6,memcmp,1,11741731,0.1145326018891025
+decode,1,libggml-base.so,ggml_init,1,11728135,0.11439998215396428
+decode,1,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)",1,11458597,0.11177082224151313
+decode,1,libllama.so,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)@plt",1,10988063,0.10718108302015923
+decode,1,libggml-base.so,ggml_blck_size,1,10768239,0.10503684937371732
+decode,1,libc.so.6,strchrnul,1,10638534,0.10377166529412751
+decode,1,ld-linux-aarch64.so.1,[unresolved],5,10425407,0.1016927563289316
+decode,1,llama-bench,memcmp@plt,1,10179717,0.09929621744057404
+decode,1,libggml-base.so,ggml_backend_sched_split_graph,1,10134502,0.0988551758603832
+decode,1,[unknown],[unresolved],1,33776,0.0003294619133589695
+prefill,4,libggml-cpu.so,ggml_vec_dot_q5_0_q8_0,4260,50889183612,64.50558362378534
+prefill,4,libggml-cpu.so,ggml_vec_dot_q6_K_q8_K,738,8789415583,11.141196255302358
+prefill,4,libggml-cpu.so,ggml_vec_dot_q4_K_q8_K,563,6682668932,8.470748183147299
+prefill,4,libggml-cpu.so,ggml_vec_dot_f16,194,2314512908,2.9338062695924036
+prefill,4,libggml-cpu.so,ggml_compute_forward_mul_mat,129,1529780556,1.9391033728006122
+prefill,4,libggml-cpu.so,"void (anonymous namespace)::tinyBLAS<4, __Float32x4_t, __Float32x4_t, unsigned short, float, float>::gemm_bloc<4, 6>(long, long)",119,1405854248,1.782018148466301
+prefill,4,libggml-cpu.so,ggml_vec_dot_q8_0_q8_0,92,1091873523,1.384025717163702
+prefill,4,libc.so.6,[unresolved],60,619984660,0.7858737258591754
+prefill,4,libgomp.so.1.0.0,[unresolved],57,613953848,0.7782292517259021
+prefill,4,libggml-cpu.so,quantize_row_q8_0,49,579137815,0.7340975056705303
+prefill,4,libggml-cpu.so,ggml_vec_swiglu_f32,45,534845367,0.677953743763286
+prefill,4,libggml-cpu.so,ggml_cpu_fp32_to_fp16,41,472877021,0.5994045503746133
+prefill,4,libggml-cpu.so,ggml_vec_soft_max_f32,39,456906271,0.5791605127120275
+prefill,4,libggml-base.so,quantize_row_q8_K_ref,35,414771198,0.5257513738345296
+prefill,4,libggml-cpu.so,ggml_compute_forward_add_non_quantized,31,367106230,0.46533270799992915
+prefill,4,libggml-cpu.so,ggml_compute_forward_soft_max,26,308636577,0.39121835160149326
+prefill,4,libm.so.6,sincosf32,26,307573908,0.3898713446507325
+prefill,4,libggml-cpu.so,"void (anonymous namespace)::tinyBLAS<4, __Float32x4_t, __Float32x4_t, unsigned short, float, float>::gemm_bloc<4, 5>(long, long)",23,272249436,0.3450951167604358
+prefill,4,libggml-cpu.so,ggml_compute_forward_rms_norm,16,188128994,0.23846659924927568
+prefill,4,libggml-cpu.so,"ggml_compute_forward_rope_f32(ggml_compute_params const*, ggml_tensor*, bool)",8,94537069,0.11983231753965645
+prefill,4,libggml-cpu.so,ggml_compute_forward_set_rows,6,71055928,0.09006833633874312
+prefill,4,libllama.so,"std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, true>*, unsigned long)",5,52835830,0.0669730934648641
+prefill,4,libggml-cpu.so,ggml_compute_forward_mul,4,47216571,0.059850291415378384
+prefill,4,libllama.so,"llama_vocab::impl::load(llama_model_loader&, LLM_KV const&)",4,46561156,0.059019507266567364
+prefill,4,libllama.so,"unicode_utf8_to_byte(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",4,46536095,0.05898774070407894
+prefill,4,llama-bench,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)",4,46454055,0.05888374929166321
+prefill,4,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, true>*, unsigned long)",4,46149531,0.05849774391776647
+prefill,4,libllama.so,"std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",4,42588416,0.053983782696108186
+prefill,4,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node(unsigned long, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, unsigned long) const [clone .isra.0]",3,34840741,0.044163065165780925
+prefill,4,libllama.so,"replace_all(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",2,25760375,0.03265306899815804
+prefill,4,libstdc++.so.6.0.33,"std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)",2,24391300,0.030917671107457568
+prefill,4,libstdc++.so.6.0.33,"std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)",2,23961871,0.03037333994897055
+prefill,4,libggml-cpu.so,ggml_compute_forward_reshape,2,23698345,0.030039302394749827
+prefill,4,libggml-cpu.so,ggml_backend_cpu_repack_buffer_type(),2,23695066,0.030035146033934236
+prefill,4,libggml-base.so,ggml_is_contiguous_0,2,23367554,0.029620001769391318
+prefill,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long)",1,14717321,0.018655229129274722
+prefill,4,libm.so.6,tanhf32,1,14681672,0.018610041539547657
+prefill,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long)",1,12793376,0.016216494878175457
+prefill,4,libllama.so,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned long, unsigned long) const@plt",1,12604335,0.015976872247818533
+prefill,4,libm.so.6,powf,1,12040187,0.015261775376395937
+prefill,4,libggml-base.so,gguf_get_arr_str,1,11990233,0.01519845520311686
+prefill,4,libstdc++.so.6.0.33,std::ostream::sentry::sentry(std::ostream&),1,11978753,0.015183903503768583
+prefill,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)",1,11948480,0.015145530368370467
+prefill,4,libllama.so,"unicode_cpt_from_utf8(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long&)",1,11923086,0.01511334170519537
+prefill,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)",1,11919332,0.015108583248805698
+prefill,4,libllama.so,"unicode_cpts_from_utf8(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",1,11885202,0.015065321097346058
+prefill,4,libc.so.6,syscall,8,11879783,0.015058452137523035
+prefill,4,libggml-cpu.so,llamafile_sgemm,1,11869399,0.015045289694488843
+prefill,4,libggml-cpu.so,ggml_barrier,1,11863828,0.015038228064082115
+prefill,4,libgomp.so.1.0.0,GOMP_barrier,1,11860440,0.015033933538176891
+prefill,4,libggml-base.so,ggml_is_contiguous_0@plt,1,11858473,0.015031440228715389
+prefill,4,libggml-cpu.so,sincosf@plt,1,11853701,0.015025391386442743
+prefill,4,libc.so.6,malloc,1,11849151,0.015019623944627877
+prefill,4,libstdc++.so.6.0.33,"std::_Hash_bytes(void const*, unsigned long, unsigned long)",1,11844315,0.015013493977898935
+prefill,4,libggml-base.so,ggml_row_size,1,11842472,0.015011157847071506
+prefill,4,libggml-base.so,ggml_type_size@plt,1,11837225,0.015004506909224781
+prefill,4,libggml-cpu.so,ggml_graph_compute_thread.isra.0,2,11834283,0.015000777719374378
+prefill,4,libggml-cpu.so,ggml_vec_soft_max_f32@plt,1,11831870,0.014997719073858055
+prefill,4,libggml-base.so,ggml_blck_size,1,11813083,0.014973905243225992
+prefill,4,libllama.so,"llama_vocab::impl::token_to_piece(int, char*, int, int, bool) const",1,11692620,0.014821210002930574
+prefill,4,libggml-cpu.so,ggml_can_repeat@plt,1,11513586,0.014594271941857462
+prefill,4,libllama.so,llama_vocab::impl::token_get_attr(int) const,1,11415439,0.014469863785417108
+prefill,4,libllama.so,memcpy@plt,1,11064479,0.014024997548198373
+prefill,4,libc.so.6,vsnprintf,1,10632458,0.013477380849231326
+prefill,4,libllama.so,llama_vocab::~llama_vocab(),1,10268752,0.013016358169513192
+prefill,4,libggml-base.so,ggml_gallocr_reserve_n,1,9517148,0.01206364776559665
+prefill,4,libggml-base.so,ggml_backend_sched_split_graph,1,9272573,0.011753631923427252
+prefill,4,libggml-base.so,dequantize_row_q8_0,1,83198,0.00010545925804685501
+prefill,4,ld-linux-aarch64.so.1,[unresolved],5,38813,4.9198180035248244e-05
+decode,4,libggml-cpu.so,ggml_vec_dot_q5_0_q8_0,450,5713650944,39.66039646734077
+decode,4,libggml-cpu.so,ggml_vec_dot_q8_0_q8_0,242,2961200374,20.55469996384815
+decode,4,libgomp.so.1.0.0,[unresolved],138,1503224542,10.43439333264891
+decode,4,libggml-cpu.so,ggml_vec_dot_q6_K_q8_K,111,1286186192,8.927856252595621
+decode,4,libggml-cpu.so,ggml_vec_dot_q4_K_q8_K,70,838999493,5.8237811260102585
+decode,4,libggml-cpu.so,ggml_compute_forward_mul_mat,28,315586201,2.1905912653669266
+decode,4,libc.so.6,[unresolved],34,251596826,1.7464192277204238
+decode,4,libggml-cpu.so,ggml_vec_dot_f16,14,161254670,1.1193235651061504
+decode,4,libggml-cpu.so,ggml_vec_swiglu_f32,8,93676489,0.6502404031716233
+decode,4,libggml-cpu.so,ggml_graph_compute_thread.isra.0,7,80998338,0.5622370406874602
+decode,4,libggml-base.so,gguf_get_tensor_name,1,78851991,0.547338515416875
+decode,4,libllama.so,"unicode_utf8_to_byte(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",6,70826089,0.4916279971426905
+decode,4,libggml-base.so,ggml_is_empty,6,69349772,0.48138037821998386
+decode,4,libllama.so,"llama_vocab::impl::load(llama_model_loader&, LLM_KV const&)",5,57758430,0.4009209270189448
+decode,4,libggml-cpu.so,ggml_cpu_fp32_to_fp16,4,56957458,0.39536110766865745
+decode,4,libggml-cpu.so,ggml_compute_forward_soft_max,4,46282766,0.32126443619954526
+decode,4,libggml-cpu.so,ggml_compute_forward_set_rows,5,46067598,0.3197708818556198
+decode,4,libstdc++.so.6.0.33,"std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)",3,36859445,0.2558539568822042
+decode,4,libggml-base.so,quantize_row_q8_K_ref,3,34745973,0.24118362817921515
+decode,4,libggml-cpu.so,ggml_backend_cpu_get_extra_buffer_types(),3,34488291,0.23939496968700727
+decode,4,libggml-cpu.so,ggml_compute_forward_rms_norm,3,34350997,0.23844196529000167
+decode,4,libstdc++.so.6.0.33,"std::_Hash_bytes(void const*, unsigned long, unsigned long)",3,33342745,0.23144334488933108
+decode,4,libllama.so,"std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, true>*, unsigned long)",3,31880902,0.2212961949284309
+decode,4,libllama.so,"std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",3,31763346,0.22048019870940905
+decode,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned long, unsigned long) const",2,23963702,0.16634021424484255
+decode,4,libllama.so,unicode_cpt_to_utf8[abi:cxx11](unsigned int),2,23727827,0.16470292556402846
+decode,4,libggml-cpu.so,"ggml_compute_forward_rope_f32(ggml_compute_params const*, ggml_tensor*, bool)",2,23296791,0.16171095793785617
+decode,4,libggml-cpu.so,ggml::cpu::repack::extra_buffer_type::get_tensor_traits(ggml_tensor const*),2,23252090,0.16140067307798941
+decode,4,libggml-base.so,ggml_type_size,2,23230804,0.16125291970497485
+decode,4,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node(unsigned long, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, unsigned long) const [clone .isra.0]",2,23152010,0.16070598372483255
+decode,4,libllama.so,"std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, true>*, unsigned long)",2,22016733,0.15282563955233192
+decode,4,llama-bench,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)",2,21795810,0.15129213779406378
+decode,4,llama-bench,strlen@plt,2,21680461,0.15049146111343537
+decode,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long)",1,14755869,0.10242551050037388
+decode,4,libm.so.6,tanhf32,1,13853423,0.09616132556832953
+decode,4,libllama.so,std::ostream::put(char)@plt,1,13836260,0.09604219134202825
+decode,4,libstdc++.so.6.0.33,"std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)",1,13226593,0.09181028512828839
+decode,4,libstdc++.so.6.0.33,memcpy@plt,1,12813234,0.0889410195774134
+decode,4,libstdc++.so.6.0.33,std::ostream::sentry::sentry(std::ostream&),1,11984185,0.08318630821105305
+decode,4,libggml-base.so,gguf_get_arr_str,1,11974415,0.08311849131476666
+decode,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned long) const",1,11927186,0.08279065874621903
+decode,4,libc.so.6,cfree,1,11880079,0.08246367302120744
+decode,4,libllama.so,"bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)@plt",1,11781892,0.08178212362553985
+decode,4,libm.so.6,sincosf32,1,11655587,0.08090539761884043
+decode,4,libm.so.6,powf,1,11631929,0.08074117938625665
+decode,4,libggml-cpu.so,ggml_compute_forward_glu,1,11630826,0.08073352308773014
+decode,4,libggml-base.so,ggml_blck_size,1,11623807,0.08068480181904701
+decode,4,libm.so.6,log2,1,11611604,0.08060009664142338
+decode,4,libggml-cpu.so,ggml_compute_forward_add_non_quantized,1,11542639,0.08012138709665456
+decode,4,libggml-cpu.so,ggml_compute_forward_add,1,11526268,0.08000775041199698
+decode,4,libggml-cpu.so,ggml_graph_plan,1,11521524,0.07997482069285854
+decode,4,libggml-cpu.so,ggml_cpu_extra_work_size,1,11515627,0.07993388760817062
+decode,4,libggml-cpu.so,ggml_vec_soft_max_f32,1,11514682,0.07992732804143668
+decode,4,libstdc++.so.6.0.33,"std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)",1,11492451,0.07977301510168817
+decode,4,libllama.so,llama_vocab::~llama_vocab(),1,11367303,0.07890432022590005
+decode,4,libc.so.6,malloc,1,11258812,0.07815124725814085
+decode,4,libggml-cpu.so,memcpy@plt,1,10956833,0.0760551082076117
+decode,4,libggml-base.so,ggml_gallocr_allocate_node,1,10763645,0.07471412452697952
+decode,4,libggml-base.so,gguf_free,1,10431442,0.07240819040241149
+decode,4,libggml-base.so,ggml_gallocr_alloc_graph,1,10344851,0.07180713279070879
+decode,4,libggml-base.so,ggml_new_tensor,1,9963037,0.0691568318246193
+decode,4,ld-linux-aarch64.so.1,[unresolved],5,37184,0.00025810680363494025
+decode,4,libc.so.6,syscall,14,14,9.717876642881788e-08
+decode,4,[unknown],[unresolved],1,1,6.941340459201277e-09

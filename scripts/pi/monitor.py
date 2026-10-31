@@ -167,7 +167,7 @@ def oom_kill_count():
     return int(dict(line.split() for line in read_text(path).splitlines())["oom_kill"])
 
 
-def run_monitored(args, stdout, stderr, run_id, timeout_s=1800, interval=1.0):
+def run_monitored(args, stdout, stderr, run_id, timeout_s=1800, interval=1.0, env=None):
     """Run one process group; save samples even on timeout or Ctrl-C."""
     if interval <= 0 or timeout_s <= 0:
         raise ValueError("Sampling interval and timeout must be positive")
@@ -177,7 +177,7 @@ def run_monitored(args, stdout, stderr, run_id, timeout_s=1800, interval=1.0):
     before = nullable(oom_kill_count, "oom_evidence", reasons)
     timed_out = interrupted = False
     with Path(stdout).open("w") as out, Path(stderr).open("w") as err:
-        proc = subprocess.Popen(args, stdout=out, stderr=err, start_new_session=True)
+        proc = subprocess.Popen(args, stdout=out, stderr=err, start_new_session=True, env=env)
         try:
             while True:
                 row = sampler.sample(proc.pid)
