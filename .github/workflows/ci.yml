@@ -42,6 +42,10 @@ jobs:
         run: |
           python scripts/integration/perf_run.py --fixture --output build/e2e-fixture
           python scripts/integration/perf_report.py --input build/e2e-fixture --reports build/e2e-report
+      - name: Fixture three-way same-binary control (synthetic)
+        run: |
+          python scripts/integration/perf_run.py --ablation --fixture --output build/ablation-fixture
+          python scripts/integration/ablation_report.py --input build/ablation-fixture --reports build/ablation-report
       - name: Validate recorded Pi evidence (no inference)
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
