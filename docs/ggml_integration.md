@@ -98,5 +98,13 @@ enabled model step. The tolerances are gates, not measured accuracy claims.
 
 The small prompt set is not a perplexity evaluation, long-context validation,
 proof for all tensors or inference speedup. Defaults remain off pending further
-validation. CI runs the graph checks under ARM64 QEMU and default-off host mode;
+validation. CI runs both enabled and default-off graph checks under ARM64 QEMU;
 it does not run physical Pi performance or download model weights.
+
+An initial additional x86 default-off CI run failed the independent oracle on
+synthetic packed Q8 operands containing -128. The pinned AVX2 signed-byte helper
+uses byte sign-negation, whose -128 case is not representable as +128. The ARM64
+baseline and candidate pass the full signed-byte test domain. The CI integration
+gates therefore exercise the target ARM64 backend in both configurations; no
+boundary input is removed, tolerance relaxed, or upstream x86 implementation
+changed. x86 integration is outside this milestone and is not validated here.
