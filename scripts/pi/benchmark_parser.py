@@ -63,8 +63,13 @@ def parse_native(path, expected=None):
         for values in (samples, durations):
             if any(type(v) not in (int, float) or not math.isfinite(v) or v <= 0 for v in values):
                 raise ValueError("Non-positive or non-finite measurement")
-        for speed, duration in zip(samples, durations):
-            if not math.isclose(speed, (prompt + generated) * 1e9 / duration, rel_tol=1e-4):
+        native_samples = samples
+        # The pinned JSON writer uses six significant digits for samples_ts, but
+        # six decimal places for avg_ts/stddev_ts. Recomputing SD from the rounded
+        # rates can reject valid native results; integer nanoseconds retain precision.
+        samples = [(prompt + generated) * 1e9 / duration for duration in durations]
+        for rounded, exact in zip(native_samples, samples):
+            if not math.isclose(rounded, exact, rel_tol=5.1e-6, abs_tol=1e-9):
                 raise ValueError("Token rate does not agree with native duration")
         mean = statistics.mean(samples)
         deviation = statistics.stdev(samples) if len(samples) > 1 else 0.0
@@ -82,6 +87,8 @@ def parse_native(path, expected=None):
                 "generated_tokens": generated,
                 "context_depth": item["n_depth"],
                 "samples_ts": samples,
+                "native_samples_ts": native_samples,
+                "token_rate_source": "native integer samples_ns",
                 "samples_ns": durations,
                 "mean_ts": mean,
                 "stddev_ts": deviation,

@@ -56,6 +56,26 @@ then size, GGUF header and upstream SHA256 are checked before atomic rename.
 A corrupt existing model is refused rather than silently overwritten. To retry,
 move it aside locally and rerun setup. Large files remain ignored by Git.
 
+## Existing toolchain without sudo
+
+If Git, a C++ compiler, Make, curl and Python venv support are already installed,
+you can keep missing CMake and plotting packages in the project directory:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install --only-binary=:all: \
+  cmake==3.31.6 matplotlib==3.10.3 numpy==2.2.6
+SKIP_APT=1 BUILD_JOBS=1 bash scripts/pi/setup.sh
+bash scripts/pi/benchmark.sh --suite baseline
+```
+
+This path was exercised on the physical Pi's Debian 13 ARM64/Python 3.13 system.
+It uses prebuilt dependency wheels; llama.cpp is still compiled natively on the
+Pi. Activate the venv for subsequent setup, benchmark and report commands.
+If an existing system dependency or venv support is missing, a local administrator
+must install it; the project does not change sudo permissions.
+
 ## Before a real experiment
 
 Use a suitable stable power supply and note cooling, ambient conditions, power

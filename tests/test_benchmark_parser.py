@@ -1,5 +1,6 @@
 import copy
 import json
+import statistics
 import tempfile
 import unittest
 from pathlib import Path
@@ -49,6 +50,23 @@ class ParserTests(unittest.TestCase):
         for change in changes:
             with self.subTest(change=change), self.assertRaises(ValueError):
                 self.parse_changed(change)
+
+    def test_rounded_native_rates_use_precise_nanosecond_samples(self):
+        native = json.loads((FIXTURES / "decode-t4.json").read_text())
+        row = native[0]
+        row["samples_ns"] = [983981000, 994409000, 971208000]
+        exact = [16e9 / duration for duration in row["samples_ns"]]
+        row["samples_ts"] = [float(f"{rate:.6g}") for rate in exact]
+        row["avg_ts"] = round(statistics.mean(exact), 6)
+        row["stddev_ts"] = round(statistics.stdev(exact), 6)
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "native-rounded.json"
+            path.write_text(json.dumps(native))
+            result = parse_native(path)[0]
+        self.assertEqual(result["samples_ts"], exact)
+        self.assertEqual(result["native_samples_ts"], row["samples_ts"])
+        self.assertAlmostEqual(result["stddev_ts"], statistics.stdev(exact))
+        self.assertGreater(abs(statistics.stdev(row["samples_ts"]) - result["stddev_ts"]), 2e-5)
 
     def test_empty_or_non_json_fails(self):
         with tempfile.TemporaryDirectory() as temporary:

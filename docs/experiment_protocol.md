@@ -55,8 +55,11 @@ after the independently measured 128-token prefill. Mixed pp+tg rates are reject
   threads share its address space; unrelated processes are not included.
 - Monitoring spans model loading, warmup and all iterations in a case. It is
   **case-level telemetry**, not a per-token power or per-iteration memory trace.
-- Mean uses native per-iteration token/s. Standard deviation uses sample SD
-  (`n-1`), checked against native output. Do not average prefill and decode.
+- Per-iteration token/s is reconstructed from the token count and native integer
+  `samples_ns`. The pinned writer rounds `samples_ts` to six significant digits;
+  those rates are checked with a rounding allowance and retained separately as
+  `native_samples_ts`. Mean and sample SD (`n-1`) use the precise reconstructed
+  rates and are checked against native summaries. Do not average prefill and decode.
 - Thread speedup is S(T)/S(1), efficiency is S(T)/(T*S(1)), matched by phase,
   prompt/generated token counts and depth. Missing 1-thread data yields null.
 - CV above 10% is a coarse warning only. Three repetitions do not prove stability.

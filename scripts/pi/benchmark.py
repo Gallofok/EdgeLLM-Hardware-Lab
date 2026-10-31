@@ -243,7 +243,11 @@ def execute(args):
             except (OSError, ValueError, subprocess.SubprocessError, KeyboardInterrupt) as error:
                 # Exception details can contain private paths; raw logs remain local.
                 run["status"] = "failed"
-                run["error"] = f"{type(error).__name__}: inspect this run's raw evidence"
+                run["error"] = (
+                    str(error)
+                    if isinstance(error, ValueError)
+                    else (f"{type(error).__name__}: inspect this run's raw evidence")
+                )
                 if raw.with_suffix(".process.json").exists():
                     run["process"] = json.loads(raw.with_suffix(".process.json").read_text())
                 failed = True
