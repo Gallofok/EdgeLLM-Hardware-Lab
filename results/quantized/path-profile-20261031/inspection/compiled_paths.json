@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "static_review_of_measured_shared_libraries",
+  "private_disassembly_sha256": {
+    "integrated.disassembly.txt": "495863e199b6adca32ac34f8236e908314dcafff4003bd2bf8147adcaff28a26",
+    "original.disassembly.txt": "80726ea7a6c25d644e023ac05bd9a5fdea578b3fc4996bf05108495162e9c578"
+  },
+  "loops": {
+    "upstream": {
+      "symbol": "ggml_vec_dot_q5_0_q8_0",
+      "blocks_per_loop": 2,
+      "accumulators_per_row": 2,
+      "float_operations": "separate multiply/add",
+      "high_bit_decode": "lookup loads",
+      "stack_access_in_reviewed_loop": false,
+      "call_in_reviewed_loop": false
+    },
+    "prototype": {
+      "symbol": "matvec_q5_q8_neon_row4",
+      "rows_per_tile": 4,
+      "blocks_per_loop": 1,
+      "accumulators_per_row": 1,
+      "float_operations": "FMLA",
+      "high_bit_decode": "mask operations",
+      "stack_access_in_reviewed_four_row_loop": false,
+      "call_in_reviewed_four_row_loop": false
+    },
+    "compatible": {
+      "symbol": "edgellm_q5_try_row4",
+      "rows_per_tile": 4,
+      "blocks_per_loop": 1,
+      "accumulators_per_row": 2,
+      "float_operations": "separate multiply/add",
+      "high_bit_decode": "mask operations",
+      "conditional_parity_accumulator_branch_sites": 4,
+      "stack_access_in_reviewed_four_row_loop": false,
+      "call_in_reviewed_four_row_loop": false,
+      "tail_note": "One/two/three-row tails contain compatible_integer calls; two/three-row tails save a callee-saved vector register. Those observations are outside the reviewed four-row hot loop."
+    }
+  },
+  "limitations": "Static inspection establishes code structure, not execution counts, cycles, register-pressure costs or a causal attribution. Reviewed addresses and full assembly remain private. Loop shapes are specific to these hashed GCC14 ARMv8-A artifacts."
+}

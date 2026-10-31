@@ -1,0 +1,1370 @@
+{
+  "data_kind": "real",
+  "groups": [
+    {
+      "rows": 192,
+      "vectors": 1,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r192-v1-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 126101.16471354167,
+            "prototype": 91445.5938313802,
+            "compatible": 144874.8865559896
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.378980611110067,
+            "upstream_over_compatible": 0.870452938203764,
+            "compatible_over_prototype": 1.5842608380047416
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00030517578125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3786388873644735,
+              "upstream_over_compatible": 0.8747792351214065,
+              "compatible_over_prototype": 1.5759849251258675
+            },
+            {
+              "upstream_over_prototype": 1.371577603353193,
+              "upstream_over_compatible": 0.8701879471409406,
+              "compatible_over_prototype": 1.5761854756315588
+            },
+            {
+              "upstream_over_prototype": 1.3789360800121209,
+              "upstream_over_compatible": 0.8724121084316294,
+              "compatible_over_prototype": 1.5806017210044119
+            },
+            {
+              "upstream_over_prototype": 1.3826450973770283,
+              "upstream_over_compatible": 0.8771189081864318,
+              "compatible_over_prototype": 1.5763485252368392
+            },
+            {
+              "upstream_over_prototype": 1.3743012686381195,
+              "upstream_over_compatible": 0.8604320902033109,
+              "compatible_over_prototype": 1.5972222378565482
+            },
+            {
+              "upstream_over_prototype": 1.3877847299154669,
+              "upstream_over_compatible": 0.8677873401388647,
+              "compatible_over_prototype": 1.599222143173224
+            }
+          ]
+        },
+        {
+          "id": "s1-r192-v1-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 125320.51318359375,
+            "prototype": 91364.666015625,
+            "compatible": 144216.43229166666
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.371652629661055,
+            "upstream_over_compatible": 0.8689757521317131,
+            "compatible_over_prototype": 1.5784707327869536
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.0003662109375,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3711356455004258,
+              "upstream_over_compatible": 0.8690510844669369,
+              "compatible_over_prototype": 1.5777388349287431
+            },
+            {
+              "upstream_over_prototype": 1.3689378019036045,
+              "upstream_over_compatible": 0.8670367726802887,
+              "compatible_over_prototype": 1.5788693686794608
+            },
+            {
+              "upstream_over_prototype": 1.372428577834298,
+              "upstream_over_compatible": 0.8681745583836789,
+              "compatible_over_prototype": 1.5808210049248765
+            },
+            {
+              "upstream_over_prototype": 1.3677404764506482,
+              "upstream_over_compatible": 0.8673481383957945,
+              "compatible_over_prototype": 1.5769221329976628
+            },
+            {
+              "upstream_over_prototype": 1.3736384012676266,
+              "upstream_over_compatible": 0.8704537922098015,
+              "compatible_over_prototype": 1.5780715915779995
+            },
+            {
+              "upstream_over_prototype": 1.376034875009726,
+              "upstream_over_compatible": 0.8717901666537778,
+              "compatible_over_prototype": 1.578401463612979
+            }
+          ]
+        },
+        {
+          "id": "s2-r192-v1-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 125375.28857421875,
+            "prototype": 91349.8184407552,
+            "compatible": 144190.6599934896
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3724747969815803,
+            "upstream_over_compatible": 0.8695158497688267,
+            "compatible_over_prototype": 1.5784467048948896
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3752858154800902,
+              "upstream_over_compatible": 0.8721322450617958,
+              "compatible_over_prototype": 1.5769234806616317
+            },
+            {
+              "upstream_over_prototype": 1.3742291084297906,
+              "upstream_over_compatible": 0.871168964073032,
+              "compatible_over_prototype": 1.5774541622841673
+            },
+            {
+              "upstream_over_prototype": 1.3716950046983771,
+              "upstream_over_compatible": 0.8642712753765875,
+              "compatible_over_prototype": 1.5871116439692974
+            },
+            {
+              "upstream_over_prototype": 1.3706026142010623,
+              "upstream_over_compatible": 0.8696535621044577,
+              "compatible_over_prototype": 1.5760328870318978
+            },
+            {
+              "upstream_over_prototype": 1.3711433676107143,
+              "upstream_over_compatible": 0.870974868415863,
+              "compatible_over_prototype": 1.5742628373474912
+            },
+            {
+              "upstream_over_prototype": 1.3718928714694476,
+              "upstream_over_compatible": 0.868894183581224,
+              "compatible_over_prototype": 1.5788952180748526
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 125598.98882378472,
+        "prototype": 91386.6927625868,
+        "compatible": 144427.32628038194
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.3743693459175674,
+        "upstream_over_compatible": 0.869648180034768,
+        "compatible_over_prototype": 1.5803927585621949
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.0040145752929051075,
+        "upstream_over_compatible": 0.0007474310318205833,
+        "compatible_over_prototype": 0.003349876604486856
+      }
+    },
+    {
+      "rows": 192,
+      "vectors": 8,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r192-v8-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 1005456.2018229166,
+            "prototype": 733546.8880208334,
+            "compatible": 1155941.2513020833
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3706781309852745,
+            "upstream_over_compatible": 0.8698165266717732,
+            "compatible_over_prototype": 1.5758253899871495
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.374061201133524,
+              "upstream_over_compatible": 0.8717552291941024,
+              "compatible_over_prototype": 1.57620069845039
+            },
+            {
+              "upstream_over_prototype": 1.3666477619244408,
+              "upstream_over_compatible": 0.8683027624832229,
+              "compatible_over_prototype": 1.5739299942061935
+            },
+            {
+              "upstream_over_prototype": 1.370203820298502,
+              "upstream_over_compatible": 0.8682336112940512,
+              "compatible_over_prototype": 1.5781510902996414
+            },
+            {
+              "upstream_over_prototype": 1.370069498873407,
+              "upstream_over_compatible": 0.8700069467233051,
+              "compatible_over_prototype": 1.5747799532331097
+            },
+            {
+              "upstream_over_prototype": 1.3729102147098606,
+              "upstream_over_compatible": 0.8719698983587294,
+              "compatible_over_prototype": 1.5744926714718355
+            },
+            {
+              "upstream_over_prototype": 1.3701762889719125,
+              "upstream_over_compatible": 0.8686307119772286,
+              "compatible_over_prototype": 1.5773979322617273
+            }
+          ]
+        },
+        {
+          "id": "s1-r192-v8-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 1002252.1731770834,
+            "prototype": 731049.83984375,
+            "compatible": 1152189.26953125
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3709775873605696,
+            "upstream_over_compatible": 0.8698678753886495,
+            "compatible_over_prototype": 1.576076455491106
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3701920546235133,
+              "upstream_over_compatible": 0.8713348930220504,
+              "compatible_over_prototype": 1.5725205837577294
+            },
+            {
+              "upstream_over_prototype": 1.368379679216268,
+              "upstream_over_compatible": 0.8686512330226853,
+              "compatible_over_prototype": 1.5752923926149907
+            },
+            {
+              "upstream_over_prototype": 1.3724631882514662,
+              "upstream_over_compatible": 0.86958382464939,
+              "compatible_over_prototype": 1.5782988935021114
+            },
+            {
+              "upstream_over_prototype": 1.3688241337742186,
+              "upstream_over_compatible": 0.8686895806094055,
+              "compatible_over_prototype": 1.5757344905805795
+            },
+            {
+              "upstream_over_prototype": 1.3744546894995693,
+              "upstream_over_compatible": 0.8716597899958931,
+              "compatible_over_prototype": 1.5768247030255294
+            },
+            {
+              "upstream_over_prototype": 1.3715517787983824,
+              "upstream_over_compatible": 0.869287931032473,
+              "compatible_over_prototype": 1.577787669465696
+            }
+          ]
+        },
+        {
+          "id": "s2-r192-v8-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 1003071.7265625,
+            "prototype": 728868.912109375,
+            "compatible": 1151195.6510416667
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3762031457385207,
+            "upstream_over_compatible": 0.8713309269444548,
+            "compatible_over_prototype": 1.5794280971116785
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3769468954898016,
+              "upstream_over_compatible": 0.8718446268855113,
+              "compatible_over_prototype": 1.5793489493749202
+            },
+            {
+              "upstream_over_prototype": 1.3777618028051715,
+              "upstream_over_compatible": 0.873188107794273,
+              "compatible_over_prototype": 1.5778522296707436
+            },
+            {
+              "upstream_over_prototype": 1.3747594057983679,
+              "upstream_over_compatible": 0.8691224132830561,
+              "compatible_over_prototype": 1.5817787975404978
+            },
+            {
+              "upstream_over_prototype": 1.3748809078856745,
+              "upstream_over_compatible": 0.871069203414466,
+              "compatible_over_prototype": 1.5783830980320956
+            },
+            {
+              "upstream_over_prototype": 1.3757231242764953,
+              "upstream_over_compatible": 0.8716037011278382,
+              "compatible_over_prototype": 1.5783814622360326
+            },
+            {
+              "upstream_over_prototype": 1.3771467381756133,
+              "upstream_over_compatible": 0.8711575091615839,
+              "compatible_over_prototype": 1.580824045815781
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 1003593.3671875,
+        "prototype": 731155.2133246528,
+        "compatible": 1153108.7239583333
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.372619621361455,
+        "upstream_over_compatible": 0.8703384430016259,
+        "compatible_over_prototype": 1.5771099808633113
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.0031070329497680745,
+        "upstream_over_compatible": 0.0008598996774398665,
+        "compatible_over_prototype": 0.0020114685375434626
+      }
+    },
+    {
+      "rows": 576,
+      "vectors": 1,
+      "chunk": 1,
+      "sessions": [
+        {
+          "id": "s0-r576-v1-c1",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 393765.3658854167,
+            "prototype": 546618.0859375,
+            "compatible": 603423.265625
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 0.720367521191821,
+            "upstream_over_compatible": 0.6525533998729285,
+            "compatible_over_prototype": 1.1039226240195825
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 0.7183312742544287,
+              "upstream_over_compatible": 0.6525991439200453,
+              "compatible_over_prototype": 1.1007235926476127
+            },
+            {
+              "upstream_over_prototype": 0.7220797525889509,
+              "upstream_over_compatible": 0.6540459012956382,
+              "compatible_over_prototype": 1.104019994863572
+            },
+            {
+              "upstream_over_prototype": 0.7191862509853643,
+              "upstream_over_compatible": 0.6495461410408875,
+              "compatible_over_prototype": 1.1072134919204961
+            },
+            {
+              "upstream_over_prototype": 0.7252196785280176,
+              "upstream_over_compatible": 0.6563581251321761,
+              "compatible_over_prototype": 1.1049146049376235
+            },
+            {
+              "upstream_over_prototype": 0.719153753097018,
+              "upstream_over_compatible": 0.6521492627857459,
+              "compatible_over_prototype": 1.1027441019024589
+            },
+            {
+              "upstream_over_prototype": 0.7182344176971464,
+              "upstream_over_compatible": 0.6506218250630776,
+              "compatible_over_prototype": 1.1039199578457326
+            }
+          ]
+        },
+        {
+          "id": "s1-r576-v1-c1",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 393460.4947916667,
+            "prototype": 547461.3802083334,
+            "compatible": 603421.736328125
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 0.7186997767608404,
+            "upstream_over_compatible": 0.652053183562865,
+            "compatible_over_prototype": 1.102222583917714
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.0003662109375,
+          "pairs": [
+            {
+              "upstream_over_prototype": 0.7204067333889073,
+              "upstream_over_compatible": 0.6554605239109221,
+              "compatible_over_prototype": 1.0990848527238102
+            },
+            {
+              "upstream_over_prototype": 0.7192385551617261,
+              "upstream_over_compatible": 0.6516010274275461,
+              "compatible_over_prototype": 1.1038020581416301
+            },
+            {
+              "upstream_over_prototype": 0.7183248325389763,
+              "upstream_over_compatible": 0.654522868850295,
+              "compatible_over_prototype": 1.0974785858907465
+            },
+            {
+              "upstream_over_prototype": 0.7185133138046134,
+              "upstream_over_compatible": 0.6497687048387196,
+              "compatible_over_prototype": 1.1057985841022566
+            },
+            {
+              "upstream_over_prototype": 0.7180986551746882,
+              "upstream_over_compatible": 0.6524943693005139,
+              "compatible_over_prototype": 1.1005438344924008
+            },
+            {
+              "upstream_over_prototype": 0.7176165704961311,
+              "upstream_over_compatible": 0.6484716070491933,
+              "compatible_over_prototype": 1.1066275881554404
+            }
+          ]
+        },
+        {
+          "id": "s2-r576-v1-c1",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 394462.8424479167,
+            "prototype": 546556.77734375,
+            "compatible": 603562.5651041666
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 0.7217251877585293,
+            "upstream_over_compatible": 0.6535602782641644,
+            "compatible_over_prototype": 1.1043032469306922
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 0.7220932688948007,
+              "upstream_over_compatible": 0.6557013158825551,
+              "compatible_over_prototype": 1.1012533472239323
+            },
+            {
+              "upstream_over_prototype": 0.7200834134824127,
+              "upstream_over_compatible": 0.6508803376684451,
+              "compatible_over_prototype": 1.106322271251677
+            },
+            {
+              "upstream_over_prototype": 0.7228778458235043,
+              "upstream_over_compatible": 0.6513799965347064,
+              "compatible_over_prototype": 1.1097636551155414
+            },
+            {
+              "upstream_over_prototype": 0.7243836975689127,
+              "upstream_over_compatible": 0.6557363423716408,
+              "compatible_over_prototype": 1.1046874342041055
+            },
+            {
+              "upstream_over_prototype": 0.7180972947183452,
+              "upstream_over_compatible": 0.6532614128557606,
+              "compatible_over_prototype": 1.0992495203094146
+            },
+            {
+              "upstream_over_prototype": 0.7228156060632003,
+              "upstream_over_compatible": 0.6544022642718785,
+              "compatible_over_prototype": 1.1045432534794817
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 393896.234375,
+        "prototype": 546878.7478298611,
+        "compatible": 603469.1890190972
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 0.7202641619037302,
+        "upstream_over_compatible": 0.6527222872333193,
+        "compatible_over_prototype": 1.1034828182893295
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.0015153515377826574,
+        "upstream_over_compatible": 0.0007676104578795228,
+        "compatible_over_prototype": 0.0011078634634585365
+      }
+    },
+    {
+      "rows": 576,
+      "vectors": 1,
+      "chunk": 4,
+      "sessions": [
+        {
+          "id": "s0-r576-v1-c4",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 382573.4723307292,
+            "prototype": 299031.9007161458,
+            "compatible": 454059.900390625
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.279785198383608,
+            "upstream_over_compatible": 0.8438465392421983,
+            "compatible_over_prototype": 1.5177166449705528
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.2953715584900027,
+              "upstream_over_compatible": 0.8630704414450964,
+              "compatible_over_prototype": 1.5008874088203923
+            },
+            {
+              "upstream_over_prototype": 1.2640773053255434,
+              "upstream_over_compatible": 0.8388973605750573,
+              "compatible_over_prototype": 1.5068319018896768
+            },
+            {
+              "upstream_over_prototype": 1.2480917761392372,
+              "upstream_over_compatible": 0.7836468832719942,
+              "compatible_over_prototype": 1.5926711415325565
+            },
+            {
+              "upstream_over_prototype": 1.2844099168856482,
+              "upstream_over_compatible": 0.8608590249335577,
+              "compatible_over_prototype": 1.4920095854077629
+            },
+            {
+              "upstream_over_prototype": 1.296997151121286,
+              "upstream_over_compatible": 0.8643638768649954,
+              "compatible_over_prototype": 1.500522159516233
+            },
+            {
+              "upstream_over_prototype": 1.2897634823399295,
+              "upstream_over_compatible": 0.8522416483624892,
+              "compatible_over_prototype": 1.5133776726566954
+            }
+          ]
+        },
+        {
+          "id": "s1-r576-v1-c4",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 380553.8489583333,
+            "prototype": 294112.6526692708,
+            "compatible": 441144.7421875
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2939154045202308,
+            "upstream_over_compatible": 0.8626586893571888,
+            "compatible_over_prototype": 1.4999283000205312
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.0003662109375,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.2967879467146715,
+              "upstream_over_compatible": 0.8647989007840661,
+              "compatible_over_prototype": 1.4995254336458388
+            },
+            {
+              "upstream_over_prototype": 1.2888696793726842,
+              "upstream_over_compatible": 0.8628375878694339,
+              "compatible_over_prototype": 1.4937569914579545
+            },
+            {
+              "upstream_over_prototype": 1.2997122969060855,
+              "upstream_over_compatible": 0.865999058810863,
+              "compatible_over_prototype": 1.5008241448792923
+            },
+            {
+              "upstream_over_prototype": 1.2861277643814202,
+              "upstream_over_compatible": 0.8617887583438157,
+              "compatible_over_prototype": 1.4923932946782672
+            },
+            {
+              "upstream_over_prototype": 1.2976734710193083,
+              "upstream_over_compatible": 0.8642699846623734,
+              "compatible_over_prototype": 1.501467705749661
+            },
+            {
+              "upstream_over_prototype": 1.2943212687272154,
+              "upstream_over_compatible": 0.8562578456725808,
+              "compatible_over_prototype": 1.5116022297121736
+            }
+          ]
+        },
+        {
+          "id": "s2-r576-v1-c4",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 380868.1676432292,
+            "prototype": 293681.6800130208,
+            "compatible": 441561.8580729167
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2968864452750337,
+            "upstream_over_compatible": 0.862553615807029,
+            "compatible_over_prototype": 1.5035510045261935
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3015273413123718,
+              "upstream_over_compatible": 0.8656650280224879,
+              "compatible_over_prototype": 1.5034999672859157
+            },
+            {
+              "upstream_over_prototype": 1.2894918079026148,
+              "upstream_over_compatible": 0.862158994916487,
+              "compatible_over_prototype": 1.495654299851643
+            },
+            {
+              "upstream_over_prototype": 1.299832140477207,
+              "upstream_over_compatible": 0.8618629187325686,
+              "compatible_over_prototype": 1.5081657560911237
+            },
+            {
+              "upstream_over_prototype": 1.2890371878513391,
+              "upstream_over_compatible": 0.8616208191956527,
+              "compatible_over_prototype": 1.4960608647487088
+            },
+            {
+              "upstream_over_prototype": 1.3015327621380899,
+              "upstream_over_compatible": 0.8657644491250859,
+              "compatible_over_prototype": 1.5033335723745385
+            },
+            {
+              "upstream_over_prototype": 1.29989743196858,
+              "upstream_over_compatible": 0.8582494848498922,
+              "compatible_over_prototype": 1.5145915668052305
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 381331.82964409725,
+        "prototype": 295608.7444661458,
+        "compatible": 445588.83355034725
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.2901956827262908,
+        "upstream_over_compatible": 0.856352948135472,
+        "compatible_over_prototype": 1.5070653165057593
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.009137308628836448,
+        "upstream_over_compatible": 0.010830995229758581,
+        "compatible_over_prototype": 0.009400483792471994
+      }
+    },
+    {
+      "rows": 576,
+      "vectors": 1,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r576-v1-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 377432.1956380208,
+            "prototype": 275901.8688151042,
+            "compatible": 433631.84375
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3680075632216144,
+            "upstream_over_compatible": 0.8703999251624557,
+            "compatible_over_prototype": 1.5716964609663266
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3707346469984707,
+              "upstream_over_compatible": 0.8718905018535138,
+              "compatible_over_prototype": 1.5721408182386274
+            },
+            {
+              "upstream_over_prototype": 1.3620374298816675,
+              "upstream_over_compatible": 0.8664276503179081,
+              "compatible_over_prototype": 1.572015192938396
+            },
+            {
+              "upstream_over_prototype": 1.373465608864805,
+              "upstream_over_compatible": 0.8709434182306465,
+              "compatible_over_prototype": 1.5769860361940053
+            },
+            {
+              "upstream_over_prototype": 1.3690129422745236,
+              "upstream_over_compatible": 0.8711943262317692,
+              "compatible_over_prototype": 1.5714208656477369
+            },
+            {
+              "upstream_over_prototype": 1.3738318520024324,
+              "upstream_over_compatible": 0.8729738685462778,
+              "compatible_over_prototype": 1.5737376587116059
+            },
+            {
+              "upstream_over_prototype": 1.3589628993077876,
+              "upstream_over_compatible": 0.8689697857946188,
+              "compatible_over_prototype": 1.5638781940675883
+            }
+          ]
+        },
+        {
+          "id": "s1-r576-v1-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 376155.6953125,
+            "prototype": 275002.4007161458,
+            "compatible": 432969.7955729167
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3678314285064417,
+            "upstream_over_compatible": 0.8687866173195103,
+            "compatible_over_prototype": 1.5744304951987822
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.0003662109375,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3695365152529158,
+              "upstream_over_compatible": 0.8716027866598243,
+              "compatible_over_prototype": 1.5712851498574072
+            },
+            {
+              "upstream_over_prototype": 1.3690965465393055,
+              "upstream_over_compatible": 0.8644531693298955,
+              "compatible_over_prototype": 1.5837717936769184
+            },
+            {
+              "upstream_over_prototype": 1.3672843754124475,
+              "upstream_over_compatible": 0.8704813718931561,
+              "compatible_over_prototype": 1.5707221539259655
+            },
+            {
+              "upstream_over_prototype": 1.3699381037995446,
+              "upstream_over_compatible": 0.8702388175977365,
+              "compatible_over_prototype": 1.574209373446717
+            },
+            {
+              "upstream_over_prototype": 1.3689963423921572,
+              "upstream_over_compatible": 0.8663579028368781,
+              "compatible_over_prototype": 1.5801741265467724
+            },
+            {
+              "upstream_over_prototype": 1.3621366876422791,
+              "upstream_over_compatible": 0.8695856555995719,
+              "compatible_over_prototype": 1.566420373738913
+            }
+          ]
+        },
+        {
+          "id": "s2-r576-v1-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 379034.0758463542,
+            "prototype": 275847.1279296875,
+            "compatible": 445650.0188802083
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.3740836470598476,
+            "upstream_over_compatible": 0.8517914810370342,
+            "compatible_over_prototype": 1.6151969897262364
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3687800006178539,
+              "upstream_over_compatible": 0.8700313581450242,
+              "compatible_over_prototype": 1.5732536394276655
+            },
+            {
+              "upstream_over_prototype": 1.3707233010634843,
+              "upstream_over_compatible": 0.8640694480757852,
+              "compatible_over_prototype": 1.58635779116595
+            },
+            {
+              "upstream_over_prototype": 1.3715694440094952,
+              "upstream_over_compatible": 0.8717399891085488,
+              "compatible_over_prototype": 1.5733698822421553
+            },
+            {
+              "upstream_over_prototype": 1.3784450879824206,
+              "upstream_over_compatible": 0.8763297229230048,
+              "compatible_over_prototype": 1.572975390341213
+            },
+            {
+              "upstream_over_prototype": 1.3653299927496407,
+              "upstream_over_compatible": 0.7909446315619247,
+              "compatible_over_prototype": 1.726201731786767
+            },
+            {
+              "upstream_over_prototype": 1.3896540559361907,
+              "upstream_over_compatible": 0.8376337364079174,
+              "compatible_over_prototype": 1.6590235033936673
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 377540.6555989583,
+        "prototype": 275583.7991536458,
+        "compatible": 437417.2194010417
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.3699742129293013,
+        "upstream_over_compatible": 0.863659341173,
+        "compatible_over_prototype": 1.5871079819637817
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.0035599638361150437,
+        "upstream_over_compatible": 0.010309474705539732,
+        "compatible_over_prototype": 0.024364174593149823
+      }
+    },
+    {
+      "rows": 576,
+      "vectors": 8,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r576-v8-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 3004323.1145833335,
+            "prototype": 2206949.6432291665,
+            "compatible": 3466438.921875
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.361310987311318,
+            "upstream_over_compatible": 0.8666948317481882,
+            "compatible_over_prototype": 1.5707073489454895
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.365835237057646,
+              "upstream_over_compatible": 0.86904194234412,
+              "compatible_over_prototype": 1.5716562924149498
+            },
+            {
+              "upstream_over_prototype": 1.3548910364397013,
+              "upstream_over_compatible": 0.86619647813159,
+              "compatible_over_prototype": 1.5641844207935816
+            },
+            {
+              "upstream_over_prototype": 1.366033393834265,
+              "upstream_over_compatible": 0.8615164386147363,
+              "compatible_over_prototype": 1.5856150069878643
+            },
+            {
+              "upstream_over_prototype": 1.3566618409184208,
+              "upstream_over_compatible": 0.8670265815241807,
+              "compatible_over_prototype": 1.5647292364825662
+            },
+            {
+              "upstream_over_prototype": 1.36390111417963,
+              "upstream_over_compatible": 0.8688153967598725,
+              "compatible_over_prototype": 1.5698399444417208
+            },
+            {
+              "upstream_over_prototype": 1.3605433014382444,
+              "upstream_over_compatible": 0.8675721531146295,
+              "compatible_over_prototype": 1.5682191925522535
+            }
+          ]
+        },
+        {
+          "id": "s1-r576-v8-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 3010607.6744791665,
+            "prototype": 2212852.5182291665,
+            "compatible": 3597139.2552083335
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.360523664901775,
+            "upstream_over_compatible": 0.8420088357669357,
+            "compatible_over_prototype": 1.6252929121839714
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.3610592780956552,
+              "upstream_over_compatible": 0.8701314859737193,
+              "compatible_over_prototype": 1.56419954918947
+            },
+            {
+              "upstream_over_prototype": 1.3571937123346243,
+              "upstream_over_compatible": 0.8674124030184012,
+              "compatible_over_prototype": 1.5646464214852054
+            },
+            {
+              "upstream_over_prototype": 1.3662982260879122,
+              "upstream_over_compatible": 0.8709225372040391,
+              "compatible_over_prototype": 1.568794201231948
+            },
+            {
+              "upstream_over_prototype": 1.3523703406381682,
+              "upstream_over_compatible": 0.7053054685300164,
+              "compatible_over_prototype": 1.9174250037458966
+            },
+            {
+              "upstream_over_prototype": 1.365943114599439,
+              "upstream_over_compatible": 0.8684635465201974,
+              "compatible_over_prototype": 1.5728272304261557
+            },
+            {
+              "upstream_over_prototype": 1.3602773176548504,
+              "upstream_over_compatible": 0.8698175733552411,
+              "compatible_over_prototype": 1.5638650670251533
+            }
+          ]
+        },
+        {
+          "id": "s2-r576-v8-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 3004353.4557291665,
+            "prototype": 2215853.7421875,
+            "compatible": 3471750.203125
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.355855100333149,
+            "upstream_over_compatible": 0.8653715557443797,
+            "compatible_over_prototype": 1.566787149776168
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.359181985298604,
+              "upstream_over_compatible": 0.8642877590388973,
+              "compatible_over_prototype": 1.5726035352045682
+            },
+            {
+              "upstream_over_prototype": 1.3519887075346038,
+              "upstream_over_compatible": 0.865119375253739,
+              "compatible_over_prototype": 1.5627770527484328
+            },
+            {
+              "upstream_over_prototype": 1.3643436484050968,
+              "upstream_over_compatible": 0.8680569929275462,
+              "compatible_over_prototype": 1.571721280424008
+            },
+            {
+              "upstream_over_prototype": 1.3534904750115675,
+              "upstream_over_compatible": 0.8647088828874965,
+              "compatible_over_prototype": 1.565255662104334
+            },
+            {
+              "upstream_over_prototype": 1.3554313059220402,
+              "upstream_over_compatible": 0.8654395571314292,
+              "compatible_over_prototype": 1.566176741926067
+            },
+            {
+              "upstream_over_prototype": 1.350694479826981,
+              "upstream_over_compatible": 0.8646167672271701,
+              "compatible_over_prototype": 1.5621886262495979
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 3006428.081597222,
+        "prototype": 2211885.3012152775,
+        "compatible": 3511776.126736111
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.3592299175154139,
+        "upstream_over_compatible": 0.8580250744198346,
+        "compatible_over_prototype": 1.5875958036352096
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.0029490697523839047,
+        "upstream_over_compatible": 0.013886241042323914,
+        "compatible_over_prototype": 0.03270544274405459
+      }
+    },
+    {
+      "rows": 1536,
+      "vectors": 1,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r1536-v1-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 1022174.8385416666,
+            "prototype": 825468.23828125,
+            "compatible": 1252173.6536458333
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2383981637017283,
+            "upstream_over_compatible": 0.8163337704821498,
+            "compatible_over_prototype": 1.5170762616046574
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000274658203125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.2237477735217488,
+              "upstream_over_compatible": 0.821579870939714,
+              "compatible_over_prototype": 1.4895055451176518
+            },
+            {
+              "upstream_over_prototype": 1.2459706701228832,
+              "upstream_over_compatible": 0.8193486171253899,
+              "compatible_over_prototype": 1.520684412081219
+            },
+            {
+              "upstream_over_prototype": 1.2286129021972034,
+              "upstream_over_compatible": 0.815422817891062,
+              "compatible_over_prototype": 1.5067188153684243
+            },
+            {
+              "upstream_over_prototype": 1.241558774969229,
+              "upstream_over_compatible": 0.8121597579010738,
+              "compatible_over_prototype": 1.5287125013161003
+            },
+            {
+              "upstream_over_prototype": 1.232733985273457,
+              "upstream_over_compatible": 0.816029189377823,
+              "compatible_over_prototype": 1.5106493754388226
+            },
+            {
+              "upstream_over_prototype": 1.2577648761258484,
+              "upstream_over_compatible": 0.8134623696578366,
+              "compatible_over_prototype": 1.5461869203057261
+            }
+          ]
+        },
+        {
+          "id": "s1-r1536-v1-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 1022807.9596354166,
+            "prototype": 826435.4283854166,
+            "compatible": 1260262.1002604167
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2377877019816377,
+            "upstream_over_compatible": 0.8115905492275293,
+            "compatible_over_prototype": 1.5251963082101545
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.000244140625,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.2150979364708745,
+              "upstream_over_compatible": 0.8156082981435243,
+              "compatible_over_prototype": 1.4898057550869241
+            },
+            {
+              "upstream_over_prototype": 1.250423493157885,
+              "upstream_over_compatible": 0.8131657115579745,
+              "compatible_over_prototype": 1.537722847120733
+            },
+            {
+              "upstream_over_prototype": 1.2277825022490112,
+              "upstream_over_compatible": 0.8116833379100487,
+              "compatible_over_prototype": 1.5126373117506016
+            },
+            {
+              "upstream_over_prototype": 1.251008509600403,
+              "upstream_over_compatible": 0.809922453229717,
+              "compatible_over_prototype": 1.5446028253838047
+            },
+            {
+              "upstream_over_prototype": 1.230979954877028,
+              "upstream_over_compatible": 0.8122652743222905,
+              "compatible_over_prototype": 1.5154900668431137
+            },
+            {
+              "upstream_over_prototype": 1.2514338155346239,
+              "upstream_over_compatible": 0.8068982202016209,
+              "compatible_over_prototype": 1.55091904307575
+            }
+          ]
+        },
+        {
+          "id": "s2-r1536-v1-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 1021358.5026041666,
+            "prototype": 844182.4036458334,
+            "compatible": 1271646.4934895833
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2100118044740342,
+            "upstream_over_compatible": 0.803227162511838,
+            "compatible_over_prototype": 1.506539938464924
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.0003662109375,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.1910630265632294,
+              "upstream_over_compatible": 0.8067735898087556,
+              "compatible_over_prototype": 1.4763287266822516
+            },
+            {
+              "upstream_over_prototype": 1.2232754671019879,
+              "upstream_over_compatible": 0.8064170047129963,
+              "compatible_over_prototype": 1.51692667683434
+            },
+            {
+              "upstream_over_prototype": 1.2024004482780777,
+              "upstream_over_compatible": 0.7926825643613471,
+              "compatible_over_prototype": 1.5168751052911507
+            },
+            {
+              "upstream_over_prototype": 1.2187816415096664,
+              "upstream_over_compatible": 0.8061377120052712,
+              "compatible_over_prototype": 1.5118777143894453
+            },
+            {
+              "upstream_over_prototype": 1.2004226489559648,
+              "upstream_over_compatible": 0.8098654567914122,
+              "compatible_over_prototype": 1.4822494759955467
+            },
+            {
+              "upstream_over_prototype": 1.2241275944352792,
+              "upstream_over_compatible": 0.7974866473912458,
+              "compatible_over_prototype": 1.5349819315968107
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 1022113.7669270833,
+        "prototype": 832028.6901041666,
+        "compatible": 1261360.7491319445
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.2287325567191334,
+        "upstream_over_compatible": 0.8103838274071724,
+        "compatible_over_prototype": 1.5162708360932453
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.016215520014625284,
+        "upstream_over_compatible": 0.006636107766277944,
+        "compatible_over_prototype": 0.009354227157200773
+      }
+    },
+    {
+      "rows": 1536,
+      "vectors": 8,
+      "chunk": 16,
+      "sessions": [
+        {
+          "id": "s0-r1536-v8-c16",
+          "seed": 42,
+          "mean_ns": {
+            "upstream": 8162342.90625,
+            "prototype": 6659762.760416667,
+            "compatible": 10072513.625
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2257438784295323,
+            "upstream_over_compatible": 0.8103645487791632,
+            "compatible_over_prototype": 1.5125811928537707
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.2415295603664254,
+              "upstream_over_compatible": 0.8128967837639778,
+              "compatible_over_prototype": 1.527290530807291
+            },
+            {
+              "upstream_over_prototype": 1.2380687978347948,
+              "upstream_over_compatible": 0.8091256262658548,
+              "compatible_over_prototype": 1.5301317343618552
+            },
+            {
+              "upstream_over_prototype": 1.2179049244689755,
+              "upstream_over_compatible": 0.8111371293232632,
+              "compatible_over_prototype": 1.5014784559117411
+            },
+            {
+              "upstream_over_prototype": 1.2342110158289308,
+              "upstream_over_compatible": 0.8096803365590284,
+              "compatible_over_prototype": 1.5243188701779133
+            },
+            {
+              "upstream_over_prototype": 1.2147805363003057,
+              "upstream_over_compatible": 0.8129052204757236,
+              "compatible_over_prototype": 1.494369215133591
+            },
+            {
+              "upstream_over_prototype": 1.2079684357777607,
+              "upstream_over_compatible": 0.8064421962871312,
+              "compatible_over_prototype": 1.497898350730233
+            }
+          ]
+        },
+        {
+          "id": "s1-r1536-v8-c16",
+          "seed": 43,
+          "mean_ns": {
+            "upstream": 8172670.458333333,
+            "prototype": 6716821.291666667,
+            "compatible": 10030688.197916666
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.2170444236467353,
+            "upstream_over_compatible": 0.8147891684713224,
+            "compatible_over_prototype": 1.493692723556079
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.238878532931932,
+              "upstream_over_compatible": 0.817676680211693,
+              "compatible_over_prototype": 1.5151202949938498
+            },
+            {
+              "upstream_over_prototype": 1.2231652281257275,
+              "upstream_over_compatible": 0.8068880261727419,
+              "compatible_over_prototype": 1.5159045474097383
+            },
+            {
+              "upstream_over_prototype": 1.219959932344932,
+              "upstream_over_compatible": 0.8192830524831807,
+              "compatible_over_prototype": 1.4890579374824513
+            },
+            {
+              "upstream_over_prototype": 1.236458699615742,
+              "upstream_over_compatible": 0.8173790591650916,
+              "compatible_over_prototype": 1.5127114962777706
+            },
+            {
+              "upstream_over_prototype": 1.2002065399043509,
+              "upstream_over_compatible": 0.8177864940182541,
+              "compatible_over_prototype": 1.467628224094345
+            },
+            {
+              "upstream_over_prototype": 1.1835976089577276,
+              "upstream_over_compatible": 0.8097216987769735,
+              "compatible_over_prototype": 1.4617338410783196
+            }
+          ]
+        },
+        {
+          "id": "s2-r1536-v8-c16",
+          "seed": 44,
+          "mean_ns": {
+            "upstream": 8173262.489583333,
+            "prototype": 6662194.979166667,
+            "compatible": 10057919.427083334
+          },
+          "mean_ratios": {
+            "upstream_over_prototype": 1.22702382879899,
+            "upstream_over_compatible": 0.8127167884915708,
+            "compatible_over_prototype": 1.5100797613143373
+          },
+          "current_flag_sampled": false,
+          "unavailable_throttle_samples": 0,
+          "prototype_max_difference": 0.00048828125,
+          "pairs": [
+            {
+              "upstream_over_prototype": 1.206213347199012,
+              "upstream_over_compatible": 0.8178408838824577,
+              "compatible_over_prototype": 1.4748753345184589
+            },
+            {
+              "upstream_over_prototype": 1.2231177978589118,
+              "upstream_over_compatible": 0.8099129582276585,
+              "compatible_over_prototype": 1.5101842555223144
+            },
+            {
+              "upstream_over_prototype": 1.2148480733301534,
+              "upstream_over_compatible": 0.8161386961730412,
+              "compatible_over_prototype": 1.4885313967181089
+            },
+            {
+              "upstream_over_prototype": 1.2493015496073556,
+              "upstream_over_compatible": 0.8155496437128988,
+              "compatible_over_prototype": 1.531852241293054
+            },
+            {
+              "upstream_over_prototype": 1.221544583148598,
+              "upstream_over_compatible": 0.8219444893133323,
+              "compatible_over_prototype": 1.4861643323007119
+            },
+            {
+              "upstream_over_prototype": 1.24711762164991,
+              "upstream_over_compatible": 0.7949140596400365,
+              "compatible_over_prototype": 1.5688710075333756
+            }
+          ]
+        }
+      ],
+      "mean_ns": {
+        "upstream": 8169425.284722222,
+        "prototype": 6679593.010416667,
+        "compatible": 10053707.083333334
+      },
+      "mean_ratios": {
+        "upstream_over_prototype": 1.2232707102917526,
+        "upstream_over_compatible": 0.8126235019140188,
+        "compatible_over_prototype": 1.5054512259080624
+      },
+      "session_ratio_sd": {
+        "upstream_over_prototype": 0.005429967981167946,
+        "upstream_over_compatible": 0.002213784462007164,
+        "compatible_over_prototype": 0.01025968192040159
+      }
+    }
+  ],
+  "formal_processes": 24,
+  "matched_triplets": 144,
+  "timed_batches": 432,
+  "telemetry": {
+    "samples": 207,
+    "max_temperature_c": 45.622,
+    "frequencies_mhz": [
+      1200.0
+    ],
+    "raw_throttle": [
+      "0x70000"
+    ]
+  }
+}

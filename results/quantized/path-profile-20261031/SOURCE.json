@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "capture_manifest_sha256": "ee842e6a1cc17e3ca3e2c0562ee5b78f151f5e7d586caa1ebd95175ce43e2d69",
+  "original_capture_files": 88,
+  "original_capture_bytes": 184009,
+  "unchanged_capture_bytes": true,
+  "reviewed_fields": [
+    "Relative case/session/mode identities, shapes, seeds, iteration counts, integer durations and numerical/dispatch gates",
+    "Process exit/timeout/interruption, elapsed time, child memory and nullable OOM evidence",
+    "Lifecycle UTC/elapsed, temperature/frequency/memory/CPU and raw/decoded throttle observations",
+    "Software identities, source/artifact hashes, allowlisted compiler flags and governor limits"
+  ],
+  "private_artifacts": "Full stderr, binary libraries, compiler paths and address-bearing disassembly are retained privately; hashes only are included",
+  "static_review_sha256": "df76392b29571e142b2a5a72373447a596a62e9e33497cbd14de1a7d306407b7",
+  "notice": "All original samples retained. Synthetic kernel inputs; no full-model performance or model-quality claim. The fast FMA prototype remains rejected by the previous model gate.",
+  "source_publication": {
+    "capture_source_commit": "a9e84a0a0d474a9cbeaeb7ea15c4c329e32e8e77",
+    "capture_source_tree": "d41958be50a896e9696708fd47bcac7185baf3d7",
+    "published_equivalent_source_commit": "2494646e4e71f911ca0211151cff5da5de9abfde",
+    "capture_commit_object": "source/capture.commit",
+    "capture_commit_object_sha256": "974bbf5a0969edfed0ada658e563fde474b0be31ce0dd991fc6fbde44b5cc7b9",
+    "note": "The GitHub connector recreates commit metadata. Its published source tree exactly equals the captured source tree. The original Git commit object is retained so the capture commit identity can be independently reconstructed. No capture bytes are changed."
+  }
+}
