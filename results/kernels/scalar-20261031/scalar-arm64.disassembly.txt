@@ -1,0 +1,92 @@
+
+build/kernels/CMakeFiles/edgellm_scalar.dir/src/kernels/scalar/gemv.cpp.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm>:
+   0:	b40003a3 	cbz	x3, 74 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x74>
+   4:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+   8:	f100005f 	cmp	x2, #0x0
+   c:	92fc0006 	mov	x6, #0x1fffffffffffffff    	// #2305843009213693951
+  10:	910003fd 	mov	x29, sp
+  14:	fa461062 	ccmp	x3, x6, #0x2, ne	// ne = any
+  18:	540006c8 	b.hi	f0 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0xf0>  // b.pmore
+  1c:	eb0600bf 	cmp	x5, x6
+  20:	9a8690a7 	csel	x7, x5, x6, ls	// ls = plast
+  24:	eb07009f 	cmp	x4, x7
+  28:	54000648 	b.hi	f0 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0xf0>  // b.pmore
+  2c:	b4000164 	cbz	x4, 58 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x58>
+  30:	f100001f 	cmp	x0, #0x0
+  34:	fa401824 	ccmp	x1, #0x0, #0x4, ne	// ne = any
+  38:	54000420 	b.eq	bc <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0xbc>  // b.none
+  3c:	f100047f 	cmp	x3, #0x1
+  40:	540000c0 	b.eq	58 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x58>  // b.none
+  44:	cb0400c6 	sub	x6, x6, x4
+  48:	d1000467 	sub	x7, x3, #0x1
+  4c:	9ac708c6 	udiv	x6, x6, x7
+  50:	eb0500df 	cmp	x6, x5
+  54:	54000343 	b.cc	bc <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0xbc>  // b.lo, b.ul, b.last
+  58:	8b030846 	add	x6, x2, x3, lsl #2
+  5c:	b50000e4 	cbnz	x4, 78 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x78>
+  60:	b800445f 	str	wzr, [x2], #4
+  64:	eb0200df 	cmp	x6, x2
+  68:	54ffffc1 	b.ne	60 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x60>  // b.any
+  6c:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  70:	d65f03c0 	ret
+  74:	d65f03c0 	ret
+  78:	d37ef4a5 	lsl	x5, x5, #2
+  7c:	aa0003e3 	mov	x3, x0
+  80:	0f00041f 	movi	v31.2s, #0x0
+  84:	d2800000 	mov	x0, #0x0                   	// #0
+  88:	bc60787e 	ldr	s30, [x3, x0, lsl #2]
+  8c:	bc60783d 	ldr	s29, [x1, x0, lsl #2]
+  90:	91000400 	add	x0, x0, #0x1
+  94:	1e3d0bdd 	fmul	s29, s30, s29
+  98:	1e3d2bff 	fadd	s31, s31, s29
+  9c:	eb00009f 	cmp	x4, x0
+  a0:	54ffff41 	b.ne	88 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x88>  // b.any
+  a4:	8b050063 	add	x3, x3, x5
+  a8:	bc00445f 	str	s31, [x2], #4
+  ac:	eb0200df 	cmp	x6, x2
+  b0:	54fffe81 	b.ne	80 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm+0x80>  // b.any
+  b4:	a8c27bfd 	ldp	x29, x30, [sp], #32
+  b8:	d65f03c0 	ret
+  bc:	d2800200 	mov	x0, #0x10                  	// #16
+  c0:	f9000bf3 	str	x19, [sp, #16]
+  c4:	94000000 	bl	0 <__cxa_allocate_exception>
+  c8:	aa0003f3 	mov	x19, x0
+  cc:	90000001 	adrp	x1, 0 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm>
+  d0:	91000021 	add	x1, x1, #0x0
+  d4:	94000000 	bl	0 <_ZNSt16invalid_argumentC1EPKc>
+  d8:	90000002 	adrp	x2, 0 <_ZNSt16invalid_argumentD1Ev>
+  dc:	f9400042 	ldr	x2, [x2]
+  e0:	aa1303e0 	mov	x0, x19
+  e4:	90000001 	adrp	x1, 0 <_ZTISt16invalid_argument>
+  e8:	f9400021 	ldr	x1, [x1]
+  ec:	94000000 	bl	0 <__cxa_throw>
+  f0:	d2800200 	mov	x0, #0x10                  	// #16
+  f4:	f9000bf3 	str	x19, [sp, #16]
+  f8:	94000000 	bl	0 <__cxa_allocate_exception>
+  fc:	aa0003f3 	mov	x19, x0
+ 100:	90000001 	adrp	x1, 0 <_ZN7edgellm11gemv_scalarEPKfS1_Pfmmm>
+ 104:	91000021 	add	x1, x1, #0x0
+ 108:	94000000 	bl	0 <_ZNSt16invalid_argumentC1EPKc>
+ 10c:	90000002 	adrp	x2, 0 <_ZNSt16invalid_argumentD1Ev>
+ 110:	f9400042 	ldr	x2, [x2]
+ 114:	aa1303e0 	mov	x0, x19
+ 118:	90000001 	adrp	x1, 0 <_ZTISt16invalid_argument>
+ 11c:	f9400021 	ldr	x1, [x1]
+ 120:	94000000 	bl	0 <__cxa_throw>
+ 124:	aa0003e1 	mov	x1, x0
+ 128:	aa1303e0 	mov	x0, x19
+ 12c:	aa0103f3 	mov	x19, x1
+ 130:	94000000 	bl	0 <__cxa_free_exception>
+ 134:	aa1303e0 	mov	x0, x19
+ 138:	94000000 	bl	0 <_Unwind_Resume>
+ 13c:	aa0003e1 	mov	x1, x0
+ 140:	aa1303e0 	mov	x0, x19
+ 144:	aa0103f3 	mov	x19, x1
+ 148:	94000000 	bl	0 <__cxa_free_exception>
+ 14c:	aa1303e0 	mov	x0, x19
+ 150:	94000000 	bl	0 <_Unwind_Resume>

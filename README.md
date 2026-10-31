@@ -25,6 +25,8 @@ and [validation notes](docs/validation.md) for interpretation and limitations.
 
 **Phase 2 has started with a scalar FP32 GEMV reference**, independent numerical
 tests and a monitored native microbenchmark. See [build instructions and protocol](docs/scalar_gemv.md).
+The [physical scalar baseline](docs/scalar_gemv_baseline.md) includes all 15 batch
+samples and the inspected ARM64 disassembly.
 NEON, INT4 and GGML integration remain upcoming; the microbenchmark does not
 establish an LLM speedup.
 
@@ -125,7 +127,8 @@ confirm OOM attribution. See [troubleshooting](docs/pi3_setup.md).
 
 Weights, build outputs, setup logs and generated runs are ignored by Git by default.
 The explicitly curated, privacy-reviewed 2026-10-31 evidence and reports are versioned.
-Other runs and reports remain ignored. Diagnostics deliberately omit hostnames, IP addresses, CPU
+The reviewed Phase 2 scalar dataset is also versioned; other runs and reports
+remain ignored. Diagnostics deliberately omit hostnames, IP addresses, CPU
 serial numbers and complete `/proc/cpuinfo`. Raw stderr/build files can still
 include local paths: review and redact identifiers before publishing artifacts.
 Do not commit SSH keys, Wi-Fi settings, tokens or private host configuration.

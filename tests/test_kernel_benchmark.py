@@ -1,9 +1,39 @@
+import csv
+import hashlib
+import json
 import unittest
+from pathlib import Path
 
 from scripts.kernels.benchmark import summarize
 
 
 class KernelBenchmarkTest(unittest.TestCase):
+    def test_published_physical_evidence_and_export_traceability(self):
+        root = Path(__file__).resolve().parents[1] / "results/kernels/scalar-20261031"
+        manifest = json.loads((root / "manifest.json").read_text())
+        self.assertEqual(manifest["status"], "completed")
+        self.assertFalse(manifest["working_tree_dirty"])
+        self.assertTrue(manifest["environment_before"]["is_raspberry_pi3"])
+        for name, digest in manifest["evidence_sha256"].items():
+            path = (root / name).resolve()
+            self.assertTrue(path.is_relative_to(root.resolve()))
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), digest, name)
+        expected = []
+        for case in manifest["cases"]:
+            self.assertEqual(case["process"]["returncode"], 0)
+            self.assertFalse(case["process"]["timed_out"])
+            raw = json.loads((root / "raw" / f"{case['case_id']}.json").read_text())
+            expected.append({"case_id": case["case_id"], **summarize(raw)})
+        self.assertEqual(json.loads((root / "benchmark.json").read_text()), expected)
+        with (root / "benchmark.csv").open(newline="") as stream:
+            rows = list(csv.DictReader(stream))
+        self.assertEqual(len(rows), 15)
+        for row in rows:
+            case = next(case for case in expected if case["case_id"] == row["case_id"])
+            index = int(row["repetition"]) - 1
+            self.assertEqual(float(row["ns_per_call"]), case["samples_ns_per_call"][index])
+            self.assertEqual(float(row["gflop_s"]), case["samples_gflop_s"][index])
+
     def fixture(self):
         # Parser-only Fixture, not hardware measurements.
         return {

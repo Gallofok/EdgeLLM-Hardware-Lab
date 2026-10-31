@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "data_kind": "measured_local",
+  "benchmark": "fp32_gemv_microbenchmark",
+  "started_at": "2026-10-31T08:15:06.978845+00:00",
+  "project_commit": "8b1d186ab1b321dc13b96fdda968af4244b2a326",
+  "working_tree_dirty": false,
+  "architecture": "aarch64",
+  "binary_sha256": "dca274658079db5934ec65a016775360deb55add383d0fd8eda9bed27c429a11",
+  "cmake_cache_sha256": "73c13d4900f25ec494c3c5a9c50579206e9561cec5c25d94bc13a338a9bfe0a0",
+  "limitations": [
+    "Synthetic FP32 matrices; no GGUF/INT4/GGML integration or LLM speedup claim",
+    "Single thread, reused buffers, no cache flush or affinity/governor changes",
+    "Telemetry includes initialization, calibration and untimed oracle checks"
+  ],
+  "environment_before": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T08:15:06.988225+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 654.59375,
+    "storage_free_bytes": 22279921664,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 39.166,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "cases": [
+    {
+      "case_id": "scalar-m512-n512",
+      "argv": [
+        "<build>/gemv-bench",
+        "--rows",
+        "512",
+        "--cols",
+        "512",
+        "--repetitions",
+        "5",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 2.0271689960500225,
+        "peak_rss_mb": 17.80078125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "scalar-m2048-n512",
+      "argv": [
+        "<build>/gemv-bench",
+        "--rows",
+        "2048",
+        "--cols",
+        "512",
+        "--repetitions",
+        "5",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 3.030855778953992,
+        "peak_rss_mb": 17.92578125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "scalar-m2048-n2048",
+      "argv": [
+        "<build>/gemv-bench",
+        "--rows",
+        "2048",
+        "--cols",
+        "2048",
+        "--repetitions",
+        "5",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 8.061326281982474,
+        "peak_rss_mb": 18.98828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    }
+  ],
+  "status": "completed",
+  "finished_at": "2026-10-31T08:15:20.142509+00:00",
+  "environment_after": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T08:15:20.149185+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 660.3515625,
+    "storage_free_bytes": 22279843840,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 39.704,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "evidence_sha256": {
+    "CMakeCache.txt": "73c13d4900f25ec494c3c5a9c50579206e9561cec5c25d94bc13a338a9bfe0a0",
+    "SOURCE.json": "c6507d7aec10acee0757317daadab356e1cd6ffccc7b6ba41918cdb1c8f9d7a8",
+    "benchmark.csv": "acb790efa1409146addba5fcbe06f0d9558dd18b55698e77418b136c20cf44e6",
+    "benchmark.json": "ea03004341ff969e4de585a6d1f8fb9d0ce7afff354f4eb2569ea006501f9b97",
+    "compile_commands.json": "8dbf4e2e7a4e521843bcd3c325da0862f795094d0a5bc1cf106ab434ffb8b64a",
+    "raw/scalar-m2048-n2048.json": "3798ae8c238f76adfa281cd05053cb1b8a34551e76b17e68f5c1e355910a7856",
+    "raw/scalar-m2048-n2048.metrics.csv": "2558999bea9e47924a0275cddd65bfaf11c156b75dd610e29f7861eb2d973874",
+    "raw/scalar-m2048-n2048.process.json": "2c1444599894ef3e7e5d292f2624feae59e1b08256262aed07efe061757ce087",
+    "raw/scalar-m2048-n2048.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/scalar-m2048-n512.json": "273a82d14b1d1a7a4d965f449564413c895eb7ebf02aefd7fb465c817c2bc7f4",
+    "raw/scalar-m2048-n512.metrics.csv": "6d25f9e28e88c6d92021f7d3fa8ec637dce9d130d26d74788a2313eb83accc98",
+    "raw/scalar-m2048-n512.process.json": "715ad196378e7055dfdfb424aa39647b586ae6aa911df0c7a9b8a784d1742ef7",
+    "raw/scalar-m2048-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/scalar-m512-n512.json": "102b5704d9d3c1706106876c2a402a88a6dd6792dce2194f7bda928c1f9e19ba",
+    "raw/scalar-m512-n512.metrics.csv": "fa449c6a41188604f73d7a1cb51ddb271c3726ccf1ca6cd698f629f5448d8bcd",
+    "raw/scalar-m512-n512.process.json": "ed1b84adc053dfa4edfb0807cae9ef5d48398eb1c5b435cbe29964c8fbf0c89c",
+    "raw/scalar-m512-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scalar-arm64.disassembly.txt": "473aae4d3a2a6e213da999c895a58481591ead00939b3f77fe61116b4a3d4f07"
+  }
+}

@@ -8,7 +8,8 @@ __pycache__/
 /models/*
 !/models/.gitkeep
 /results/pi3/*
-/results/kernels/
+/results/kernels/*
+!/results/kernels/scalar-20261031/
 !/results/pi3/.gitkeep
 /reports/*
 !/reports/.gitkeep
