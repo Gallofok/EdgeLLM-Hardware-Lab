@@ -37,7 +37,7 @@ def prepare(source, output):
             ["git", "-C", str(output), "apply", str(ROOT / "integrations/ggml/row4.patch")],
             check=True,
         )
-    if set(git(output, "diff", "--name-only").splitlines()) != set(hashes):
+    if set(git(output, "diff", "HEAD", "--name-only").splitlines()) != set(hashes):
         raise ValueError("Unexpected experimental source changes")
     if git(output, "ls-files", "--others", "--exclude-standard"):
         raise ValueError("Unexpected untracked experimental source files")

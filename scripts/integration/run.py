@@ -84,6 +84,28 @@ def main():
         manifest["patch_sha256"] = sha256(ROOT / "integrations/ggml/row4.patch")
         manifest["cmake_cache_sha256"] = sha256(build / "CMakeCache.txt")
         manifest["compile_commands_sha256"] = sha256(build / "compile_commands.json")
+        cache_values = dict(
+            line.split("=", 1)
+            for line in cache.splitlines()
+            if "=" in line and not line.startswith(("#", "//"))
+        )
+        compiler = cache_values["CMAKE_CXX_COMPILER:FILEPATH"]
+        cmake = cache_values["CMAKE_COMMAND:INTERNAL"]
+        manifest["software"] = dict(
+            compiler=subprocess.check_output([compiler, "--version"], text=True).splitlines()[0],
+            cmake=subprocess.check_output([cmake, "--version"], text=True).splitlines()[0],
+            python=sys.version.split()[0],
+        )
+        manifest["build_settings"] = dict(
+            build_type="Release",
+            native=False,
+            arm_arch="armv8-a",
+            llamafile=True,
+            openmp=True,
+            integration_compiled=True,
+            runtime_default_enabled=False,
+            audit_enabled=True,
+        )
         env = dict(os.environ)
         env.pop("LD_PRELOAD", None)
         env.pop("LD_LIBRARY_PATH", None)

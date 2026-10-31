@@ -170,6 +170,7 @@ class PrepareTests(unittest.TestCase):
             git("config", "user.email", "fixture@example.invalid")
             git("config", "user.name", "Fixture")
             (source / "source.c").write_text("original\n")
+            (source / "other.c").write_text("unchanged\n")
             git("add", ".")
             git("commit", "-m", "Fixture")
             pin = git("rev-parse", "HEAD")
@@ -199,6 +200,23 @@ class PrepareTests(unittest.TestCase):
                 self.assertEqual((source / "source.c").read_text(), "original\n")
                 with self.assertRaises(ValueError):
                     prepare.prepare(source, source)
+                (output / "other.c").write_text("staged unexpected change\n")
+                subprocess.run(["git", "-C", str(output), "add", "other.c"], check=True)
+                with self.assertRaises(ValueError):
+                    prepare.prepare(source, output)
+                subprocess.run(
+                    [
+                        "git",
+                        "-C",
+                        str(output),
+                        "restore",
+                        "--source=HEAD",
+                        "--staged",
+                        "--worktree",
+                        "other.c",
+                    ],
+                    check=True,
+                )
                 (output / "source.c").write_text("unreviewed\n")
                 with self.assertRaises(ValueError):
                     prepare.prepare(source, output)
