@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+/build/
+/vendor/
+/.state/
+/models/*
+!/models/.gitkeep
+/results/pi3/*
+!/results/pi3/.gitkeep
+/reports/*
+!/reports/.gitkeep
+*.gguf
+*.log
+*.pem
+*.key
+.env
+.env.*
+
+# Curated, privacy-reviewed physical-device evidence; other generated runs stay ignored.
+!/results/pi3/baseline-20261031/
+!/results/pi3/context-20261031/
+!/reports/pi3_baseline.md
+!/reports/pi3_baseline.png
+!/reports/pi3-context-20261031/

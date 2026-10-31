@@ -1,0 +1,25 @@
+[
+  {
+    "fixture": true,
+    "fixture_notice": "Synthetic test data; not hardware measurements.",
+    "build_commit": "a7a98e0",
+    "n_prompt": 128,
+    "n_gen": 0,
+    "n_threads": 2,
+    "n_gpu_layers": 0,
+    "n_depth": 0,
+    "model_filename": "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "avg_ts": 20.00000000052083,
+    "stddev_ts": 1.000000000039062,
+    "samples_ts": [
+      19.000000000742187,
+      20.0,
+      21.00000000082031
+    ],
+    "samples_ns": [
+      6736842105,
+      6400000000,
+      6095238095
+    ]
+  }
+]

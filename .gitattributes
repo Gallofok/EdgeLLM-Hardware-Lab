@@ -1,0 +1,4 @@
+*.sh text eol=lf
+*.py text eol=lf
+# Measurement hashes require exact bytes on every checkout, including CSV CRLF.
+/results/pi3/** -text whitespace=cr-at-eol
