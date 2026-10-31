@@ -11,6 +11,8 @@ extern "C" {
 #endif
 // Configure/reset only when no GGML graph is in flight. Disabled by default;
 // EDGELLM_Q5_ROW4=1 opts in for ordinary executables at process startup.
+// enabled=1 preserves upstream accumulation; enabled=2 is ONLY the rejected
+// FMA prototype diagnostic. Ordinary startup opt-in always selects profile1.
 struct edgellm_q5_audit {
   uint64_t handled, rows, disabled, width, stride, invalid, thread_mask;
 };

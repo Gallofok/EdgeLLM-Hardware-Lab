@@ -12,7 +12,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.integration.prepare import prepare
-from scripts.integration.validate import validate_graph, validate_model
+from scripts.integration.validate import validate_graph, validate_model, validate_prototype
 from scripts.kernels.benchmark import operating_conditions
 from scripts.pi.common import ROOT, sha256, utc_now, write_json
 from scripts.pi.monitor import run_monitored
@@ -122,6 +122,8 @@ def main():
             integration_compiled=True,
             runtime_default_enabled=False,
             audit_enabled=True,
+            integration_profile="upstream_accumulation",
+            diagnostic_profile="prototype_fma",
         )
         env = dict(os.environ)
         env.pop("LD_PRELOAD", None)
@@ -133,20 +135,39 @@ def main():
             linked = subprocess.check_output(["ldd", str(build / binary)], text=True, env=env)
             (private / (binary + ".ldd.txt")).write_text(linked)
             verify_linked_engine(linked, build, model=binary == "test-model-row4")
-        for name, validator in (("graph", validate_graph), ("model", validate_model)):
+        for name, validator in (
+            ("graph", validate_graph),
+            ("model", validate_model),
+            ("prototype_fma", validate_prototype),
+        ):
             raw = output / "raw" / (name + ".jsonl")
             command = [str(build / ("test-ggml-row4" if name == "graph" else "test-model-row4"))]
-            if name == "model":
+            if name != "graph":
                 command.append(str(model))
+            if name == "prototype_fma":
+                command.append("--prototype-fma")
             process, _ = run_monitored(
                 command, raw, private / (name + ".stderr.txt"), name, timeout_s=900, env=env
             )
             manifest["cases"].append(dict(id=name, process=process))
             write_json(output / "manifest.json", manifest)
-            if process["returncode"] or process["timed_out"] or process["interrupted"]:
+            rows = native_rows(raw)
+            summary = validator(rows)
+            expected_exit = int(
+                name == "prototype_fma" and summary["status"] == "numerically_rejected"
+            )
+            if (
+                process["returncode"] != expected_exit
+                or process["timed_out"]
+                or process["interrupted"]
+            ):
                 raise ValueError(name + " process failed; private stderr retained")
-            manifest["cases"][-1]["summary"] = validator(native_rows(raw))
-            print(name + " numerical gate passed", flush=True)
+            manifest["cases"][-1]["summary"] = summary
+            print(
+                name
+                + (" diagnostic recorded" if name == "prototype_fma" else " numerical gate passed"),
+                flush=True,
+            )
         if (
             artifact_hashes(build) != manifest["artifacts_sha256"]
             or library_hashes() != manifest["original_libraries_sha256"]

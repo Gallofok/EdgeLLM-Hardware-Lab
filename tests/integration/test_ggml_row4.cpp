@@ -99,14 +99,12 @@ void run(const Case &c, int threads, int id) {
             q5bench::verify(row[r], expected, c.cols, accuracy);
             if (!mode)
               baseline.push_back(row[r]);
-              // Both outputs independently satisfy the oracle; disabled mode
-              // must preserve original values bit-for-bit between repeated
-              // executions.
-#ifndef EDGELLM_INTEGRATED
+            // The compatibility profile must also preserve the upstream
+            // bit pattern, in addition to the independent oracle bound.
             else
-              require(row[r] == baseline[index],
-                      "Default-off path changed output");
-#endif
+              require(std::memcmp(&row[r], &baseline[index], sizeof(float)) ==
+                          0,
+                      "Integration changed the upstream bit pattern");
           }
           if (c.ys)
             for (int r = c.rows; r < c.rows + 3; ++r)
@@ -134,7 +132,8 @@ void run(const Case &c, int threads, int id) {
               << ",\"strided_activation\":" << c.xs
               << ",\"padded_weights\":" << c.wp << ",\"padded_output\":" << c.ys
               << ",\"w2\":" << c.w2 << ",\"w3\":" << c.w3 << ",\"x2\":" << c.x2
-              << ",\"x3\":" << c.x3 << ",\"handled\":" << a.handled
+              << ",\"x3\":" << c.x3
+              << ",\"bitwise_control_match\":true,\"handled\":" << a.handled
               << ",\"handled_rows\":" << a.rows
               << ",\"disabled\":" << a.disabled
               << ",\"width_fallback\":" << a.width

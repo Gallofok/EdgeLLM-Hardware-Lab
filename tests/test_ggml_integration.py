@@ -25,6 +25,7 @@ def graph_fixture():
                     schema=1,
                     fixture=True,
                     passed=True,
+                    bitwise_control_match=True,
                     case=case,
                     threads=threads,
                     mode=mode,
@@ -49,6 +50,7 @@ def model_fixture():
             schema=1,
             fixture=True,
             passed=True,
+            profile="upstream_accumulation",
             prompt=p,
             threads=t,
             mode=m,
@@ -73,7 +75,40 @@ def model_fixture():
     ]
 
 
+def prototype_fixture():
+    control = [
+        r for r in model_fixture() if r["prompt"] == 0 and r["threads"] == 1 and not r["mode"]
+    ]
+    rejected = next(r for r in model_fixture() if r["mode"])
+    rejected.update(passed=False, max_abs_error=0.01, rms_error=0.001, max_bound_fraction=5)
+    rows = control + [rejected]
+    for r in rows:
+        r["profile"] = "prototype_fma"
+    return rows
+
+
 class EvidenceTests(unittest.TestCase):
+    def test_prototype_negative_evidence_is_not_a_passing_gate(self):
+        from scripts.integration.validate import validate_prototype
+
+        self.assertEqual(
+            validate_prototype(prototype_fixture(), True)["status"], "numerically_rejected"
+        )
+        positive = model_fixture()
+        for r in positive:
+            r["profile"] = "prototype_fma"
+        self.assertEqual(validate_prototype(positive, True)["status"], "numerically_passed")
+        for field, value in (
+            ("handled", 0),
+            ("max_bound_fraction", 0.5),
+            ("atol", 0.1),
+            ("passed", True),
+        ):
+            rows = prototype_fixture()
+            rows[-1][field] = value
+            with self.assertRaises(ValueError):
+                validate_prototype(rows, True)
+
     def test_fixture_report_end_to_end_and_tamper_rejection(self):
         from scripts.integration.report import report
         from scripts.pi.common import sha256
@@ -82,13 +117,22 @@ class EvidenceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             source = Path(d) / "fixture"
             (source / "raw").mkdir(parents=True)
-            for name, rows in (("graph", graph_fixture()), ("model", model_fixture())):
+            for name, rows in (
+                ("graph", graph_fixture()),
+                ("model", model_fixture()),
+                ("prototype_fma", prototype_fixture()),
+            ):
                 (source / "raw" / (name + ".jsonl")).write_text(
                     "".join(json.dumps(r) + "\n" for r in rows)
                 )
                 (source / "raw" / (name + ".process.json")).write_text(
                     json.dumps(
-                        dict(returncode=0, timed_out=False, interrupted=False, peak_rss_mb=1)
+                        dict(
+                            returncode=1 if name == "prototype_fma" else 0,
+                            timed_out=False,
+                            interrupted=False,
+                            peak_rss_mb=1,
+                        )
                     )
                 )
                 write_metrics(

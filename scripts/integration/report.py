@@ -10,7 +10,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.integration.run import native_rows
-from scripts.integration.validate import check, validate_graph, validate_model
+from scripts.integration.validate import check, validate_graph, validate_model, validate_prototype
 from scripts.pi.common import sha256, write_json
 from scripts.pi.monitor import read_metrics
 
@@ -29,15 +29,28 @@ def report(source, destination):
         for name in ("graph", "model")
         for suffix in (".jsonl", ".metrics.csv", ".process.json")
     }
+    diagnostic = "raw/prototype_fma.jsonl" in m["files"]
+    if diagnostic:
+        expected.update(
+            "raw/prototype_fma" + s for s in (".jsonl", ".metrics.csv", ".process.json")
+        )
     check(set(m["files"]) == expected, "Unexpected or missing evidence files")
     fixture = m["data_kind"] == "fixture"
     graph = validate_graph(native_rows(source / "raw/graph.jsonl"), fixture)
     model = validate_model(native_rows(source / "raw/model.jsonl"), fixture)
+    rejection = (
+        validate_prototype(native_rows(source / "raw/prototype_fma.jsonl"), fixture)
+        if diagnostic
+        else None
+    )
     samples, processes = [], []
-    for name in ("graph", "model"):
+    for name in ("graph", "model", "prototype_fma") if diagnostic else ("graph", "model"):
         p = json.loads((source / ("raw/" + name + ".process.json")).read_text())
         check(
-            p["returncode"] == 0 and not p["timed_out"] and not p["interrupted"],
+            p["returncode"]
+            == int(name == "prototype_fma" and rejection["status"] == "numerically_rejected")
+            and not p["timed_out"]
+            and not p["interrupted"],
             "Failed numerical process",
         )
         processes.append(p)
@@ -47,6 +60,7 @@ def report(source, destination):
     summary = dict(
         data_kind=m["data_kind"],
         source_commit=m["source_commit"],
+        fma_prototype_diagnostic=rejection,
         graph=graph,
         model=model,
         temperature_max_c=max(temperatures, default=None),
@@ -93,6 +107,12 @@ Full allowlisted environment, software versions and binary/model hashes are in t
 | Maximum logit error / predeclared tolerance | {model["max_bound_fraction"]:.9g} |
 | Matching greedy token decisions | {model["greedy_matches"]} |
 
+The independent diagnostic of the unchanged FMA prototype is recorded as:
+`{json.dumps(rejection, sort_keys=True)}`. It is retained as a failed experiment,
+and is never counted as a passing model gate. The compatible integration retains
+the upstream even/odd block accumulation and separate FP32 multiply/add order;
+the prior FMA microbenchmark ratios do not apply to this new profile.
+
 Graph results independently satisfy the decoded FP64 oracle. Candidate dispatch
 counters prove execution and exact row coverage; width and padded-weight guards
 prove fallback. Tests include Q8 views, F32-to-Q8 workspace, row tails, batch
@@ -110,7 +130,9 @@ Observed sensor samples: {summary["sensor_samples"]}; maximum temperature:
 {summary["temperature_max_c"]} °C; sampled frequencies: {summary["frequencies_mhz"]} MHz;
 raw throttle flags: {summary["throttled_raw"]}. Peak child RSS:
 {summary["peak_process_rss_mb"]} MiB (process lifecycle, including initialization).
-Process exit codes are zero, with no recorded timeout or interruption. Recorded
+Graph and compatible-model exit codes are zero. The diagnostic prototype exits1
+only if its explicit numerical gate rejects it. No timeout or interruption
+is recorded. Recorded
 cgroup OOM-kill deltas: {summary.get("oom_kill_cgroup_deltas")}; null means unavailable,
 and cgroup evidence cannot attribute a kill to this process.
 Null sensor fields and reasons remain in raw CSV. Sampling cannot exclude brief

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 namespace {
@@ -17,7 +18,8 @@ struct Step {
   std::vector<float> logits;
   llama_token greedy;
 };
-void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
+void run(llama_model *model, const char *prompt, int prompt_id, int threads,
+         bool prototype) {
   auto *vocab = llama_model_get_vocab(model);
   const int n_vocab = llama_vocab_n_tokens(vocab);
   std::vector<llama_token> tokens(128);
@@ -45,7 +47,7 @@ void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
     std::vector<llama_token> input = tokens;
     for (int step = 0; step < 9; ++step) {
 #ifdef EDGELLM_INTEGRATED
-      edgellm_q5_configure(mode, 1);
+      edgellm_q5_configure(mode ? (prototype ? 2 : 1) : 0, 1);
 #endif
       require(llama_decode(ctx.get(), llama_batch_get_one(input.data(),
                                                           int(input.size()))) ==
@@ -71,9 +73,7 @@ void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
       if (!mode)
         baseline.push_back(
             {std::vector<float>(logits, logits + n_vocab), greedy});
-      require(max_fraction <= 1, "Model logits exceeded predeclared tolerance");
-      require(greedy == baseline[step].greedy,
-              "Greedy token diverged from baseline");
+      const bool passed = max_fraction <= 1 && greedy == baseline[step].greedy;
       edgellm_q5_audit a{};
 #ifdef EDGELLM_INTEGRATED
       a = edgellm_q5_snapshot();
@@ -81,6 +81,9 @@ void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
       require(mode || a.handled == 0, "Disabled model path executed row4");
 #endif
       std::cout << "{\"schema\":1,\"fixture\":false,\"prompt\":" << prompt_id
+                << ",\"profile\":\""
+                << (prototype ? "prototype_fma" : "upstream_accumulation")
+                << "\""
                 << ",\"threads\":" << threads << ",\"mode\":" << mode
                 << ",\"step\":" << step << ",\"input_tokens\":" << input.size()
                 << ",\"vocab\":" << n_vocab << ",\"greedy_token\":" << greedy
@@ -91,8 +94,10 @@ void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
                 << ",\"handled\":" << a.handled
                 << ",\"handled_rows\":" << a.rows
                 << ",\"disabled\":" << a.disabled
-                << ",\"thread_mask\":" << a.thread_mask << ",\"passed\":true}\n"
+                << ",\"thread_mask\":" << a.thread_mask
+                << ",\"passed\":" << (passed ? "true" : "false") << "}\n"
                 << std::flush;
+      require(passed, "Model logits or greedy token exceeded predeclared gate");
       // Teacher-force the baseline greedy prefix so every comparison has the
       // same history, even if a future candidate fails the argmax gate.
       input = {baseline[step].greedy};
@@ -102,7 +107,10 @@ void run(llama_model *model, const char *prompt, int prompt_id, int threads) {
 } // namespace
 int main(int argc, char **argv) {
   try {
-    require(argc == 2, "Usage: test-model-row4 MODEL.gguf");
+    require(argc == 2 ||
+                (argc == 3 && std::string(argv[2]) == "--prototype-fma"),
+            "Usage: test-model-row4 MODEL.gguf [--prototype-fma]");
+    const bool prototype = argc == 3;
     std::cout << std::setprecision(17);
     llama_backend_init();
     auto p = llama_model_default_params();
@@ -115,7 +123,7 @@ int main(int argc, char **argv) {
          {"The capital of France is",
           "Explain why the sky appears blue in one sentence."}) {
       for (int threads : {1, 4})
-        run(model.get(), prompt, id, threads);
+        run(model.get(), prompt, id, threads, prototype);
       ++id;
     }
     model.reset();

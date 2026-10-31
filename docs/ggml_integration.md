@@ -63,6 +63,19 @@ allocation and batching. Chunk starts need not be multiples of four. Candidate
 row tails handle remaining rows. Output is copied from the existing temporary
 buffer into the upstream column, preserving output column/batch strides.
 
+The initial direct FMA prototype passed the operator oracle but exceeded the
+predeclared model logit tolerance on the physical Pi. The integration profile
+therefore preserves the pinned ARMv8-A non-DOTPROD kernel's exact integer lane
+grouping, separate even/odd block accumulators, unfused FP32 multiply/add, and
+horizontal reduction order. Four-row activation reuse is retained. Graph tests
+add a byte-for-byte comparison with the original dot path. This is a new,
+unmeasured compatibility profile; prior standalone FMA timings do not apply.
+The original prototype remains unchanged and is explicitly reproducible with
+`test-model-row4 MODEL.gguf --prototype-fma`. It records a failing numerical row
+before exiting1. The collector retains that diagnostic as a rejected experiment,
+separate from the passing compatible model gate. If it passes on another build,
+the diagnostic validator records a pass instead of assuming rejection.
+
 The bridge checks eligibility before writes and catches exceptions at the C ABI.
 Padded weight row strides and other widths return false to the unchanged dot
 loop. Other quantization types, `MUL_MAT_ID`, llamafile fast paths, and repacked
@@ -90,7 +103,8 @@ fallback evidence, changed tolerances, NaNs and token divergence.
 
 The model harness loads the pinned SmolLM2 GGUF, then uses fresh contexts for two
 fixed public prompts at 1/4 threads. Each context executes one prefill plus eight
-single-token decode calls. All logits are finite and satisfy the predeclared
+single-token decode calls. A third native process reproduces the original FMA
+prototype diagnostic without modifying the tolerance. All logits are finite and satisfy the predeclared
 `atol=1e-3, rtol=1e-4` tolerance against runtime-disabled control in the same
 isolated build. Greedy token IDs must agree for all 36 comparisons; subsequent
 inputs use the baseline greedy history. Dispatch must be observed on every

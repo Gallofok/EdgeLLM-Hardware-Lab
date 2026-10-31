@@ -60,6 +60,7 @@ def validate_graph(rows, fixture=False):
         "Incomplete or duplicate graph matrix",
     )
     for r in rows:
+        check(r["bitwise_control_match"] is True, "Graph bit pattern changed")
         check(
             tuple(r[k] for k in CASE_FIELDS) == GRAPH_CASES[r["case"]],
             "Graph layout differs from protocol",
@@ -87,7 +88,7 @@ def validate_graph(rows, fixture=False):
     )
 
 
-def validate_model(rows, fixture=False):
+def validate_model(rows, fixture=False, profile="upstream_accumulation"):
     common(rows, fixture)
     expected = {(p, t, m, s) for p in (0, 1) for t in (1, 4) for m in (0, 1) for s in range(9)}
     actual = [(r["prompt"], r["threads"], r["mode"], r["step"]) for r in rows]
@@ -97,6 +98,7 @@ def validate_model(rows, fixture=False):
     )
     by_key = {k: r for k, r in zip(actual, rows)}
     for r in rows:
+        check(r["profile"] == profile, "Wrong model profile")
         check(r["atol"] == 1e-3 and r["rtol"] == 1e-4, "Model tolerance changed")
         check(
             0 <= r["rms_error"] <= r["max_abs_error"] and 0 <= r["greedy_token"] < r["vocab"],
@@ -129,4 +131,61 @@ def validate_model(rows, fixture=False):
         max_bound_fraction=max(r["max_bound_fraction"] for r in candidate),
         max_rms_error=max(r["rms_error"] for r in candidate),
         greedy_matches=len(candidate),
+    )
+
+
+def validate_prototype(rows, fixture=False):
+    if len(rows) == 72 and all(r["passed"] is True for r in rows):
+        summary = validate_model(rows, fixture, profile="prototype_fma")
+        return dict(status="numerically_passed", **summary)
+    expected = [(p, t, m, s) for p in (0, 1) for t in (1, 4) for m in (0, 1) for s in range(9)]
+    check(10 <= len(rows) <= 72, "Incomplete prototype rejection evidence")
+    common(rows[:-1], fixture)
+    actual = [(r["prompt"], r["threads"], r["mode"], r["step"]) for r in rows]
+    check(actual == expected[: len(rows)], "Unexpected prototype execution prefix")
+    control = {}
+    for i, r in enumerate(rows):
+        failed = i == len(rows) - 1
+        check(
+            r["schema"] == 1 and r["fixture"] is fixture and r["passed"] is (not failed),
+            "Missing explicit prototype outcome",
+        )
+        check(
+            r["profile"] == "prototype_fma" and r["atol"] == 1e-3 and r["rtol"] == 1e-4,
+            "Prototype profile or tolerance changed",
+        )
+        check(
+            all(not isinstance(v, float) or math.isfinite(v) for v in r.values()),
+            "Nonfinite prototype evidence",
+        )
+        if not r["mode"]:
+            check(
+                not failed and r["handled"] == 0 and r["disabled"] > 0 and r["max_abs_error"] == 0,
+                "Invalid prototype control",
+            )
+            control[(r["prompt"], r["threads"], r["step"])] = r
+        else:
+            baseline = control[(r["prompt"], r["threads"], r["step"])]
+            match = r["greedy_token"] == baseline["greedy_token"]
+            check(
+                r["handled"] > 0
+                and r["handled_rows"] > 0
+                and 0 < r["thread_mask"] < (1 << r["threads"]),
+                "Prototype did not execute",
+            )
+            check(
+                (r["max_bound_fraction"] > 1 or not match) if failed else match,
+                "Prototype rejection was not caused by the original numerical gate",
+            )
+    r = rows[-1]
+    return dict(
+        status="numerically_rejected",
+        max_abs_error=r["max_abs_error"],
+        max_bound_fraction=r["max_bound_fraction"],
+        rms_error=r["rms_error"],
+        greedy_match=match,
+        failed_prompt=r["prompt"],
+        failed_threads=r["threads"],
+        failed_step=r["step"],
+        captured_steps=len(rows),
     )
