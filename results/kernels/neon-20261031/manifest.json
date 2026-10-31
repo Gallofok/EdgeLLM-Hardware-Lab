@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "data_kind": "measured_local",
+  "benchmark": "fp32_gemv_paired",
+  "suite": "paired",
+  "sessions": 3,
+  "features": {
+    "implementations": [
+      "scalar",
+      "neon"
+    ]
+  },
+  "started_at": "2026-10-31T08:33:31.512068+00:00",
+  "project_commit": "c1e477a773dec4e12d1f45866a4d07c849f14a9f",
+  "working_tree_dirty": false,
+  "architecture": "aarch64",
+  "binary_sha256": "f29433e3adfcd0f335a821a142ea86ad3a8bbff07efe244cd428c832c708e04c",
+  "cmake_cache_sha256": "173da4b2e02846e562d41d9d15ce6edef0b31cacdef644394b52b7b01d96929a",
+  "limitations": [
+    "Synthetic FP32 matrices; no GGUF/INT4/GGML integration or LLM speedup claim",
+    "Single thread, reused buffers, no cache flush or affinity/governor changes",
+    "Telemetry includes initialization, calibration and untimed oracle checks"
+  ],
+  "environment_before": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T08:33:31.521724+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 645.6953125,
+    "storage_free_bytes": 22277443584,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 40.242,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "operating_conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "cases": [
+    {
+      "case_id": "session01-paired-m512-n512",
+      "session": 1,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "512",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.038652702991385,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session01-paired-m2048-n512",
+      "session": 1,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 7.0623209699988365,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session01-paired-m2048-n2048",
+      "session": 1,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "2048",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 19.136606065032538,
+        "peak_rss_mb": 18.9921875,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session02-paired-m512-n512",
+      "session": 2,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "512",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.042002928967122,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session02-paired-m2048-n512",
+      "session": 2,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 7.062016780022532,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session02-paired-m2048-n2048",
+      "session": 2,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "2048",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 19.134127161989454,
+        "peak_rss_mb": 19.05078125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session03-paired-m512-n512",
+      "session": 3,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "512",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.036979873024393,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session03-paired-m2048-n512",
+      "session": 3,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "512",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 7.062485973001458,
+        "peak_rss_mb": 18.48828125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "case_id": "session03-paired-m2048-n2048",
+      "session": 3,
+      "argv": [
+        "<build>/gemv-bench",
+        "--implementation",
+        "paired",
+        "--rows",
+        "2048",
+        "--cols",
+        "2048",
+        "--repetitions",
+        "6",
+        "--min-ms",
+        "100"
+      ],
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 19.138653689005878,
+        "peak_rss_mb": 19.05078125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    }
+  ],
+  "status": "completed",
+  "finished_at": "2026-10-31T08:35:02.339518+00:00",
+  "environment_after": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T08:35:02.346063+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 661.44140625,
+    "storage_free_bytes": 22277255168,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 42.394,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "operating_conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "evidence_sha256": {
+    "CMakeCache.txt": "173da4b2e02846e562d41d9d15ce6edef0b31cacdef644394b52b7b01d96929a",
+    "SOURCE.json": "fb9686e9d1336404a3b409fe9ef5b68cb9ff42a9f84d3622a32ed07a29f4423e",
+    "benchmark.csv": "0ba8fd61e3448d5890961215e9aedff1ed930b5c07617566f9c5a9a5151c9366",
+    "benchmark.json": "cf662c579a09f786a693d7c9e6d6f5e5e7c33d6c908ad91353090784cd660a9a",
+    "compile_commands.json": "537cf0f6c3420b9d59a2fefe4b07aed828ea080f0d36868cdaa34529f933d1e9",
+    "neon-arm64.disassembly.txt": "811db20a53bfac00a297c2721f3bf93a0b3886c8de6a7d512d79525408c5812b",
+    "raw/session01-paired-m2048-n2048.json": "6ee873374d7411305e7fdd30430a57f8cbec266f35aa52445a5fca97c1c8ae58",
+    "raw/session01-paired-m2048-n2048.metrics.csv": "6c9f5ee501129c4d8fb1b835eefe72a0e3cbb377d543e9f921fa37b6ec26dc0e",
+    "raw/session01-paired-m2048-n2048.process.json": "415d43b0af3d050c5edbfca2a800b71baf2e77c6d3f843bb43d47176e2b4eafc",
+    "raw/session01-paired-m2048-n2048.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session01-paired-m2048-n512.json": "6c3f9b607480c15ddcfe8042d3de11131dbaf1ec21012d9c8955c941a40a81e7",
+    "raw/session01-paired-m2048-n512.metrics.csv": "cea520194691e36e25141f81c89ff2007df5cea2c09580b0abc7c7863da69f1b",
+    "raw/session01-paired-m2048-n512.process.json": "0fa884eaca74b903123f52a07dfc107b286b61e1e1cfe0dbc69d33b25f19593f",
+    "raw/session01-paired-m2048-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session01-paired-m512-n512.json": "222d3bf153d824da67776b2f4211235075da03649ac3a5b388d41b65563d17cf",
+    "raw/session01-paired-m512-n512.metrics.csv": "af192007e7f86729332eb79bb9d465dd5012298043f579b61f85036cfe343d6c",
+    "raw/session01-paired-m512-n512.process.json": "de646f1bcfcc20d1bfc737c8c2ceb1154d3027714e1d7ff43c98d804f5b57420",
+    "raw/session01-paired-m512-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session02-paired-m2048-n2048.json": "9e275ee43db2da2f73e1c8f200cfd4b4760551c8a22da0140ad4ba8c42278404",
+    "raw/session02-paired-m2048-n2048.metrics.csv": "ba2b0fab8e031f46900f6242a55efe1a176701e18b25ce2d36889dc870287cef",
+    "raw/session02-paired-m2048-n2048.process.json": "782383bccc56181a22a4033721f612a1032f9985f98c875fd537d7053d57b94c",
+    "raw/session02-paired-m2048-n2048.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session02-paired-m2048-n512.json": "9056c3abe3af6edc50d020b1e7c7bb263285b75ea12e147f615b6bebe2c75fe1",
+    "raw/session02-paired-m2048-n512.metrics.csv": "59d14b3dd50a9b982b6e5af06d641770463cf24d48367976a57716ddbe46c601",
+    "raw/session02-paired-m2048-n512.process.json": "a2396243eb19523cc59f84fee8f605113a412941c8857228ed5629682258817d",
+    "raw/session02-paired-m2048-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session02-paired-m512-n512.json": "6fc81945f259ca726bd700579e1e4125eeff2a681ddd37748dff9bebb2ca091c",
+    "raw/session02-paired-m512-n512.metrics.csv": "30f96e79988dd992baf9f54cb7280ffc3cbc7adbc3a46e6e5d7f82fb59bf8481",
+    "raw/session02-paired-m512-n512.process.json": "088bcbeac8622ecf27dc09df5184bf8cecb3b75acca232283f8aa970931be34e",
+    "raw/session02-paired-m512-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session03-paired-m2048-n2048.json": "85a7c873a53e7fd4464c4b335d0c9870fea60ffea5c1656091aceaf701c39800",
+    "raw/session03-paired-m2048-n2048.metrics.csv": "488fc8d259a81f7e95b1947a1e2067746c27a7ebcd47f33b01ff7af388a411de",
+    "raw/session03-paired-m2048-n2048.process.json": "84a3afb9401297bb5f464feda7eb3056d19b4b004b659588b4aa4944116fe3eb",
+    "raw/session03-paired-m2048-n2048.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session03-paired-m2048-n512.json": "b8cd40f5918294f911542a954090e58d53faba42c86ad86f4e8eb23d0a622495",
+    "raw/session03-paired-m2048-n512.metrics.csv": "d1f430d1dfa9d448805d152706fc292427258a4f4d8290caffb8cf0f3c348a62",
+    "raw/session03-paired-m2048-n512.process.json": "f94618508f294f6cbe6e56079cd79371b648c2fbd52d816e711306e417d8d926",
+    "raw/session03-paired-m2048-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/session03-paired-m512-n512.json": "404871c8cbecc44a55c103652c75b41cc9d1f43c172f1a2539d045b9041de113",
+    "raw/session03-paired-m512-n512.metrics.csv": "f2b2885ef54e6619aaa5e0535de1b9db1a799c8ed5e9e183fcbaaed4a9870c5b",
+    "raw/session03-paired-m512-n512.process.json": "fbb1cae3e575470c871c6d688122956586e19b4beef96c91c8d6f236ae52ebf0",
+    "raw/session03-paired-m512-n512.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scalar-arm64.disassembly.txt": "eb1f9b5da62b1ea6c84c72f55e9a8ee61c273ac7b0b8ccc0832b324c21d7111c"
+  }
+}

@@ -10,6 +10,7 @@ __pycache__/
 /results/pi3/*
 /results/kernels/*
 !/results/kernels/scalar-20261031/
+!/results/kernels/neon-20261031/
 !/results/pi3/.gitkeep
 /reports/*
 !/reports/.gitkeep
@@ -26,3 +27,4 @@ __pycache__/
 !/reports/pi3_baseline.md
 !/reports/pi3_baseline.png
 !/reports/pi3-context-20261031/
+!/reports/pi3-neon-20261031/

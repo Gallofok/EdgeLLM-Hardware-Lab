@@ -30,6 +30,7 @@ jobs:
         run: |
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
           python scripts/report.py --input results/pi3/context-20261031 --reports build/verified-reports/context
+          python scripts/kernels/report.py --input results/kernels/neon-20261031 --reports build/verified-reports/neon
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -42,3 +43,17 @@ jobs:
           path: |
             results/pi3/ci-fixture/
             reports/ci-fixture/
+  neon-correctness-emulated:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ARM64 cross compiler and instruction emulator
+        run: sudo apt-get update && sudo apt-get install -y g++-aarch64-linux-gnu qemu-user
+      - name: Cross-build and execute numerical tests (not physical ARM performance)
+        run: |
+          cmake -S . -B build/arm64-emulated -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
+          cmake --build build/arm64-emulated --parallel 2
+          ctest --test-dir build/arm64-emulated --output-on-failure

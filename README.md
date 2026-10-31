@@ -1,9 +1,9 @@
 # EdgeLLM Hardware Lab
 
 Hardware-aware LLM inference engineering: reproducible measurements first, kernel
-optimization later. **Phase 1 targets Raspberry Pi 3 ARM CPU only.** There are no
-custom NEON kernels or measured optimization claims yet. Intel, CUDA and Metal
-platforms are roadmap items only.
+optimization later. **Phase 1 targets Raspberry Pi 3 ARM CPU only.** Phase 2 adds
+independent Scalar/NEON FP32 kernels and physical microbenchmarks. LLM inference
+still uses unmodified GGML. Intel, CUDA and Metal platforms are roadmap items only.
 
 ## Status
 
@@ -27,8 +27,15 @@ and [validation notes](docs/validation.md) for interpretation and limitations.
 tests and a monitored native microbenchmark. See [build instructions and protocol](docs/scalar_gemv.md).
 The [physical scalar baseline](docs/scalar_gemv_baseline.md) includes all 15 batch
 samples and the inspected ARM64 disassembly.
-NEON, INT4 and GGML integration remain upcoming; the microbenchmark does not
-establish an LLM speedup.
+An [ARM64 NEON implementation and paired protocol](docs/neon_gemv.md) now compare
+both kernels on identical inputs with alternating execution order. INT4 and GGML
+integration remain upcoming; the microbenchmark does not establish an LLM speedup.
+
+The [physical paired report and chart](reports/pi3-neon-20261031/neon_gemv.md)
+record 54 pairs across nine native Pi processes. Mean paired Scalar/NEON latency
+ratios were 4.3225 (512x512), 4.1801 (2048x512) and 4.2218 (2048x2048).
+All outputs passed the independent oracle; no current power/frequency flags were
+sampled. Prior historical flags are retained and documented.
 
 Agent work must not install or benchmark on a private Pi without device-operation
 authorization. Setup does not reimage the system, expose SSH, change clocks,
