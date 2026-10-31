@@ -8,3 +8,5 @@
 /results/profiling/*/raw/engine-CMakeCache.txt whitespace=cr-at-eol,-blank-at-eof
 /reports/pi3-profile-20261031/*.csv -text whitespace=cr-at-eol
 /results/profiling/*/raw/perf-capability.stderr.txt whitespace=-blank-at-eol,-blank-at-eof
+/results/quantized/** -text whitespace=cr-at-eol
+/results/quantized/*/raw/CMakeCache.txt whitespace=cr-at-eol,-blank-at-eof

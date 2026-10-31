@@ -9,6 +9,7 @@ __pycache__/
 !/models/.gitkeep
 /results/pi3/*
 /results/kernels/*
+/results/quantized/*
 /results/profiling/*
 !/results/profiling/pi3-20261031/
 !/results/kernels/scalar-20261031/
