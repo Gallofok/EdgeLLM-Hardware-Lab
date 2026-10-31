@@ -1,0 +1,49 @@
+{
+  "data_kind": "real_physical_pi3_measurements",
+  "source_commit": "1b0c39e9cf31e9d6bec1c9a255fea52f23fb0364",
+  "original_manifest_sha256": "ccb9784ca2223d35b818be137fdd42aa4cb1f6fa788f5b8b6f237ddb204c08f8",
+  "normalization": "Project prefixes and private perf-recording directory prefixes in help/stderr/compiler metadata replaced with placeholders. Native benchmark JSON, metrics, process records, sanitized sample streams, collections, symbol summaries and inventory bytes unchanged. Manifest evidence hashes updated explicitly. Compiler metadata/disassembly copied after the run; original cache hash matches recorded preflight setup. Raw perf.data and address-bearing dumps remain private and are not included.",
+  "normalized_files": [
+    {
+      "path": "raw/engine-CMakeCache.txt",
+      "original_sha256": "56e681c49ab22f0a78a1c34982e73fe6d1fd47a95e553bd9cdd3f61d4e30513d",
+      "published_sha256": "b71e2f5d901e1f1205d2d91ece38c7bba95fa3f6125821b9d85686ee0fa339e8"
+    },
+    {
+      "path": "raw/llama-bench-help.txt",
+      "original_sha256": "6d66610d32373d4a03f4bb0c38309760d730196dd66afec938528362c25abca6",
+      "published_sha256": "56b6afa5aa8d963520f59774cb14b9a999931d14ae1aa483e2581aaecaabc68b"
+    },
+    {
+      "path": "raw/prefill-t1-d0-profile.stderr.txt",
+      "original_sha256": "b7d85337648c92ab4e7b15f9e909dc439bbb54e8577fe96f4cfd6ebb5a5b397a",
+      "published_sha256": "0e5f86ef2574ff54324990a1017778e5008c14b85f2caec5ebf38b2cbb1c8409"
+    },
+    {
+      "path": "raw/decode-t4-d0-profile.stderr.txt",
+      "original_sha256": "a08333f18c26aeb97a64c3360ee61e00ebe63af82afb2cff4b174ea1f7d14194",
+      "published_sha256": "ea02e6ee62f10ea978d37c70f84dbfb3d919607a26fc415c069a88a55b515bdf"
+    },
+    {
+      "path": "raw/engine-compile_commands.json",
+      "original_sha256": "83cc93b7178d4e6e01a9df59aea47433b61add9311ab2c473cc9256ddfd66a49",
+      "published_sha256": "f49267e3402aa35c9a60dda0c0cc8d7ade8dd920729f109b39a5d5fbddf7c160"
+    },
+    {
+      "path": "raw/prefill-t4-d0-profile.stderr.txt",
+      "original_sha256": "0114b83b49653c2dc9cf5636cf3d2d0174bb419b6ec293e7b413a484b7de375c",
+      "published_sha256": "3afebcb507a4a85bbb72d5853cce819b6680bb362577f1d0eb84c71a52acbcc9"
+    },
+    {
+      "path": "raw/decode-t1-d0-profile.stderr.txt",
+      "original_sha256": "f71d883f9f43d26ea5dd0d2e3f0bcfcf0f01e69f808a930047b9c1b8f7bed104",
+      "published_sha256": "f7c7f7f1700fe07a0b60046a023b155aa5f68062ff3ad9f6d0eb91984197f3d0"
+    }
+  ],
+  "postrun_added_evidence": [
+    "raw/engine-CMakeCache.txt",
+    "raw/engine-compile_commands.json",
+    "raw/q5_0-arm64.disassembly.txt",
+    "raw/q8_0-arm64.disassembly.txt"
+  ]
+}

@@ -1,0 +1,2 @@
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.049 MB <private-perf>/decode-t4-d0-profile.data ]

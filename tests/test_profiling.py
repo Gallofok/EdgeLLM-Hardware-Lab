@@ -180,3 +180,17 @@ class ProfileWorkflowTests(unittest.TestCase):
         )
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual((self.root / "manifest.json").read_bytes(), before)
+
+
+class RecordedProfileTests(unittest.TestCase):
+    def test_reviewed_physical_dataset_is_complete_and_traceable(self):
+        manifest, model, results, metrics = load_run(ROOT / "results/profiling/pi3-20261031")
+        self.assertEqual(manifest["data_kind"], "real")
+        self.assertFalse(manifest["working_tree_dirty"])
+        self.assertEqual(len(manifest["runs"]), 9)
+        self.assertEqual(len(results), 4)
+        self.assertEqual(sum(row["sampling"]["samples"] for row in results), 15166)
+        self.assertEqual(sum(row["collection"]["reported_lost_samples"] for row in results), 0)
+        self.assertEqual(model["total_elements"], 134515008)
+        self.assertEqual(len(metrics), 211)
+        self.assertTrue(all(sample["throttled_raw"] == "0x20000" for sample in metrics))

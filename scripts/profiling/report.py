@@ -293,7 +293,11 @@ def generate(root, reports):
     figure, axes = plt.subplots(2, 2, figsize=(13, 8.5))
     for axis, row in zip(axes.flat, results):
         top = list(reversed(row["sampling"]["symbols"][:6]))
-        labels = [s["symbol"] if len(s["symbol"]) <= 42 else s["symbol"][:39] + "..." for s in top]
+        names = [
+            f"[unresolved] ({s['dso']})" if s["symbol"] == "[unresolved]" else s["symbol"]
+            for s in top
+        ]
+        labels = [name if len(name) <= 42 else name[:39] + "..." for name in names]
         axis.barh(range(len(top)), [s["sampled_period_pct"] for s in top], color="#167d9a")
         axis.set_yticks(range(len(top)), labels, fontsize=8)
         axis.set_xlim(0, 100)

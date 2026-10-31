@@ -1,0 +1,456 @@
+{
+  "samples": 1220,
+  "total_sampled_period_cycles": 14406439302,
+  "unresolved_period_pct": 12.181070674114308,
+  "symbols": [
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_dot_q5_0_q8_0",
+      "samples": 450,
+      "period_cycles": 5713650944,
+      "sampled_period_pct": 39.66039646734077
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_dot_q8_0_q8_0",
+      "samples": 242,
+      "period_cycles": 2961200374,
+      "sampled_period_pct": 20.55469996384815
+    },
+    {
+      "dso": "libgomp.so.1.0.0",
+      "symbol": "[unresolved]",
+      "samples": 138,
+      "period_cycles": 1503224542,
+      "sampled_period_pct": 10.43439333264891
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_dot_q6_K_q8_K",
+      "samples": 111,
+      "period_cycles": 1286186192,
+      "sampled_period_pct": 8.927856252595621
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_dot_q4_K_q8_K",
+      "samples": 70,
+      "period_cycles": 838999493,
+      "sampled_period_pct": 5.8237811260102585
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_mul_mat",
+      "samples": 28,
+      "period_cycles": 315586201,
+      "sampled_period_pct": 2.1905912653669266
+    },
+    {
+      "dso": "libc.so.6",
+      "symbol": "[unresolved]",
+      "samples": 34,
+      "period_cycles": 251596826,
+      "sampled_period_pct": 1.7464192277204238
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_dot_f16",
+      "samples": 14,
+      "period_cycles": 161254670,
+      "sampled_period_pct": 1.1193235651061504
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_swiglu_f32",
+      "samples": 8,
+      "period_cycles": 93676489,
+      "sampled_period_pct": 0.6502404031716233
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_graph_compute_thread.isra.0",
+      "samples": 7,
+      "period_cycles": 80998338,
+      "sampled_period_pct": 0.5622370406874602
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "gguf_get_tensor_name",
+      "samples": 1,
+      "period_cycles": 78851991,
+      "sampled_period_pct": 0.547338515416875
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "unicode_utf8_to_byte(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",
+      "samples": 6,
+      "period_cycles": 70826089,
+      "sampled_period_pct": 0.4916279971426905
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_is_empty",
+      "samples": 6,
+      "period_cycles": 69349772,
+      "sampled_period_pct": 0.48138037821998386
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "llama_vocab::impl::load(llama_model_loader&, LLM_KV const&)",
+      "samples": 5,
+      "period_cycles": 57758430,
+      "sampled_period_pct": 0.4009209270189448
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_cpu_fp32_to_fp16",
+      "samples": 4,
+      "period_cycles": 56957458,
+      "sampled_period_pct": 0.39536110766865745
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_soft_max",
+      "samples": 4,
+      "period_cycles": 46282766,
+      "sampled_period_pct": 0.32126443619954526
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_set_rows",
+      "samples": 5,
+      "period_cycles": 46067598,
+      "sampled_period_pct": 0.3197708818556198
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)",
+      "samples": 3,
+      "period_cycles": 36859445,
+      "sampled_period_pct": 0.2558539568822042
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "quantize_row_q8_K_ref",
+      "samples": 3,
+      "period_cycles": 34745973,
+      "sampled_period_pct": 0.24118362817921515
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_backend_cpu_get_extra_buffer_types()",
+      "samples": 3,
+      "period_cycles": 34488291,
+      "sampled_period_pct": 0.23939496968700727
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_rms_norm",
+      "samples": 3,
+      "period_cycles": 34350997,
+      "sampled_period_pct": 0.23844196529000167
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::_Hash_bytes(void const*, unsigned long, unsigned long)",
+      "samples": 3,
+      "period_cycles": 33342745,
+      "sampled_period_pct": 0.23144334488933108
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, true>*, unsigned long)",
+      "samples": 3,
+      "period_cycles": 31880902,
+      "sampled_period_pct": 0.2212961949284309
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)",
+      "samples": 3,
+      "period_cycles": 31763346,
+      "sampled_period_pct": 0.22048019870940905
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned long, unsigned long) const",
+      "samples": 2,
+      "period_cycles": 23963702,
+      "sampled_period_pct": 0.16634021424484255
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "unicode_cpt_to_utf8[abi:cxx11](unsigned int)",
+      "samples": 2,
+      "period_cycles": 23727827,
+      "sampled_period_pct": 0.16470292556402846
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_rope_f32(ggml_compute_params const*, ggml_tensor*, bool)",
+      "samples": 2,
+      "period_cycles": 23296791,
+      "sampled_period_pct": 0.16171095793785617
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml::cpu::repack::extra_buffer_type::get_tensor_traits(ggml_tensor const*)",
+      "samples": 2,
+      "period_cycles": 23252090,
+      "sampled_period_pct": 0.16140067307798941
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_type_size",
+      "samples": 2,
+      "period_cycles": 23230804,
+      "sampled_period_pct": 0.16125291970497485
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node(unsigned long, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, unsigned long) const [clone .isra.0]",
+      "samples": 2,
+      "period_cycles": 23152010,
+      "sampled_period_pct": 0.16070598372483255
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "std::_Hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int> >, std::__detail::_Select1st, std::equal_to<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, llama_vocab::impl::pair_hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const, int>, true>*, unsigned long)",
+      "samples": 2,
+      "period_cycles": 22016733,
+      "sampled_period_pct": 0.15282563955233192
+    },
+    {
+      "dso": "llama-bench",
+      "symbol": "bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)",
+      "samples": 2,
+      "period_cycles": 21795810,
+      "sampled_period_pct": 0.15129213779406378
+    },
+    {
+      "dso": "llama-bench",
+      "symbol": "strlen@plt",
+      "samples": 2,
+      "period_cycles": 21680461,
+      "sampled_period_pct": 0.15049146111343537
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long)",
+      "samples": 1,
+      "period_cycles": 14755869,
+      "sampled_period_pct": 0.10242551050037388
+    },
+    {
+      "dso": "libm.so.6",
+      "symbol": "tanhf32",
+      "samples": 1,
+      "period_cycles": 13853423,
+      "sampled_period_pct": 0.09616132556832953
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "std::ostream::put(char)@plt",
+      "samples": 1,
+      "period_cycles": 13836260,
+      "sampled_period_pct": 0.09604219134202825
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)",
+      "samples": 1,
+      "period_cycles": 13226593,
+      "sampled_period_pct": 0.09181028512828839
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "memcpy@plt",
+      "samples": 1,
+      "period_cycles": 12813234,
+      "sampled_period_pct": 0.0889410195774134
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::ostream::sentry::sentry(std::ostream&)",
+      "samples": 1,
+      "period_cycles": 11984185,
+      "sampled_period_pct": 0.08318630821105305
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "gguf_get_arr_str",
+      "samples": 1,
+      "period_cycles": 11974415,
+      "sampled_period_pct": 0.08311849131476666
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned long) const",
+      "samples": 1,
+      "period_cycles": 11927186,
+      "sampled_period_pct": 0.08279065874621903
+    },
+    {
+      "dso": "libc.so.6",
+      "symbol": "cfree",
+      "samples": 1,
+      "period_cycles": 11880079,
+      "sampled_period_pct": 0.08246367302120744
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)@plt",
+      "samples": 1,
+      "period_cycles": 11781892,
+      "sampled_period_pct": 0.08178212362553985
+    },
+    {
+      "dso": "libm.so.6",
+      "symbol": "sincosf32",
+      "samples": 1,
+      "period_cycles": 11655587,
+      "sampled_period_pct": 0.08090539761884043
+    },
+    {
+      "dso": "libm.so.6",
+      "symbol": "powf",
+      "samples": 1,
+      "period_cycles": 11631929,
+      "sampled_period_pct": 0.08074117938625665
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_glu",
+      "samples": 1,
+      "period_cycles": 11630826,
+      "sampled_period_pct": 0.08073352308773014
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_blck_size",
+      "samples": 1,
+      "period_cycles": 11623807,
+      "sampled_period_pct": 0.08068480181904701
+    },
+    {
+      "dso": "libm.so.6",
+      "symbol": "log2",
+      "samples": 1,
+      "period_cycles": 11611604,
+      "sampled_period_pct": 0.08060009664142338
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_add_non_quantized",
+      "samples": 1,
+      "period_cycles": 11542639,
+      "sampled_period_pct": 0.08012138709665456
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_compute_forward_add",
+      "samples": 1,
+      "period_cycles": 11526268,
+      "sampled_period_pct": 0.08000775041199698
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_graph_plan",
+      "samples": 1,
+      "period_cycles": 11521524,
+      "sampled_period_pct": 0.07997482069285854
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_cpu_extra_work_size",
+      "samples": 1,
+      "period_cycles": 11515627,
+      "sampled_period_pct": 0.07993388760817062
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "ggml_vec_soft_max_f32",
+      "samples": 1,
+      "period_cycles": 11514682,
+      "sampled_period_pct": 0.07992732804143668
+    },
+    {
+      "dso": "libstdc++.so.6.0.33",
+      "symbol": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)",
+      "samples": 1,
+      "period_cycles": 11492451,
+      "sampled_period_pct": 0.07977301510168817
+    },
+    {
+      "dso": "libllama.so",
+      "symbol": "llama_vocab::~llama_vocab()",
+      "samples": 1,
+      "period_cycles": 11367303,
+      "sampled_period_pct": 0.07890432022590005
+    },
+    {
+      "dso": "libc.so.6",
+      "symbol": "malloc",
+      "samples": 1,
+      "period_cycles": 11258812,
+      "sampled_period_pct": 0.07815124725814085
+    },
+    {
+      "dso": "libggml-cpu.so",
+      "symbol": "memcpy@plt",
+      "samples": 1,
+      "period_cycles": 10956833,
+      "sampled_period_pct": 0.0760551082076117
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_gallocr_allocate_node",
+      "samples": 1,
+      "period_cycles": 10763645,
+      "sampled_period_pct": 0.07471412452697952
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "gguf_free",
+      "samples": 1,
+      "period_cycles": 10431442,
+      "sampled_period_pct": 0.07240819040241149
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_gallocr_alloc_graph",
+      "samples": 1,
+      "period_cycles": 10344851,
+      "sampled_period_pct": 0.07180713279070879
+    },
+    {
+      "dso": "libggml-base.so",
+      "symbol": "ggml_new_tensor",
+      "samples": 1,
+      "period_cycles": 9963037,
+      "sampled_period_pct": 0.0691568318246193
+    },
+    {
+      "dso": "ld-linux-aarch64.so.1",
+      "symbol": "[unresolved]",
+      "samples": 5,
+      "period_cycles": 37184,
+      "sampled_period_pct": 0.00025810680363494025
+    },
+    {
+      "dso": "libc.so.6",
+      "symbol": "syscall",
+      "samples": 14,
+      "period_cycles": 14,
+      "sampled_period_pct": 9.717876642881788e-08
+    },
+    {
+      "dso": "[unknown]",
+      "symbol": "[unresolved]",
+      "samples": 1,
+      "period_cycles": 1,
+      "sampled_period_pct": 6.941340459201277e-09
+    }
+  ],
+  "scope": "Flat, whole-process user-cycle sample periods; includes startup/warmup/teardown"
+}

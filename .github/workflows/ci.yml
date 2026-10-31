@@ -35,6 +35,7 @@ jobs:
           python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
           python scripts/report.py --input results/pi3/context-20261031 --reports build/verified-reports/context
           python scripts/kernels/report.py --input results/kernels/neon-20261031 --reports build/verified-reports/neon
+          python scripts/profiling/report.py --input results/profiling/pi3-20261031 --reports build/verified-reports/profile
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -47,6 +48,8 @@ jobs:
           path: |
             results/pi3/ci-fixture/
             reports/ci-fixture/
+            results/profiling/ci-fixture/
+            reports/profiling-ci-fixture/
   neon-correctness-emulated:
     runs-on: ubuntu-24.04
     steps:

@@ -3,4 +3,8 @@
 # Measurement hashes require exact bytes on every checkout, including CSV CRLF.
 /results/pi3/** -text whitespace=cr-at-eol
 /results/kernels/** -text whitespace=cr-at-eol
+/results/profiling/** -text whitespace=cr-at-eol
 /results/kernels/*/CMakeCache.txt whitespace=cr-at-eol,-blank-at-eof
+/results/profiling/*/raw/engine-CMakeCache.txt whitespace=cr-at-eol,-blank-at-eof
+/reports/pi3-profile-20261031/*.csv -text whitespace=cr-at-eol
+/results/profiling/*/raw/perf-capability.stderr.txt whitespace=-blank-at-eol,-blank-at-eof

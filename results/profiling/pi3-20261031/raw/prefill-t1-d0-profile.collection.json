@@ -1,0 +1,9 @@
+{
+  "samples": 6430,
+  "total_sampled_period_cycles": 76971992250,
+  "reported_lost_samples": 0,
+  "loss_records": [],
+  "loss_source": "perf script --show-lost-events; unknown records are rejected",
+  "private_perf_data_sha256": "10736082d801940aca4c02e0426a828d85ee74669e700705b7152b8fe2bd4737",
+  "private_script_sha256": "1d71c2cda64f6efbd975ed7b962d58bb3a4246cbafabc7370b137fcf6b1edc44"
+}
