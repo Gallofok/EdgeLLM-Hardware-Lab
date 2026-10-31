@@ -1,0 +1,10 @@
+{
+  "llama_repository": "https://github.com/ggml-org/llama.cpp.git",
+  "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+  "llama_reference": "b6500",
+  "model_repository": "bartowski/SmolLM2-135M-Instruct-GGUF",
+  "model_revision": "09816acd5d99df7be770d85ea30822623dab342c",
+  "model_filename": "SmolLM2-135M-Instruct-Q4_K_M.gguf",
+  "model_size_bytes": 105454432,
+  "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d"
+}

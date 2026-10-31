@@ -1,0 +1,36 @@
+name: Software validation (no Pi performance claims)
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - run: ruff check . && ruff format --check .
+      - run: shellcheck scripts/pi/*.sh
+      - run: python -m unittest discover -s tests -v
+      - name: Fixture end-to-end report (synthetic, not ARM performance)
+        run: |
+          bash scripts/pi/benchmark.sh --fixture --output results/pi3 --reports reports
+          python scripts/report.py --input results/pi3 --reports reports
+      - name: C++17 extension boundary configuration
+        run: cmake -S . -B build/api && cmake --build build/api
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fixture-only-python-${{ matrix.python }}
+          path: |
+            results/pi3/
+            reports/

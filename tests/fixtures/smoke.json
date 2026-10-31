@@ -1,0 +1,40 @@
+[
+  {
+    "fixture": true,
+    "fixture_notice": "Synthetic test data; not hardware measurements.",
+    "build_commit": "a7a98e0",
+    "n_prompt": 32,
+    "n_gen": 0,
+    "n_threads": 1,
+    "n_gpu_layers": 0,
+    "n_depth": 0,
+    "model_filename": "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "avg_ts": 10.0,
+    "stddev_ts": 0.0,
+    "samples_ts": [
+      10.0
+    ],
+    "samples_ns": [
+      3200000000
+    ]
+  },
+  {
+    "fixture": true,
+    "fixture_notice": "Synthetic test data; not hardware measurements.",
+    "build_commit": "a7a98e0",
+    "n_prompt": 0,
+    "n_gen": 8,
+    "n_threads": 1,
+    "n_gpu_layers": 0,
+    "n_depth": 0,
+    "model_filename": "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "avg_ts": 2.0,
+    "stddev_ts": 0.0,
+    "samples_ts": [
+      2.0
+    ],
+    "samples_ns": [
+      4000000000
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "data_kind": "fixture",
+  "samples": [
+    {
+      "data_kind": "fixture",
+      "run_id": "fixture",
+      "timestamp": "2000-01-01T00:00:00+00:00",
+      "elapsed_s": 0,
+      "temperature_c": 40,
+      "frequency_mhz": 1200,
+      "available_memory_mb": 600,
+      "process_rss_mb": 120,
+      "process_peak_rss_mb": 122,
+      "cpu_utilization_pct": null,
+      "throttled_raw": null,
+      "throttled_states": null,
+      "unavailable_reasons": {
+        "throttled_raw": "Fixture: unavailable sensor case",
+        "throttled_states": "Fixture: unavailable sensor case",
+        "cpu_utilization_pct": "No prior CPU sample"
+      }
+    },
+    {
+      "data_kind": "fixture",
+      "run_id": "fixture",
+      "timestamp": "2000-01-01T00:00:01+00:00",
+      "elapsed_s": 1,
+      "temperature_c": 41,
+      "frequency_mhz": 1200,
+      "available_memory_mb": 599,
+      "process_rss_mb": 121,
+      "process_peak_rss_mb": 122,
+      "cpu_utilization_pct": 25,
+      "throttled_raw": null,
+      "throttled_states": null,
+      "unavailable_reasons": {
+        "throttled_raw": "Fixture: unavailable sensor case",
+        "throttled_states": "Fixture: unavailable sensor case"
+      }
+    },
+    {
+      "data_kind": "fixture",
+      "run_id": "fixture",
+      "timestamp": "2000-01-01T00:00:02+00:00",
+      "elapsed_s": 2,
+      "temperature_c": 42,
+      "frequency_mhz": 1200,
+      "available_memory_mb": 598,
+      "process_rss_mb": 122,
+      "process_peak_rss_mb": 122,
+      "cpu_utilization_pct": 25,
+      "throttled_raw": null,
+      "throttled_states": null,
+      "unavailable_reasons": {
+        "throttled_raw": "Fixture: unavailable sensor case",
+        "throttled_states": "Fixture: unavailable sensor case"
+      }
+    }
+  ],
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "elapsed_s": 3,
+    "peak_rss_mb": 123,
+    "peak_rss_source": "Fixture synthetic value",
+    "oom_status": "Fixture: no real process",
+    "oom_kill_cgroup_delta": null
+  }
+}

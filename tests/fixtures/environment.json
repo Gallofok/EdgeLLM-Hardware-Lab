@@ -1,0 +1,13 @@
+{
+  "data_kind": "fixture",
+  "device_model": "Fixture Raspberry Pi 3 (synthetic)",
+  "architecture": "aarch64",
+  "logical_cores": 4,
+  "ram_total_mb": 1024,
+  "cpu_features": [
+    "asimd"
+  ],
+  "os_release": "Fixture OS",
+  "kernel_version": "Fixture kernel",
+  "fixture_notice": "Not detected on a physical device."
+}
