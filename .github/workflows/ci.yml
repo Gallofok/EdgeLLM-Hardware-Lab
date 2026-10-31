@@ -24,13 +24,17 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - name: Fixture end-to-end report (synthetic, not ARM performance)
         run: |
-          bash scripts/pi/benchmark.sh --fixture --output results/pi3 --reports reports
-          python scripts/report.py --input results/pi3 --reports reports
+          bash scripts/pi/benchmark.sh --fixture --output results/pi3/ci-fixture --reports reports/ci-fixture
+          python scripts/report.py --input results/pi3/ci-fixture --reports reports/ci-fixture
+      - name: Validate recorded Pi evidence (no inference)
+        run: |
+          python scripts/report.py --input results/pi3/baseline-20261031 --reports build/verified-reports/baseline
+          python scripts/report.py --input results/pi3/context-20261031 --reports build/verified-reports/context
       - name: C++17 extension boundary configuration
         run: cmake -S . -B build/api && cmake --build build/api
       - uses: actions/upload-artifact@v4
         with:
           name: fixture-only-python-${{ matrix.python }}
           path: |
-            results/pi3/
-            reports/
+            results/pi3/ci-fixture/
+            reports/ci-fixture/

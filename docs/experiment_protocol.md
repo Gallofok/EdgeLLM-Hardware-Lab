@@ -85,3 +85,8 @@ Fixture files are synthetic and marked at source and output. CI uses them only
 for software validation. Generated outputs are ignored by Git and uploaded as
 clearly labeled Fixture CI artifacts. Real evidence needs privacy review before
 publication; never upload unreviewed setup logs or full kernel logs.
+
+Curated measurement files are marked `-text` in `.gitattributes` so Git does not
+change their line endings on Windows. Native JSON and telemetry hashes depend on
+exact bytes. CI can reparse these recorded real-device files without running an
+inference benchmark; its new Fixture run and uploaded artifacts remain isolated.

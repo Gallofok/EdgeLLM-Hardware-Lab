@@ -11,16 +11,20 @@
 - [x] Fixture tests, ShellCheck, Ruff and GitHub Actions workflow.
 - [x] Independent reproduction instructions.
 
-## Physical-device acceptance — pending
+## Physical-device execution — completed with a context caveat
 
-- [ ] Detect the actual Raspberry Pi 3 variant, core count, RAM and ARM64 userspace.
-- [ ] Build the pinned engine on that device with the default single job.
-- [ ] Load the exact verified GGUF and pass pp32/tg8 smoke testing.
-- [ ] Complete 1/2/4-thread pp128/tg16 runs (three native repetitions per case).
-- [ ] Inspect real temperature, frequency, memory and power/throttle observations.
-- [ ] Review failures/possible OOM and uncontrolled conditions.
-- [ ] Regenerate all real artifacts and verify raw evidence traceability.
-- [ ] Review identifiers, then publish a real baseline with its raw evidence.
+- [x] Detect the actual Raspberry Pi 3 variant, core count, RAM and ARM64 userspace.
+- [x] Build the pinned engine on that device with the default single job.
+- [x] Load the exact verified GGUF and pass pp32/tg8 smoke testing.
+- [x] Complete 1/2/4-thread pp128/tg16 runs (three native repetitions per case).
+- [x] Inspect real temperature, frequency, memory and power/throttle observations.
+- [x] Review failures/possible OOM and uncontrolled conditions.
+- [x] Regenerate all real artifacts and verify raw evidence traceability.
+- [x] Review identifiers, then publish a real baseline with its raw evidence.
+
+The baseline completed without power/throttle flags. The longest context run
+recorded a frequency cap near 80 Celsius; its comparison is explicitly qualified
+in the report. This is an observed device constraint, not a failed data collection.
 
 GitHub-hosted CI results validate software only. A real ARM benchmark cannot be
 accepted based on x86 runners, Fixture charts or compilation on another ARM host.

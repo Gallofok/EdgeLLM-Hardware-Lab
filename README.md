@@ -12,9 +12,17 @@ download, smoke test, 1/2/4-thread matrix, context-depth suite, resource monitor
 raw-result validation, JSON/CSV export and Markdown/PNG reports. CI validates
 software using **Fixture synthetic data**, never Raspberry Pi performance.
 
-**Physical-device acceptance is pending:** detect the actual Pi model and 64-bit
-userspace, build there, load the model, run both suites and inspect real power,
-thermal and memory observations. No real Pi throughput baseline is published.
+A real **Raspberry Pi 3 Model B Rev 1.2** running Debian 13 ARM64 completed
+native compilation, verified model loading, smoke testing and the full 1/2/4-thread
+baseline on 2026-10-31. The [real baseline report](reports/pi3_baseline.md) and
+[checksummed raw evidence](results/pi3/baseline-20261031) are included. They are
+physical-device measurements; CI continues to use isolated Fixture directories.
+The [context study](reports/pi3-context-20261031/pi3_baseline.md) and
+[its evidence](results/pi3/context-20261031) cover depths 0/128/512. Frequency
+capping was observed near 80 Celsius in the final four-thread decode case; that
+comparison is explicitly qualified. See [analysis](docs/pi3_baseline_analysis.md)
+and [validation notes](docs/validation.md) for interpretation and limitations.
+
 Agent work must not install or benchmark on a private Pi without device-operation
 authorization. Setup does not reimage the system, expose SSH, change clocks,
 voltages, boot configuration or install a public runner.
@@ -110,8 +118,9 @@ case stays in the report; SIGKILL is not automatically labeled OOM. A shared
 cgroup OOM counter is only supporting evidence. Review local kernel logs to
 confirm OOM attribution. See [troubleshooting](docs/pi3_setup.md).
 
-Weights, build outputs, raw results, setup logs and generated reports are ignored
-by Git by default. Diagnostics deliberately omit hostnames, IP addresses, CPU
+Weights, build outputs, setup logs and generated runs are ignored by Git by default.
+The explicitly curated, privacy-reviewed 2026-10-31 evidence and reports are versioned.
+Other runs and reports remain ignored. Diagnostics deliberately omit hostnames, IP addresses, CPU
 serial numbers and complete `/proc/cpuinfo`. Raw stderr/build files can still
 include local paths: review and redact identifiers before publishing artifacts.
 Do not commit SSH keys, Wi-Fi settings, tokens or private host configuration.

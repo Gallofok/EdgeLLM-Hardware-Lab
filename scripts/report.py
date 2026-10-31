@@ -169,13 +169,18 @@ def generate(directory, reports):
     label = (
         "FIXTURE — SYNTHETIC TEST DATA" if manifest["data_kind"] == "fixture" else "REAL DEVICE RUN"
     )
+    caveat = " ".join(telemetry.get("warnings", []))
     environment = manifest.get("environment", {})
     lines = [
-        "# Raspberry Pi 3 baseline",
+        "# Raspberry Pi 3 context-depth study"
+        if manifest["suite"] == "context"
+        else "# Raspberry Pi 3 baseline",
         "",
         f"**{label}**",
         "",
         manifest["notice"],
+        "",
+        f"**Measurement caveat:** {caveat}" if caveat else "",
         "",
         "## Environment and reproducibility",
         "",
@@ -285,7 +290,10 @@ def generate(directory, reports):
         "Keep the entire run directory with its raw evidence.",
     ]
     (reports / "pi3_baseline.md").write_text("\n".join(lines) + "\n")
-    plot(summaries, label, reports / "pi3_baseline.png")
+    chart_label = label
+    if telemetry.get("throttle_flags_observed"):
+        chart_label += " — power/frequency flags observed"
+    plot(summaries, chart_label, reports / "pi3_baseline.png")
     return summary
 
 

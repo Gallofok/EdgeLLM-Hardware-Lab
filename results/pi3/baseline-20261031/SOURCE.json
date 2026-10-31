@@ -1,0 +1,21 @@
+{
+  "data_kind": "real",
+  "device": "Raspberry Pi 3 Model B Rev 1.2",
+  "measurement_project_commit": "6ccbccdea1aa9006fcd1324e584d701c9cf2ca1c",
+  "original_run_name": "baseline-02",
+  "collection_date_utc": "2026-10-31",
+  "notes": [
+    "Native JSON, stderr, telemetry, process sidecars and manifest are unmodified copies from the physical device.",
+    "The derived report was independently regenerated and raw evidence hashes verified.",
+    "The earlier baseline encountered a parser rounding false rejection; its failure record is retained separately on the device and in the local execution archive.",
+    "No custom kernel, overclock, governor, voltage, swap or boot configuration changes were made.",
+    "Ambient temperature, cooling hardware and background services were not independently controlled.",
+    "Only the captured help banner has its absolute project-directory prefix replaced with <project>/ for privacy; benchmark options and all measurement evidence are unchanged."
+  ],
+  "additional_observation_during_context_suite": {
+    "cpu_model": "Cortex-A53",
+    "cpu0_governor": "ondemand",
+    "cpu0_policy_min_mhz": 600,
+    "cpu0_policy_max_mhz": 1200
+  }
+}
