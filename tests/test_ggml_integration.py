@@ -120,6 +120,36 @@ class EvidenceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 report(source, destination)
 
+    def test_isolated_loader_accepts_as_needed_and_rejects_wrong_libraries(self):
+        from scripts.integration.run import verify_linked_engine
+
+        with tempfile.TemporaryDirectory() as d:
+            build = Path(d)
+            graph = "\n".join(
+                f"{name} => {build}/bin/{name} (address)"
+                for name in ("libggml-base.so", "libggml-cpu.so")
+            )
+            verify_linked_engine(graph, build)
+            with self.assertRaises(ValueError):
+                verify_linked_engine(graph, build, model=True)
+            model = (
+                graph
+                + "\n"
+                + "\n".join(
+                    f"{name} => {build}/bin/{name} (address)"
+                    for name in ("libllama.so", "libggml.so")
+                )
+            )
+            verify_linked_engine(model, build, model=True)
+            with self.assertRaises(ValueError):
+                verify_linked_engine(
+                    model.replace(
+                        str(build) + "/bin/libggml-cpu.so", str(build) + "/original/libggml-cpu.so"
+                    ),
+                    build,
+                    model=True,
+                )
+
     def test_complete_fixture(self):
         self.assertEqual(validate_graph(graph_fixture(), True)["graph_executions"], 90)
         self.assertEqual(validate_model(model_fixture(), True)["greedy_matches"], 36)

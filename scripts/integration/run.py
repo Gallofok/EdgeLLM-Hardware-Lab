@@ -34,6 +34,23 @@ def artifact_hashes(build):
     }
 
 
+def verify_linked_engine(linked, build, model=False):
+    found = set()
+    for line in linked.splitlines():
+        parts = line.strip().split()
+        if parts and parts[0].startswith(("libggml", "libllama")):
+            if len(parts) < 3 or Path(parts[2]).resolve().parent != (build / "bin").resolve():
+                raise ValueError("Engine shared library loaded outside isolated build")
+            found.add(parts[0])
+    # --as-needed drops the registration library from the direct graph harness;
+    # the llama model harness actually uses it and must resolve all four libs.
+    required = {"libggml-base.so", "libggml-cpu.so"}
+    if model:
+        required.update(("libllama.so", "libggml.so"))
+    if not required.issubset(found):
+        raise ValueError("Incomplete loader provenance")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build", type=Path, default=ROOT / "build/ggml-row4")
@@ -115,21 +132,7 @@ def main():
         for binary in ("test-ggml-row4", "test-model-row4"):
             linked = subprocess.check_output(["ldd", str(build / binary)], text=True, env=env)
             (private / (binary + ".ldd.txt")).write_text(linked)
-            found = set()
-            for line in linked.splitlines():
-                parts = line.strip().split()
-                if parts and parts[0].startswith(("libggml", "libllama")):
-                    if (
-                        len(parts) < 3
-                        or Path(parts[2]).resolve().parent != (build / "bin").resolve()
-                    ):
-                        raise ValueError("Engine shared library loaded outside isolated build")
-                    found.add(parts[0])
-            required = {"libggml.so", "libggml-base.so", "libggml-cpu.so"}
-            if binary == "test-model-row4":
-                required.add("libllama.so")
-            if not required.issubset(found):
-                raise ValueError("Incomplete loader provenance")
+            verify_linked_engine(linked, build, model=binary == "test-model-row4")
         for name, validator in (("graph", validate_graph), ("model", validate_model)):
             raw = output / "raw" / (name + ".jsonl")
             command = [str(build / ("test-ggml-row4" if name == "graph" else "test-model-row4"))]

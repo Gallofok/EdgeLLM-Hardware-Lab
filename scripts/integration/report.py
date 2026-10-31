@@ -56,9 +56,12 @@ def report(source, destination):
         ),
         peak_process_rss_mb=max(p["peak_rss_mb"] for p in processes),
         sensor_samples=len(samples),
+        oom_kill_cgroup_deltas=[p.get("oom_kill_cgroup_delta") for p in processes],
     )
     destination.mkdir(parents=True, exist_ok=True)
     write_json(destination / "ggml_correctness.json", summary)
+    hardware = m.get("environment_before", {})
+    software = m.get("software", {})
     label = (
         "Fixture — synthetic software test"
         if fixture
@@ -70,6 +73,13 @@ def report(source, destination):
 
 Source: `{m["source_commit"]}`.
 Engine: `{m.get("engine_commit", "fixture")}` plus the checked-in patch.
+
+Device: {hardware.get("device_model", "Fixture")}; architecture:
+{hardware.get("architecture", "Fixture")}; cores: {hardware.get("logical_cores", "Fixture")};
+RAM: {hardware.get("ram_total_mb", "Fixture")} MiB; kernel:
+{hardware.get("kernel_version", "Fixture")}. Compiler: {software.get("compiler", "Fixture")}.
+Capture: {m.get("started_at", "Fixture")} to {m.get("finished_at", "Fixture")}.
+Full allowlisted environment, software versions and binary/model hashes are in the manifest.
 
 | Gate | Result |
 |---|---:|
@@ -100,6 +110,9 @@ Observed sensor samples: {summary["sensor_samples"]}; maximum temperature:
 {summary["temperature_max_c"]} °C; sampled frequencies: {summary["frequencies_mhz"]} MHz;
 raw throttle flags: {summary["throttled_raw"]}. Peak child RSS:
 {summary["peak_process_rss_mb"]} MiB (process lifecycle, including initialization).
+Process exit codes are zero, with no recorded timeout or interruption. Recorded
+cgroup OOM-kill deltas: {summary.get("oom_kill_cgroup_deltas")}; null means unavailable,
+and cgroup evidence cannot attribute a kill to this process.
 Null sensor fields and reasons remain in raw CSV. Sampling cannot exclude brief
 throttle events. OOM attribution is limited to recorded process/cgroup evidence.
 
