@@ -50,9 +50,9 @@ compiler, decoding/reduction and blocking differences. The row1 ablation narrows
 this comparison but cannot attribute any gain solely to activation reuse.
 The original comparator remains unmodified; no scalar proxy replaces it.
 
-Formal shapes retain width576, rows192/576/1536 and vectors1/8. Three process
-sessions use recorded seeds42/43/44 and alternate forward/reverse case order.
-Each process independently calibrates all three variants to at least100ms;
+Formal shapes retain width 576, rows 192/576/1536 and vectors 1/8. Three process
+sessions use recorded seeds 42/43/44 and alternate forward/reverse case order.
+Each process independently calibrates all three variants to at least 100 ms;
 calibration order rotates by session seed. Six timed triplets execute all six
 permutations: U/1/4, 1/4/U, 4/U/1, 4/1/U, 1/U/4, U/4/1. Each variant occupies
 every timing position twice. There are **18 formal processes, 108 triplets and

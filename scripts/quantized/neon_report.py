@@ -308,7 +308,7 @@ def generate(root, reports):
                 label=kind,
             )
         axes[0, col].set(
-            title=f"{vectors} activation vector(s), width576", ylabel="ms / matrix call"
+            title=f"{vectors} activation vector(s), width 576", ylabel="ms / matrix call"
         )
         for key, name in (("upstream_over_row4", "upstream/row4"), ("row1_over_row4", "row1/row4")):
             axes[1, col].errorbar(

@@ -68,6 +68,8 @@ def environment(pin):
 
 def build_provenance(build, manifest):
     cache = (build / "CMakeCache.txt").read_text()
+    if "CMAKE_BUILD_TYPE:STRING=Release" not in cache.splitlines():
+        raise ValueError("Candidate measurements require an actual Release build")
     compiler = next(
         line.split("=", 1)[1]
         for line in cache.splitlines()

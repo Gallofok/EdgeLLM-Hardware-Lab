@@ -10,7 +10,7 @@ from pathlib import Path
 
 from scripts.pi.common import ROOT, sha256
 from scripts.quantized.neon_report import generate, load_run
-from scripts.quantized.neon_run import fixture_native
+from scripts.quantized.neon_run import build_provenance, fixture_native
 from scripts.quantized.neon_schema import KINDS, ORDERS, summarize
 from scripts.quantized.schema import matrix
 
@@ -27,6 +27,13 @@ class NeonTripletParserTests(unittest.TestCase):
             for position in range(3):
                 self.assertEqual(sum(order[position] == kind for order in ORDERS), 2)
         self.assertEqual(len(set(ORDERS)), 6)
+
+    def test_debug_build_cannot_be_labeled_as_release(self):
+        with tempfile.TemporaryDirectory() as directory:
+            build = Path(directory)
+            (build / "CMakeCache.txt").write_text("CMAKE_BUILD_TYPE:STRING=Debug\n")
+            with self.assertRaisesRegex(ValueError, "actual Release"):
+                build_provenance(build, {})
 
     def test_reject_bad_abi_shape_order_accuracy_and_batch_values(self):
         raw = fixture_native(matrix(1)[0], 6, 1)
@@ -146,3 +153,36 @@ class NeonWorkflowTests(unittest.TestCase):
         (self.root / "manifest.json").write_text(json.dumps(manifest))
         with self.assertRaisesRegex(ValueError, "data kind"):
             load_run(self.root)
+
+
+class RecordedNeonTests(unittest.TestCase):
+    def test_reviewed_real_matrix_is_complete_with_original_comparator(self):
+        root = ROOT / "results/quantized/neon-20261031"
+        manifest, cases, metrics = load_run(root)
+        self.assertEqual(manifest["data_kind"], "real")
+        self.assertEqual(len(cases), 18)
+        self.assertEqual(sum(c["repetitions"] for c in cases), 108)
+        self.assertEqual(len(metrics), 94)
+        self.assertEqual({s["throttled_raw"] for s in metrics}, {"0x20000"})
+        prior = json.loads((ROOT / "results/quantized/q5-20261031/manifest.json").read_text())
+        self.assertEqual(manifest["upstream_libraries_sha256"], prior["upstream_libraries_sha256"])
+        # Numerical validation never assumes a performance win.
+        for case in cases:
+            self.assertEqual(set(KINDS) - case.keys(), set())
+
+    def test_curated_public_input_has_no_complete_build_dump_or_identifiers(self):
+        import re
+
+        root = ROOT / "results/quantized/neon-20261031"
+        for name in ("CMakeCache.txt", "compile_commands.json", "llama-bench-help.txt"):
+            self.assertFalse((root / "raw" / name).exists())
+        for path in root.rglob("*"):
+            if path.is_file():
+                self.assertNotIn("disassembly", path.name)
+                self.assertIsNone(
+                    re.search(
+                        r"/home/|(?:\d{1,3}\.){3}\d{1,3}|BEGIN .*PRIVATE KEY",
+                        path.read_bytes().decode("utf-8"),
+                    ),
+                    str(path),
+                )

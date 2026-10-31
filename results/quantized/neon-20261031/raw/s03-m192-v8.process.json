@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "interrupted": false,
+  "elapsed_s": 4.0375222460133955,
+  "peak_rss_mb": 20.34375,
+  "peak_rss_source": "Linux wait4 rusage; child process only",
+  "oom_kill_cgroup_delta": null,
+  "oom_status": "unknown; SIGKILL alone does not prove OOM",
+  "unavailable_reasons": {
+    "oom_evidence": "Unavailable (FileNotFoundError)"
+  }
+}

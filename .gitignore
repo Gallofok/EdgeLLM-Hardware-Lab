@@ -11,6 +11,7 @@ __pycache__/
 /results/kernels/*
 /results/quantized/*
 !/results/quantized/q5-20261031/
+!/results/quantized/neon-20261031/
 /results/profiling/*
 !/results/profiling/pi3-20261031/
 !/results/kernels/scalar-20261031/
@@ -34,3 +35,4 @@ __pycache__/
 !/reports/pi3-neon-20261031/
 !/reports/pi3-profile-20261031/
 !/reports/pi3-q5-20261031/
+!/reports/pi3-q5-neon-20261031/
