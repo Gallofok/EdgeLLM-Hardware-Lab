@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "data_kind": "real",
+  "status": "completed",
+  "started_at": "2026-10-31T15:18:49.974050+00:00",
+  "source_commit": "1cee2912bceaa807b01e3d76298ac6476cdcd707",
+  "original_libraries_sha256": {
+    "libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "libggml.so": "7f20f88a786da4351666a005fbf6156d58dd2a667d4e8a8a73c8b00fa8d3a04d",
+    "libllama.so": "7826f24b180a87b288acdf574b14bd2e08d44d0e6cade3eb169e631129d7cbf1"
+  },
+  "cases": [
+    {
+      "id": "graph",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 1.019214948057197,
+        "peak_rss_mb": 20.62890625,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      },
+      "summary": {
+        "graph_executions": 90,
+        "layouts": 15,
+        "max_abs_error": 0.0002485886216163635,
+        "max_bound_fraction": 0.008866572544964845
+      }
+    },
+    {
+      "id": "model",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 15.14395623409655,
+        "peak_rss_mb": 135.2109375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      },
+      "summary": {
+        "model_steps": 72,
+        "compared_steps": 36,
+        "max_abs_error": 0,
+        "max_bound_fraction": 0,
+        "max_rms_error": 0,
+        "greedy_matches": 36
+      }
+    },
+    {
+      "id": "prototype_fma",
+      "process": {
+        "returncode": 1,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.039240379002877,
+        "peak_rss_mb": 133.0859375,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      },
+      "summary": {
+        "status": "numerically_rejected",
+        "max_abs_error": 0.8446993827819824,
+        "max_bound_fraction": 580.3142168192232,
+        "rms_error": 0.15909274550714478,
+        "greedy_match": true,
+        "failed_prompt": 0,
+        "failed_threads": 1,
+        "failed_step": 0,
+        "captured_steps": 10
+      }
+    }
+  ],
+  "environment_before": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T15:18:50.201487+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 638.2265625,
+    "storage_free_bytes": 22094188544,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 40.78,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d",
+  "engine_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+  "artifacts_sha256": {
+    "test-ggml-row4": "5af8457a2d5d97fa457224053d073c88ea7800e5756329c3b830c76c54663b84",
+    "test-model-row4": "007b2b348d281d579ee0c757bc640daf9e3c6ab34eb52847cdf3010b5a39f85f",
+    "libggml-base.so": "9764154c18f61d3d13287c12d0c1f8ad9e51b3f721c7402a401750176fc7aa41",
+    "libggml-cpu.so": "7144e050cdc7bde3b9b3eda7645973116eeb9ff6936c46e780c9b31a778fe82a",
+    "libggml.so": "1f5d7eefd49b5d242aadc8fcba0e044487c5b4a32e8a9bbeaecaac563fe93a76",
+    "libllama.so": "242d9597e4ecdd8302c9fcc5798ac35cd8441d08cafd8127e74eff64ce3f81c3"
+  },
+  "patch_sha256": "bb4cd87c18794333810d8941fae712d949710833bd8d90d2c4703c9294aa937a",
+  "cmake_cache_sha256": "c30367ca7a1e094cf3b52c8531c843665e26345af35424c4afc9dc4db76a6972",
+  "compile_commands_sha256": "e9d7abf0bab4fd9fef0a26d00b400c954f8eba8b4ffceb421d37d7fc2539f2b6",
+  "software": {
+    "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+    "cmake": "cmake version 3.31.6",
+    "python": "3.13.5"
+  },
+  "build_settings": {
+    "build_type": "Release",
+    "native": false,
+    "arm_arch": "armv8-a",
+    "llamafile": true,
+    "openmp": true,
+    "integration_compiled": true,
+    "runtime_default_enabled": false,
+    "audit_enabled": true,
+    "integration_profile": "upstream_accumulation",
+    "diagnostic_profile": "prototype_fma"
+  },
+  "environment_after": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-10-31T15:19:13.687666+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 640.19140625,
+    "storage_free_bytes": 22093991936,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 44.008,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "finished_at": "2026-10-31T15:19:15.346830+00:00",
+  "files": {
+    "raw/graph.jsonl": "8f6db5a40fcd17a1e5ebaff801bd76b6a2cb57d50fc1d6ac476891951a799d66",
+    "raw/graph.metrics.csv": "936a04c50618b0ecaf10360f5b848e73b6ad7f0420e1b8c793fb864d9aeab01d",
+    "raw/graph.process.json": "13d9bf1f785c461e6ff9c1d6a5fd7ca985440269da742f7c011ebd29dfd0d673",
+    "raw/model.jsonl": "db061265630da40327927cbfa392e34b419683fdb4093a41928690fabaa894a3",
+    "raw/model.metrics.csv": "0aeedc6527105a254d16430c3c3d1b6f9b8f68eeec2b9a789115e3775ee91756",
+    "raw/model.process.json": "0516d32b6709dcd4bf84cfa36a8ef2508560409902a685600c4c0e96bbbbd50d",
+    "raw/prototype_fma.jsonl": "2e8a460bcfa0d1770f744bb044bc455bd31fa536b66c891286cb1ec2badb8a94",
+    "raw/prototype_fma.metrics.csv": "261af5547b67d68364706d19bd65c6a96bc3aee3a1ce6fce516f68b3c413c27d",
+    "raw/prototype_fma.process.json": "a704526362a45b76061eeea53fdb56d2cc101d95b0998f1a9500bae5b477df3e"
+  }
+}

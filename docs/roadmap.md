@@ -42,14 +42,14 @@ not establish that it passed.
 - [x] Profile actual inference and publish mixed-type inventory / user-cycle evidence.
 - [x] Build a Q5_0×Q8_0 correctness and shape-matched benchmark against upstream ARM kernels.
 - [x] Develop a quantized ARM candidate and compare it against the unchanged upstream baseline.
-- [ ] Validate GGML integration feasibility, including views/strides/threaded partitioning.
+- [x] Validate opt-in GGML layout/thread/model numerics with an upstream-order compatibility profile.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [ ] Evaluate GGML CPU integration with measured end-to-end impact.
 
 The [scalar protocol](scalar_gemv.md) defines the first milestone. FP32 synthetic
 microbenchmarks are separate from the quantized LLM baseline. No claimed speedup
 in advance. NEON now has a [paired measurement protocol](neon_gemv.md);
-INT4 and GGML integration remain future work. The
+INT4 and end-to-end GGML performance remain future work. The
 [physical inference profile](inference_profile_analysis.md) prioritizes Q5_0×Q8_0
 because of the observed workload, rather than assuming Q4_K from the filename.
 The [physical Q5 correctness and upstream baseline](q5_baseline_analysis.md) now
@@ -69,3 +69,7 @@ batch samples, operating-condition caveats and links to native/checksummed data.
 Intel i7 x86/SIMD/threading, RTX 3050 Ti CUDA kernels/memory, and Apple A10 Metal
 are separate future scopes. No Docker, Kubernetes, RAG or agent app is needed
 for this phase. Self-hosted private ARM runners require separate user agreement.
+
+The [GGML numerical integration study](ggml_integration_analysis.md) retains the
+rejected FMA model experiment and the passing upstream-order profile. This new
+profile has no measured inference performance result yet.

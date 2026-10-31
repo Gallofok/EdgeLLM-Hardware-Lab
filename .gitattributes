@@ -14,3 +14,4 @@
 
 # Unified diff context uses a mandatory space on otherwise blank lines.
 /integrations/ggml/*.patch whitespace=-blank-at-eol
+/results/integration/** -text whitespace=cr-at-eol

@@ -179,3 +179,9 @@ Upstream sources: [llama.cpp benchmark at the pinned commit](https://github.com/
 An experimental, default-off [GGML integration feasibility workflow](docs/ggml_integration.md)
 checks real graph layouts, thread partitions, fallback behavior and model logits
 before any end-to-end timing experiment. It uses a separate pinned engine build.
+
+The [physical GGML numerical report](reports/pi3-ggml-20261031/ggml_correctness.md)
+records 90 graph executions and 36 model-logit comparisons with zero difference
+for the compatibility profile. The direct FMA prototype fails the original model
+tolerance and remains in the evidence. See the [analysis](docs/ggml_integration_analysis.md);
+previous FMA microbenchmark ratios do not apply to the new, unmeasured profile.

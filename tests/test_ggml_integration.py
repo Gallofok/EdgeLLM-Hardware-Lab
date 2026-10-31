@@ -194,6 +194,39 @@ class EvidenceTests(unittest.TestCase):
                     model=True,
                 )
 
+    def test_recorded_physical_evidence_and_privacy(self):
+        import re
+
+        from scripts.integration.report import report
+        from scripts.pi.common import ROOT, sha256
+
+        source = ROOT / "results/integration/ggml-20261031"
+        with tempfile.TemporaryDirectory() as d:
+            summary = report(source, Path(d))
+        self.assertEqual(summary["data_kind"], "real")
+        self.assertEqual(summary["model"]["max_abs_error"], 0)
+        self.assertEqual(summary["fma_prototype_diagnostic"]["status"], "numerically_rejected")
+        m = json.loads((source / "manifest.json").read_text())
+        original = json.loads((ROOT / "results/quantized/neon-20261031/manifest.json").read_text())
+        self.assertEqual(m["original_libraries_sha256"], original["upstream_libraries_sha256"])
+        review = json.loads((source / "SOURCE.json").read_text())
+        self.assertEqual(sha256(source / "manifest.json"), review["original_manifest_sha256"])
+        self.assertIs(review["retained_capture_bytes_changed"], False)
+        expected = set(m["files"]) | {"manifest.json", "SOURCE.json"}
+        self.assertEqual(
+            {p.relative_to(source).as_posix() for p in source.rglob("*") if p.is_file()}, expected
+        )
+        for name in expected:
+            text = (source / name).read_bytes().decode("utf8")
+            self.assertIsNone(
+                re.search(
+                    r"/home/|/Users/|BEGIN .*PRIVATE KEY|"
+                    r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])",
+                    text,
+                ),
+                name,
+            )
+
     def test_complete_fixture(self):
         self.assertEqual(validate_graph(graph_fixture(), True)["graph_executions"], 90)
         self.assertEqual(validate_model(model_fixture(), True)["greedy_matches"], 36)

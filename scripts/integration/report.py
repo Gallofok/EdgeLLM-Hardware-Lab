@@ -81,6 +81,16 @@ def report(source, destination):
         if fixture
         else "Physical Raspberry Pi 3 — numerical feasibility"
     )
+    if rejection:
+        diagnostic_text = (
+            f"Prototype diagnostic: **{rejection['status']}**. "
+            f"Maximum logit absolute difference: {rejection['max_abs_error']:.9g}; "
+            f"maximum error / original tolerance: {rejection['max_bound_fraction']:.9g}. "
+            "This diagnostic is separate from the compatible model gate. A numerical "
+            "rejection remains a failed experiment and is never counted as a passing gate."
+        )
+    else:
+        diagnostic_text = "No prototype diagnostic is included in this dataset."
     text = f"""# GGML row4 integration correctness
 
 {label}. No inference throughput or speedup is measured in this experiment.
@@ -107,13 +117,14 @@ Full allowlisted environment, software versions and binary/model hashes are in t
 | Maximum logit error / predeclared tolerance | {model["max_bound_fraction"]:.9g} |
 | Matching greedy token decisions | {model["greedy_matches"]} |
 
-The independent diagnostic of the unchanged FMA prototype is recorded as:
-`{json.dumps(rejection, sort_keys=True)}`. It is retained as a failed experiment,
-and is never counted as a passing model gate. The compatible integration retains
-the upstream even/odd block accumulation and separate FP32 multiply/add order;
+{diagnostic_text}
+
+The compatible integration retains the upstream even/odd block accumulation and
+separate FP32 multiply/add order;
 the prior FMA microbenchmark ratios do not apply to this new profile.
 
-Graph results independently satisfy the decoded FP64 oracle. Candidate dispatch
+The 45 enabled graph executions match their controls byte-for-byte. Both paths
+independently satisfy the decoded FP64 oracle. Candidate dispatch
 counters prove execution and exact row coverage; width and padded-weight guards
 prove fallback. Tests include Q8 views, F32-to-Q8 workspace, row tails, batch
 broadcasting and padded outputs. The compile option and runtime switch default
@@ -132,8 +143,8 @@ raw throttle flags: {summary["throttled_raw"]}. Peak child RSS:
 {summary["peak_process_rss_mb"]} MiB (process lifecycle, including initialization).
 Graph and compatible-model exit codes are zero. The diagnostic prototype exits1
 only if its explicit numerical gate rejects it. No timeout or interruption
-is recorded. Recorded
-cgroup OOM-kill deltas: {summary.get("oom_kill_cgroup_deltas")}; null means unavailable,
+is recorded. Recorded cgroup OOM-kill deltas:
+{json.dumps(summary["oom_kill_cgroup_deltas"])}; null means unavailable,
 and cgroup evidence cannot attribute a kill to this process.
 Null sensor fields and reasons remain in raw CSV. Sampling cannot exclude brief
 throttle events. OOM attribution is limited to recorded process/cgroup evidence.

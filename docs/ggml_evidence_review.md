@@ -40,3 +40,11 @@ they cannot rule out brief events. Cgroup OOM evidence cannot attribute a kill
 to one process. The original baseline engine is kept unchanged, with library
 hashes checked before and after collection. Both numerical modes use the same
 isolated instrumented engine; no original-vs-candidate inference timing is claimed.
+
+For `results/integration/ggml-20261031`, the reviewed release has nine raw files,
+one unchanged capture manifest, and a new SOURCE record. The ten original
+capture files total 84,003 bytes and match the private originals exactly. A
+field review and byte scan found no prohibited identifier/path/key material.
+The release explicitly includes the rejected prototype row and ordinary exit 1;
+it is not omitted or converted into a passing numerical result. Private hashes
+also preserve the earlier loader-preflight and direct-integration failure records.
