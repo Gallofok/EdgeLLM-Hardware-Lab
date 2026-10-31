@@ -2,6 +2,7 @@
 """Order-balanced official llama-bench comparison; audit only outside formal runs."""
 
 import argparse
+import itertools
 import json
 import os
 import subprocess
@@ -22,7 +23,15 @@ from scripts.quantized.neon_run import environment, library_hashes
 from scripts.quantized.run import fixture_process
 
 
-def plan():
+def plan(ablation=False):
+    if ablation:
+        return [
+            dict(id=f"s{s}-t{t}", session=s, threads=t, order=list(order))
+            for s, order in enumerate(
+                itertools.permutations(("original", "integrated_off", "compatible"))
+            )
+            for t in ((1, 4) if s % 2 == 0 else (4, 1))
+        ]
     return [
         dict(
             id=f"s{s}-t{t}",
@@ -33,6 +42,20 @@ def plan():
         for s in range(4)
         for t in ((1, 2, 4) if s % 2 == 0 else (4, 2, 1))
     ]
+
+
+def protocol(ablation=False):
+    return dict(
+        sessions=6 if ablation else 4,
+        repetitions=3,
+        prompt=128,
+        gen=16,
+        depth=0,
+        threads=[1, 4] if ablation else [1, 2, 4],
+        warmup=True,
+        audit_formal=False,
+        random_tokens="Pinned official harness, fresh process default C RNG seed1",
+    )
 
 
 def parse_bench(path, pin, threads, repetitions, prompt=128, gen=16, fixture=False):
@@ -74,7 +97,7 @@ def hashes(build):
     }
 
 
-def execute(output, build, fixture=False):
+def execute(output, build, fixture=False, ablation=False):
     output, build = Path(output).resolve(), Path(build).resolve()
     output.mkdir(parents=True, exist_ok=False)
     (output / "raw").mkdir()
@@ -83,7 +106,7 @@ def execute(output, build, fixture=False):
         private.mkdir(parents=True, exist_ok=False)
     pin = json.loads((ROOT / "config/versions.json").read_text())
     m = dict(
-        schema=1,
+        schema=2 if ablation else 1,
         data_kind="fixture" if fixture else "real",
         status="running",
         started_at=utc_now(),
@@ -91,17 +114,7 @@ def execute(output, build, fixture=False):
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
         versions=pin,
-        protocol=dict(
-            sessions=4,
-            repetitions=3,
-            prompt=128,
-            gen=16,
-            depth=0,
-            threads=[1, 2, 4],
-            warmup=True,
-            audit_formal=False,
-            random_tokens="Pinned official harness, fresh process default C RNG seed1",
-        ),
+        protocol=protocol(ablation),
         pairs=[],
         gates=[],
     )
@@ -118,7 +131,7 @@ def execute(output, build, fixture=False):
         )
         case = dict(threads=threads, prompt=prompt, gen=gen, depth=0, repetitions=reps)
         command = bench_command(case, pin)
-        command[0] = str(binaries(build)[variant])
+        command[0] = str(binaries(build)["compatible" if variant == "integrated_off" else variant])
         if audit:
             command.append("--no-warmup")
         record = dict(
@@ -129,12 +142,15 @@ def execute(output, build, fixture=False):
             command=["<" + variant + "-build>/llama-bench", *command[1:]],
             audit=audit,
         )
+        if ablation:
+            record["runtime_enabled"] = variant == "compatible"
+            record["executable_sha256"] = None if fixture else sha256(Path(command[0]))
         if fixture:
             data = []
             for phase in ("prefill", "decode"):
                 item = json.loads((ROOT / f"tests/fixtures/{phase}-t{threads}.json").read_text())[0]
-                if variant == "compatible":
-                    item["samples_ns"] = [round(v * 1.05) for v in item["samples_ns"]]
+                factor = {"original": 1, "integrated_off": 1.01, "compatible": 1.05}[variant]
+                item["samples_ns"] = [round(v * factor) for v in item["samples_ns"]]
                 import statistics
 
                 item["samples_ts"] = [
@@ -183,15 +199,26 @@ def execute(output, build, fixture=False):
                 for s in lines
                 if s.startswith("EDGELLM_AUDIT ")
             ]
-            if (
-                len(proof) != 1
-                or not proof[0]["enabled"]
-                or not proof[0]["audit"]
-                or proof[0]["handled"] <= 0
-                or proof[0]["rows"] <= 0
-                or not 0 < proof[0]["thread_mask"] < (1 << threads)
-            ):
-                raise ValueError("Candidate execution proof missing")
+            if len(proof) != 1 or proof[0]["audit"] is not True:
+                raise ValueError("Execution proof missing")
+            evidence = proof[0]
+            if variant == "compatible":
+                valid = (
+                    evidence["enabled"] is True
+                    and evidence["handled"] > 0
+                    and evidence["rows"] > 0
+                    and 0 < evidence["thread_mask"] < (1 << threads)
+                )
+            else:
+                valid = (
+                    evidence["enabled"] is False
+                    and evidence["handled"] == 0
+                    and evidence["rows"] == 0
+                    and evidence["thread_mask"] == 0
+                    and evidence["disabled"] > 0
+                )
+            if not valid:
+                raise ValueError("ON/OFF dispatch proof differs")
             write_json(raw.with_suffix(".audit.json"), proof[0])
         return record
 
@@ -216,6 +243,14 @@ def execute(output, build, fixture=False):
             m["environment_before"] = environment(pin)
             m["conditions_before"] = operating_conditions()
             m["artifact_hashes"] = hashes(build)
+            if ablation:
+                prior = json.loads(
+                    (ROOT / "results/integration/e2e-20261031/manifest.json").read_text()
+                )
+                if m["artifact_hashes"] != prior["artifact_hashes"]:
+                    raise ValueError(
+                        "Control study must reuse the unchanged previous binaries/libraries"
+                    )
             m["source_files_sha256"] = {
                 p: sha256(ROOT / p)
                 for p in (
@@ -274,17 +309,23 @@ def execute(output, build, fixture=False):
             if process["returncode"] or process["timed_out"] or process["interrupted"]:
                 raise ValueError("Numerical gate process failed")
             m["numerical_gate"] = validate_model(native_rows(raw))
-            for variant in ("original", "compatible"):
+            for variant in (
+                ("original", "integrated_off", "compatible")
+                if ablation
+                else ("original", "compatible")
+            ):
                 m["gates"].append(collect("smoke-" + variant, variant, 1, 1, 32, 8))
-            for threads in (1, 2, 4):
-                for phase, prompt, gen in (("prefill", 128, 0), ("decode", 0, 16)):
-                    m["gates"].append(
-                        collect(
-                            f"proof-{phase}-t{threads}", "compatible", threads, 1, prompt, gen, True
+            for threads in m["protocol"]["threads"]:
+                for variant in ("compatible", "integrated_off") if ablation else ("compatible",):
+                    for phase, prompt, gen in (("prefill", 128, 0), ("decode", 0, 16)):
+                        identifier = f"proof-{phase}-t{threads}"
+                        if variant == "integrated_off":
+                            identifier += "-off"
+                        m["gates"].append(
+                            collect(identifier, variant, threads, 1, prompt, gen, True)
                         )
-                    )
             print("Numerical, smoke and actual-workload dispatch gates passed", flush=True)
-        for pair in plan():
+        for pair in plan(ablation):
             record = dict(pair, runs=[])
             m["pairs"].append(record)
             for variant in pair["order"]:
@@ -314,5 +355,8 @@ if __name__ == "__main__":
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--build", type=Path, default=ROOT / "build/ggml-row4")
     p.add_argument("--fixture", action="store_true")
+    p.add_argument(
+        "--ablation", action="store_true", help="Three-way same-binary ON/OFF control, threads 1/4"
+    )
     a = p.parse_args()
-    execute(a.output, a.build, a.fixture)
+    execute(a.output, a.build, a.fixture, a.ablation)
