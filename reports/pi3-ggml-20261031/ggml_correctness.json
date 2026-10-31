@@ -1,0 +1,43 @@
+{
+  "data_kind": "real",
+  "source_commit": "1cee2912bceaa807b01e3d76298ac6476cdcd707",
+  "fma_prototype_diagnostic": {
+    "status": "numerically_rejected",
+    "max_abs_error": 0.8446993827819824,
+    "max_bound_fraction": 580.3142168192232,
+    "rms_error": 0.15909274550714478,
+    "greedy_match": true,
+    "failed_prompt": 0,
+    "failed_threads": 1,
+    "failed_step": 0,
+    "captured_steps": 10
+  },
+  "graph": {
+    "graph_executions": 90,
+    "layouts": 15,
+    "max_abs_error": 0.0002485886216163635,
+    "max_bound_fraction": 0.008866572544964845
+  },
+  "model": {
+    "model_steps": 72,
+    "compared_steps": 36,
+    "max_abs_error": 0,
+    "max_bound_fraction": 0,
+    "max_rms_error": 0,
+    "greedy_matches": 36
+  },
+  "temperature_max_c": 48.85,
+  "frequencies_mhz": [
+    1200.0
+  ],
+  "throttled_raw": [
+    "0x20000"
+  ],
+  "peak_process_rss_mb": 135.2109375,
+  "sensor_samples": 23,
+  "oom_kill_cgroup_deltas": [
+    null,
+    null,
+    null
+  ]
+}

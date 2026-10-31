@@ -1,0 +1,33 @@
+{
+  "source_commit": "1cee2912bceaa807b01e3d76298ac6476cdcd707",
+  "working_tree_clean": true,
+  "source_files_sha256": {
+    "src/integration/q5_ggml_bridge.cpp": "ea87d67f427b34157593ef9f0aadcd31c0ccff369ab30f59a0f588946eef54ae",
+    "src/integration/q5_ggml_bridge.h": "cd932e48e91f96ed0d9b7276907d139fdb7a9b02a7295fe6d396301152ae75d7",
+    "src/kernels/quantized/q5_neon.cpp": "da58c92545f6558bfcd50266cfb8ca730bd3e5274ebb8834ef040571dbc7b576",
+    "src/kernels/quantized/q5_neon.h": "f0452219e270d68b0ddb68cbf23da5f34b111cf6be7b576e0a92b4bcf9aa1383",
+    "tests/integration/test_ggml_row4.cpp": "22738f9ee03a6833b3c27c1af4730374f9194f553df47c07fc51dcb0d4c203e1",
+    "tests/integration/test_model_row4.cpp": "35c7965ed389d6a133dfd6fd94050f4d0ec5f35d365a7a22b331509afede91d9",
+    "integrations/ggml/CMakeLists.txt": "d66716ae8f8cf087ed46967977f8b7ef1aaffe4b4a923c96780b3f79ad2c528b",
+    "integrations/ggml/row4.patch": "bb4cd87c18794333810d8941fae712d949710833bd8d90d2c4703c9294aa937a"
+  },
+  "omitted_private_artifacts_sha256": {
+    "graph.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "model.stderr.txt": "d4968228335fb54b616a8b6bb6281b4d71809f540c6f952058e05b4a1b75347f",
+    "prototype_fma.stderr.txt": "09ab822720ba7342c35b2f05a33f0ef23dff8bbb2b3e0fbeb0a6b21388703b86",
+    "test-ggml-row4.ldd.txt": "8652b76c6ce8fd0f07d94c19e1c51f31dbf136ef3fd7ca089540f63584d7500a",
+    "test-model-row4.ldd.txt": "220d2f9ddb2b23b5b5a223a7deda5bbfe884e3b950c72d4cd81d8be69f6e8393"
+  },
+  "prior_collection_manifests_sha256": {
+    "1": "e4af5c5228fe4ccb9bbb371714db02d2a51ddbc304e285d40865d2725a527c18",
+    "2": "bf817534c50c1e7fb27b5a01f512590867eb7aeca9d2bc21c5f459ad8ba5d755"
+  },
+  "data_kind": "real",
+  "original_manifest_sha256": "897df28aad203144550d3656a4aeec316cdc30de8bb3a580031ce2357b65a911",
+  "retained_capture_bytes_changed": false,
+  "prior_attempts": {
+    "1": "Preflight stopped before native collection: overstrict as-needed dependency expectation.",
+    "2": "Direct FMA model integration exceeded the unchanged numerical tolerance. Failed capture retained privately; instrumented rejection reproduced in this release."
+  },
+  "privacy_review": "docs/ggml_evidence_review.md"
+}

@@ -36,3 +36,7 @@ __pycache__/
 !/reports/pi3-profile-20261031/
 !/reports/pi3-q5-20261031/
 !/reports/pi3-q5-neon-20261031/
+
+/results/integration/*
+!/results/integration/ggml-20261031/
+!/reports/pi3-ggml-20261031/

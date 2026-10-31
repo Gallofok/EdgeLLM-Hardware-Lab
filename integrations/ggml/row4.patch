@@ -1,0 +1,61 @@
+--- a/ggml/src/ggml-cpu/ggml-cpu.c
++++ b/ggml/src/ggml-cpu/ggml-cpu.c
+@@ -1,3 +1,6 @@
++#if defined(GGML_EDGELLM_Q5_ROW4)
++#include "q5_ggml_bridge.h"
++#endif
+ #define _CRT_SECURE_NO_DEPRECATE // Disables "unsafe" warnings on Windows
+ #define _USE_MATH_DEFINES // For M_PI on MSVC
+ 
+@@ -1186,6 +1189,18 @@
+                         : (i11 * nb11 + i12 * nb12 + i13 * nb13));
+                 float * dst_col = (float*)((char*)dst->data + (i1 * nb1 + i2 * nb2 + i3 * nb3));
+ 
++#if defined(GGML_EDGELLM_Q5_ROW4)
++                // Retain GGML broadcasting, column strides and thread partitions.
++                const int64_t edgellm_rows = MIN(iir0 + blck_0, ir0_end) - iir0;
++                if (type == GGML_TYPE_Q5_0 && vec_dot_type == GGML_TYPE_Q8_0 &&
++                    num_rows_per_vec_dot == 1 &&
++                    edgellm_q5_try_row4(ne00, edgellm_rows,
++                        src0_row + iir0 * nb01, nb01, src1_col, tmp, params->ith)) {
++                    memcpy(&dst_col[iir0], tmp, edgellm_rows * sizeof(float));
++                    continue;
++                }
++#endif
++
+                 //for (int64_t ir0 = iir0; ir0 < iir0 + blck_0 && ir0 < ir0_end; ++ir0) {
+                 //    vec_dot(ne00, &dst_col[ir0], src0_row + ir0*nb01, src1_col);
+                 //}
+--- a/ggml/src/ggml-cpu/CMakeLists.txt
++++ b/ggml/src/ggml-cpu/CMakeLists.txt
+@@ -1,3 +1,7 @@
++option(GGML_EDGELLM_Q5_ROW4 "Experimental EdgeLLM Q5 row4 integration" OFF)
++if(GGML_EDGELLM_Q5_ROW4 AND (NOT CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$" OR GGML_CPU_ALL_VARIANTS))
++    message(FATAL_ERROR "EdgeLLM row4 requires one ARM64 CPU backend")
++endif()
+ function(ggml_add_cpu_backend_features cpu_name arch)
+     # The feature detection code is compiled as a separate target so that
+     # it can be built without the architecture flags
+@@ -20,6 +24,22 @@
+     endif()
+ 
+     ggml_add_backend_library(${GGML_CPU_NAME})
++
++    if(GGML_EDGELLM_Q5_ROW4)
++        if(NOT EXISTS "${EDGELLM_HARDWARE_LAB_ROOT}/src/integration/q5_ggml_bridge.cpp")
++            message(FATAL_ERROR "Set EDGELLM_HARDWARE_LAB_ROOT to the reviewed project source")
++        endif()
++        target_sources(${GGML_CPU_NAME} PRIVATE
++            "${EDGELLM_HARDWARE_LAB_ROOT}/src/integration/q5_ggml_bridge.cpp"
++            "${EDGELLM_HARDWARE_LAB_ROOT}/src/kernels/quantized/q5_neon.cpp")
++        target_include_directories(${GGML_CPU_NAME} PRIVATE
++            "${EDGELLM_HARDWARE_LAB_ROOT}/src/integration" "${EDGELLM_HARDWARE_LAB_ROOT}/src")
++        target_compile_definitions(${GGML_CPU_NAME} PRIVATE GGML_EDGELLM_Q5_ROW4=1 EDGELLM_HAS_Q5_NEON=1)
++        set_source_files_properties(
++            "${EDGELLM_HARDWARE_LAB_ROOT}/src/integration/q5_ggml_bridge.cpp"
++            "${EDGELLM_HARDWARE_LAB_ROOT}/src/kernels/quantized/q5_neon.cpp"
++            PROPERTIES COMPILE_OPTIONS "-march=armv8-a;-fno-fast-math;-ffp-contract=off")
++    endif()
+ 
+     list (APPEND GGML_CPU_SOURCES
+         ggml-cpu/ggml-cpu.c
