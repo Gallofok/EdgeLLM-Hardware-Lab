@@ -40,3 +40,6 @@ __pycache__/
 /results/integration/*
 !/results/integration/ggml-20261031/
 !/reports/pi3-ggml-20261031/
+
+!/results/integration/e2e-20261031/
+!/reports/pi3-e2e-20261031/

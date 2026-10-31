@@ -15,3 +15,4 @@
 # Unified diff context uses a mandatory space on otherwise blank lines.
 /integrations/ggml/*.patch whitespace=-blank-at-eol
 /results/integration/** -text whitespace=cr-at-eol
+/reports/pi3-e2e-20261031/*.csv -text whitespace=cr-at-eol

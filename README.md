@@ -2,8 +2,8 @@
 
 Hardware-aware LLM inference engineering: reproducible measurements first, kernel
 optimization later. **Phase 1 targets Raspberry Pi 3 ARM CPU only.** Phase 2 adds
-independent Scalar/NEON FP32 kernels and physical microbenchmarks. LLM inference
-still uses unmodified GGML. Intel, CUDA and Metal platforms are roadmap items only.
+independent Scalar/NEON kernels and physical microbenchmarks. The default LLM
+path uses unmodified GGML; an opt-in integration has now been evaluated. Intel, CUDA and Metal platforms are roadmap items only.
 
 ## Status
 
@@ -28,8 +28,8 @@ tests and a monitored native microbenchmark. See [build instructions and protoco
 The [physical scalar baseline](docs/scalar_gemv_baseline.md) includes all 15 batch
 samples and the inspected ARM64 disassembly.
 An [ARM64 NEON implementation and paired protocol](docs/neon_gemv.md) now compare
-both kernels on identical inputs with alternating execution order. INT4 and GGML
-integration remain upcoming; the microbenchmark does not establish an LLM speedup.
+both kernels on identical inputs with alternating execution order. INT4 remains
+upcoming; the microbenchmark does not establish an LLM speedup.
 
 The [physical paired report and chart](reports/pi3-neon-20261031/neon_gemv.md)
 record 54 pairs across nine native Pi processes. Mean paired Scalar/NEON latency
@@ -51,7 +51,7 @@ See the [real report](reports/pi3-profile-20261031/inference_profile.md),
 [checksummed evidence](results/profiling/pi3-20261031) and
 [source analysis / next target](docs/inference_profile_analysis.md).
 The next candidate is Q5_0×Q8_0 against upstream's existing ARM vectorized path;
-no custom quantized kernel or end-to-end improvement is claimed.
+no end-to-end improvement is claimed.
 The [Q5_0×Q8_0 correctness and upstream baseline](docs/q5_reference.md)
 now adds an independent packed decoder/oracle and shape-matched paired row-dot tests.
 Its deliberately scalar reference is a correctness baseline, not an optimized
@@ -184,4 +184,14 @@ The [physical GGML numerical report](reports/pi3-ggml-20261031/ggml_correctness.
 records 90 graph executions and 36 model-logit comparisons with zero difference
 for the compatibility profile. The direct FMA prototype fails the original model
 tolerance and remains in the evidence. See the [analysis](docs/ggml_integration_analysis.md);
-previous FMA microbenchmark ratios do not apply to the new, unmeasured profile.
+previous FMA microbenchmark ratios do not apply to the compatibility profile.
+
+The [physical end-to-end evaluation](docs/e2e_performance_analysis.md) is complete:
+24 formal processes and 144 native throughput repetitions. The compatible profile
+passes the numerical gate but reduces prefill throughput by 9.7–10.0% and decode
+throughput by 14.8–18.1% versus the original at 1/2/4 threads. All four pairs in
+each group are slower. It is rejected as a performance improvement for this
+workload; keep the integration default off and use the original engine.
+[Report and chart](reports/pi3-e2e-20261031/e2e.md),
+[raw evidence](results/integration/e2e-20261031) and
+[reproduction protocol](docs/e2e_performance.md) retain the negative result.
