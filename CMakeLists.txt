@@ -95,6 +95,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   target_compile_options(q5-path-bench PRIVATE -fno-fast-math -ffp-contract=off
     -Wall -Wextra -Wpedantic -Werror)
   set_property(TARGET q5-path-bench PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
+  add_executable(q5-two-block-bench benchmarks/q5_two_block_bench.cpp)
+  target_link_libraries(q5-two-block-bench PRIVATE edgellm_kernel_api ${CMAKE_DL_LIBS})
+  target_compile_options(q5-two-block-bench PRIVATE -fno-fast-math -ffp-contract=off
+    -Wall -Wextra -Wpedantic -Werror)
+  set_property(TARGET q5-two-block-bench PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
   add_executable(q5-bench benchmarks/q5_bench.cpp)
   target_link_libraries(q5-bench PRIVATE edgellm_q5_reference ${CMAKE_DL_LIBS})
   target_compile_options(q5-bench PRIVATE -fno-fast-math -ffp-contract=off -Wall -Wextra -Wpedantic -Werror)

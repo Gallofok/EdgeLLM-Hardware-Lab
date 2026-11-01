@@ -214,6 +214,8 @@ qualification. All 36 processes are retained; see the
 [report](reports/pi3-three-way-20261031/ablation.md) and
 [evidence](results/integration/three-way-20261031). No root cause is established.
 
-An unmeasured [two-block compatible loop candidate](docs/q5_two_block.md) is off by
-default. It matches the upstream bit pattern in the graph test on an ARM64
-development host; the model gate and all physical measurements remain outstanding.
+The off-by-default [two-block compatible loop candidate](docs/q5_two_block.md) passed
+its [physical kernel gate](docs/q5_two_block_analysis.md): 3.0–13.0% lower latency
+than the original on all six primary synthetic shapes, with output bytes matching
+the original. It loses at one row per call. The model-logit gate and end-to-end
+measurement remain outstanding, so no LLM speedup is claimed.
