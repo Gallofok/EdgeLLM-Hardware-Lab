@@ -213,3 +213,7 @@ hit a real under-voltage event, so that row's B/A and C/B values carry a documen
 qualification. All 36 processes are retained; see the
 [report](reports/pi3-three-way-20261031/ablation.md) and
 [evidence](results/integration/three-way-20261031). No root cause is established.
+
+An unmeasured [two-block compatible loop candidate](docs/q5_two_block.md) is off by
+default. It matches the upstream bit pattern in the graph test on an ARM64
+development host; the model gate and all physical measurements remain outstanding.
