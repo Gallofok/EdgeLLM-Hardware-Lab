@@ -58,3 +58,28 @@ instruction by instruction.
 5. Run a fresh, order-balanced end-to-end comparison on a stable power supply.
 
 A failure at any gate is a valid result and stays published.
+
+## Physical kernel protocol
+
+`q5-two-block-bench` follows the [path protocol](q5_path_profile.md) with three
+variants in three isolated loader namespaces: the original dot, the measured
+compatible bridge and this candidate. Eight shapes run in three processes each,
+giving 24 formal processes, 144 matched triplets and 432 timed batches, after five
+excluded tail smoke processes. Every process checks the decoded FP64 oracle, bitwise
+equality of both bridges with the original, integrated dot equality, library identity
+and audited dispatch.
+
+The acceptance rule was committed before measurement: the mean original/candidate
+latency ratio must exceed 1 on all six chunk-16 shapes. Chunk-1 and chunk-4 are
+diagnostics outside the rule. The original and compatible libraries must match the
+three-way capture hashes.
+
+```bash
+cmake -S . -B build/two-block-bench -DCMAKE_BUILD_TYPE=Release
+cmake --build build/two-block-bench --target q5-two-block-bench --parallel 1
+python3 scripts/quantized/two_block_profile.py collect \
+  --artifacts PREVIOUS_PROJECT_CHECKOUT --candidate build/ggml-two-block/bin \
+  --binary build/two-block-bench/q5-two-block-bench --output .state/two-block-capture
+python3 scripts/quantized/two_block_profile.py report \
+  --input .state/two-block-capture --output .state/two-block-report
+```
