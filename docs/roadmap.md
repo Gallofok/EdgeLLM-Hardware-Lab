@@ -43,6 +43,7 @@ not establish that it passed.
 - [x] Build a Q5_0×Q8_0 correctness and shape-matched benchmark against upstream ARM kernels.
 - [x] Develop a quantized ARM candidate and compare it against the unchanged upstream baseline.
 - [x] Validate opt-in GGML layout/thread/model numerics with an upstream-order compatibility profile.
+- [x] Publish the same-binary three-way control with its under-voltage qualification.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [x] Evaluate GGML CPU integration with measured end-to-end impact; reject the slower compatible profile for this workload.
 
@@ -76,3 +77,5 @@ profile now has a [physical end-to-end result](e2e_performance_analysis.md):
 9.7–10.0% lower prefill throughput and 14.8–18.1% lower decode throughput.
 Correctness passed, performance acceptance failed, and defaults remain off.
 No further tuning is included in this milestone.
+The [same-binary three-way control](three_way_control_analysis.md) then placed the
+loss on the enabled path, not the disabled build, with one qualified decode row.

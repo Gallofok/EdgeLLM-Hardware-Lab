@@ -17,3 +17,4 @@
 /results/integration/** -text whitespace=cr-at-eol
 /reports/pi3-e2e-20261031/*.csv -text whitespace=cr-at-eol
 /reports/pi3-q5-path-profile-20261031/*.csv -text whitespace=cr-at-eol
+/reports/pi3-three-way-20261031/*.csv -text whitespace=cr-at-eol

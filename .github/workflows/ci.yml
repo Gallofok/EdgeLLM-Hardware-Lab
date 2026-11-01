@@ -57,6 +57,7 @@ jobs:
           python scripts/quantized/path_profile.py report --input results/quantized/path-profile-20261031 --output build/verified-reports/q5-path-profile
           python scripts/integration/report.py --input results/integration/ggml-20261031 --reports build/verified-reports/ggml
           python scripts/integration/perf_report.py --input results/integration/e2e-20261031 --reports build/verified-reports/e2e
+          python scripts/integration/ablation_report.py --input results/integration/three-way-20261031 --reports build/verified-reports/three-way
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

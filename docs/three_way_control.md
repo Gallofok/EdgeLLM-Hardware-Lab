@@ -1,5 +1,7 @@
 # Three-way same-binary inference control
 
+The [physical result and analysis](three_way_control_analysis.md) are published.
+
 This bounded follow-up localizes the regression in the previous
 [end-to-end study](e2e_performance_analysis.md). It changes no C++ kernel,
 engine patch, tolerance, compiler flag or installed binary.
