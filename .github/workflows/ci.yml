@@ -59,6 +59,7 @@ jobs:
           python scripts/integration/perf_report.py --input results/integration/e2e-20261031 --reports build/verified-reports/e2e
           python scripts/integration/ablation_report.py --input results/integration/three-way-20261031 --reports build/verified-reports/three-way
           python scripts/quantized/two_block_profile.py report --input results/quantized/two-block-20261101 --output build/verified-reports/q5-two-block
+          python scripts/quantized/two_block_model_gate.py report --input results/quantized/two-block-model-20261101
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

@@ -217,5 +217,5 @@ qualification. All 36 processes are retained; see the
 The off-by-default [two-block compatible loop candidate](docs/q5_two_block.md) passed
 its [physical kernel gate](docs/q5_two_block_analysis.md): 3.0–13.0% lower latency
 than the original on all six primary synthetic shapes, with output bytes matching
-the original. It loses at one row per call. The model-logit gate and end-to-end
-measurement remain outstanding, so no LLM speedup is claimed.
+the original. It loses at one row per call. It also passed the model-logit gate with
+zero difference. End-to-end measurement remains outstanding, so no LLM speedup is claimed.
