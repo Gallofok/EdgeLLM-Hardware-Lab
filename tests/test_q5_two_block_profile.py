@@ -6,6 +6,7 @@ import re
 import unittest
 
 from scripts.pi.common import ROOT, sha256
+from scripts.quantized import two_block_model_gate
 from scripts.quantized.two_block_profile import (
     GATES,
     KINDS,
@@ -98,3 +99,24 @@ class TwoBlockProfileTests(unittest.TestCase):
         )
         for name in expected:
             self.assertIsNone(re.search(pattern, (source / name).read_bytes().decode("utf8")), name)
+
+    def test_recorded_model_gate_uses_the_measured_library(self):
+        source = ROOT / "results/quantized/two-block-model-20261101"
+        if not source.exists():
+            self.skipTest("Physical release not present in this source checkout")
+        manifest, summary = two_block_model_gate.replay(source)
+        gate_result = summary["numerical_gate"]
+        self.assertEqual(gate_result["compared_steps"], 36)
+        self.assertEqual(gate_result["greedy_matches"], 36)
+        self.assertEqual(gate_result["max_abs_error"], 0)
+        kernel = json.loads(two_block_model_gate.KERNEL_CAPTURE.read_text())
+        for name, digest in manifest["libraries_sha256"].items():
+            self.assertEqual(digest, kernel["libraries_sha256"]["candidate/" + name])
+        review = json.loads((source / "SOURCE.json").read_text())
+        self.assertEqual(sha256(source / "manifest.json"), review["original_manifest_sha256"])
+        expected = set(manifest["files"]) | {"manifest.json", "SOURCE.json"}
+        self.assertEqual(
+            {p.relative_to(source).as_posix() for p in source.rglob("*") if p.is_file()}, expected
+        )
+        for name in expected:
+            self.assertNotIn(b"/home/", (source / name).read_bytes())

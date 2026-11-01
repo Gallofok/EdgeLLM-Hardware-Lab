@@ -35,7 +35,7 @@ loop assumes 18 blocks, which the bridge's width-576 check already guarantees.
 On an ARM64 development host, not a Pi, all 90 graph records matched the disabled
 upstream path bit for bit, and 33 of them exercised the bridge. Three deliberate
 mutations each failed that test: one shared accumulator, a changed reduction, and
-a scaled product. The model-logit gate has not been run for this candidate. CI
+a scaled product. The [model-logit gate](q5_two_block_analysis.md#model-logit-gate) has since passed. CI
 repeats the graph test under ARM64 emulation.
 
 ## Compiled-code caution

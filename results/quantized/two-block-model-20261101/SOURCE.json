@@ -1,0 +1,12 @@
+{
+  "source_commit": "e8d6f759373fdcb33e9e1501b5e3a178b7c5ff82",
+  "working_tree_clean": true,
+  "data_kind": "real",
+  "original_manifest_sha256": "9f582132a53c9b7019e7472469e1c80b110c9cacfdc337f3c6782c8c63ca91fa",
+  "retained_capture_bytes_changed": false,
+  "private_artifact_hashes": {
+    "ldd.txt": "e3ccc3114a13a62fb26061c96c310e0354c6760d1cd156cf74d3f4c290ad444d",
+    "numerical.stderr.txt": "d4968228335fb54b616a8b6bb6281b4d71809f540c6f952058e05b4a1b75347f"
+  },
+  "notice": "Native numerical, process, sensor and manifest bytes are unchanged. Stderr and loader paths remain private."
+}

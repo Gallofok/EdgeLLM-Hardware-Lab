@@ -4,8 +4,8 @@ The candidate beat the original ARM dot on all six primary shapes, which passes 
 acceptance rule committed before measurement. It also reversed the compatible
 profile's loss while matching the original output bytes on every tested input.
 **This is a kernel result on synthetic packed inputs, not an LLM speedup.** The
-model-logit gate and end-to-end measurement remain outstanding, and integration
-defaults stay off.
+candidate has since passed the model-logit gate, but end-to-end measurement remains
+outstanding, and integration defaults stay off.
 
 ## Same-input measurements
 
@@ -70,10 +70,26 @@ Allocation, activation quantization, graph scheduling and threading are absent, 
 ratios cannot be multiplied into token rates. The bitwise checks cover the tested
 inputs; they do not replace the model gate.
 
-## Next gates
+## Model-logit gate
 
-1. Run the unchanged model-logit gate on the candidate build.
-2. Run a fresh order-balanced end-to-end comparison on a stable supply.
+The unchanged harness and tolerances ran on the exact measured library, which the
+runner verified by hash, on 2026-11-01 from clean source
+`e8d6f75`. All 36 enabled steps covering 1,769,472 logits had zero maximum
+difference from the disabled path, with 36 matching greedy tokens. Both prompts ran
+at 1 and 4 threads, and audit counters confirmed the candidate executed on every
+enabled step. The 15 sensor samples peaked at 50.464 C with only the historical flag
+`0x70000`.
+
+This compares the candidate with the disabled path in one build, as the earlier
+gate did. It covers two prompts and nine steps each, and is neither a model-quality
+result nor a proof of bitwise equality for all inputs or compilers. See the
+[evidence](../results/quantized/two-block-model-20261101/SOURCE.json).
+
+## Next gate
+
+Run a fresh order-balanced end-to-end comparison on a stable supply. The kernel win
+does not predict token throughput: this candidate has not yet run in timed inference,
+and it loses at one row per call.
 
 Stderr and address-bearing disassembly stay private, with hashes in the
 [retention review](../results/quantized/two-block-20261101/SOURCE.json). See the

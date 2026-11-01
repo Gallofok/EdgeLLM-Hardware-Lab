@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "experiment": "q5_two_block_model_gate",
+  "data_kind": "real",
+  "status": "completed",
+  "started_at": "2026-11-01T07:13:59.750639+00:00",
+  "source_commit": "e8d6f759373fdcb33e9e1501b5e3a178b7c5ff82",
+  "engine_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+  "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d",
+  "libraries_sha256": {
+    "libggml-cpu.so": "a0c37d83d80385f95b0e059ef6652805a4586c2dbd0dfc54fe9a604fa919b0ee",
+    "libggml-base.so": "1c61ef33309da3f1bf9aa95f11ff63b7cbe717b4b49b191bc52b7414d17882b0"
+  },
+  "binary_sha256": "61448373c93dd3328f5d7f7d686b79bd17af6081ec71f569f139a36f536995eb",
+  "harness_sha256": "35c7965ed389d6a133dfd6fd94050f4d0ec5f35d365a7a22b331509afede91d9",
+  "kernel_capture_manifest_sha256": "b272263a2a5c19b17e8c4d5ad8754942b44b9c7604e794fe9e4123e3632240f8",
+  "conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "numerical_gate": {
+    "model_steps": 72,
+    "compared_steps": 36,
+    "max_abs_error": 0,
+    "max_bound_fraction": 0,
+    "max_rms_error": 0,
+    "greedy_matches": 36
+  },
+  "conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "finished_at": "2026-11-01T07:14:13.966753+00:00",
+  "files": {
+    "raw/numerical.jsonl": "db061265630da40327927cbfa392e34b419683fdb4093a41928690fabaa894a3",
+    "raw/numerical.metrics.csv": "157b6197826292a17eac74a18f4252ab133f2a3895c109d06fdfc3e16194abd7",
+    "raw/numerical.process.json": "49e4bb85c2b7f4a7b3f7c645dd07c2a826cb51939046ffdd39c92be5f788491c"
+  },
+  "private_sha256": {
+    "ldd.txt": "e3ccc3114a13a62fb26061c96c310e0354c6760d1cd156cf74d3f4c290ad444d",
+    "numerical.stderr.txt": "d4968228335fb54b616a8b6bb6281b4d71809f540c6f952058e05b4a1b75347f"
+  }
+}
