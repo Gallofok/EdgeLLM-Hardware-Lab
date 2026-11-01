@@ -44,6 +44,7 @@ not establish that it passed.
 - [x] Develop a quantized ARM candidate and compare it against the unchanged upstream baseline.
 - [x] Validate opt-in GGML layout/thread/model numerics with an upstream-order compatibility profile.
 - [x] Publish the same-binary three-way control with its under-voltage qualification.
+- [ ] Evaluate the [two-block compatible loop candidate](q5_two_block.md) through its physical and model gates.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [x] Evaluate GGML CPU integration with measured end-to-end impact; reject the slower compatible profile for this workload.
 
