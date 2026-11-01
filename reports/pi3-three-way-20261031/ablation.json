@@ -1,0 +1,506 @@
+{
+  "data_kind": "real",
+  "source_commit": "4a22e177b098bd614f0503f16112a38339d10886",
+  "groups": [
+    {
+      "phase": "prefill",
+      "threads": 1,
+      "pairs": [
+        {
+          "pair": "s0-t1",
+          "order": [
+            "original",
+            "integrated_off",
+            "compatible"
+          ],
+          "original": 7.995110893487688,
+          "compatible": 7.200687738293794,
+          "ratio": 0.900636380685979,
+          "integrated_off": 7.974498476880937,
+          "build_control_ratio": 0.9974218723315595,
+          "enabled_effect_ratio": 0.9029643380294677
+        },
+        {
+          "pair": "s1-t1",
+          "order": [
+            "original",
+            "compatible",
+            "integrated_off"
+          ],
+          "original": 7.995527185408286,
+          "compatible": 7.200286234243858,
+          "ratio": 0.9005392724302494,
+          "integrated_off": 7.973732355355927,
+          "build_control_ratio": 0.9972741222002053,
+          "enabled_effect_ratio": 0.9030007421063553
+        },
+        {
+          "pair": "s2-t1",
+          "order": [
+            "integrated_off",
+            "original",
+            "compatible"
+          ],
+          "original": 7.9888041044072144,
+          "compatible": 7.20157654364137,
+          "ratio": 0.9014586475675939,
+          "integrated_off": 7.973662066115361,
+          "build_control_ratio": 0.9981045926156207,
+          "enabled_effect_ratio": 0.903170523647469
+        },
+        {
+          "pair": "s3-t1",
+          "order": [
+            "integrated_off",
+            "compatible",
+            "original"
+          ],
+          "original": 7.992832155965955,
+          "compatible": 7.201528929540894,
+          "ratio": 0.9009983931872731,
+          "integrated_off": 7.972601719083456,
+          "build_control_ratio": 0.9974689275981607,
+          "enabled_effect_ratio": 0.9032846720918092
+        },
+        {
+          "pair": "s4-t1",
+          "order": [
+            "compatible",
+            "original",
+            "integrated_off"
+          ],
+          "original": 7.99522282205237,
+          "compatible": 7.200610997104535,
+          "ratio": 0.9006141739094322,
+          "integrated_off": 7.980638184279848,
+          "build_control_ratio": 0.9981758309809334,
+          "enabled_effect_ratio": 0.9022600487374807
+        },
+        {
+          "pair": "s5-t1",
+          "order": [
+            "compatible",
+            "integrated_off",
+            "original"
+          ],
+          "original": 7.988719709058551,
+          "compatible": 7.199491415135417,
+          "ratio": 0.9012071617648302,
+          "integrated_off": 7.9716335574202635,
+          "build_control_ratio": 0.9978612152809776,
+          "enabled_effect_ratio": 0.9031387811891942
+        }
+      ],
+      "original_mean_ts": 7.992702811730011,
+      "original_process_sd": 0.0032002547418159147,
+      "compatible_mean_ts": 7.200696976326645,
+      "compatible_process_sd": 0.0007868099419917216,
+      "paired_ratio_mean": 0.9009090049242263,
+      "paired_ratio_sd": 0.00037334868909487254,
+      "paired_ratio_min": 0.9005392724302494,
+      "paired_ratio_max": 0.9014586475675939,
+      "change_pct": -9.909099507577368,
+      "integrated_off_mean_ts": 7.974461059855965,
+      "integrated_off_process_sd": 0.003186834967801255,
+      "build_control_ratio_mean": 0.9977177601679096,
+      "build_control_ratio_sd": 0.00038113763594490696,
+      "build_control_ratio_min": 0.9972741222002053,
+      "build_control_ratio_max": 0.9981758309809334,
+      "build_control_ratio_change_pct": -0.22822398320904158,
+      "enabled_effect_ratio_mean": 0.9029698509669627,
+      "enabled_effect_ratio_sd": 0.00036680325660626924,
+      "enabled_effect_ratio_min": 0.9022600487374807,
+      "enabled_effect_ratio_max": 0.9032846720918092,
+      "enabled_effect_ratio_change_pct": -9.70301490330373
+    },
+    {
+      "phase": "prefill",
+      "threads": 4,
+      "pairs": [
+        {
+          "pair": "s0-t4",
+          "order": [
+            "original",
+            "integrated_off",
+            "compatible"
+          ],
+          "original": 30.663486118301954,
+          "compatible": 27.653588315613913,
+          "ratio": 0.9018409781889888,
+          "integrated_off": 30.509195395469323,
+          "build_control_ratio": 0.9949682589175488,
+          "enabled_effect_ratio": 0.9064017571476345
+        },
+        {
+          "pair": "s1-t4",
+          "order": [
+            "original",
+            "compatible",
+            "integrated_off"
+          ],
+          "original": 30.688482204016648,
+          "compatible": 27.681131795595363,
+          "ratio": 0.9020039378803925,
+          "integrated_off": 30.533011370431208,
+          "build_control_ratio": 0.9949339028058842,
+          "enabled_effect_ratio": 0.9065968456161627
+        },
+        {
+          "pair": "s2-t4",
+          "order": [
+            "integrated_off",
+            "original",
+            "compatible"
+          ],
+          "original": 30.560583788238198,
+          "compatible": 27.638383151238152,
+          "ratio": 0.9043800780361824,
+          "integrated_off": 30.595873252919468,
+          "build_control_ratio": 1.0011547379109575,
+          "enabled_effect_ratio": 0.9033369606014069
+        },
+        {
+          "pair": "s3-t4",
+          "order": [
+            "integrated_off",
+            "compatible",
+            "original"
+          ],
+          "original": 30.699265591157726,
+          "compatible": 27.634590122696977,
+          "ratio": 0.900171049390072,
+          "integrated_off": 30.484746386016003,
+          "build_control_ratio": 0.9930122365792519,
+          "enabled_effect_ratio": 0.9065054953310534
+        },
+        {
+          "pair": "s4-t4",
+          "order": [
+            "compatible",
+            "original",
+            "integrated_off"
+          ],
+          "original": 30.6855937983703,
+          "compatible": 27.702346294495406,
+          "ratio": 0.902780193093955,
+          "integrated_off": 30.533924040146907,
+          "build_control_ratio": 0.9950572975963904,
+          "enabled_effect_ratio": 0.9072645316753766
+        },
+        {
+          "pair": "s5-t4",
+          "order": [
+            "compatible",
+            "integrated_off",
+            "original"
+          ],
+          "original": 30.633016043919216,
+          "compatible": 27.619641904481202,
+          "ratio": 0.9016298579572551,
+          "integrated_off": 30.596236249669822,
+          "build_control_ratio": 0.9987993413969861,
+          "enabled_effect_ratio": 0.9027137089379501
+        }
+      ],
+      "original_mean_ts": 30.655071257334008,
+      "original_process_sd": 0.051934921106473304,
+      "compatible_mean_ts": 27.654946930686837,
+      "compatible_process_sd": 0.031207037575497143,
+      "paired_ratio_mean": 0.902134349091141,
+      "paired_ratio_sd": 0.0013908661733662974,
+      "paired_ratio_min": 0.900171049390072,
+      "paired_ratio_max": 0.9043800780361824,
+      "change_pct": -9.786565090885901,
+      "integrated_off_mean_ts": 30.54216444910879,
+      "integrated_off_process_sd": 0.04548377926037442,
+      "build_control_ratio_mean": 0.9963209625345032,
+      "build_control_ratio_sd": 0.0030267475766857753,
+      "build_control_ratio_min": 0.9930122365792519,
+      "build_control_ratio_max": 1.0011547379109575,
+      "build_control_ratio_change_pct": -0.3679037465496804,
+      "enabled_effect_ratio_mean": 0.905469883218264,
+      "enabled_effect_ratio_sd": 0.0019275655294829826,
+      "enabled_effect_ratio_min": 0.9027137089379501,
+      "enabled_effect_ratio_max": 0.9072645316753766,
+      "enabled_effect_ratio_change_pct": -9.453011678173596
+    },
+    {
+      "phase": "decode",
+      "threads": 1,
+      "pairs": [
+        {
+          "pair": "s0-t1",
+          "order": [
+            "original",
+            "integrated_off",
+            "compatible"
+          ],
+          "original": 6.138121889699102,
+          "compatible": 5.020333575975447,
+          "ratio": 0.8178940832700782,
+          "integrated_off": 6.109208173401244,
+          "build_control_ratio": 0.9952894848265591,
+          "enabled_effect_ratio": 0.821765019865156
+        },
+        {
+          "pair": "s1-t1",
+          "order": [
+            "original",
+            "compatible",
+            "integrated_off"
+          ],
+          "original": 6.136387803031106,
+          "compatible": 5.013929990924783,
+          "ratio": 0.8170816695203198,
+          "integrated_off": 6.10978658178106,
+          "build_control_ratio": 0.9956650032390545,
+          "enabled_effect_ratio": 0.8206391375233888
+        },
+        {
+          "pair": "s2-t1",
+          "order": [
+            "integrated_off",
+            "original",
+            "compatible"
+          ],
+          "original": 6.118573312165582,
+          "compatible": 5.025993194233336,
+          "ratio": 0.8214322094074014,
+          "integrated_off": 6.113828327757529,
+          "build_control_ratio": 0.9992244949654165,
+          "enabled_effect_ratio": 0.8220697286207255
+        },
+        {
+          "pair": "s3-t1",
+          "order": [
+            "integrated_off",
+            "compatible",
+            "original"
+          ],
+          "original": 6.132736680824863,
+          "compatible": 5.01741106819023,
+          "ratio": 0.8181357409128776,
+          "integrated_off": 6.081902657682233,
+          "build_control_ratio": 0.9917110377000904,
+          "enabled_effect_ratio": 0.8249739186227503
+        },
+        {
+          "pair": "s4-t1",
+          "order": [
+            "compatible",
+            "original",
+            "integrated_off"
+          ],
+          "original": 6.134080681437155,
+          "compatible": 5.014192692990907,
+          "ratio": 0.8174318130775109,
+          "integrated_off": 6.121455309402801,
+          "build_control_ratio": 0.9979417662254492,
+          "enabled_effect_ratio": 0.8191177488936178
+        },
+        {
+          "pair": "s5-t1",
+          "order": [
+            "compatible",
+            "integrated_off",
+            "original"
+          ],
+          "original": 6.112116418615016,
+          "compatible": 5.021318833934263,
+          "ratio": 0.8215352081058817,
+          "integrated_off": 6.085899590355126,
+          "build_control_ratio": 0.9957106791716133,
+          "enabled_effect_ratio": 0.825074216126076
+        }
+      ],
+      "original_mean_ts": 6.12866946429547,
+      "original_process_sd": 0.010683447282873746,
+      "compatible_mean_ts": 5.0188632260414945,
+      "compatible_process_sd": 0.004632231332443183,
+      "paired_ratio_mean": 0.8189184540490115,
+      "paired_ratio_sd": 0.002020505972531371,
+      "paired_ratio_min": 0.8170816695203198,
+      "paired_ratio_max": 0.8215352081058817,
+      "change_pct": -18.108154595098846,
+      "integrated_off_mean_ts": 6.103680106729999,
+      "integrated_off_process_sd": 0.015982470574594905,
+      "build_control_ratio_mean": 0.9959237443546971,
+      "build_control_ratio_sd": 0.0025779407715836476,
+      "build_control_ratio_min": 0.9917110377000904,
+      "build_control_ratio_max": 0.9992244949654165,
+      "build_control_ratio_change_pct": -0.40762556453028953,
+      "enabled_effect_ratio_mean": 0.8222732949419524,
+      "enabled_effect_ratio_sd": 0.002369229911916343,
+      "enabled_effect_ratio_min": 0.8191177488936178,
+      "enabled_effect_ratio_max": 0.825074216126076,
+      "enabled_effect_ratio_change_pct": -17.772670505804754
+    },
+    {
+      "phase": "decode",
+      "threads": 4,
+      "pairs": [
+        {
+          "pair": "s0-t4",
+          "order": [
+            "original",
+            "integrated_off",
+            "compatible"
+          ],
+          "original": 16.41862809925498,
+          "compatible": 13.693201854841755,
+          "ratio": 0.8340040210462593,
+          "integrated_off": 16.23683569747486,
+          "build_control_ratio": 0.9889276740613687,
+          "enabled_effect_ratio": 0.8433417760685545
+        },
+        {
+          "pair": "s1-t4",
+          "order": [
+            "original",
+            "compatible",
+            "integrated_off"
+          ],
+          "original": 16.415722620113442,
+          "compatible": 13.704695866335255,
+          "ratio": 0.8348518175827064,
+          "integrated_off": 16.33769095471708,
+          "build_control_ratio": 0.9952465287576951,
+          "enabled_effect_ratio": 0.8388392156713176
+        },
+        {
+          "pair": "s2-t4",
+          "order": [
+            "integrated_off",
+            "original",
+            "compatible"
+          ],
+          "original": 16.472939867344138,
+          "compatible": 13.87618307169877,
+          "ratio": 0.8423622731244734,
+          "integrated_off": 16.227561795500662,
+          "build_control_ratio": 0.9851041724294817,
+          "enabled_effect_ratio": 0.8550996906723322
+        },
+        {
+          "pair": "s3-t4",
+          "order": [
+            "integrated_off",
+            "compatible",
+            "original"
+          ],
+          "original": 16.059731188027875,
+          "compatible": 13.905259912126935,
+          "ratio": 0.8658463674966712,
+          "integrated_off": 16.090230381419573,
+          "build_control_ratio": 1.0018991098315788,
+          "enabled_effect_ratio": 0.8642051470054919
+        },
+        {
+          "pair": "s4-t4",
+          "order": [
+            "compatible",
+            "original",
+            "integrated_off"
+          ],
+          "original": 16.299141751622123,
+          "compatible": 13.991838247206207,
+          "ratio": 0.8584401841780235,
+          "integrated_off": 10.746828927236287,
+          "build_control_ratio": 0.6593493750164324,
+          "enabled_effect_ratio": 1.3019504024806716
+        },
+        {
+          "pair": "s5-t4",
+          "order": [
+            "compatible",
+            "integrated_off",
+            "original"
+          ],
+          "original": 16.053455396003894,
+          "compatible": 13.698178676490523,
+          "ratio": 0.8532853730605774,
+          "integrated_off": 16.235595051868483,
+          "build_control_ratio": 1.0113458225267768,
+          "enabled_effect_ratio": 0.8437127578464739
+        }
+      ],
+      "original_mean_ts": 16.286603153727743,
+      "original_process_sd": 0.18698116261906905,
+      "compatible_mean_ts": 13.811559604783241,
+      "compatible_process_sd": 0.1294140482738735,
+      "paired_ratio_mean": 0.8481316727481185,
+      "paired_ratio_sd": 0.0130833291840128,
+      "paired_ratio_min": 0.8340040210462593,
+      "paired_ratio_max": 0.8658463674966712,
+      "change_pct": -15.186832725188149,
+      "integrated_off_mean_ts": 15.312457134702823,
+      "integrated_off_process_sd": 2.2380827696695587,
+      "build_control_ratio_mean": 0.9403121137705556,
+      "build_control_ratio_sd": 0.1379611522153794,
+      "build_control_ratio_min": 0.6593493750164324,
+      "build_control_ratio_max": 1.0113458225267768,
+      "build_control_ratio_change_pct": -5.968788622944443,
+      "enabled_effect_ratio_mean": 0.9245248316241403,
+      "enabled_effect_ratio_sd": 0.18513329286967978,
+      "enabled_effect_ratio_min": 0.8388392156713176,
+      "enabled_effect_ratio_max": 1.3019504024806716,
+      "enabled_effect_ratio_change_pct": -7.547516837585966
+    }
+  ],
+  "formal_processes": 36,
+  "formal_native_repetitions": 216,
+  "sensor_samples": 1796,
+  "max_temperature_c": 78.44,
+  "frequencies_mhz": [
+    1200.0
+  ],
+  "throttled_raw": [
+    "0x20000",
+    "0x70000",
+    "0x70005"
+  ],
+  "current_throttle_flags": [
+    "throttled_now",
+    "under_voltage_now"
+  ],
+  "missing_throttle_samples": 0,
+  "peak_child_rss_mb": 130.8125,
+  "oom_cgroup_deltas": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
+}

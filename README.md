@@ -204,3 +204,12 @@ assembly shows conditional even/odd accumulator selection in the compatible
 four-row loop, with no stack accesses or helper calls in that hot loop; it does
 not establish an instruction-level cause. See the
 [replayable report](reports/pi3-q5-path-profile-20261031/path_profile.md).
+
+The [same-binary three-way control](docs/three_way_control_analysis.md) places the
+loss on enabling the compatible path. Compiled in but OFF, throughput stays within
+0.23–0.41% of the original in the unaffected groups; ON in the identical executable
+costs 9.5–9.7% in prefill and 15.1–17.8% in decode. One four-thread decode process
+hit a real under-voltage event, so that row's B/A and C/B values carry a documented
+qualification. All 36 processes are retained; see the
+[report](reports/pi3-three-way-20261031/ablation.md) and
+[evidence](results/integration/three-way-20261031). No root cause is established.

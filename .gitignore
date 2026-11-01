@@ -46,3 +46,6 @@ __pycache__/
 
 !/results/quantized/path-profile-20261031/
 !/reports/pi3-q5-path-profile-20261031/
+
+!/results/integration/three-way-20261031/
+!/reports/pi3-three-way-20261031/
