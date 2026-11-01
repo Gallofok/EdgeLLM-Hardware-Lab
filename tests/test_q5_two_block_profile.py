@@ -1,9 +1,19 @@
 """Synthetic validator tests; none of these fixtures are physical measurements."""
 
 import copy
+import json
+import re
 import unittest
 
-from scripts.quantized.two_block_profile import GATES, KINDS, ORDERS, gate, native_summary
+from scripts.pi.common import ROOT, sha256
+from scripts.quantized.two_block_profile import (
+    GATES,
+    KINDS,
+    ORDERS,
+    gate,
+    native_summary,
+    replay,
+)
 
 
 def fixture():
@@ -61,3 +71,30 @@ class TwoBlockProfileTests(unittest.TestCase):
         self.assertFalse(gate([group(1.1)] * 5 + [group(1.0)]))
         with self.assertRaises(ValueError):
             gate([group(1.1)] * 5)
+
+    def test_recorded_physical_evidence_and_privacy(self):
+        source = ROOT / "results/quantized/two-block-20261101"
+        if not source.exists():
+            self.skipTest("Physical release not present in this source checkout")
+        manifest, summary, rows = replay(source)
+        self.assertTrue(summary["acceptance_passed"])
+        self.assertEqual(summary["formal_processes"], 24)
+        self.assertEqual(len(rows), 144)
+        prior = json.loads(
+            (ROOT / "results/integration/three-way-20261031/manifest.json").read_text()
+        )
+        for key, digest in manifest["libraries_sha256"].items():
+            if not key.startswith("candidate/"):
+                self.assertEqual(digest, prior["artifact_hashes"][key])
+        review = json.loads((source / "SOURCE.json").read_text())
+        self.assertEqual(sha256(source / "manifest.json"), review["original_manifest_sha256"])
+        self.assertIs(review["retained_capture_bytes_changed"], False)
+        expected = set(manifest["files"]) | {"manifest.json", "SOURCE.json"}
+        self.assertEqual(
+            {p.relative_to(source).as_posix() for p in source.rglob("*") if p.is_file()}, expected
+        )
+        pattern = (
+            r"/home/|/Users/|BEGIN .*PRIVATE KEY|" + r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])"
+        )
+        for name in expected:
+            self.assertIsNone(re.search(pattern, (source / name).read_bytes().decode("utf8")), name)

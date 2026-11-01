@@ -1,0 +1,60 @@
+{
+  "source_commit": "b15ccfbc4da31a4f0929efb7139e5a57d092099f",
+  "working_tree_clean": true,
+  "data_kind": "real",
+  "original_manifest_sha256": "b272263a2a5c19b17e8c4d5ad8754942b44b9c7604e794fe9e4123e3632240f8",
+  "retained_capture_bytes_changed": false,
+  "private_artifact_hashes": {
+    "s0-r1536-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r1536-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r192-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r192-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r576-v1-c1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r576-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r576-v1-c4.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r576-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r1536-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r1536-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r192-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r192-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r576-v1-c1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r576-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r576-v1-c4.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r576-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r1536-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r1536-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r192-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r192-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r576-v1-c1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r576-v1-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r576-v1-c4.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r576-v8-c16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke-r1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke-r17.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke-r2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke-r3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke-r5.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "private_disassembly_sha256": {
+    "baseline.txt": "8732083a8a3c6f5742cb1748712d77efc138dd214ce0b2ce23e7136ac91c7f26",
+    "candidate.txt": "1631a0d281ea8c440630173e62e370f11ed185470900a04639730c97ebc8f96d"
+  },
+  "compiled_four_row_loop": {
+    "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+    "baseline": {
+      "blocks_per_iteration": 1,
+      "instructions": 144,
+      "conditional_branches": 4,
+      "calls": 0,
+      "stack_accesses": 0
+    },
+    "candidate": {
+      "blocks_per_iteration": 2,
+      "instructions": 273,
+      "conditional_branches": 1,
+      "calls": 0,
+      "stack_accesses": 0
+    }
+  },
+  "notice": "Native stdout, process, sensor and manifest bytes are unchanged. Stderr and address-bearing disassembly remain private."
+}
