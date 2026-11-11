@@ -58,12 +58,20 @@ governor, clock, voltage, cooling or swap setting was changed.
 
 ## Interpretation and limits
 
-The split between phases is the main finding. The kernel study showed the candidate
-winning when many rows are processed per call and losing by about 7% at one row per
-call. Prefill of 128 tokens and single-token decode plausibly sit on opposite sides
-of that boundary, which would match the sign of both results. **This capture does not
-test that explanation**: it measures whole-process throughput and records no per-call
-shape counts.
+The split between phases is the main finding, and rows per call do not explain it.
+The audited proofs in this capture show the bridge handling exactly 16 weight rows
+per call in both phases at every thread count: 1,060,032 calls and 16,960,512 rows in
+prefill, 135,552 calls and 2,168,832 rows in decode. The kernel study's one-row-per-call
+loss therefore never occurs in this workload. An earlier revision of this document
+suggested that it might; that suggestion was wrong and is withdrawn.
+
+What does differ is how often each 16-row weight block is used. The engine applies
+a block to up to 16 activation vectors before moving on, so in pp128 each block is
+read 16 times in succession, while in single-token decode it is read once. One
+untested possibility is that the candidate's four-row interleaved loop gains when the
+weights are already cached and loses when they are streamed from memory; the kernel
+study's smaller margin on its largest shape points the same way. **Nothing here
+measures cache behaviour, and no cause is established.**
 
 Compared with the earlier compatible loop, which lost 9.7–10.0% in prefill and
 14.8–18.1% in decode, the candidate reverses the prefill loss and roughly halves the
@@ -87,7 +95,11 @@ which also hashes the private stderr, help and loader files.
 
 ## Next bounded question
 
-A dispatch that uses the candidate only for multi-row calls and leaves single-row
-calls on the original path could, in principle, keep the prefill gain without the
-decode loss. That is a new candidate needing its own predeclared gates; nothing here
-measures it.
+A dispatch that uses the candidate only when a weight block serves more than one
+activation vector, and leaves single-vector calls on the original path, could keep
+the prefill gain without the decode loss. Choosing by rows per call cannot, because
+every call has 16 rows. The bridge does not currently receive the vector count, so
+this needs a second engine patch as well as a new candidate, each with its own
+predeclared gates. Decode could then at best match the original, so an
+all-groups-faster rule could not be met and the acceptance rule would have to be
+restated before measurement. Nothing here measures such a dispatch.
