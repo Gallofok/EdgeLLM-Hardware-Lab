@@ -46,7 +46,8 @@ not establish that it passed.
 - [x] Publish the same-binary three-way control with its under-voltage qualification.
 - [x] Pass the two-block candidate's [physical kernel gate](q5_two_block_analysis.md).
 - [x] Pass the two-block candidate's model-logit gate with zero measured difference.
-- [ ] Pass the two-block candidate's end-to-end gate on a stable supply.
+- [x] Run the two-block candidate's [end-to-end gate](q5_two_block_e2e_analysis.md): rejected,
+  prefill faster and decode slower.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [x] Evaluate GGML CPU integration with measured end-to-end impact; reject the slower compatible profile for this workload.
 

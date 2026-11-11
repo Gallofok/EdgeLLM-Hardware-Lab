@@ -4,8 +4,9 @@ The candidate beat the original ARM dot on all six primary shapes, which passes 
 acceptance rule committed before measurement. It also reversed the compatible
 profile's loss while matching the original output bytes on every tested input.
 **This is a kernel result on synthetic packed inputs, not an LLM speedup.** The
-candidate has since passed the model-logit gate, but end-to-end measurement remains
-outstanding, and integration defaults stay off.
+candidate has since passed the model-logit gate, but its
+[end-to-end gate](q5_two_block_e2e_analysis.md) rejected it: prefill was faster and
+decode slower. Integration defaults stay off.
 
 ## Same-input measurements
 
@@ -87,9 +88,9 @@ result nor a proof of bitwise equality for all inputs or compilers. See the
 
 ## Next gate
 
-Run a fresh order-balanced end-to-end comparison on a stable supply. The kernel win
-does not predict token throughput: this candidate has not yet run in timed inference,
-and it loses at one row per call.
+The fresh order-balanced [end-to-end comparison](q5_two_block_e2e_analysis.md) has
+run and rejected the candidate. The kernel win did not predict token throughput:
+prefill improved, decode regressed.
 
 Stderr and address-bearing disassembly stay private, with hashes in the
 [retention review](../results/quantized/two-block-20261101/SOURCE.json). See the

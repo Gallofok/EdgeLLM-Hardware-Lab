@@ -24,7 +24,10 @@ or swap setting is changed.
 
 Only the benchmark driver target is built for this step; the measured libraries must
 not be rebuilt. The baseline checkout's original build and model are reached through
-ignored symlinks, so no measured file is copied or modified.
+ignored symlinks, so no measured file is copied or modified. The runner's preflight
+also needs the pinned engine checkout and setup record, which were linked the same
+way after a first attempt stopped at preflight before any process ran; see the
+[result](q5_two_block_e2e_analysis.md).
 
 ```bash
 cmake --build build/ggml-two-block --target edgellm-llama-bench --parallel 1
