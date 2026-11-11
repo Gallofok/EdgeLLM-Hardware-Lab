@@ -218,4 +218,11 @@ The off-by-default [two-block compatible loop candidate](docs/q5_two_block.md) p
 its [physical kernel gate](docs/q5_two_block_analysis.md): 3.0–13.0% lower latency
 than the original on all six primary synthetic shapes, with output bytes matching
 the original. It loses at one row per call. It also passed the model-logit gate with
-zero difference. End-to-end measurement remains outstanding, so no LLM speedup is claimed.
+zero difference.
+
+Its [end-to-end gate](docs/q5_two_block_e2e_analysis.md) then **rejected it under the
+rule committed before measurement**: prefill throughput rose 8.2–8.8% but decode fell
+7.7–8.9%, at every thread count, with no supply or throttle flag sampled. The candidate
+stays off by default and no LLM speedup is claimed. See the
+[report](reports/pi3-two-block-e2e-20261111/e2e.md) and
+[evidence](results/integration/two-block-e2e-20261111).

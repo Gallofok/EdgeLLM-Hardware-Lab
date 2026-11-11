@@ -53,3 +53,6 @@ __pycache__/
 !/results/quantized/two-block-20261101/
 !/reports/pi3-two-block-20261101/
 !/results/quantized/two-block-model-20261101/
+
+!/results/integration/two-block-e2e-20261111/
+!/reports/pi3-two-block-e2e-20261111/
