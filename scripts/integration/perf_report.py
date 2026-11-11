@@ -11,9 +11,9 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.integration.perf_run import parse_bench, plan, protocol
+from scripts.integration.perf_run import parse_bench, plan, proof_valid, protocol
 from scripts.integration.run import native_rows
-from scripts.integration.validate import check, validate_model
+from scripts.integration.validate import HYBRID, check, validate_graph, validate_model
 from scripts.pi.benchmark_parser import parse_native
 from scripts.pi.common import sha256, write_json
 from scripts.pi.monitor import read_metrics
@@ -54,11 +54,20 @@ def summarize(source, ablation=False):
         ("original", "integrated_off", "compatible") if ablation else ("original", "compatible")
     )
     threads_grid = m["protocol"]["threads"]
+    policy = m.get("dispatch_policy")
+    check(policy in (None, HYBRID) and not (policy and (fixture or ablation)), "Unknown policy")
     if not fixture:
         check(
-            validate_model(native_rows(source / "raw/numerical.jsonl")) == m["numerical_gate"],
+            validate_model(native_rows(source / "raw/numerical.jsonl"), policy=policy)
+            == m["numerical_gate"],
             "Numerical gate changed",
         )
+        if policy:
+            check(
+                validate_graph(native_rows(source / "raw/graph.jsonl"), policy=policy)
+                == m["graph_gate"],
+                "Graph gate changed",
+            )
         expected_gates = {"smoke-" + v for v in variants} | {
             f"proof-{phase}-t{t}" + suffix
             for phase in ("prefill", "decode")
@@ -129,22 +138,11 @@ def summarize(source, ablation=False):
                     a = json.loads(
                         (source / f"raw/proof-{phase}-t{t}{suffix}.audit.json").read_text()
                     )
-                    if suffix:
-                        valid = (
-                            a["enabled"] is False
-                            and a["handled"] == 0
-                            and a["rows"] == 0
-                            and a["thread_mask"] == 0
-                            and a["disabled"] > 0
-                        )
-                    else:
-                        valid = (
-                            a["enabled"] is True
-                            and a["handled"] > 0
-                            and a["rows"] > 0
-                            and 0 < a["thread_mask"] < (1 << t)
-                        )
-                    check(a["audit"] is True and valid, "Missing ON/OFF execution proof")
+                    variant = "integrated_off" if suffix else "compatible"
+                    check(
+                        a["audit"] is True and proof_valid(a, variant, phase, t, policy),
+                        "Missing ON/OFF execution proof",
+                    )
     groups = {(p, t): [] for p in ("prefill", "decode") for t in threads_grid}
     exports = []
     telemetry = []

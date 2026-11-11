@@ -13,6 +13,9 @@ GRAPH_CASES = (
     ]
     + [(c, 17, 3, 1, 1, 1, 1, 0, 1, 0, 1) for c in (32, 96, 608)]
 )
+# The hybrid harness adds the dispatch boundary: two vectors, one block, two blocks.
+HYBRID_GRAPH_CASES = GRAPH_CASES + [(576, 192, n, 1, 1, 1, 1, 0, 0, 0, 0) for n in (2, 16, 17)]
+HYBRID = "multi_vector"
 CASE_FIELDS = (
     "cols",
     "rows",
@@ -51,9 +54,20 @@ def common(rows, fixture):
         check(0 <= r["thread_mask"] < (1 << r["threads"]), "Invalid worker mask")
 
 
-def validate_graph(rows, fixture=False):
+def hybrid_counts(r):
+    calls, declined = r["single_vector_calls"], r["single_vector_rows"]
+    check(
+        isinstance(calls, int) and isinstance(declined, int) and 0 <= calls <= declined,
+        "Invalid hybrid dispatch counts",
+    )
+    return calls, declined
+
+
+def validate_graph(rows, fixture=False, policy=None):
+    check(policy in (None, HYBRID), "Unknown dispatch policy")
     common(rows, fixture)
-    expected = {(c, t, m) for c in range(len(GRAPH_CASES)) for t in (1, 2, 4) for m in (0, 1)}
+    cases = HYBRID_GRAPH_CASES if policy else GRAPH_CASES
+    expected = {(c, t, m) for c in range(len(cases)) for t in (1, 2, 4) for m in (0, 1)}
     actual = [(r["case"], r["threads"], r["mode"]) for r in rows]
     check(
         len(actual) == len(expected) and set(actual) == expected,
@@ -62,11 +76,28 @@ def validate_graph(rows, fixture=False):
     for r in rows:
         check(r["bitwise_control_match"] is True, "Graph bit pattern changed")
         check(
-            tuple(r[k] for k in CASE_FIELDS) == GRAPH_CASES[r["case"]],
+            tuple(r[k] for k in CASE_FIELDS) == cases[r["case"]],
             "Graph layout differs from protocol",
         )
         eligible = r["cols"] == 576 and not r["padded_weights"]
-        if r["mode"] and eligible:
+        if policy:
+            calls, declined = hybrid_counts(r)
+            vectors = r["vectors"] * r["x2"] * r["x3"]
+            if r["mode"] and eligible:
+                # Candidate and declined rows together cover the output exactly.
+                check(
+                    r["handled_rows"] + declined == r["rows"] * vectors,
+                    "Missing or overlapping output rows",
+                )
+                if vectors == 1:
+                    check(r["handled"] == 0 and calls > 0, "Single-vector graph was not declined")
+                else:
+                    check(r["handled"] > 0 and r["thread_mask"] > 0, "Candidate did not execute")
+            else:
+                check(r["handled"] == 0 and r["handled_rows"] == 0, "Unexpected dispatch")
+            if not r["mode"]:
+                check(calls == 0, "Disabled dispatch counted calls")
+        elif r["mode"] and eligible:
             check(r["handled"] > 0 and r["thread_mask"] > 0, "Candidate did not execute")
             check(
                 r["handled_rows"] == r["rows"] * r["vectors"] * r["x2"] * r["x3"],
@@ -82,13 +113,14 @@ def validate_graph(rows, fixture=False):
             check(r["width_fallback"] > 0, "Width fallback not exercised")
     return dict(
         graph_executions=len(rows),
-        layouts=len(GRAPH_CASES),
+        layouts=len(cases),
         max_abs_error=max(r["max_abs_error"] for r in rows),
         max_bound_fraction=max(r["max_bound_fraction"] for r in rows),
     )
 
 
-def validate_model(rows, fixture=False, profile="upstream_accumulation"):
+def validate_model(rows, fixture=False, profile="upstream_accumulation", policy=None):
+    check(policy in (None, HYBRID), "Unknown dispatch policy")
     common(rows, fixture)
     expected = {(p, t, m, s) for p in (0, 1) for t in (1, 4) for m in (0, 1) for s in range(9)}
     actual = [(r["prompt"], r["threads"], r["mode"], r["step"]) for r in rows]
@@ -113,7 +145,16 @@ def validate_model(rows, fixture=False, profile="upstream_accumulation"):
             r["greedy_token"] == baseline["greedy_token"] and r["vocab"] == baseline["vocab"],
             "Model token or vocabulary diverged",
         )
-        if r["mode"]:
+        if policy:
+            calls, _ = hybrid_counts(r)
+            check(bool(r["mode"]) or calls == 0, "Disabled dispatch counted calls")
+        if r["mode"] and policy and r["step"]:
+            # Single-token steps must stay entirely on the original dot.
+            check(
+                r["handled"] == 0 and r["handled_rows"] == 0 and calls > 0,
+                "Single-token step was not declined",
+            )
+        elif r["mode"]:
             check(
                 r["handled"] > 0 and r["handled_rows"] > 0 and r["thread_mask"] > 0,
                 "Model did not execute candidate",
