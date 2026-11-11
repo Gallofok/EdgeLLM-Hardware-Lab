@@ -122,3 +122,13 @@ jobs:
             '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
           cmake --build build/ggml-two-block --target test-ggml-row4 --parallel 2
           ctest --test-dir build/ggml-two-block --output-on-failure
+      - name: Hybrid dispatch candidate graph correctness under ARM64 emulation
+        run: |
+          python3 scripts/integration/prepare.py --variant hybrid
+          cmake -S integrations/ggml -B build/ggml-hybrid -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_EDGELLM_Q5_ROW4=ON -DEDGELLM_Q5_HYBRID=ON -DEDGELLM_BUILD_LLAMA_BENCH=ON -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
+          cmake --build build/ggml-hybrid --target test-ggml-row4-hybrid edgellm-llama-bench --parallel 2
+          qemu-aarch64 -L /usr/aarch64-linux-gnu build/ggml-hybrid/edgellm-llama-bench --help
+          ctest --test-dir build/ggml-hybrid --output-on-failure

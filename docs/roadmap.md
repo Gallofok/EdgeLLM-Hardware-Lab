@@ -48,6 +48,7 @@ not establish that it passed.
 - [x] Pass the two-block candidate's model-logit gate with zero measured difference.
 - [x] Run the two-block candidate's [end-to-end gate](q5_two_block_e2e_analysis.md): rejected,
   prefill faster and decode slower.
+- [ ] Run the [hybrid dispatch candidate](q5_hybrid_dispatch.md) through its predeclared gates.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.
 - [x] Evaluate GGML CPU integration with measured end-to-end impact; reject the slower compatible profile for this workload.
 

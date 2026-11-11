@@ -13,7 +13,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.integration.run import native_rows, verify_linked_engine
-from scripts.integration.validate import validate_model
+from scripts.integration.validate import HYBRID, validate_graph, validate_model
 from scripts.kernels.benchmark import operating_conditions
 from scripts.pi.benchmark import OPTIONS, bench_command
 from scripts.pi.benchmark_parser import parse_native
@@ -81,6 +81,47 @@ def parse_bench(path, pin, threads, repetitions, prompt=128, gen=16, fixture=Fal
     return rows
 
 
+HYBRID_SOURCES = (
+    "src/integration/q5_ggml_bridge_two_block.cpp",
+    "src/integration/q5_ggml_bridge_hybrid.cpp",
+    "src/integration/q5_ggml_bridge_hybrid.h",
+    "integrations/ggml/row4_hybrid.patch",
+    "tests/integration/test_ggml_row4_hybrid.cpp",
+    "tests/integration/test_model_row4_hybrid.cpp",
+)
+
+
+def model_gate(policy):
+    return "test-model-row4-hybrid" if policy else "test-model-row4"
+
+
+def proof_valid(evidence, variant, phase, threads, policy=None):
+    """Audited dispatch proof for one no-warmup process."""
+    if variant != "compatible":
+        return (
+            evidence["enabled"] is False
+            and evidence["handled"] == 0
+            and evidence["rows"] == 0
+            and evidence["thread_mask"] == 0
+            and evidence["disabled"] > 0
+        )
+    if policy and phase == "decode":
+        # Hybrid dispatch: single-token decode must stay on the original dot.
+        return (
+            evidence["enabled"] is True
+            and evidence["handled"] == 0
+            and evidence["rows"] == 0
+            and evidence["single_vector_calls"] > 0
+            and evidence["single_vector_rows"] > 0
+        )
+    return (
+        evidence["enabled"] is True
+        and evidence["handled"] > 0
+        and evidence["rows"] > 0
+        and 0 < evidence["thread_mask"] < (1 << threads)
+    )
+
+
 def binaries(build):
     return {
         "original": ROOT / "build/llama/bin/llama-bench",
@@ -88,16 +129,19 @@ def binaries(build):
     }
 
 
-def hashes(build):
+def hashes(build, policy=None):
     return {
         **{k: sha256(p) for k, p in binaries(build).items()},
         **{"compatible/" + p.name: sha256(p) for p in sorted((build / "bin").glob("*.so"))},
         **{"original/" + k: v for k, v in library_hashes().items()},
-        "test_model": sha256(build / "test-model-row4"),
+        "test_model": sha256(build / model_gate(policy)),
+        **({"test_graph": sha256(build / "test-ggml-row4-hybrid")} if policy else {}),
     }
 
 
-def execute(output, build, fixture=False, ablation=False):
+def execute(output, build, fixture=False, ablation=False, policy=None):
+    if policy not in (None, HYBRID) or (policy and (fixture or ablation)):
+        raise ValueError("Unsupported dispatch policy")
     output, build = Path(output).resolve(), Path(build).resolve()
     output.mkdir(parents=True, exist_ok=False)
     (output / "raw").mkdir()
@@ -118,6 +162,8 @@ def execute(output, build, fixture=False, ablation=False):
         pairs=[],
         gates=[],
     )
+    if policy:
+        m["dispatch_policy"] = policy
     env = dict(os.environ)
     for k in ("LD_LIBRARY_PATH", "LD_PRELOAD", "EDGELLM_Q5_ROW4", "EDGELLM_Q5_AUDIT"):
         env.pop(k, None)
@@ -201,23 +247,8 @@ def execute(output, build, fixture=False, ablation=False):
             ]
             if len(proof) != 1 or proof[0]["audit"] is not True:
                 raise ValueError("Execution proof missing")
-            evidence = proof[0]
-            if variant == "compatible":
-                valid = (
-                    evidence["enabled"] is True
-                    and evidence["handled"] > 0
-                    and evidence["rows"] > 0
-                    and 0 < evidence["thread_mask"] < (1 << threads)
-                )
-            else:
-                valid = (
-                    evidence["enabled"] is False
-                    and evidence["handled"] == 0
-                    and evidence["rows"] == 0
-                    and evidence["thread_mask"] == 0
-                    and evidence["disabled"] > 0
-                )
-            if not valid:
+            phase = "prefill" if prompt else "decode"
+            if not proof_valid(proof[0], variant, phase, threads, policy):
                 raise ValueError("ON/OFF dispatch proof differs")
             write_json(raw.with_suffix(".audit.json"), proof[0])
         return record
@@ -242,7 +273,7 @@ def execute(output, build, fixture=False, ablation=False):
                     raise ValueError("Previously verified numerical source changed")
             m["environment_before"] = environment(pin)
             m["conditions_before"] = operating_conditions()
-            m["artifact_hashes"] = hashes(build)
+            m["artifact_hashes"] = hashes(build, policy)
             if ablation:
                 prior = json.loads(
                     (ROOT / "results/integration/e2e-20261031/manifest.json").read_text()
@@ -257,6 +288,7 @@ def execute(output, build, fixture=False, ablation=False):
                     "benchmarks/llama_bench_driver.cpp",
                     "src/integration/q5_ggml_bridge.cpp",
                     "src/kernels/quantized/q5_neon.cpp",
+                    *(HYBRID_SOURCES if policy else ()),
                 )
             }
             m["compiler"] = subprocess.check_output(["c++", "--version"], text=True).splitlines()[0]
@@ -279,6 +311,10 @@ def execute(output, build, fixture=False, ablation=False):
                     and "GGML_EDGELLM_Q5_ROW4:BOOL=ON" not in cache.splitlines()
                 ):
                     raise ValueError("Integration not compiled")
+                if name == "compatible" and bool(policy) != (
+                    "EDGELLM_Q5_HYBRID:BOOL=ON" in cache.splitlines()
+                ):
+                    raise ValueError("Build and dispatch policy differ")
                 m["builds"][name] = dict(
                     cache_sha256=sha256(b / "CMakeCache.txt"), settings=list(wanted)
                 )
@@ -297,9 +333,22 @@ def execute(output, build, fixture=False, ablation=False):
                 )
                 verify_linked_engine(linked, b, model=True)
                 (private / (name + "-ldd.txt")).write_text(linked)
+            if policy:
+                raw = output / "raw/graph.jsonl"
+                process, _ = run_monitored(
+                    [str(build / "test-ggml-row4-hybrid")],
+                    raw,
+                    private / "graph.stderr.txt",
+                    "graph",
+                    timeout_s=300,
+                    env=env,
+                )
+                if process["returncode"] or process["timed_out"] or process["interrupted"]:
+                    raise ValueError("Graph gate process failed")
+                m["graph_gate"] = validate_graph(native_rows(raw), policy=policy)
             raw = output / "raw/numerical.jsonl"
             process, _ = run_monitored(
-                [str(build / "test-model-row4"), "models/" + pin["model_filename"]],
+                [str(build / model_gate(policy)), "models/" + pin["model_filename"]],
                 raw,
                 private / "numerical.stderr.txt",
                 "numerical",
@@ -308,7 +357,7 @@ def execute(output, build, fixture=False, ablation=False):
             )
             if process["returncode"] or process["timed_out"] or process["interrupted"]:
                 raise ValueError("Numerical gate process failed")
-            m["numerical_gate"] = validate_model(native_rows(raw))
+            m["numerical_gate"] = validate_model(native_rows(raw), policy=policy)
             for variant in (
                 ("original", "integrated_off", "compatible")
                 if ablation
@@ -333,7 +382,7 @@ def execute(output, build, fixture=False, ablation=False):
                 write_json(output / "manifest.json", m)
                 print(m["data_kind"] + " " + pair["id"] + " " + variant + " complete", flush=True)
         if not fixture:
-            if hashes(build) != m["artifact_hashes"]:
+            if hashes(build, policy) != m["artifact_hashes"]:
                 raise ValueError("Artifacts changed during measurement")
             m["environment_after"] = environment(pin)
             m["conditions_after"] = operating_conditions()
