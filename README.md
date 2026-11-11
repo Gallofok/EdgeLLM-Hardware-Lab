@@ -226,3 +226,12 @@ rule committed before measurement**: prefill throughput rose 8.2–8.8% but deco
 stays off by default and no LLM speedup is claimed. See the
 [report](reports/pi3-two-block-e2e-20261111/e2e.md) and
 [evidence](results/integration/two-block-e2e-20261111).
+
+The off-by-default [hybrid dispatch candidate](docs/q5_hybrid_dispatch.md) uses that
+loop only for weight blocks that serve more than one activation vector. It was
+[accepted end to end](docs/q5_hybrid_dispatch_analysis.md) under a rule committed
+before measurement: prefill throughput rose 8.4–8.7% at 1, 2 and 4 threads, and
+decode stayed within a 1% non-inferiority margin, about 0.5% slower at 1 and 2
+threads. It is a prompt-processing gain, not a decode speedup, and covers one board
+and one small model. See the [report](reports/pi3-hybrid-e2e-20261111/e2e.md) and
+[evidence](results/integration/hybrid-e2e-20261111).

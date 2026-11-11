@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "audit": true,
+  "handled": 1059840,
+  "rows": 16957440,
+  "disabled": 0,
+  "thread_mask": 1,
+  "single_vector_calls": 192,
+  "single_vector_rows": 3072
+}

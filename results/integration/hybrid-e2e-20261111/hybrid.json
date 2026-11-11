@@ -1,0 +1,8 @@
+{
+  "variant": "hybrid_two_block",
+  "dispatch_policy": "multi_vector",
+  "libraries_sha256": {
+    "libggml-cpu.so": "8f9e76fd3280ec4744f4fdabe0d8cf06e1046ff8bf734aa3553e8b49dee2a5cc",
+    "libggml-base.so": "f68a08a875078132ed1ab6e191bf03104508ab19d1750eb56b073b71d93623ed"
+  }
+}
