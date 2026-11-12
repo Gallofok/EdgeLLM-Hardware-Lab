@@ -50,8 +50,9 @@ not establish that it passed.
   prefill faster and decode slower.
 - [x] Locate the two-block loop's decode loss with the
   [reuse diagnostic](q5_reuse_diagnostic_analysis.md): it loses only on weights read once.
-- [ ] Run the [two-row prefetching candidate](q5_two_row.md), designed to beat the original on
-  single-pass weights larger than L2, through its predeclared gates.
+- [x] Run the [two-row prefetching candidate](q5_two_row.md) through its predeclared gates:
+  kernel gate passed, [end-to-end rejected](q5_two_row_analysis.md) on four-thread decode alone.
+- [ ] Establish whether four-thread decode has headroom and whether prefetch hints cost it.
 - [x] Run the [hybrid dispatch candidate](q5_hybrid_dispatch.md) through its predeclared gates:
   [accepted](q5_hybrid_dispatch_analysis.md), prefill faster and decode within margin.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.

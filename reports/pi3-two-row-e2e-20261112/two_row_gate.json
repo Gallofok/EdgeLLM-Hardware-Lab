@@ -1,0 +1,71 @@
+{
+  "candidate": {
+    "variant": "two_row_prefetch",
+    "libraries_sha256": {
+      "libggml-cpu.so": "dfb59c31a2b215700fca7ccbfe4589103e8feff91f79dfc70024e444c187cc82",
+      "libggml-base.so": "1c61ef33309da3f1bf9aa95f11ff63b7cbe717b4b49b191bc52b7414d17882b0"
+    },
+    "kernel_capture_manifest_sha256": "6d84cd000f375d4316961ac1f0507ef8534547927b6305bfbba00468dd225705"
+  },
+  "rule": {
+    "groups": 6,
+    "mean_paired_ratio_above": 1.0,
+    "min_pairs_above_one": 3,
+    "pairs_per_group": 4,
+    "clean_throttle_raw": [
+      "0x0"
+    ]
+  },
+  "outcome": "rejected",
+  "clean_conditions": true,
+  "groups": [
+    {
+      "phase": "prefill",
+      "threads": 1,
+      "change_pct": 18.1631791984622,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 2,
+      "change_pct": 17.578682416450995,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 4,
+      "change_pct": 16.634555979563448,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 1,
+      "change_pct": 15.852696821752122,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 2,
+      "change_pct": 13.830308611049368,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 4,
+      "change_pct": -2.464440268156509,
+      "pairs_above_one": 0,
+      "pairs": 4,
+      "passes": false
+    }
+  ]
+}

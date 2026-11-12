@@ -240,3 +240,10 @@ A [kernel diagnostic](docs/q5_reuse_diagnostic_analysis.md) locates the decode l
 with 104 MB of weights the two-block loop is 12.7% faster than the original dot when
 each block serves 16 vectors and 11.9% slower when each block is read once. The
 mechanism is not established.
+
+The off-by-default [two-row prefetching candidate](docs/q5_two_row.md) passed its kernel
+gate at 1.28–1.32 times the original on all eight shapes, and was then
+[rejected end to end](docs/q5_two_row_analysis.md) under a rule committed before
+measurement. Prefill rose 16.6–18.2% and decode rose 15.9% and 13.8% at one and two
+threads, but four-thread decode fell 2.5%, and the rule required every group to
+improve. No LLM speedup is claimed.
