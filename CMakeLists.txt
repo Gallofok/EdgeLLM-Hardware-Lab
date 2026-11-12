@@ -100,6 +100,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   target_compile_options(q5-two-block-bench PRIVATE -fno-fast-math -ffp-contract=off
     -Wall -Wextra -Wpedantic -Werror)
   set_property(TARGET q5-two-block-bench PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
+  find_package(Threads REQUIRED)
+  add_executable(mem-stream-bench benchmarks/mem_stream_bench.cpp)
+  target_link_libraries(mem-stream-bench PRIVATE Threads::Threads)
+  target_compile_options(mem-stream-bench PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  set_property(TARGET mem-stream-bench PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
   add_executable(q5-reuse-bench benchmarks/q5_reuse_bench.cpp)
   target_link_libraries(q5-reuse-bench PRIVATE edgellm_kernel_api ${CMAKE_DL_LIBS})
   target_compile_options(q5-reuse-bench PRIVATE -fno-fast-math -ffp-contract=off
