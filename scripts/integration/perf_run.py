@@ -13,7 +13,13 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.integration.run import native_rows, verify_linked_engine
-from scripts.integration.validate import ADAPTIVE, HYBRID, validate_graph, validate_model
+from scripts.integration.validate import (
+    ADAPTIVE,
+    DISPATCH,
+    HYBRID,
+    validate_graph,
+    validate_model,
+)
 from scripts.kernels.benchmark import operating_conditions
 from scripts.pi.benchmark import OPTIONS, bench_command
 from scripts.pi.benchmark_parser import parse_native
@@ -97,11 +103,28 @@ ADAPTIVE_SOURCES = (
     "src/integration/q5_ggml_bridge_adaptive.h",
     "integrations/ggml/row4_threads.patch",
 )
-POLICY_OPTIONS = {HYBRID: "EDGELLM_Q5_HYBRID", ADAPTIVE: "EDGELLM_Q5_ADAPTIVE"}
+DISPATCH_SOURCES = (
+    "src/integration/q5_ggml_bridge_dispatch.cpp",
+    "src/integration/q5_ggml_bridge_dispatch.h",
+    "integrations/ggml/row4_dispatch.patch",
+    "tests/integration/test_ggml_row4_dispatch.cpp",
+    "tests/integration/test_model_row4_dispatch.cpp",
+)
+POLICY_OPTIONS = {
+    HYBRID: "EDGELLM_Q5_HYBRID",
+    ADAPTIVE: "EDGELLM_Q5_ADAPTIVE",
+    DISPATCH: "EDGELLM_Q5_DISPATCH",
+}
+# Policies whose harnesses differ from the pinned ones, and the harness suffix.
+HARNESS = {HYBRID: "hybrid", DISPATCH: "dispatch"}
 
 
 def model_gate(policy):
-    return "test-model-row4-hybrid" if policy == HYBRID else "test-model-row4"
+    return "test-model-row4" + ("-" + HARNESS[policy] if policy in HARNESS else "")
+
+
+def graph_gate(policy):
+    return "test-ggml-row4-" + HARNESS[policy]
 
 
 def proof_valid(evidence, variant, phase, threads, policy=None):
@@ -113,6 +136,27 @@ def proof_valid(evidence, variant, phase, threads, policy=None):
             and evidence["rows"] == 0
             and evidence["thread_mask"] == 0
             and evidence["disabled"] > 0
+        )
+    if policy == DISPATCH:
+        saturated = threads >= evidence["processors"]
+        hinted, plain = evidence["hinted_calls"], evidence["plain_calls"]
+        if phase == "decode" and saturated:
+            # A saturated single-token decode must stay on the original dot.
+            return (
+                evidence["enabled"] is True
+                and evidence["handled"] == 0
+                and evidence["rows"] == 0
+                and evidence["declined_calls"] > 0
+                and hinted + plain == 0
+            )
+        return (
+            evidence["enabled"] is True
+            and evidence["handled"] > 0
+            and evidence["rows"] > 0
+            and 0 < evidence["thread_mask"] < (1 << threads)
+            and hinted + plain == evidence["handled"]
+            and (hinted == evidence["handled"] if phase == "decode" else plain > 0)
+            and (hinted == 0 if saturated else evidence["declined_calls"] == 0)
         )
     if policy == ADAPTIVE:
         # Every candidate call is hinted below the processor count and plain at it.
@@ -159,12 +203,12 @@ def hashes(build, policy=None):
         **{"compatible/" + p.name: sha256(p) for p in sorted((build / "bin").glob("*.so"))},
         **{"original/" + k: v for k, v in library_hashes().items()},
         "test_model": sha256(build / model_gate(policy)),
-        **({"test_graph": sha256(build / "test-ggml-row4-hybrid")} if policy == HYBRID else {}),
+        **({"test_graph": sha256(build / graph_gate(policy))} if policy in HARNESS else {}),
     }
 
 
 def execute(output, build, fixture=False, ablation=False, policy=None, versions=None):
-    if policy not in (None, HYBRID, ADAPTIVE) or (policy and (fixture or ablation)):
+    if policy not in (None, *POLICY_OPTIONS) or (policy and (fixture or ablation)):
         raise ValueError("Unsupported dispatch policy")
     output, build = Path(output).resolve(), Path(build).resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -316,6 +360,7 @@ def execute(output, build, fixture=False, ablation=False, policy=None, versions=
                     "src/kernels/quantized/q5_neon.cpp",
                     *(HYBRID_SOURCES if policy == HYBRID else ()),
                     *(ADAPTIVE_SOURCES if policy == ADAPTIVE else ()),
+                    *(DISPATCH_SOURCES if policy == DISPATCH else ()),
                 )
             }
             m["compiler"] = subprocess.check_output(["c++", "--version"], text=True).splitlines()[0]
@@ -361,10 +406,10 @@ def execute(output, build, fixture=False, ablation=False, policy=None, versions=
                 )
                 verify_linked_engine(linked, b, model=True)
                 (private / (name + "-ldd.txt")).write_text(linked)
-            if policy == HYBRID:
+            if policy in HARNESS:
                 raw = output / "raw/graph.jsonl"
                 process, _ = run_monitored(
-                    [str(build / "test-ggml-row4-hybrid")],
+                    [str(build / graph_gate(policy))],
                     raw,
                     private / "graph.stderr.txt",
                     "graph",
@@ -386,7 +431,7 @@ def execute(output, build, fixture=False, ablation=False, policy=None, versions=
             if process["returncode"] or process["timed_out"] or process["interrupted"]:
                 raise ValueError("Numerical gate process failed")
             m["numerical_gate"] = validate_model(
-                native_rows(raw), policy=policy if policy == HYBRID else None
+                native_rows(raw), policy=policy if policy in HARNESS else None
             )
             for variant in (
                 ("original", "integrated_off", "compatible")

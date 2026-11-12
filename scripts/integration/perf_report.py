@@ -11,10 +11,11 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.integration.perf_run import parse_bench, plan, proof_valid, protocol
+from scripts.integration.perf_run import HARNESS, parse_bench, plan, proof_valid, protocol
 from scripts.integration.run import native_rows
 from scripts.integration.validate import (
     ADAPTIVE,
+    DISPATCH,
     HYBRID,
     check,
     validate_graph,
@@ -62,10 +63,10 @@ def summarize(source, ablation=False):
     threads_grid = m["protocol"]["threads"]
     policy = m.get("dispatch_policy")
     check(
-        policy in (None, HYBRID, ADAPTIVE) and not (policy and (fixture or ablation)),
+        policy in (None, HYBRID, ADAPTIVE, DISPATCH) and not (policy and (fixture or ablation)),
         "Unknown policy",
     )
-    hybrid = policy if policy == HYBRID else None
+    hybrid = policy if policy in HARNESS else None
     if not fixture:
         check(
             validate_model(native_rows(source / "raw/numerical.jsonl"), policy=hybrid)

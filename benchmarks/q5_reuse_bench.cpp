@@ -5,7 +5,7 @@
 // how often a 16-row weight block is reused and on the weight footprint?
 // Traversal order matches the pinned engine: block by block, each block applied
 // to `reuse` activation vectors before moving on. Not an LLM measurement.
-#include "integration/q5_ggml_bridge.h"
+#include "integration/q5_ggml_bridge_dispatch.h"
 #include "q5_support.h"
 #include <array>
 #include <chrono>
@@ -74,7 +74,8 @@ int main(int argc, char **argv) {
   try {
     std::size_t rows = 192, reuse = 1, repetitions = 6, min_ms = 100, seed = 42,
                 cols = 576;
-    std::string original_path, candidate_path, variant = "two-block";
+    std::string original_path, candidate_path, variant = "two-block",
+                                               entry = "legacy";
     for (int i = 1; i < argc; ++i) {
       const std::string key = argv[i];
       if (key == "--help") {
@@ -93,6 +94,8 @@ int main(int argc, char **argv) {
         candidate_path = argv[i];
       else if (key == "--variant")
         variant = argv[i];
+      else if (key == "--entry")
+        entry = argv[i];
       else {
         const auto n = positive(argv[i]);
         if (key == "--rows")
@@ -126,15 +129,33 @@ int main(int argc, char **argv) {
                         "edgellm_q5_loop_variant")(),
                     variant.c_str()) ||
         (variant != "two-block" && variant != "two-row-prefetch" &&
-         variant != "two-row-plain" && variant != "two-row-wide"))
+         variant != "two-row-plain" && variant != "two-row-wide" &&
+         variant != "two-row-dispatch") ||
+        (entry != "legacy" && entry != "dispatch") ||
+        (entry == "dispatch") != (variant == "two-row-dispatch"))
       throw std::runtime_error("Measured library identity is wrong");
     const auto dot = original.symbol<Dot>("ggml_vec_dot_q5_0_q8_0");
     const auto configure =
         candidate.symbol<void (*)(int, int)>("edgellm_q5_configure");
     const auto snapshot =
         candidate.symbol<edgellm_q5_audit (*)()>("edgellm_q5_snapshot");
-    const auto bridge = candidate.symbol<decltype(&edgellm_q5_try_row4)>(
+    const auto legacy = candidate.symbol<decltype(&edgellm_q5_try_row4)>(
         "edgellm_q5_try_row4");
+    // The dispatch entry sees one thread, below any processor count, and the
+    // real reuse count, so a single-pass block takes the hinted loop.
+    const auto dispatch =
+        entry == "dispatch"
+            ? candidate.symbol<decltype(&edgellm_q5_try_row4_dispatch)>(
+                  "edgellm_q5_try_row4_dispatch")
+            : nullptr;
+    const auto bridge = [&](int64_t n, int64_t count, const void *weights,
+                            size_t stride, const void *activation, float *out,
+                            int thread) {
+      return dispatch ? dispatch(n, count, weights, stride, activation, out,
+                                 thread, 1, static_cast<int64_t>(reuse))
+                      : legacy(n, count, weights, stride, activation, out,
+                               thread);
+    };
     std::vector<Q5Block> w(rows * blocks);
     std::vector<Q8Block> x(reuse * blocks);
     fill(w, x, static_cast<std::uint32_t>(seed), false);
@@ -223,7 +244,7 @@ int main(int argc, char **argv) {
                  "\"bridge_bitwise_equal\":true,\"audit_during_timing\":false,"
                  "\"dispatch_proof_passed\":true,\"threads\":1,\"cols\":"
               << cols << ",\"chunk\":16,\"variant\":\"" << variant
-              << "\",\"rows\":" << rows << ",\"reuse\":" << reuse
+              << "\",\"entry\":\"" << entry << "\",\"rows\":" << rows << ",\"reuse\":" << reuse
               << ",\"weight_bytes\":" << w.size() * sizeof(Q5Block)
               << ",\"seed\":" << seed << ",\"repetitions\":" << repetitions
               << ",\"min_sample_ms\":" << min_ms

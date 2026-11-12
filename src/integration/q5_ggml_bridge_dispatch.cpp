@@ -1,0 +1,249 @@
+#include "q5_ggml_bridge_dispatch.h"
+#define GGML_COMMON_DECL_CPP
+#include "ggml-common.h"
+#include "kernels/quantized/q5_neon.h"
+#include <arm_neon.h>
+#include <atomic>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <cstring>
+#include <thread>
+
+static_assert(sizeof(block_q5_0) == sizeof(edgellm::quantized::Q5Block));
+static_assert(sizeof(block_q8_0) == sizeof(edgellm::quantized::Q8Block));
+static_assert(offsetof(block_q5_0, d) ==
+              offsetof(edgellm::quantized::Q5Block, half_scale));
+static_assert(offsetof(block_q5_0, qh) ==
+              offsetof(edgellm::quantized::Q5Block, high));
+static_assert(offsetof(block_q5_0, qs) ==
+              offsetof(edgellm::quantized::Q5Block, low));
+static_assert(offsetof(block_q8_0, qs) ==
+              offsetof(edgellm::quantized::Q8Block, values));
+
+namespace {
+// Fixed-width integration profiles: one instantiation per supported width.
+// Preserve the pinned Cortex-A53 integer lane grouping, even/odd accumulators
+// and non-fused FP32 operations.
+// No performance measurement exists for this new compatibility profile.
+using namespace edgellm::quantized;
+// Two call sites per row must not turn the baseline's inlined path into calls.
+[[gnu::always_inline]] inline int32x4_t
+compatible_integer(const Q5Block &w, int8x16_t xlo, int8x16_t xhi) {
+  const uint8_t masks[8] = {1, 2, 4, 8, 16, 32, 64, 128};
+  const auto bits = vld1_u8(masks);
+  const auto low = vld1q_u8(w.low);
+  const auto present0 = vcombine_u8(vtst_u8(vdup_n_u8(w.high[0]), bits),
+                                    vtst_u8(vdup_n_u8(w.high[1]), bits));
+  const auto present1 = vcombine_u8(vtst_u8(vdup_n_u8(w.high[2]), bits),
+                                    vtst_u8(vdup_n_u8(w.high[3]), bits));
+  const auto qlo =
+      vsubq_s8(vreinterpretq_s8_u8(vandq_u8(low, vdupq_n_u8(15))),
+               vreinterpretq_s8_u8(vbicq_u8(vdupq_n_u8(16), present0)));
+  const auto qhi =
+      vsubq_s8(vreinterpretq_s8_u8(vshrq_n_u8(low, 4)),
+               vreinterpretq_s8_u8(vbicq_u8(vdupq_n_u8(16), present1)));
+  auto a = vmull_s8(vget_low_s8(qlo), vget_low_s8(xlo));
+  auto b = vmull_high_s8(qlo, xlo);
+  a = vmlal_s8(a, vget_low_s8(qhi), vget_low_s8(xhi));
+  b = vmlal_high_s8(b, qhi, xhi);
+  return vpaddlq_s16(vaddq_s16(a, b));
+}
+// Dispatch candidate: the two-row loop for widths 576, 896 and 960, with its
+// prefetch hints behind a template flag. The entry point at the end of this
+// file chooses hinted, plain or the original dot per call. Per-row arithmetic
+// and order are unchanged. No confirmatory measurement exists for this
+// candidate.
+template <int Rows, int Blocks>
+[[gnu::always_inline]] inline void
+accumulate_block(const Q5Block *w, const Q8Block *x, int b,
+                 float32x4_t (&accumulators)[Rows]) {
+  const auto xl = vld1q_s8(x[b].values), xh = vld1q_s8(x[b].values + 16);
+  uint16_t halves[4] = {};
+  for (int r = 0; r < Rows; ++r)
+    halves[r] = w[r * Blocks + b].half_scale;
+  const auto ws = vcvt_f32_f16(vreinterpret_f16_u16(vld1_u16(halves)));
+  const auto xs =
+      vcvt_f32_f16(vreinterpret_f16_u16(vdup_n_u16(x[b].half_scale)));
+  const auto scales = vmulq_f32(ws, xs);
+  float scale[4];
+  vst1q_f32(scale, scales);
+  for (int r = 0; r < Rows; ++r) {
+    const auto product = vmulq_n_f32(
+        vcvtq_f32_s32(compatible_integer(w[r * Blocks + b], xl, xh)), scale[r]);
+    accumulators[r] = vaddq_f32(accumulators[r], product);
+  }
+}
+template <int Rows, int Blocks, bool Hints>
+void compatible_tile(const Q5Block *w, const Q8Block *x, float *y) {
+  float32x4_t even[Rows], odd[Rows];
+  for (int r = 0; r < Rows; ++r)
+    even[r] = odd[r] = vdupq_n_f32(0);
+  for (int b = 0; b < Blocks; b += 2) {
+    // Read-ahead only: one hint per row stream, Rows rows ahead. It may point
+    // past the matrix; a prefetch never faults and never changes a result.
+    if (Hints)
+      for (int r = 0; r < Rows; ++r)
+        __builtin_prefetch(&w[(Rows + r) * Blocks + b]);
+    accumulate_block<Rows, Blocks>(w, x, b, even);
+    accumulate_block<Rows, Blocks>(w, x, b + 1, odd);
+  }
+  for (int r = 0; r < Rows; ++r)
+    y[r] = vaddvq_f32(even[r]) + vaddvq_f32(odd[r]);
+}
+template <int Blocks, bool Hints>
+void compatible_rows_as(const Q5Block *w, const Q8Block *x, float *y,
+                        size_t rows) {
+  static_assert(Blocks % 2 == 0, "Upstream pairs blocks into two accumulators");
+  size_t r = 0;
+  for (; r + 2 <= rows; r += 2)
+    compatible_tile<2, Blocks, Hints>(w + r * Blocks, x, y + r);
+  if (r < rows)
+    compatible_tile<1, Blocks, Hints>(w + r * Blocks, x, y + r);
+}
+// Set per call by the dispatch entry point; the legacy entry point stays plain.
+thread_local bool hints_wanted = false;
+template <int Blocks>
+void compatible_rows_of(const Q5Block *w, const Q8Block *x, float *y,
+                        size_t rows) {
+  if (hints_wanted)
+    compatible_rows_as<Blocks, true>(w, x, y, rows);
+  else
+    compatible_rows_as<Blocks, false>(w, x, y, rows);
+}
+// Supported widths. Any other width keeps the original dot implementation.
+bool compatible_rows(int64_t cols, const Q5Block *w, const Q8Block *x, float *y,
+                     size_t rows) {
+  switch (cols) {
+  case 576:
+    compatible_rows_of<18>(w, x, y, rows);
+    return true;
+  case 896:
+    compatible_rows_of<28>(w, x, y, rows);
+    return true;
+  case 960:
+    compatible_rows_of<30>(w, x, y, rows);
+    return true;
+  }
+  return false;
+}
+
+bool environment_opt_in() {
+  const char *value = std::getenv("EDGELLM_Q5_ROW4");
+  return value && std::strcmp(value, "1") == 0;
+}
+std::atomic<bool> enabled{environment_opt_in()}, audit{false},
+    prototype_fma{false};
+std::atomic<uint64_t> handled{0}, rows_done{0}, disabled{0}, width{0},
+    stride{0}, invalid{0}, thread_mask{0};
+void count(std::atomic<uint64_t> &counter) {
+  if (audit.load(std::memory_order_relaxed))
+    counter.fetch_add(1, std::memory_order_relaxed);
+}
+} // namespace
+extern "C" {
+void edgellm_q5_configure(int on, int collect) {
+  enabled.store(on != 0);
+  prototype_fma.store(on == 2);
+  audit.store(collect != 0);
+  handled = 0;
+  rows_done = 0;
+  disabled = 0;
+  width = 0;
+  stride = 0;
+  invalid = 0;
+  thread_mask = 0;
+}
+edgellm_q5_audit edgellm_q5_snapshot() {
+  return {handled.load(), rows_done.load(), disabled.load(),   width.load(),
+          stride.load(),  invalid.load(),   thread_mask.load()};
+}
+int edgellm_q5_try_row4(int64_t cols, int64_t rows, const void *w,
+                        size_t row_stride, const void *x, float *y, int ith) {
+  using namespace edgellm::quantized;
+  if (!enabled.load(std::memory_order_relaxed)) {
+    count(disabled);
+    return 0;
+  }
+  // Limited to widths with a fixed-trip-count instantiation above.
+  if (cols != 576 && cols != 896 && cols != 960) {
+    count(width);
+    return 0;
+  }
+  if (row_stride != static_cast<size_t>(cols / 32) * sizeof(Q5Block)) {
+    count(stride);
+    return 0;
+  }
+  if (rows < 1 || rows > 16 || !w || !x || !y || ith < 0 || ith >= 64 ||
+      reinterpret_cast<uintptr_t>(w) % alignof(Q5Block) ||
+      reinterpret_cast<uintptr_t>(x) % alignof(Q8Block) ||
+      reinterpret_cast<uintptr_t>(y) % alignof(float)) {
+    count(invalid);
+    return 0;
+  }
+  try {
+    if (prototype_fma.load(std::memory_order_relaxed)) {
+      matvec_q5_q8_neon_row4(static_cast<const Q5Block *>(w),
+                             static_cast<const Q8Block *>(x), y, rows, cols, 1);
+    } else {
+      compatible_rows(cols, static_cast<const Q5Block *>(w),
+                      static_cast<const Q8Block *>(x), y, rows);
+    }
+  } catch (...) {
+    return 0;
+  } // Never unwind across the GGML C ABI.
+  if (audit.load(std::memory_order_relaxed)) {
+    handled.fetch_add(1, std::memory_order_relaxed);
+    rows_done.fetch_add(rows, std::memory_order_relaxed);
+    thread_mask.fetch_or(uint64_t{1} << ith, std::memory_order_relaxed);
+  }
+  return 1;
+}
+}
+
+// Lets a harness prove which measured library it loaded.
+extern "C" EDGELLM_EXPORT const char *edgellm_q5_loop_variant() {
+  return "two-row-dispatch";
+}
+
+namespace {
+const unsigned processors = std::thread::hardware_concurrency();
+std::atomic<uint64_t> hinted_calls{0}, plain_calls{0}, declined_calls{0},
+    declined_rows{0};
+} // namespace
+extern "C" {
+void edgellm_q5_configure_dispatch(int on, int collect) {
+  edgellm_q5_configure(on, collect);
+  hinted_calls = 0;
+  plain_calls = 0;
+  declined_calls = 0;
+  declined_rows = 0;
+}
+edgellm_q5_dispatch_audit edgellm_q5_dispatch_snapshot() {
+  return {hinted_calls.load(), plain_calls.load(), declined_calls.load(),
+          declined_rows.load(), processors};
+}
+int edgellm_q5_try_row4_dispatch(int64_t cols, int64_t rows, const void *w,
+                                 size_t row_stride, const void *x, float *y,
+                                 int ith, int nth, int64_t block_vectors) {
+  // A block read once is where the loop can lose; see the analyses.
+  const bool single = block_vectors < 2;
+  const bool saturated = nth <= 0 || static_cast<unsigned>(nth) >= processors;
+  // A disabled bridge must keep reporting through its own counter.
+  if (single && saturated && enabled.load(std::memory_order_relaxed)) {
+    if (audit.load(std::memory_order_relaxed)) {
+      declined_calls.fetch_add(1, std::memory_order_relaxed);
+      declined_rows.fetch_add(rows > 0 ? uint64_t(rows) : 0,
+                              std::memory_order_relaxed);
+    }
+    return 0;
+  }
+  hints_wanted = single;
+  const int handled = edgellm_q5_try_row4(cols, rows, w, row_stride, x, y, ith);
+  hints_wanted = false;
+  if (handled && audit.load(std::memory_order_relaxed))
+    (single ? hinted_calls : plain_calls)
+        .fetch_add(1, std::memory_order_relaxed);
+  return handled;
+}
+}
