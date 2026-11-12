@@ -267,6 +267,12 @@ decode was unchanged (-0.31%). Across separate captures it keeps more of the dec
 gain than the plain loop and slightly less of the prefill gain; that comparison is
 not paired.
 
+A [wide candidate](docs/q5_wide.md) extended the plain loop to widths 896 and 960 for
+a second model, SmolLM2-360M. It [failed its kernel gate at width 960](docs/q5_wide_analysis.md):
+1.26–1.28 times the original on reused weights, but 2.5–7.0% slower on weights larger
+than L2 that are read once. No end-to-end capture ran, and nothing is claimed for the
+second model.
+
 A [counter diagnostic](docs/decode_ceiling_diagnostic_analysis.md) probed the
 four-thread decode limit. Its predeclared reading is inconclusive: original
 four-thread decode pulls 0.847 times the memory lines per second of four sequential
