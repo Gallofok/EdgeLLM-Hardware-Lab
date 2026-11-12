@@ -73,14 +73,15 @@ std::size_t positive(const std::string &s) {
 int main(int argc, char **argv) {
   try {
     std::size_t rows = 192, reuse = 1, repetitions = 6, min_ms = 100, seed = 42;
-    std::string original_path, candidate_path;
+    std::string original_path, candidate_path, variant = "two-block";
     for (int i = 1; i < argc; ++i) {
       const std::string key = argv[i];
       if (key == "--help") {
-        std::cout << "q5-reuse-bench --original LIB --candidate LIB [--rows N "
-                     "--reuse N --repetitions N --min-ms N --seed N]\nFixed "
-                     "width576, 16-row blocks, engine traversal order. "
-                     "Original dot versus two-block bridge, auditing off.\n";
+        std::cout << "q5-reuse-bench --original LIB --candidate LIB [--variant "
+                     "NAME --rows N --reuse N --repetitions N --min-ms N "
+                     "--seed N]\nFixed width576, 16-row blocks, engine "
+                     "traversal order. Original dot versus the named "
+                     "candidate bridge, auditing off.\n";
         return 0;
       }
       if (++i == argc)
@@ -89,6 +90,8 @@ int main(int argc, char **argv) {
         original_path = argv[i];
       else if (key == "--candidate")
         candidate_path = argv[i];
+      else if (key == "--variant")
+        variant = argv[i];
       else {
         const auto n = positive(argv[i]);
         if (key == "--rows")
@@ -114,7 +117,8 @@ int main(int argc, char **argv) {
       throw std::runtime_error("Engine namespaces are not isolated");
     if (std::strcmp(candidate.symbol<const char *(*)()>(
                         "edgellm_q5_loop_variant")(),
-                    "two-block"))
+                    variant.c_str()) ||
+        (variant != "two-block" && variant != "two-row-prefetch"))
       throw std::runtime_error("Measured library identity is wrong");
     const auto dot = original.symbol<Dot>("ggml_vec_dot_q5_0_q8_0");
     const auto configure =
@@ -210,8 +214,8 @@ int main(int argc, char **argv) {
                  "\"isolated_namespaces\":true,\"library_identity_passed\":true,"
                  "\"bridge_bitwise_equal\":true,\"audit_during_timing\":false,"
                  "\"dispatch_proof_passed\":true,\"threads\":1,\"cols\":576,"
-                 "\"chunk\":16,"
-              << "\"rows\":" << rows << ",\"reuse\":" << reuse
+                 "\"chunk\":16,\"variant\":\""
+              << variant << "\",\"rows\":" << rows << ",\"reuse\":" << reuse
               << ",\"weight_bytes\":" << w.size() * sizeof(Q5Block)
               << ",\"seed\":" << seed << ",\"repetitions\":" << repetitions
               << ",\"min_sample_ms\":" << min_ms

@@ -33,6 +33,11 @@ SOURCES = (
     "src/integration/q5_ggml_bridge_two_block.cpp",
     "scripts/quantized/reuse_profile.py",
 )
+# The first capture predates the variant field and measured the two-block loop.
+VARIANTS = {
+    "two-block": None,
+    "two-row-prefetch": "src/integration/q5_ggml_bridge_two_row.cpp",
+}
 
 
 def cases():
@@ -59,6 +64,8 @@ def native_ratios(raw):
         raise ValueError("Wrong audit/thread state")
     if (raw.get("cols"), raw.get("chunk"), raw.get("data_kind")) != (576, 16, "measured_local"):
         raise ValueError("Wrong workload/data kind")
+    if raw.get("variant", "two-block") not in VARIANTS:
+        raise ValueError("Unknown loop variant")
     if raw["weight_bytes"] != raw["rows"] * 18 * 22:
         raise ValueError("Weight footprint differs from the shape")
     pairs, repetitions = raw["pairs"], raw["repetitions"]
@@ -99,6 +106,13 @@ def reading(groups):
     )
 
 
+def gate(groups):
+    """Predeclared kernel gate for a new loop: faster than the original on every shape."""
+    if len(groups) != len(ROWS) * len(REUSE):
+        raise ValueError("All eight shapes are required")
+    return all(g["original_over_candidate"] > 1 for g in groups)
+
+
 def collect(args):
     output, binary = args.output.resolve(), args.binary.resolve()
     paths = dict(original=args.original.resolve(), candidate=args.candidate.resolve())
@@ -112,8 +126,11 @@ def collect(args):
         for kind, directory in paths.items()
         for name in LIBRARIES
     }
-    if any(measured[key] != digest for key, digest in current.items()):
+    # The original always matches the measured capture; so does the two-block loop.
+    tied = [k for k in current if args.variant == "two-block" or k.startswith("original/")]
+    if any(measured[key] != current[key] for key in tied):
         raise ValueError("Libraries differ from the measured kernel capture")
+    sources = SOURCES + ((VARIANTS[args.variant],) if VARIANTS[args.variant] else ())
     if platform.machine() not in ("aarch64", "arm64"):
         raise ValueError("Physical ARM64 capture required")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT):
@@ -121,13 +138,14 @@ def collect(args):
     manifest = dict(
         schema_version=1,
         experiment="q5_reuse",
+        variant=args.variant,
         data_kind="real",
         status="running",
         started_at=utc_now(),
         source_commit=subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
-        source_files_sha256={p: sha256(ROOT / p) for p in SOURCES},
+        source_files_sha256={p: sha256(ROOT / p) for p in sources},
         libraries_sha256=current,
         kernel_capture_manifest_sha256=sha256(KERNEL_CAPTURE),
         binary_sha256=sha256(binary),
@@ -144,6 +162,8 @@ def collect(args):
             for key in ("rows", "reuse", "seed"):
                 command += ["--" + key, str(case[key])]
             command += ["--repetitions", "6", "--min-ms", "100"]
+            if args.variant != "two-block":
+                command += ["--variant", args.variant]
             raw_path = output / "raw" / (case["id"] + ".json")
             manifest["cases"].append(dict(case))
             write_json(output / "manifest.json", manifest)
@@ -161,6 +181,8 @@ def collect(args):
             native_ratios(raw)
             if any(raw[k] != case[k] for k in ("rows", "reuse", "seed")):
                 raise ValueError("Native workload differs from declared case")
+            if raw.get("variant", "two-block") != args.variant:
+                raise ValueError("Native loop variant differs from declared variant")
             print(f"[real] {case['id']} passed", flush=True)
         if any(sha256(ROOT / p) != d for p, d in manifest["source_files_sha256"].items()):
             raise ValueError("Harness/kernel sources changed during collection")
@@ -185,6 +207,9 @@ def replay(input_dir):
         raise ValueError("Incomplete/nonphysical capture")
     if manifest.get("experiment") != "q5_reuse" or manifest["cases"] != list(cases()):
         raise ValueError("Wrong experiment or changed grid")
+    variant = manifest.get("variant", "two-block")
+    if variant not in VARIANTS:
+        raise ValueError("Unknown loop variant")
     expected = {
         f"raw/{case['id']}{suffix}"
         for case in manifest["cases"]
@@ -204,6 +229,8 @@ def replay(input_dir):
             raise ValueError("Failed process")
         if any(raw[k] != case[k] for k in ("rows", "reuse", "seed")):
             raise ValueError("Native case identity mismatch")
+        if raw.get("variant", "two-block") != variant:
+            raise ValueError("Native loop variant mismatch")
         if raw["repetitions"] != 6 or raw["min_sample_ms"] != 100:
             raise ValueError("Changed timing protocol")
         values = native_ratios(raw)
@@ -237,9 +264,16 @@ def replay(input_dir):
             )
         )
     temperatures = [m["temperature_c"] for m in metrics if m["temperature_c"] is not None]
+    # The reading belongs to the two-block diagnostic; a new loop faces the gate.
+    verdict = (
+        dict(reading=reading(summaries))
+        if variant == "two-block"
+        else dict(kernel_gate_passed=gate(summaries))
+    )
     return manifest, dict(
         data_kind="real",
-        reading=reading(summaries),
+        variant=variant,
+        **verdict,
         groups=summaries,
         formal_processes=len(manifest["cases"]),
         telemetry=dict(
@@ -261,11 +295,22 @@ def report(args):
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     write_json(output / "reuse.json", summary)
+    if "reading" in summary:
+        headline = (
+            f"**Predeclared reading: hypothesis "
+            f"{summary['reading']['outcome'].replace('_', ' ')}.** "
+        )
+    else:
+        passed = "PASSED" if summary["kernel_gate_passed"] else "FAILED"
+        headline = (
+            f"**Predeclared kernel gate: {passed}.** The candidate must beat the original "
+            "on all eight shapes. "
+        )
+    title = "Two-block" if summary["variant"] == "two-block" else summary["variant"]
     lines = [
-        "# Two-block loop versus original dot: block reuse and weight footprint",
+        f"# {title} loop versus original dot: block reuse and weight footprint",
         "",
-        f"**Predeclared reading: hypothesis {summary['reading']['outcome'].replace('_', ' ')}.** "
-        "Single thread, width 576, 16-row blocks in the engine's traversal order. "
+        headline + "Single thread, width 576, 16-row blocks in the engine's traversal order. "
         "Ratios above 1 mean the candidate was faster.",
         "",
         "| Rows | Weight bytes | Vectors per block | Original ns/row | Candidate ns/row | "
@@ -291,7 +336,9 @@ def report(args):
         "",
     ]
     (output / "reuse.md").write_text("\n".join(lines))
-    print(json.dumps(summary["reading"], indent=2), flush=True)
+    print(json.dumps({k: summary[k] for k in ("reading", "kernel_gate_passed") if k in summary}))
+    if summary.get("kernel_gate_passed") is False:
+        raise SystemExit("Kernel gate failed; later gates must not run")
 
 
 def main():
@@ -301,6 +348,7 @@ def main():
     run.add_argument("--original", type=Path, required=True, help="original bin directory")
     run.add_argument("--candidate", type=Path, required=True, help="two-block bin directory")
     run.add_argument("--binary", type=Path, required=True)
+    run.add_argument("--variant", choices=sorted(VARIANTS), default="two-block")
     run.add_argument("--output", type=Path, required=True)
     show = commands.add_parser("report")
     show.add_argument("--input", type=Path, required=True)
