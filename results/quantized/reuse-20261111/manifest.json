@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "experiment": "q5_reuse",
+  "data_kind": "real",
+  "status": "completed",
+  "started_at": "2026-11-11T23:55:45.749116+00:00",
+  "source_commit": "8cfd5d9af24ce1a086f7d88162a059b6b24436ce",
+  "source_files_sha256": {
+    "benchmarks/q5_reuse_bench.cpp": "f3bec0b7fe05e00a17b3bcdc4944d474150a8fe31b18b2f1a6a5b2054d3d4442",
+    "benchmarks/q5_support.h": "de3f07b2717f3ba79ad16fc085226c2328ab42bfdf8bd13382aafcfad11ba6cd",
+    "src/integration/q5_ggml_bridge_two_block.cpp": "7383301a37eac1484679bc2b253c625c687833aa07bddc02845eae2dc13b518a",
+    "scripts/quantized/reuse_profile.py": "a69bbae220f969747be2f9d679897a9cd6fdf03f0725528e00b775935f59544e"
+  },
+  "libraries_sha256": {
+    "original/libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "original/libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "candidate/libggml-cpu.so": "a0c37d83d80385f95b0e059ef6652805a4586c2dbd0dfc54fe9a604fa919b0ee",
+    "candidate/libggml-base.so": "1c61ef33309da3f1bf9aa95f11ff63b7cbe717b4b49b191bc52b7414d17882b0"
+  },
+  "kernel_capture_manifest_sha256": "b272263a2a5c19b17e8c4d5ad8754942b44b9c7604e794fe9e4123e3632240f8",
+  "binary_sha256": "22d817f2eec68a509ac7733835791f670d4c7b724866925e0de65e87b90b4567",
+  "conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "protocol": {
+    "sessions": 3,
+    "repetitions": 6,
+    "min_ms": 100,
+    "rows": [
+      192,
+      1536,
+      16384,
+      262144
+    ],
+    "reuse": [
+      1,
+      16
+    ]
+  },
+  "cases": [
+    {
+      "id": "s0-r192-u1",
+      "session": 0,
+      "seed": 42,
+      "rows": 192,
+      "reuse": 1
+    },
+    {
+      "id": "s0-r192-u16",
+      "session": 0,
+      "seed": 42,
+      "rows": 192,
+      "reuse": 16
+    },
+    {
+      "id": "s0-r1536-u1",
+      "session": 0,
+      "seed": 42,
+      "rows": 1536,
+      "reuse": 1
+    },
+    {
+      "id": "s0-r1536-u16",
+      "session": 0,
+      "seed": 42,
+      "rows": 1536,
+      "reuse": 16
+    },
+    {
+      "id": "s0-r16384-u1",
+      "session": 0,
+      "seed": 42,
+      "rows": 16384,
+      "reuse": 1
+    },
+    {
+      "id": "s0-r16384-u16",
+      "session": 0,
+      "seed": 42,
+      "rows": 16384,
+      "reuse": 16
+    },
+    {
+      "id": "s0-r262144-u1",
+      "session": 0,
+      "seed": 42,
+      "rows": 262144,
+      "reuse": 1
+    },
+    {
+      "id": "s0-r262144-u16",
+      "session": 0,
+      "seed": 42,
+      "rows": 262144,
+      "reuse": 16
+    },
+    {
+      "id": "s1-r262144-u16",
+      "session": 1,
+      "seed": 43,
+      "rows": 262144,
+      "reuse": 16
+    },
+    {
+      "id": "s1-r262144-u1",
+      "session": 1,
+      "seed": 43,
+      "rows": 262144,
+      "reuse": 1
+    },
+    {
+      "id": "s1-r16384-u16",
+      "session": 1,
+      "seed": 43,
+      "rows": 16384,
+      "reuse": 16
+    },
+    {
+      "id": "s1-r16384-u1",
+      "session": 1,
+      "seed": 43,
+      "rows": 16384,
+      "reuse": 1
+    },
+    {
+      "id": "s1-r1536-u16",
+      "session": 1,
+      "seed": 43,
+      "rows": 1536,
+      "reuse": 16
+    },
+    {
+      "id": "s1-r1536-u1",
+      "session": 1,
+      "seed": 43,
+      "rows": 1536,
+      "reuse": 1
+    },
+    {
+      "id": "s1-r192-u16",
+      "session": 1,
+      "seed": 43,
+      "rows": 192,
+      "reuse": 16
+    },
+    {
+      "id": "s1-r192-u1",
+      "session": 1,
+      "seed": 43,
+      "rows": 192,
+      "reuse": 1
+    },
+    {
+      "id": "s2-r192-u1",
+      "session": 2,
+      "seed": 44,
+      "rows": 192,
+      "reuse": 1
+    },
+    {
+      "id": "s2-r192-u16",
+      "session": 2,
+      "seed": 44,
+      "rows": 192,
+      "reuse": 16
+    },
+    {
+      "id": "s2-r1536-u1",
+      "session": 2,
+      "seed": 44,
+      "rows": 1536,
+      "reuse": 1
+    },
+    {
+      "id": "s2-r1536-u16",
+      "session": 2,
+      "seed": 44,
+      "rows": 1536,
+      "reuse": 16
+    },
+    {
+      "id": "s2-r16384-u1",
+      "session": 2,
+      "seed": 44,
+      "rows": 16384,
+      "reuse": 1
+    },
+    {
+      "id": "s2-r16384-u16",
+      "session": 2,
+      "seed": 44,
+      "rows": 16384,
+      "reuse": 16
+    },
+    {
+      "id": "s2-r262144-u1",
+      "session": 2,
+      "seed": 44,
+      "rows": 262144,
+      "reuse": 1
+    },
+    {
+      "id": "s2-r262144-u16",
+      "session": 2,
+      "seed": 44,
+      "rows": 262144,
+      "reuse": 16
+    }
+  ],
+  "conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "finished_at": "2026-11-11T23:58:50.020075+00:00",
+  "files": {
+    "raw/s0-r1536-u1.json": "d8bcffb289819632a93fb04ad244e4f8048bd3ac018de61f23893f1df02808bd",
+    "raw/s0-r1536-u1.metrics.csv": "d8f03ff3b39b8fea1d6a5d0220f5eb7d0bfc5ec282dfa69e9950a9b78e50fda4",
+    "raw/s0-r1536-u1.process.json": "cbd1da44612b1f8b060beb1b5eeb49ecef8269a173a282f1536e2487c5e4262f",
+    "raw/s0-r1536-u16.json": "95bd7e8340dbc930eb6bd5b883bb0e037584a4a2a6705fe371d25b7157846a73",
+    "raw/s0-r1536-u16.metrics.csv": "28a2ea82e10aa76c4116cadf76ddcc3348aecd95acc61d600a54efe8ff3e9108",
+    "raw/s0-r1536-u16.process.json": "ed6d58abbb712b7328531bfc35c1b7b9e5df81a0fde235364d7249bab3a5b5b5",
+    "raw/s0-r16384-u1.json": "a198d250d1e46e9582eb42da067b58a5f9e1d0d4f9ecde71f86a3f8ce667ed4f",
+    "raw/s0-r16384-u1.metrics.csv": "330a5106ca0e07f097dd61848520bab67554e9d7849fed73ee48c3033c0fc45f",
+    "raw/s0-r16384-u1.process.json": "19c6ad53e661bf021bdf49df11f503bc4c8bbe7bad31789b4dd621cba208bbc5",
+    "raw/s0-r16384-u16.json": "758908fa5bdec3a9a6017f589eaeb7e83fdeb1804932f635bcc98e1c8641b9de",
+    "raw/s0-r16384-u16.metrics.csv": "df10a8af46a1d5d4f75081a1cca32205329b487e22ab051b79c3c572acbc76aa",
+    "raw/s0-r16384-u16.process.json": "7c23985c4b264455dddc11e03df398c6c5152d38a2c1069cbe2386b6146ca39a",
+    "raw/s0-r192-u1.json": "2e79a2a0d2728baaa8ba50cdbccb94d06446cb741e8b3f1c9a91e2d7818b6245",
+    "raw/s0-r192-u1.metrics.csv": "cdbc3319f463c066db8c013fd8496ee9a761a7bfe3eb5ca7fb5ce8ef084f750b",
+    "raw/s0-r192-u1.process.json": "a7795fc4266d2e3ed425ab97cb0cba29aa07370af571da028aa7ab0173b8efda",
+    "raw/s0-r192-u16.json": "7fd16201b127e05558aa0a0f293b6cd6b1eb49fc6e0515fa98efec25e2ebe42d",
+    "raw/s0-r192-u16.metrics.csv": "5a3db7c2b6019f73a45582aff5d60f55998e57997e7ac4980b87dd4f11105571",
+    "raw/s0-r192-u16.process.json": "d29f4d881530ba7e460790c5840472ce062058a8f07b0ee7b9f651ddc8a2ded6",
+    "raw/s0-r262144-u1.json": "7c593f10db1933c27389f0c12d98c795ab2a3af258277d77a58c5f4c3e0c37ca",
+    "raw/s0-r262144-u1.metrics.csv": "61f22c45b6db839e9a125a9d7186c966d57952c20701b51d786d0e736df141c8",
+    "raw/s0-r262144-u1.process.json": "67994dcb604a34f9b20280601065e01b8b3e0fa98748983f7c3ddf4d4b3f88a7",
+    "raw/s0-r262144-u16.json": "93074e6af7a094d46ae51ab3230a94774e34412b6580a50bc7c73481666edc73",
+    "raw/s0-r262144-u16.metrics.csv": "7f84c4cd9c4fdf28f6661cc8cfd24c67ae2e09bef9df488a85f212e8d115f999",
+    "raw/s0-r262144-u16.process.json": "e11fa2e83c821037b0aec44e8f102fcbaa135ccdf269b0fa6439a51332b072a6",
+    "raw/s1-r1536-u1.json": "611aba01cb6cef9812635f956788ae5013af9be6caf91c9db60d40434ae71f50",
+    "raw/s1-r1536-u1.metrics.csv": "5ca8d9491c2d6430af0507f155bab1467056baf05ff54e1f758bc8660ed7de67",
+    "raw/s1-r1536-u1.process.json": "1f4dca2f8679f4d94981132cae2bc96014ef7d5b2f03c3c28a568c27df042b63",
+    "raw/s1-r1536-u16.json": "e02d87d52718e40c1542c134b66ff9131419e89c0becd7067e90433a9d7ae57f",
+    "raw/s1-r1536-u16.metrics.csv": "535f08fc41e3a567aff1692cbc975a10fc2f7d2583948cf95b1292e0ae90ea04",
+    "raw/s1-r1536-u16.process.json": "2d63922ec4d9c936234b15262574a85abae608557528c3f96675cce01b0cc7fd",
+    "raw/s1-r16384-u1.json": "a5a1ad59731c98fdc6797b756f98512fd5b9a00786558e31bcdcd97f453c7f58",
+    "raw/s1-r16384-u1.metrics.csv": "d3807f3e8505e656b1d603f2508eec6c29eccafddae48897adb9408e4ed76e5b",
+    "raw/s1-r16384-u1.process.json": "3d951fe49b7d45ebeab191816341d7147b85d812c4d168d11f4170bd32f39fe9",
+    "raw/s1-r16384-u16.json": "99e4d1d1b692ef9e9099aa74c4bbee83074484148503ed42826c28d78121210c",
+    "raw/s1-r16384-u16.metrics.csv": "7629307a2b20df9b5e3306672184dc84a83926c57db83cd71517ca7e2a1bce4a",
+    "raw/s1-r16384-u16.process.json": "4aa799551e4e33de05f513ee4181d7f8684422e509e021ca224e914387e8a9db",
+    "raw/s1-r192-u1.json": "e863445e3e9578aa244b5d02aad1fb15d013d87e26abcf6d571fcc2e4c4c8cf1",
+    "raw/s1-r192-u1.metrics.csv": "7a74e9be299f7a8d15dc374ab7bb41584ca38b3bf8eebee0509b65db5375192f",
+    "raw/s1-r192-u1.process.json": "c1a31762b10b109d3d26d607d54555220fa059148511cab7129e0eda0f4c71bf",
+    "raw/s1-r192-u16.json": "d92de6a25fd907e6fce581181235b75ffe32a948ba8a6fb473d0f11cc603d92d",
+    "raw/s1-r192-u16.metrics.csv": "0c3ff18a523d47dbd1e1e408bcff9adaacb4bf08a54f9fadc805120d80b26db3",
+    "raw/s1-r192-u16.process.json": "2a58f31bf1272b8e116f9dd49c373608bde7f8633d9807240fd0de1fc02a24df",
+    "raw/s1-r262144-u1.json": "a9aeb5fce60f685a45304843cb43cac2a7696c472e9d30adb8f9745139465922",
+    "raw/s1-r262144-u1.metrics.csv": "d42e5f7ffde61912aa3868fc70fefd03b9c41914e6ac00d0e1965e6d2c5459de",
+    "raw/s1-r262144-u1.process.json": "777a6547a7ece88ef7d9761e4e48c342af7f6b5c2c6fe33799464094a936b02c",
+    "raw/s1-r262144-u16.json": "488eb500b057289e64b5e2072106a72c441c9265cd41e31f1c75349d3348dd6a",
+    "raw/s1-r262144-u16.metrics.csv": "d566e428878ef55941b8aa6df3a93a0c657327f28849a01a35cba72c25cc0561",
+    "raw/s1-r262144-u16.process.json": "55dd86a20fa2e0770fa0bfa08b0583dd364c12ca781b4156ef5dc76fecedeff4",
+    "raw/s2-r1536-u1.json": "09b8ce8d9f03b8b993ab017d792ff2e81fb00ce3c52e725301234baf11b84cbd",
+    "raw/s2-r1536-u1.metrics.csv": "238a858146ffce592185967467cc8f069f25de464d3978bb446b7e86954469be",
+    "raw/s2-r1536-u1.process.json": "080bcf0a7a9bad1e6dd55573e5f93a30f4c0e99d5a8dc389a5bd3576a22697ae",
+    "raw/s2-r1536-u16.json": "c36ec531818f989bb82f334d94d86a092af939ab7c4ddf18eb52d9e25e43c5cd",
+    "raw/s2-r1536-u16.metrics.csv": "45b3a88937a6086017e57d88ccd679e5e47992c645434f44729d4b6d1e1b649e",
+    "raw/s2-r1536-u16.process.json": "86f189af85a67100db545645d7b62450fb7ef8edfb5dfc128539092c868907c3",
+    "raw/s2-r16384-u1.json": "28e2281eafc0885338619ee69f3303678916bfd7f90267a8dbdd0d7fcb96cb8e",
+    "raw/s2-r16384-u1.metrics.csv": "e9d60095a17b223fb3dc148541497de80f696999d6270ff41c171ebaacf377c5",
+    "raw/s2-r16384-u1.process.json": "1d0ef4c0ef947c89764dff0c1d4fa5b06d824600b974bca4893ab9c8efbe83aa",
+    "raw/s2-r16384-u16.json": "b7f6039e24834426eb7c880c29bccaf74a1724031cbb03cfad56cba4b2b278ed",
+    "raw/s2-r16384-u16.metrics.csv": "218f4eb2dbda8f7864a5ed1c81c1a26dbc9ccb3cba701cf6b9a944b103b2ecaa",
+    "raw/s2-r16384-u16.process.json": "6296058ba9ec0ee202f7148f4011e7c52c21bc462f4f33735cfcb9ac5106a23d",
+    "raw/s2-r192-u1.json": "1c5c4c63fbfd1303074028e74cc03315de79a3032fc898a70c1d3118e657b865",
+    "raw/s2-r192-u1.metrics.csv": "ad583f2f66ccb8a5ca9ddcb51b919a17849c4e56a8340543ab455d3d7014e912",
+    "raw/s2-r192-u1.process.json": "4f439b92c16a3ffb2cc55691977a93e924b965418ee77a3dab45518d7a21d6bf",
+    "raw/s2-r192-u16.json": "86281201a3116219a8d10057fb2889a5cd050bef39c41e3ecab84045885d9757",
+    "raw/s2-r192-u16.metrics.csv": "5d51d2295508ef972361cce0be4d6903528c022427e2b6779ded7f37928016ae",
+    "raw/s2-r192-u16.process.json": "00f5c0ee4c8cc04286220514f7297d15af8005444a072ae4f71a81297c4d5160",
+    "raw/s2-r262144-u1.json": "c9ba367752700d5178dc19126080d2192ce34de814e2c77b0bfefb0717200af1",
+    "raw/s2-r262144-u1.metrics.csv": "2fd8f0635b89f92c6fdc62a869a530ec2163418325153e549d31b3eeff72b808",
+    "raw/s2-r262144-u1.process.json": "5383d028c372c72d3630a4331aaacad6315038aad802ef5ecbcfb0bfa6692d46",
+    "raw/s2-r262144-u16.json": "8adb1f0ed102654ed524d8d330597121599ae8bc7fed50867a69d600b710e132",
+    "raw/s2-r262144-u16.metrics.csv": "207a28892b3d61eb8198e75cb170738a84ac994ed9984f941c79612097d7132b",
+    "raw/s2-r262144-u16.process.json": "f60c72101f41a3a3c3bbab23c8634c31f9e9d445d2b8a260f4e656ac9b7de79c"
+  },
+  "private_stderr_sha256": {
+    "s0-r1536-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r1536-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r16384-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r16384-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r192-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r192-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r262144-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s0-r262144-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r1536-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r1536-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r16384-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r16384-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r192-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r192-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r262144-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s1-r262144-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r1536-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r1536-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r16384-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r16384-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r192-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r192-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r262144-u1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "s2-r262144-u16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

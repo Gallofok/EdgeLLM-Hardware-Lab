@@ -1,0 +1,9 @@
+{
+  "source_commit": "8cfd5d9af24ce1a086f7d88162a059b6b24436ce",
+  "working_tree_clean": true,
+  "data_kind": "real",
+  "original_manifest_sha256": "6dc43ce9b18f5e72ce47a4946f688eca2ac238a7cac911c9a06bd6e6e0eabd04",
+  "retained_capture_bytes_changed": false,
+  "capture_directory_on_device": "reuse-20261112-01",
+  "notice": "Native stdout, process and sensor bytes unchanged. Stderr stays private; its hashes are in the manifest. The directory was named for the following day on the device; the capture ran on 2026-11-11 UTC."
+}
