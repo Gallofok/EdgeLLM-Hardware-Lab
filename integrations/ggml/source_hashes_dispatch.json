@@ -1,0 +1,10 @@
+{
+  "ggml/src/ggml-cpu/ggml-cpu.c": {
+    "original": "b896a150e0870c3a5a51b62ae9f6d5e1c14d971c00e44ae7de141c96efb8a3fb",
+    "patched": "25185a281927cc9ba6f33361cc427dd844f669da5c9fa5e91789077f9c376c39"
+  },
+  "ggml/src/ggml-cpu/CMakeLists.txt": {
+    "original": "2ccc32c6b2771e367b1dff8ca006ff68a1b8f2e876d10b4ba6ed63e744d03b67",
+    "patched": "2a10bbc01d40422fa9cc19773154fff1dcb92deecf7d851ddbf0e59e91c1e434"
+  }
+}

@@ -13,6 +13,7 @@ VARIANTS = {
     "row4": ("row4.patch", "source_hashes.json"),
     "hybrid": ("row4_hybrid.patch", "source_hashes_hybrid.json"),
     "threads": ("row4_threads.patch", "source_hashes_threads.json"),
+    "dispatch": ("row4_dispatch.patch", "source_hashes_dispatch.json"),
 }
 
 

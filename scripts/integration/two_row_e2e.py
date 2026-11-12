@@ -12,7 +12,7 @@ if __package__ in (None, ""):
 from scripts.integration.perf_report import generate
 from scripts.integration.perf_run import execute
 from scripts.integration.two_block_e2e import RULE, verdict
-from scripts.integration.validate import ADAPTIVE
+from scripts.integration.validate import ADAPTIVE, DISPATCH
 from scripts.pi.common import ROOT, sha256, write_json
 
 LIBRARIES = ("libggml-cpu.so", "libggml-base.so")
@@ -30,7 +30,14 @@ CANDIDATES = {
         "two-row-wide",
         "src/integration/q5_ggml_bridge_wide.cpp",
     ),
+    "two_row_dispatch": (
+        "EDGELLM_Q5_DISPATCH",
+        "two-row-dispatch",
+        "src/integration/q5_ggml_bridge_dispatch.cpp",
+    ),
 }
+# Candidates whose paired run needs a dispatch policy as well as a kernel capture.
+POLICIES = {"two_row_dispatch": DISPATCH}
 # Rule for the plain candidate. Four-thread decode is held to non-inferiority.
 CEILING_RULE = dict(
     improve=dict(mean_paired_ratio_above=1.0, min_pairs_above_one=3),
@@ -130,7 +137,7 @@ def collect(args):
     if args.kernel_capture is None:
         raise ValueError("This candidate requires its kernel capture")
     identity = candidate_identity(args.build, args.kernel_capture, args.candidate)
-    execute(args.output, args.build, versions=args.versions)
+    execute(args.output, args.build, policy=POLICIES.get(args.candidate), versions=args.versions)
     if candidate_identity(args.build, args.kernel_capture, args.candidate) != identity:
         raise ValueError("Candidate changed during measurement")
     write_json(args.output.resolve() / "two_row.json", identity)
@@ -142,7 +149,8 @@ def report(args):
     manifest = json.loads((source / "manifest.json").read_text())
     if identity.get("variant") not in (*CANDIDATES, "two_row_adaptive"):
         raise ValueError("Capture is not a two-row candidate")
-    if (identity["variant"] == "two_row_adaptive") != (manifest.get("dispatch_policy") == ADAPTIVE):
+    expected_policy = ADAPTIVE if identity["variant"] == "two_row_adaptive" else None
+    if manifest.get("dispatch_policy") != POLICIES.get(identity["variant"], expected_policy):
         raise ValueError("Capture policy differs from the recorded candidate")
     for name, digest in identity["libraries_sha256"].items():
         if manifest["artifact_hashes"]["compatible/" + name] != digest:

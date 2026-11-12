@@ -34,6 +34,13 @@ WIDE_GRAPH_CASES = (
     ]
     + [(c, 17, 3, 1, 1, 1, 1, 0, 1, 0, 1) for c in (832, 1024)]
 )
+# Reuse- and thread-aware dispatch: hinted, plain, or left to the original dot.
+DISPATCH = "dispatch"
+DISPATCH_GRAPH_CASES = (
+    WIDE_GRAPH_CASES[:-2]
+    + [(c, 192, n, 1, 1, 1, 1, 0, 0, 0, 0) for c in (576, 960) for n in (2, 16, 17)]
+    + WIDE_GRAPH_CASES[-2:]
+)
 CASE_FIELDS = (
     "cols",
     "rows",
@@ -81,11 +88,29 @@ def hybrid_counts(r):
     return calls, declined
 
 
+def dispatch_counts(r):
+    """Dispatch counters of one record, with whether its thread count is saturated."""
+    values = [r[k] for k in ("hinted_calls", "plain_calls", "declined_calls", "declined_rows")]
+    check(
+        all(isinstance(v, int) and v >= 0 for v in values)
+        and isinstance(r["processors"], int)
+        and r["processors"] > 0
+        and values[2] <= values[3],
+        "Invalid dispatch counts",
+    )
+    return (*values, r["threads"] >= r["processors"])
+
+
 def validate_graph(rows, fixture=False, policy=None):
-    check(policy in (None, HYBRID, WIDE), "Unknown dispatch policy")
+    check(policy in (None, HYBRID, WIDE, DISPATCH), "Unknown dispatch policy")
     common(rows, fixture)
-    cases = {HYBRID: HYBRID_GRAPH_CASES, WIDE: WIDE_GRAPH_CASES}.get(policy, GRAPH_CASES)
-    widths = WIDE_WIDTHS if policy == WIDE else (576,)
+    cases = {
+        HYBRID: HYBRID_GRAPH_CASES,
+        WIDE: WIDE_GRAPH_CASES,
+        DISPATCH: DISPATCH_GRAPH_CASES,
+    }.get(policy, GRAPH_CASES)
+    widths = WIDE_WIDTHS if policy in (WIDE, DISPATCH) else (576,)
+    dispatch = policy == DISPATCH
     policy = policy if policy == HYBRID else None
     expected = {(c, t, m) for c in range(len(cases)) for t in (1, 2, 4) for m in (0, 1)}
     actual = [(r["case"], r["threads"], r["mode"]) for r in rows]
@@ -100,7 +125,29 @@ def validate_graph(rows, fixture=False, policy=None):
             "Graph layout differs from protocol",
         )
         eligible = r["cols"] in widths and not r["padded_weights"]
-        if policy:
+        if dispatch:
+            hinted, plain, declined, declined_rows, saturated = dispatch_counts(r)
+            vectors = r["vectors"] * r["x2"] * r["x3"]
+            if r["mode"] and eligible:
+                check(
+                    r["handled_rows"] + declined_rows == r["rows"] * vectors
+                    and hinted + plain == r["handled"],
+                    "Missing, overlapping or unclassified output rows",
+                )
+                if vectors == 1 and saturated:
+                    check(r["handled"] == 0 and declined > 0, "Saturated single pass not declined")
+                elif vectors == 1:
+                    check(
+                        r["handled"] > 0 and hinted == r["handled"] and declined == 0,
+                        "Single pass was not hinted",
+                    )
+                else:
+                    check(r["handled"] > 0 and r["thread_mask"] > 0, "Candidate did not execute")
+            else:
+                check(r["handled"] == 0 and r["handled_rows"] == 0, "Unexpected dispatch")
+            if not r["mode"]:
+                check(hinted + plain + declined == 0, "Disabled dispatch counted calls")
+        elif policy:
             calls, declined = hybrid_counts(r)
             vectors = r["vectors"] * r["x2"] * r["x3"]
             if r["mode"] and eligible:
@@ -140,7 +187,8 @@ def validate_graph(rows, fixture=False, policy=None):
 
 
 def validate_model(rows, fixture=False, profile="upstream_accumulation", policy=None):
-    check(policy in (None, HYBRID), "Unknown dispatch policy")
+    check(policy in (None, HYBRID, DISPATCH), "Unknown dispatch policy")
+    dispatch, policy = policy == DISPATCH, policy if policy == HYBRID else None
     common(rows, fixture)
     expected = {(p, t, m, s) for p in (0, 1) for t in (1, 4) for m in (0, 1) for s in range(9)}
     actual = [(r["prompt"], r["threads"], r["mode"], r["step"]) for r in rows]
@@ -165,6 +213,30 @@ def validate_model(rows, fixture=False, profile="upstream_accumulation", policy=
             r["greedy_token"] == baseline["greedy_token"] and r["vocab"] == baseline["vocab"],
             "Model token or vocabulary diverged",
         )
+        if dispatch:
+            hinted, plain, declined, _, saturated = dispatch_counts(r)
+            check(bool(r["mode"]) or hinted + plain + declined == 0, "Disabled dispatch counted")
+        if dispatch and r["mode"] and r["step"] and saturated:
+            # A saturated single-token step must stay entirely on the original dot.
+            check(
+                r["handled"] == 0 and r["handled_rows"] == 0 and declined > 0,
+                "Saturated single-token step was not declined",
+            )
+        elif dispatch and r["mode"] and r["step"]:
+            check(
+                r["handled"] > 0 and hinted == r["handled"] and declined == 0,
+                "Single-token step was not hinted",
+            )
+        elif dispatch and r["mode"]:
+            check(r["handled"] > 0 and r["thread_mask"] > 0, "Model did not execute candidate")
+        elif dispatch:
+            check(
+                r["handled"] == 0 and r["max_abs_error"] == 0 and r["disabled"] > 0,
+                "Invalid model control",
+            )
+            continue
+        if dispatch:
+            continue
         if policy:
             calls, _ = hybrid_counts(r)
             check(bool(r["mode"]) or calls == 0, "Disabled dispatch counted calls")

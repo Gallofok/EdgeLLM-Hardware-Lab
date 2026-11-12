@@ -39,7 +39,10 @@ VARIANTS = {
     "two-row-prefetch": "src/integration/q5_ggml_bridge_two_row.cpp",
     "two-row-plain": "src/integration/q5_ggml_bridge_two_row_plain.cpp",
     "two-row-wide": "src/integration/q5_ggml_bridge_wide.cpp",
+    "two-row-dispatch": "src/integration/q5_ggml_bridge_dispatch.cpp",
 }
+# The dispatch candidate is timed through its own entry point, as one thread.
+DISPATCH_VARIANT = "two-row-dispatch"
 # Captures before the width option measured width 576 and do not record it.
 WIDTHS = (576, 896, 960)
 
@@ -70,6 +73,9 @@ def native_ratios(raw):
         raise ValueError("Wrong workload/data kind")
     if raw.get("cols") not in WIDTHS:
         raise ValueError("Unsupported width")
+    expected_entry = "dispatch" if raw.get("variant") == DISPATCH_VARIANT else "legacy"
+    if raw.get("entry", "legacy") != expected_entry:
+        raise ValueError("Wrong bridge entry point for this variant")
     if raw.get("variant", "two-block") not in VARIANTS:
         raise ValueError("Unknown loop variant")
     if raw["weight_bytes"] != raw["rows"] * (raw["cols"] // 32) * 22:
@@ -173,6 +179,8 @@ def collect(args):
                 command += ["--variant", args.variant]
             if args.cols != 576:
                 command += ["--cols", str(args.cols)]
+            if args.variant == DISPATCH_VARIANT:
+                command += ["--entry", "dispatch"]
             raw_path = output / "raw" / (case["id"] + ".json")
             manifest["cases"].append(dict(case))
             write_json(output / "manifest.json", manifest)
