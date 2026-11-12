@@ -1,0 +1,95 @@
+{
+  "candidate": {
+    "variant": "two_row_dispatch",
+    "libraries_sha256": {
+      "libggml-cpu.so": "83dd87979298db7154df84624d3a1145f0b6ec78e15960f870728d3b5e9b79f7",
+      "libggml-base.so": "f8f4e3190ee974203b3bd75585c243115de2b0e364bfa106014668724fcc9def"
+    },
+    "kernel_capture_manifest_sha256": "cb7763ee5555fe6a75b7753798243b7f58f9ca154f544eb9380699ff1a47004b"
+  },
+  "rule": {
+    "improve": {
+      "mean_paired_ratio_above": 1.0,
+      "min_pairs_above_one": 3
+    },
+    "non_inferior": {
+      "phase": "decode",
+      "threads": 4,
+      "mean_paired_ratio_at_least": 0.99
+    },
+    "groups": 6,
+    "pairs_per_group": 4,
+    "clean_throttle_raw": [
+      "0x0"
+    ],
+    "conditions": {
+      "current_flags": [],
+      "max_temperature_below_c": 80.0,
+      "missing_samples": 0
+    }
+  },
+  "outcome": "accepted",
+  "clean_conditions": true,
+  "groups": [
+    {
+      "phase": "prefill",
+      "threads": 1,
+      "change_pct": 15.856592666447678,
+      "paired_ratio_mean": 1.1585659266644768,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 2,
+      "change_pct": 15.630009641599596,
+      "paired_ratio_mean": 1.156300096415996,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 4,
+      "change_pct": 15.010458990770648,
+      "paired_ratio_mean": 1.1501045899077065,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 1,
+      "change_pct": 14.496621546253952,
+      "paired_ratio_mean": 1.1449662154625395,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 2,
+      "change_pct": 12.892746888113926,
+      "paired_ratio_mean": 1.1289274688811393,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 4,
+      "change_pct": 0.11522132115791006,
+      "paired_ratio_mean": 1.001152213211579,
+      "pairs_above_one": 1,
+      "pairs": 4,
+      "requirement": "non_inferior",
+      "passes": true
+    }
+  ]
+}

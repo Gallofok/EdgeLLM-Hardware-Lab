@@ -1,0 +1,380 @@
+{
+  "data_kind": "real",
+  "source_commit": "ae1716ff71048e91c6d6920f17b8df62ee075858",
+  "groups": [
+    {
+      "phase": "prefill",
+      "threads": 1,
+      "pairs": [
+        {
+          "pair": "s0-t1",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 2.8043250779392146,
+          "compatible": 3.257183309698095,
+          "ratio": 1.1614856406346685
+        },
+        {
+          "pair": "s1-t1",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 2.8049437072782135,
+          "compatible": 3.260931749445572,
+          "ratio": 1.1625658443640667
+        },
+        {
+          "pair": "s2-t1",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 2.801722382791956,
+          "compatible": 3.2607580945271435,
+          "ratio": 1.1638405412879458
+        },
+        {
+          "pair": "s3-t1",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 2.8044334721015005,
+          "compatible": 3.2604033812884756,
+          "ratio": 1.1625889555673055
+        }
+      ],
+      "original_mean_ts": 2.8038561600277214,
+      "original_process_sd": 0.001447864813230516,
+      "compatible_mean_ts": 3.2598191337398217,
+      "compatible_process_sd": 0.0017709201606191788,
+      "paired_ratio_mean": 1.1626202454634966,
+      "paired_ratio_sd": 0.0009627025421508156,
+      "paired_ratio_min": 1.1614856406346685,
+      "paired_ratio_max": 1.1638405412879458,
+      "change_pct": 16.262024546349664
+    },
+    {
+      "phase": "prefill",
+      "threads": 2,
+      "pairs": [
+        {
+          "pair": "s0-t2",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 5.5800851559552385,
+          "compatible": 6.467858351855315,
+          "ratio": 1.1590967110873958
+        },
+        {
+          "pair": "s1-t2",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 5.579754873709977,
+          "compatible": 6.466088834133984,
+          "ratio": 1.1588481896579597
+        },
+        {
+          "pair": "s2-t2",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 5.581259691244422,
+          "compatible": 6.464160561739048,
+          "ratio": 1.1581902508280832
+        },
+        {
+          "pair": "s3-t2",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 5.581390080599373,
+          "compatible": 6.462906362287023,
+          "ratio": 1.1579384828793378
+        }
+      ],
+      "original_mean_ts": 5.580622450377253,
+      "original_process_sd": 0.000823955227390572,
+      "compatible_mean_ts": 6.465253527503842,
+      "compatible_process_sd": 0.0021745961913609752,
+      "paired_ratio_mean": 1.158518408613194,
+      "paired_ratio_sd": 0.000543810836557499,
+      "paired_ratio_min": 1.1579384828793378,
+      "paired_ratio_max": 1.1590967110873958,
+      "change_pct": 15.85184086131941
+    },
+    {
+      "phase": "prefill",
+      "threads": 4,
+      "pairs": [
+        {
+          "pair": "s0-t4",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 10.862918641052321,
+          "compatible": 12.428222477216154,
+          "ratio": 1.1440960655130339
+        },
+        {
+          "pair": "s1-t4",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 10.701007562705367,
+          "compatible": 12.32494221688816,
+          "ratio": 1.1517553038503077
+        },
+        {
+          "pair": "s2-t4",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 10.87227335168415,
+          "compatible": 12.33300791066737,
+          "ratio": 1.1343541053221355
+        },
+        {
+          "pair": "s3-t4",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 10.532901779914353,
+          "compatible": 12.135181478965968,
+          "ratio": 1.1521213937556194
+        }
+      ],
+      "original_mean_ts": 10.742275333839048,
+      "original_process_sd": 0.16020258657546793,
+      "compatible_mean_ts": 12.305338520934413,
+      "compatible_process_sd": 0.12275149105156208,
+      "paired_ratio_mean": 1.1455817171102742,
+      "paired_ratio_sd": 0.008349590229384977,
+      "paired_ratio_min": 1.1343541053221355,
+      "paired_ratio_max": 1.1521213937556194,
+      "change_pct": 14.558171711027423
+    },
+    {
+      "phase": "decode",
+      "threads": 1,
+      "pairs": [
+        {
+          "pair": "s0-t1",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 2.3476516965033207,
+          "compatible": 2.728845766884315,
+          "ratio": 1.1623724979939565
+        },
+        {
+          "pair": "s1-t1",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 2.346635187199277,
+          "compatible": 2.7264822880329973,
+          "ratio": 1.1618688336839738
+        },
+        {
+          "pair": "s2-t1",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 2.345125485992445,
+          "compatible": 2.7092466308674203,
+          "ratio": 1.1552672328410099
+        },
+        {
+          "pair": "s3-t1",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 2.3481386254320187,
+          "compatible": 2.729123964584146,
+          "ratio": 1.1622499349168673
+        }
+      ],
+      "original_mean_ts": 2.346887748781765,
+      "original_process_sd": 0.0013313734771519853,
+      "compatible_mean_ts": 2.72342466259222,
+      "compatible_process_sd": 0.009526035759371153,
+      "paired_ratio_mean": 1.160439624858952,
+      "paired_ratio_sd": 0.0034549239313672897,
+      "paired_ratio_min": 1.1552672328410099,
+      "paired_ratio_max": 1.1623724979939565,
+      "change_pct": 16.043962485895193
+    },
+    {
+      "phase": "decode",
+      "threads": 2,
+      "pairs": [
+        {
+          "pair": "s0-t2",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 4.367714219840596,
+          "compatible": 5.050884554423381,
+          "ratio": 1.1564136983778481
+        },
+        {
+          "pair": "s1-t2",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 4.371660633385118,
+          "compatible": 5.053048347487114,
+          "ratio": 1.1558647322480693
+        },
+        {
+          "pair": "s2-t2",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 4.373698618502287,
+          "compatible": 5.046070942990823,
+          "ratio": 1.1537308313024048
+        },
+        {
+          "pair": "s3-t2",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 4.372286722854726,
+          "compatible": 5.046774451966463,
+          "ratio": 1.1542642950623683
+        }
+      ],
+      "original_mean_ts": 4.371340048645681,
+      "original_process_sd": 0.0025631005264136744,
+      "compatible_mean_ts": 5.049194574216945,
+      "compatible_process_sd": 0.00333274987860889,
+      "paired_ratio_mean": 1.1550683892476727,
+      "paired_ratio_sd": 0.001275362372792351,
+      "paired_ratio_min": 1.1537308313024048,
+      "paired_ratio_max": 1.1564136983778481,
+      "change_pct": 15.506838924767274
+    },
+    {
+      "phase": "decode",
+      "threads": 4,
+      "pairs": [
+        {
+          "pair": "s0-t4",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 6.894915781968091,
+          "compatible": 6.56233415674916,
+          "ratio": 0.9517642222565337
+        },
+        {
+          "pair": "s1-t4",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 6.545284615006738,
+          "compatible": 6.480736566762914,
+          "ratio": 0.9901382366022968
+        },
+        {
+          "pair": "s2-t4",
+          "order": [
+            "original",
+            "compatible"
+          ],
+          "original": 6.778425931413019,
+          "compatible": 6.429432595596892,
+          "ratio": 0.9485141035179274
+        },
+        {
+          "pair": "s3-t4",
+          "order": [
+            "compatible",
+            "original"
+          ],
+          "original": 6.341253243825126,
+          "compatible": 6.350319293728332,
+          "ratio": 1.0014296937142566
+        }
+      ],
+      "original_mean_ts": 6.639969893053244,
+      "original_process_sd": 0.24655250910484475,
+      "compatible_mean_ts": 6.455705653209325,
+      "compatible_process_sd": 0.08905568056265918,
+      "paired_ratio_mean": 0.9729615640227536,
+      "paired_ratio_sd": 0.026786054282816864,
+      "paired_ratio_min": 0.9485141035179274,
+      "paired_ratio_max": 1.0014296937142566,
+      "change_pct": -2.7038435977246422
+    }
+  ],
+  "formal_processes": 24,
+  "formal_native_repetitions": 144,
+  "sensor_samples": 2738,
+  "max_temperature_c": 82.206,
+  "frequencies_mhz": [
+    600.0,
+    700.0,
+    1200.0
+  ],
+  "throttled_raw": [
+    "0x20000",
+    "0x20002"
+  ],
+  "current_throttle_flags": [
+    "frequency_capped_now"
+  ],
+  "missing_throttle_samples": 0,
+  "peak_child_rss_mb": 292.98046875,
+  "oom_cgroup_deltas": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
+}
