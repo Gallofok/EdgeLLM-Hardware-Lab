@@ -53,7 +53,8 @@ not establish that it passed.
 - [x] Run the [two-row prefetching candidate](q5_two_row.md) through its predeclared gates:
   kernel gate passed, [end-to-end rejected](q5_two_row_analysis.md) on four-thread decode alone.
 - [ ] Establish what limits four-thread decode; exploratory runs suggest a shared ceiling.
-- [ ] Run the [plain two-row candidate](q5_two_row_plain.md) through its predeclared gates.
+- [x] Run the [plain two-row candidate](q5_two_row_plain.md) through its predeclared gates:
+  [accepted](q5_two_row_plain_analysis.md), five groups faster and four-thread decode unchanged.
 - [x] Run the [hybrid dispatch candidate](q5_hybrid_dispatch.md) through its predeclared gates:
   [accepted](q5_hybrid_dispatch_analysis.md), prefill faster and decode within margin.
 - [ ] Develop INT4 packing/decoding and evaluate cache/layout improvements.

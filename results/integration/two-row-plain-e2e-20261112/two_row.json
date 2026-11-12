@@ -1,0 +1,8 @@
+{
+  "variant": "two_row_plain",
+  "libraries_sha256": {
+    "libggml-cpu.so": "f814b9fdd39ebbea450d77cbdaf9f6f5d0dc5dec7cebc48fdf15fb9b2daa0185",
+    "libggml-base.so": "1c61ef33309da3f1bf9aa95f11ff63b7cbe717b4b49b191bc52b7414d17882b0"
+  },
+  "kernel_capture_manifest_sha256": "1819386f55442546708595c2a4bffe735bb7c804ee69ed8cd49b7dcf8a2dfb22"
+}

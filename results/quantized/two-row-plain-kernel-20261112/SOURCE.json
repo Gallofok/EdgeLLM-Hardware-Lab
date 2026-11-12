@@ -1,0 +1,8 @@
+{
+  "source_commit": "aac9e4cbdb79f999db09e9995cf2ee1d73ea7da3",
+  "working_tree_clean": true,
+  "data_kind": "real",
+  "original_manifest_sha256": "1819386f55442546708595c2a4bffe735bb7c804ee69ed8cd49b7dcf8a2dfb22",
+  "retained_capture_bytes_changed": false,
+  "notice": "Native stdout, process and sensor bytes unchanged. Stderr stays private; its hashes are in the manifest."
+}
