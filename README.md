@@ -278,8 +278,14 @@ the plain loop and the original dot. It passed its kernel gates at widths 576 an
 at 1.25–1.31 times the original, including the single-pass shapes the wide candidate
 lost. Its end-to-end captures on both models
 [gave no decision](docs/q5_dispatch_analysis.md): the board reached its
-frequency-capping temperature, and the rule withholds any verdict then. Nothing is
-claimed for the second model.
+frequency-capping temperature, and the rule withholds any verdict then. A
+[cooled rerun](docs/q5_dispatch_rerun_analysis.md) accepted it on SmolLM2-135M, with
+prefill 15.0–15.9% faster, decode 14.5% and 12.9% faster at one and two threads and
+four-thread decode unchanged. The SmolLM2-360M rerun overheated again inside
+four-thread processes, so nothing is claimed for the second model.
+
+The [campaign summary](docs/q5_campaign_summary.md) lists every candidate, rule and
+open item in one place.
 
 A [counter diagnostic](docs/decode_ceiling_diagnostic_analysis.md) probed the
 four-thread decode limit. Its predeclared reading is inconclusive: original

@@ -1,0 +1,2175 @@
+{
+  "schema": 1,
+  "data_kind": "real",
+  "status": "completed",
+  "started_at": "2026-11-12T12:05:31.553125+00:00",
+  "source_commit": "ae1716ff71048e91c6d6920f17b8df62ee075858",
+  "versions": {
+    "llama_repository": "https://github.com/ggml-org/llama.cpp.git",
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "llama_reference": "b6500",
+    "model_repository": "bartowski/SmolLM2-135M-Instruct-GGUF",
+    "model_revision": "09816acd5d99df7be770d85ea30822623dab342c",
+    "model_filename": "SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "model_size_bytes": 105454432,
+    "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d"
+  },
+  "protocol": {
+    "sessions": 4,
+    "repetitions": 3,
+    "prompt": 128,
+    "gen": 16,
+    "depth": 0,
+    "threads": [
+      1,
+      2,
+      4
+    ],
+    "warmup": true,
+    "audit_formal": false,
+    "random_tokens": "Pinned official harness, fresh process default C RNG seed1"
+  },
+  "pairs": [
+    {
+      "id": "s0-t1",
+      "session": 0,
+      "threads": 1,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s0-t1-original",
+          "variant": "original",
+          "threads": 1,
+          "raw": "raw/s0-t1-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00043895599810639396,
+            "temperature_before_c": 53.692,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 73.50011858499784,
+            "peak_rss_mb": 130.796875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s0-t1-compatible",
+          "variant": "compatible",
+          "threads": 1,
+          "raw": "raw/s0-t1-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.0003731749966391362,
+            "temperature_before_c": 46.16,
+            "temperature_at_start_c": 46.16
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 63.43278099199961,
+            "peak_rss_mb": 130.79296875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s0-t2",
+      "session": 0,
+      "threads": 2,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s0-t2-original",
+          "variant": "original",
+          "threads": 2,
+          "raw": "raw/s0-t2-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.0004684349987655878,
+            "temperature_before_c": 47.774,
+            "temperature_at_start_c": 47.774
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 38.29974930999742,
+            "peak_rss_mb": 130.65234375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s0-t2-compatible",
+          "variant": "compatible",
+          "threads": 2,
+          "raw": "raw/s0-t2-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00040223800169769675,
+            "temperature_before_c": 53.692,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 33.26272725999297,
+            "peak_rss_mb": 130.8515625,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s0-t4",
+      "session": 0,
+      "threads": 4,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s0-t4-original",
+          "variant": "original",
+          "threads": 4,
+          "raw": "raw/s0-t4-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 2.0011042960031773,
+            "temperature_before_c": 55.844,
+            "temperature_at_start_c": 52.616
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 21.271726302002207,
+            "peak_rss_mb": 130.59375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s0-t4-compatible",
+          "variant": "compatible",
+          "threads": 4,
+          "raw": "raw/s0-t4-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 6.003266828003689,
+            "temperature_before_c": 67.142,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 19.25488233500073,
+            "peak_rss_mb": 130.46484375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s1-t4",
+      "session": 1,
+      "threads": 4,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s1-t4-compatible",
+          "variant": "compatible",
+          "threads": 4,
+          "raw": "raw/s1-t4-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.004051249998156,
+            "temperature_before_c": 68.756,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 19.27011110699823,
+            "peak_rss_mb": 130.6171875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s1-t4-original",
+          "variant": "original",
+          "threads": 4,
+          "raw": "raw/s1-t4-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.003981850997661,
+            "temperature_before_c": 69.294,
+            "temperature_at_start_c": 54.23
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 21.270330533996457,
+            "peak_rss_mb": 130.64453125,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s1-t2",
+      "session": 1,
+      "threads": 2,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s1-t2-compatible",
+          "variant": "compatible",
+          "threads": 2,
+          "raw": "raw/s1-t2-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.00439448000543,
+            "temperature_before_c": 70.908,
+            "temperature_at_start_c": 54.768
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 33.272515143005876,
+            "peak_rss_mb": 130.78125,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s1-t2-original",
+          "variant": "original",
+          "threads": 2,
+          "raw": "raw/s1-t2-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 4.00183144499897,
+            "temperature_before_c": 60.686,
+            "temperature_at_start_c": 54.768
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 38.300230310996994,
+            "peak_rss_mb": 130.796875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s1-t1",
+      "session": 1,
+      "threads": 1,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s1-t1-compatible",
+          "variant": "compatible",
+          "threads": 1,
+          "raw": "raw/s1-t1-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 4.001879606003058,
+            "temperature_before_c": 59.072,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 63.43706627700158,
+            "peak_rss_mb": 130.8046875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s1-t1-original",
+          "variant": "original",
+          "threads": 1,
+          "raw": "raw/s1-t1-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00040557100146543235,
+            "temperature_before_c": 51.54,
+            "temperature_at_start_c": 51.54
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 73.49828400499973,
+            "peak_rss_mb": 130.80859375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s2-t1",
+      "session": 2,
+      "threads": 1,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s2-t1-original",
+          "variant": "original",
+          "threads": 1,
+          "raw": "raw/s2-t1-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00040697700023883954,
+            "temperature_before_c": 49.388,
+            "temperature_at_start_c": 49.388
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 73.49922795999737,
+            "peak_rss_mb": 130.78125,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s2-t1-compatible",
+          "variant": "compatible",
+          "threads": 1,
+          "raw": "raw/s2-t1-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.0004027579998364672,
+            "temperature_before_c": 48.312,
+            "temperature_at_start_c": 48.312
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 63.434274450002704,
+            "peak_rss_mb": 130.79296875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s2-t2",
+      "session": 2,
+      "threads": 2,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s2-t2-original",
+          "variant": "original",
+          "threads": 2,
+          "raw": "raw/s2-t2-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00040374799573328346,
+            "temperature_before_c": 49.388,
+            "temperature_at_start_c": 49.388
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 38.294793414002925,
+            "peak_rss_mb": 130.78515625,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s2-t2-compatible",
+          "variant": "compatible",
+          "threads": 2,
+          "raw": "raw/s2-t2-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 2.001119058004406,
+            "temperature_before_c": 55.844,
+            "temperature_at_start_c": 52.078
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 33.26820107999811,
+            "peak_rss_mb": 130.6484375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s2-t4",
+      "session": 2,
+      "threads": 4,
+      "order": [
+        "original",
+        "compatible"
+      ],
+      "runs": [
+        {
+          "id": "s2-t4-original",
+          "variant": "original",
+          "threads": 4,
+          "raw": "raw/s2-t4-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 2.0011427010031184,
+            "temperature_before_c": 57.458,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 21.290099129997543,
+            "peak_rss_mb": 130.72265625,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s2-t4-compatible",
+          "variant": "compatible",
+          "threads": 4,
+          "raw": "raw/s2-t4-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.003970377998485,
+            "temperature_before_c": 68.218,
+            "temperature_at_start_c": 52.616
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 19.260703523999837,
+            "peak_rss_mb": 130.4609375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3-t4",
+      "session": 3,
+      "threads": 4,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s3-t4-compatible",
+          "variant": "compatible",
+          "threads": 4,
+          "raw": "raw/s3-t4-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.003985420997196,
+            "temperature_before_c": 68.756,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 19.278620550998312,
+            "peak_rss_mb": 130.5,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s3-t4-original",
+          "variant": "original",
+          "threads": 4,
+          "raw": "raw/s3-t4-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "4",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 8.003967392003688,
+            "temperature_before_c": 70.37,
+            "temperature_at_start_c": 54.768
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 21.309632244003296,
+            "peak_rss_mb": 130.546875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3-t2",
+      "session": 3,
+      "threads": 2,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s3-t2-compatible",
+          "variant": "compatible",
+          "threads": 2,
+          "raw": "raw/s3-t2-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 10.00540408300003,
+            "temperature_before_c": 70.908,
+            "temperature_at_start_c": 53.692
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 33.28135987999849,
+            "peak_rss_mb": 130.79296875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s3-t2-original",
+          "variant": "original",
+          "threads": 2,
+          "raw": "raw/s3-t2-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "2",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 4.001832515001297,
+            "temperature_before_c": 61.224,
+            "temperature_at_start_c": 54.768
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 38.31202324199694,
+            "peak_rss_mb": 130.77734375,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3-t1",
+      "session": 3,
+      "threads": 1,
+      "order": [
+        "compatible",
+        "original"
+      ],
+      "runs": [
+        {
+          "id": "s3-t1-compatible",
+          "variant": "compatible",
+          "threads": 1,
+          "raw": "raw/s3-t1-compatible.json",
+          "command": [
+            "<compatible-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 4.001858081996033,
+            "temperature_before_c": 59.61,
+            "temperature_at_start_c": 54.23
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 63.43697707699903,
+            "peak_rss_mb": 130.79296875,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        },
+        {
+          "id": "s3-t1-original",
+          "variant": "original",
+          "threads": 1,
+          "raw": "raw/s3-t1-original.json",
+          "command": [
+            "<original-build>/llama-bench",
+            "--model",
+            "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+            "--threads",
+            "1",
+            "--n-prompt",
+            "128",
+            "--n-gen",
+            "16",
+            "--n-depth",
+            "0",
+            "--repetitions",
+            "3",
+            "--n-gpu-layers",
+            "0",
+            "--output",
+            "json",
+            "--batch-size",
+            "128",
+            "--ubatch-size",
+            "128",
+            "--mmap",
+            "1",
+            "--poll",
+            "0"
+          ],
+          "audit": false,
+          "cool_down": {
+            "limit_c": 55.0,
+            "waited_s": 0.00042286200186936185,
+            "temperature_before_c": 52.078,
+            "temperature_at_start_c": 52.078
+          },
+          "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "process": {
+            "returncode": 0,
+            "timed_out": false,
+            "interrupted": false,
+            "elapsed_s": 73.50040898899897,
+            "peak_rss_mb": 130.7890625,
+            "peak_rss_source": "Linux wait4 rusage; child process only",
+            "oom_kill_cgroup_delta": null,
+            "oom_status": "unknown; SIGKILL alone does not prove OOM",
+            "unavailable_reasons": {
+              "oom_evidence": "Unavailable (FileNotFoundError)"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "smoke-original",
+      "variant": "original",
+      "threads": 1,
+      "raw": "raw/smoke-original.json",
+      "command": [
+        "<original-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "1",
+        "--n-prompt",
+        "32",
+        "--n-gen",
+        "8",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0"
+      ],
+      "audit": false,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0005291119960020296,
+        "temperature_before_c": 45.084,
+        "temperature_at_start_c": 45.084
+      },
+      "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 10.076886678994924,
+        "peak_rss_mb": 126.421875,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "smoke-compatible",
+      "variant": "compatible",
+      "threads": 1,
+      "raw": "raw/smoke-compatible.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "1",
+        "--n-prompt",
+        "32",
+        "--n-gen",
+        "8",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0"
+      ],
+      "audit": false,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0004105710031581111,
+        "temperature_before_c": 42.932,
+        "temperature_at_start_c": 42.932
+      },
+      "private_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 9.071554102003574,
+        "peak_rss_mb": 126.5390625,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-prefill-t1",
+      "variant": "compatible",
+      "threads": 1,
+      "raw": "raw/proof-prefill-t1.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "1",
+        "--n-prompt",
+        "128",
+        "--n-gen",
+        "0",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0003834870003629476,
+        "temperature_before_c": 42.932,
+        "temperature_at_start_c": 42.932
+      },
+      "private_stderr_sha256": "1433fddf28edcbfddd76297260ce0ef42aba60f798b8442ed66473fb25687564",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 15.112051970994798,
+        "peak_rss_mb": 130.7890625,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-decode-t1",
+      "variant": "compatible",
+      "threads": 1,
+      "raw": "raw/proof-decode-t1.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "1",
+        "--n-prompt",
+        "0",
+        "--n-gen",
+        "16",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0003538529999786988,
+        "temperature_before_c": 43.47,
+        "temperature_at_start_c": 43.47
+      },
+      "private_stderr_sha256": "b9e1ae430bf27720acb14fb6fcaa3aaa48570eb467c0f924ef373f109683aa39",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 4.044431403002818,
+        "peak_rss_mb": 125.51953125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-prefill-t2",
+      "variant": "compatible",
+      "threads": 2,
+      "raw": "raw/proof-prefill-t2.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "2",
+        "--n-prompt",
+        "128",
+        "--n-gen",
+        "0",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0003343739954289049,
+        "temperature_before_c": 42.932,
+        "temperature_at_start_c": 42.932
+      },
+      "private_stderr_sha256": "76e22fde2376435949603f831746ab60d73359c412c66c0856255e1f7a3f4786",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 8.067254879999382,
+        "peak_rss_mb": 130.7265625,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-decode-t2",
+      "variant": "compatible",
+      "threads": 2,
+      "raw": "raw/proof-decode-t2.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "2",
+        "--n-prompt",
+        "0",
+        "--n-gen",
+        "16",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.00034062399936374277,
+        "temperature_before_c": 47.774,
+        "temperature_at_start_c": 47.774
+      },
+      "private_stderr_sha256": "3645fcfe23015bbdf5b0f73ac792fa209c550334def67f0c2c9a3656b5b64883",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 3.0361402640046435,
+        "peak_rss_mb": 125.453125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-prefill-t4",
+      "variant": "compatible",
+      "threads": 4,
+      "raw": "raw/proof-prefill-t4.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "4",
+        "--n-prompt",
+        "128",
+        "--n-gen",
+        "0",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0003355709995958023,
+        "temperature_before_c": 47.236,
+        "temperature_at_start_c": 47.236
+      },
+      "private_stderr_sha256": "33157b7fde8260937743d924a5f7519bfed7495ab8396cd34a6254709a4b4a49",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 5.065783552003268,
+        "peak_rss_mb": 130.5078125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    },
+    {
+      "id": "proof-decode-t4",
+      "variant": "compatible",
+      "threads": 4,
+      "raw": "raw/proof-decode-t4.json",
+      "command": [
+        "<compatible-build>/llama-bench",
+        "--model",
+        "models/SmolLM2-135M-Instruct-Q4_K_M.gguf",
+        "--threads",
+        "4",
+        "--n-prompt",
+        "0",
+        "--n-gen",
+        "16",
+        "--n-depth",
+        "0",
+        "--repetitions",
+        "1",
+        "--n-gpu-layers",
+        "0",
+        "--output",
+        "json",
+        "--batch-size",
+        "128",
+        "--ubatch-size",
+        "128",
+        "--mmap",
+        "1",
+        "--poll",
+        "0",
+        "--no-warmup"
+      ],
+      "audit": true,
+      "cool_down": {
+        "limit_c": 55.0,
+        "waited_s": 0.0003427070041652769,
+        "temperature_before_c": 53.154,
+        "temperature_at_start_c": 53.154
+      },
+      "private_stderr_sha256": "1d9e4117250921968b0d75080f7bce05e227233bbee04025122b2eb474df2793",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "elapsed_s": 2.038573871002882,
+        "peak_rss_mb": 125.53125,
+        "peak_rss_source": "Linux wait4 rusage; child process only",
+        "oom_kill_cgroup_delta": null,
+        "oom_status": "unknown; SIGKILL alone does not prove OOM",
+        "unavailable_reasons": {
+          "oom_evidence": "Unavailable (FileNotFoundError)"
+        }
+      }
+    }
+  ],
+  "dispatch_policy": "dispatch",
+  "cool_to_c": 55.0,
+  "environment_before": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-11-12T12:05:31.606918+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 670.81640625,
+    "storage_free_bytes": 20997885952,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 34.862,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "conditions_before": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "artifact_hashes": {
+    "original": "618a18a3305f6b29a75e64e4ab15447990ce70f32c13917eee130c9a829a6cc5",
+    "compatible": "64a42f4ee4ae9ab82074feff81c6f8c3ddc48f48f1570a075aab0bb5a64124bc",
+    "compatible/libggml-base.so": "f8f4e3190ee974203b3bd75585c243115de2b0e364bfa106014668724fcc9def",
+    "compatible/libggml-cpu.so": "83dd87979298db7154df84624d3a1145f0b6ec78e15960f870728d3b5e9b79f7",
+    "compatible/libggml.so": "fed9dc2d30fd7bd801ad1e12f9f2db003824423709835bc48bd452a6ff210e2c",
+    "compatible/libllama.so": "4e145cd571d7d597b744255cc66b4acd3bfaba65142c17972cfc3c1228f7d1be",
+    "original/libggml-base.so": "d354412d56c9c409cdce1262bd727177050430d5e20886ef080f8e0b08f5507c",
+    "original/libggml-cpu.so": "7308ccfb8164dac1ebd202939cc0475452a749722516a8686461b613d8179359",
+    "original/libggml.so": "7f20f88a786da4351666a005fbf6156d58dd2a667d4e8a8a73c8b00fa8d3a04d",
+    "original/libllama.so": "7826f24b180a87b288acdf574b14bd2e08d44d0e6cade3eb169e631129d7cbf1",
+    "test_model": "0098927884b643155cb58ff7a7e06da262bfa1fd6d7b6220059ff6604f5d9112",
+    "test_graph": "3a9bd44fc5f885d0c055eb408267463c9d9bdbb4ad30587b2c8c34962538c9a5"
+  },
+  "source_files_sha256": {
+    "benchmarks/llama_bench_driver.cpp": "7681fd5334ffe2586f6b5b90ed430ca99751030345b4f1189e29b3ffaa98eda7",
+    "src/integration/q5_ggml_bridge.cpp": "ea87d67f427b34157593ef9f0aadcd31c0ccff369ab30f59a0f588946eef54ae",
+    "src/kernels/quantized/q5_neon.cpp": "da58c92545f6558bfcd50266cfb8ca730bd3e5274ebb8834ef040571dbc7b576",
+    "src/integration/q5_ggml_bridge_dispatch.cpp": "350d838b47a10054c85bcb545dc4b5d9941d1bf433f208eedea83b6f87182715",
+    "src/integration/q5_ggml_bridge_dispatch.h": "bdfd9eab60395f8ca0075d0debe8b879ebfa19cf9ba2bbf40bd199e380b034e0",
+    "integrations/ggml/row4_dispatch.patch": "77d6b8dbcfcf30be02078e32abaa2869c1449bbac523dff92ad035abacf31a98",
+    "tests/integration/test_ggml_row4_dispatch.cpp": "fa316e8a52ee8e5a222faf98e7410ebcabde70a01c3e8e45a4c4f4dfbb4d59ef",
+    "tests/integration/test_model_row4_dispatch.cpp": "c904d1fd9e2f26ea755ff37368071a83ff13a8d5afd06efb794e55bb5d7e63b3"
+  },
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "python": "3.13.5",
+  "builds": {
+    "original": {
+      "cache_sha256": "56e681c49ab22f0a78a1c34982e73fe6d1fd47a95e553bd9cdd3f61d4e30513d",
+      "settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "GGML_NATIVE:BOOL=OFF",
+        "GGML_CPU_ARM_ARCH:STRING=armv8-a",
+        "GGML_LLAMAFILE:BOOL=ON",
+        "GGML_OPENMP:BOOL=ON",
+        "LLAMA_CURL:BOOL=OFF"
+      ]
+    },
+    "compatible": {
+      "cache_sha256": "da5be64a87d6f637a7d72acda2c3f80a805e42f3794fdfb30be4491dc0b8eed3",
+      "settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "GGML_NATIVE:BOOL=OFF",
+        "GGML_CPU_ARM_ARCH:STRING=armv8-a",
+        "GGML_LLAMAFILE:BOOL=ON",
+        "GGML_OPENMP:BOOL=ON",
+        "LLAMA_CURL:BOOL=OFF"
+      ]
+    }
+  },
+  "graph_gate": {
+    "graph_executions": 222,
+    "layouts": 37,
+    "max_abs_error": 0.0004174280911684036,
+    "max_bound_fraction": 0.008866572544964845
+  },
+  "numerical_gate": {
+    "model_steps": 72,
+    "compared_steps": 36,
+    "max_abs_error": 0,
+    "max_bound_fraction": 0,
+    "max_rms_error": 0,
+    "greedy_matches": 36
+  },
+  "environment_after": {
+    "schema_version": 1,
+    "data_kind": "real",
+    "timestamp": "2026-11-12T12:24:46.830336+00:00",
+    "device_model": "Raspberry Pi 3 Model B Rev 1.2",
+    "architecture": "aarch64",
+    "userspace_bits": 64,
+    "arm64_supported": true,
+    "is_raspberry_pi3": true,
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "linux_version": "Linux",
+    "kernel_version": "6.18.39+rpt-rpi-v8",
+    "logical_cores": 4,
+    "cpu_features": [
+      "fp",
+      "asimd",
+      "evtstrm",
+      "crc32",
+      "cpuid"
+    ],
+    "ram_total_mb": 905.10546875,
+    "available_memory_mb": 680.21484375,
+    "storage_free_bytes": 20996730880,
+    "storage_total_bytes": 30800633856,
+    "llama_commit": "a7a98e0fffed794396b3fbad4dcdbbc184963645",
+    "migration_instructions": null,
+    "unavailable_reasons": {},
+    "temperature_c": 49.388,
+    "frequency_mhz": 1200.0,
+    "throttled_raw": "0x20000",
+    "throttled_states": {
+      "under_voltage_now": false,
+      "frequency_capped_now": false,
+      "throttled_now": false,
+      "soft_temperature_limit_now": false,
+      "under_voltage_occurred": false,
+      "frequency_capped_occurred": true,
+      "throttled_occurred": false,
+      "soft_temperature_limit_occurred": false
+    }
+  },
+  "conditions_after": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "1200000",
+    "frequency_unit": "kHz",
+    "unavailable_reasons": {}
+  },
+  "finished_at": "2026-11-12T12:24:48.367543+00:00",
+  "files": {
+    "raw/graph.jsonl": "8e1b2e7a07fd5cb25ff86c0fca7821d6f9c8efcc0d03edae6383b93b7f54c7ac",
+    "raw/graph.metrics.csv": "22d51aa65ec1e4b5c65cbdfa7d155c121921231cd92634dd9684226cb5563c5e",
+    "raw/graph.process.json": "55cff084655f2194e34ae0f97be4458f5aa15b344026b1c4540599280340d01d",
+    "raw/numerical.jsonl": "7309f0f5ac7732908d43cc06b0ead86fc7cbf7d79756d1fddcfdf0533f812b05",
+    "raw/numerical.metrics.csv": "daabf3e30e7cb58ecf60867c24d11bdab9d0c0d01c6580f9676c773b6d9cb9a3",
+    "raw/numerical.process.json": "f5e4d1b1271b9d0981c9a7f19ac6ecc3f90d271fc0594e647813ad0a064618a8",
+    "raw/proof-decode-t1.audit.json": "03871738bef295ce5ff03741dc95f7d0b51ccb4775a2acec32746029f1b4f6fe",
+    "raw/proof-decode-t1.json": "6165b8e759426f1ca672a077bee870bd422e314dd07508d66b4e7afe49cf2fb9",
+    "raw/proof-decode-t1.metrics.csv": "31f8e945b65c8f5eaa9e30686d00ef1ce8f0a050bbc9bfc5edc40f038222df71",
+    "raw/proof-decode-t1.process.json": "1163b952297f7c9975fc098adf699241eae563a719a36095d1de0abe70a3dde6",
+    "raw/proof-decode-t2.audit.json": "c5c39b0159a5d86020eb77a565dc8281de8b7c3312a6ef71bd79e540de12cbef",
+    "raw/proof-decode-t2.json": "efdf155740dfa032e41e5812d15af4a08fd645bb533e8301acc777aca50809a2",
+    "raw/proof-decode-t2.metrics.csv": "bbac787be034035144a5e5dbd84053e0824aa814811099a5e2629fe1777c9475",
+    "raw/proof-decode-t2.process.json": "895b42e9d40d6ff614d5dba4273ccabae193d61022ce664db0236191c21fe4e4",
+    "raw/proof-decode-t4.audit.json": "9fff1cc485aa026c4866d99072744645c06f7a6e7c6b91fea388d695787d6f81",
+    "raw/proof-decode-t4.json": "8624d35db9050174596f580f9034d622f380b140436dce52b128bc199adebe42",
+    "raw/proof-decode-t4.metrics.csv": "ee01b41b0ce1a6650d0e654dcffbd878e30dd149e31cde8a8f6be52cd33c1fd1",
+    "raw/proof-decode-t4.process.json": "334674d44f79d3222d9551084d4f1a9ac8acbfa872b1ff171a06cec148f10595",
+    "raw/proof-prefill-t1.audit.json": "7b970a664a18509a4f0e4bcd389860f956569f3dcbdd5db405f5cb7d05bd8e79",
+    "raw/proof-prefill-t1.json": "5b4def4aa9961200977de32a0dc80ed167bfcda476ddea6b1b44bb7f1d37ea05",
+    "raw/proof-prefill-t1.metrics.csv": "71f09039b19e0ec214972c2d5b06ce49c4732dc1d0bb437808fbb3180c993a80",
+    "raw/proof-prefill-t1.process.json": "880bda112748c8a17157e265a5e52ca9700f25fb2c26a5cb090d73bd82d5528b",
+    "raw/proof-prefill-t2.audit.json": "659e902fb8e223ce74a8991dbc61a489f7568165919b28bac90ab185eab54e13",
+    "raw/proof-prefill-t2.json": "85f9a659ec49243b04a993418a37a406aa29d9694e571ee24555754921b968d7",
+    "raw/proof-prefill-t2.metrics.csv": "14d7ba86ea1f295de9ed61f215f5d61db3e3c3b093a655c348873b7ad598b890",
+    "raw/proof-prefill-t2.process.json": "30c08545604c31fb787fb9fd04181862180aaf17425997c61de2cc49cae6501f",
+    "raw/proof-prefill-t4.audit.json": "18091990a2062d7bbb3f5b90ccad0ac1e5347869c8a6ab434738cce42d5443ab",
+    "raw/proof-prefill-t4.json": "c9875d464deddfeefc3446a59b4115bbe6de348fd5bf468cbfc10f5a37781d22",
+    "raw/proof-prefill-t4.metrics.csv": "14ea99cb65217671b681d278f688fb13c60507fa7cc0ca20b3047f31c75f62de",
+    "raw/proof-prefill-t4.process.json": "f79a1a54648475bf7a3ba6b0c31136e451fb03dfd40a3d27b4a1688619eb27d7",
+    "raw/s0-t1-compatible.json": "fc305a03fc7ed47c8c416985d81730e3225b2e6f572af800970fc8952c44da0e",
+    "raw/s0-t1-compatible.metrics.csv": "e22ff79ff87e4636e5cba84e5e29ffa302d981d73783dae2eee8aeb9a6e46eed",
+    "raw/s0-t1-compatible.process.json": "179a459e05139a9a35c13ae948db18055cb1be10116ec4805278d18c1b12c30e",
+    "raw/s0-t1-original.json": "52507b4315cedbe1de7f5e377bf6a62a99c5d13aba44bfc05456d92cafb8f57e",
+    "raw/s0-t1-original.metrics.csv": "0a2a8aa91fa6605b2b6a55f6694375112388b585689edecf7c2be5fc9ffcdf5c",
+    "raw/s0-t1-original.process.json": "5dbcc3e20ef0df2db13d95d76893fa1007d865b540f59f72c158099496e24395",
+    "raw/s0-t2-compatible.json": "8bacbb634608df4de0714f119bd91fda3fd7cf5b12efb69d5a989fc41a556e2f",
+    "raw/s0-t2-compatible.metrics.csv": "c7ef01b6086214a4a7779694be246c135e743c3b087484ecf07e6c012260e39c",
+    "raw/s0-t2-compatible.process.json": "bf12fc662a670244222f4c6b6a27c5d4bf2d8c52508c5d20f470fdbb6dd9cd00",
+    "raw/s0-t2-original.json": "799302b908c5853ec402e4b93c4b3204c34f73e2870f7bba655a73bcb7f17098",
+    "raw/s0-t2-original.metrics.csv": "95e80e6f0406c15000da27d83fc4f29f5ecedff0f5a789d7ca922251d3ceb223",
+    "raw/s0-t2-original.process.json": "96582a9f1db6adffcb38aaa725dd5a451cb525e908487b64826b2dcb950c5b5e",
+    "raw/s0-t4-compatible.json": "64bd825eaef9322d25b6e0c67435ddd295855c11dfc2aa51478354144ea80d40",
+    "raw/s0-t4-compatible.metrics.csv": "bfeaf1a42c6b632515cfec52be6004c89f2aacb761902707880ab8c3bf581100",
+    "raw/s0-t4-compatible.process.json": "51212123b81f261111e2b61da0879ee254bcaaf51b240047ca0960ce2fd64e2d",
+    "raw/s0-t4-original.json": "2bf9550256d5b34735164650b7572f93724ade7ed2219c2effccd6d990aa145a",
+    "raw/s0-t4-original.metrics.csv": "51080f8137326abcd7cc5a51e241b4da4e60555855b4337bf244925fba007b32",
+    "raw/s0-t4-original.process.json": "c637d6ab11393ba445aac6436c90cf1a39a21700c24a14d9fc84aa4265a652b5",
+    "raw/s1-t1-compatible.json": "54ab7d33dbaa1090d6128614163df4ea5951ee31536573412c6f2b1540f049af",
+    "raw/s1-t1-compatible.metrics.csv": "f14af618422aeed4eebf4a66f8e06b5b2796a67268c3f7154098917c7e861338",
+    "raw/s1-t1-compatible.process.json": "a0610c0d5d5aa1555decebb8a63915acdd1c1fa896dd7cc08d17e99ce7fa30a0",
+    "raw/s1-t1-original.json": "4085e4866b9f66638d09074af7192c5eb8769d844897250f4481bd91be893cf1",
+    "raw/s1-t1-original.metrics.csv": "bc9445112ea072fa0eaa4824f30187fd57c55e7aeaa923193e00c8216cc61b7e",
+    "raw/s1-t1-original.process.json": "12258288c8450ef94332d648c83b52dc392487590a1c9953cd432b9fe984912f",
+    "raw/s1-t2-compatible.json": "498bd44d96b400086fa337c780c63e497761548c003763cbcf18b800c3c6a027",
+    "raw/s1-t2-compatible.metrics.csv": "783cd3305ec88e5edf9e6537957573cc6beb1b024abf468c0e927e73e497c037",
+    "raw/s1-t2-compatible.process.json": "a65f03a8d5b8f01023e9651866a63d3277aa802465bcc3f7003c4e555371dff3",
+    "raw/s1-t2-original.json": "be53ae77847146d364b20b6f33187d1f5eaf1c9daa3625e0cb420de540dc6578",
+    "raw/s1-t2-original.metrics.csv": "8660d3010ce2f0d26cfe8aa226a777b160061ddb260402c4eb2ae79fba1efc74",
+    "raw/s1-t2-original.process.json": "641f00708592acb171aa62bf73d557e37ca6065d72ac540eb192590e4af3844a",
+    "raw/s1-t4-compatible.json": "d7552c5f03923aeecaad663c62f62887eec07c236f0f9f590b21c501151e7ffe",
+    "raw/s1-t4-compatible.metrics.csv": "452e8b26c50ab52ceb3985b490bf88e8912ef2aecd71cd811047b7e52af4fd38",
+    "raw/s1-t4-compatible.process.json": "525354cc18dd1c43c6ff781f2cbdcfdc2ff34431bdc7810d00b93d799179d299",
+    "raw/s1-t4-original.json": "4633574041e5d2780ddb25723956f95c894233ab4ae43ece00276f202e08ae0a",
+    "raw/s1-t4-original.metrics.csv": "f85cc1687df6bf4b14e377c4627c3da6e54fdea19da2958b61d07637c7b2014f",
+    "raw/s1-t4-original.process.json": "ee9063f2a53696443a7d4ad4c75a52c7b1f836eda1772c8bc368ec47257b1bec",
+    "raw/s2-t1-compatible.json": "bb49b2514ebed426980ffee4073f741585bf77d3ecbae9ff7c31c675dec76fc6",
+    "raw/s2-t1-compatible.metrics.csv": "978525f4cf3d5e71d0922d4e6c2d4dab68776d04a1098c15f15a8730401ba82a",
+    "raw/s2-t1-compatible.process.json": "9d3cc64ba33ea451d8b0949a70fb272fa06e9b25218ebfd7350b18e7d34e7983",
+    "raw/s2-t1-original.json": "0a9a1d35fe87109d9b5d88c18fa57c9bf807fb735b00c83d13f29d2850910c93",
+    "raw/s2-t1-original.metrics.csv": "a33193b0c47f2e9055d3b4163627ff021c631898071e80221fbfc6885def8f68",
+    "raw/s2-t1-original.process.json": "7c0533fc415873eefd6a50508183fd5c1f2ad4f4e3b9cb5d1428f67df2884d2b",
+    "raw/s2-t2-compatible.json": "1c53452ec3b1dde5af8ddf89698e5d6d192e6668ff2822573e474e07aa75c0db",
+    "raw/s2-t2-compatible.metrics.csv": "39c112e2503d44331aca3f30ff311067c0957b52c4790f7a54ff86dda3b227bc",
+    "raw/s2-t2-compatible.process.json": "5c21d9eacfbe1b20915cede9937176cc29f3ce9f3d12c203795269162a749712",
+    "raw/s2-t2-original.json": "ab5836758e38c6eee06c05a499d49a6e1dcd2b53488c060158246a8aa8c19ee7",
+    "raw/s2-t2-original.metrics.csv": "e636f78241a81df98c9d4b9026987a91afbb0e81f8965962123a06621b87c490",
+    "raw/s2-t2-original.process.json": "f3949e0a2014da824acd7924377965e204eeed007fc0342f2a0081de1200df84",
+    "raw/s2-t4-compatible.json": "9591accb400d0ad7987be00cd3ca8a9fc7c826121a117a0c3a10d3b1d6e7a5a9",
+    "raw/s2-t4-compatible.metrics.csv": "f89fc47e003398d37d7b567928881c14f5a234087ebb269687f53a59b1eec258",
+    "raw/s2-t4-compatible.process.json": "472722892fd08fb9bd91f4ceee58bf967e8955a0ea886c522fa1a5e54820e6c7",
+    "raw/s2-t4-original.json": "d32b00034df7912a96c71a5c3892cd37802b967dcbf9eec1b8b607bcad8ec858",
+    "raw/s2-t4-original.metrics.csv": "59bf9ef252696b7046458d271e7d1810e78994218fdd43a648e3718a719964e8",
+    "raw/s2-t4-original.process.json": "00ed847c7a9133f25c1512d5e7484e6ad8470ea50a46a575c49edb192a8eebc8",
+    "raw/s3-t1-compatible.json": "79ed47059e7957505542deef4b837e5e962db0d39ec14ddd3bb693630a8b4527",
+    "raw/s3-t1-compatible.metrics.csv": "da30c7a9d9e90420f73cb9ae6d120bc03c7ec0724ac7c3a352d0b13ad021cfb5",
+    "raw/s3-t1-compatible.process.json": "b0fa065d329bd0436753b2bdfb061665d3ef4a1476c1113e0014a6a8456e56a8",
+    "raw/s3-t1-original.json": "233689721cd50fc057ca569fb43047e9efcdbdab27b556d14d000fa56837bb62",
+    "raw/s3-t1-original.metrics.csv": "59ad30079a71df67f8221d0f58fde1922485098389ee3260e48d132339e9ef4f",
+    "raw/s3-t1-original.process.json": "96fe9756788d4f352659616ab04acb52a646b00caadcb98ea37163446c132927",
+    "raw/s3-t2-compatible.json": "9fd19f8df52e3904a95cb6bcc39de54dbadc6460ca3fc96f5edf69d5b85b4bfc",
+    "raw/s3-t2-compatible.metrics.csv": "206e60b55e11be02f8803116d1c36fecd7818a44466f89c8edffb309d3fa7dd1",
+    "raw/s3-t2-compatible.process.json": "f11709ae3b7bab164007fb302244c4cb82a258a5057c1f4fb96f8d395770762b",
+    "raw/s3-t2-original.json": "def92757b9187dc1d365f7bd222c7a0a61adb3e2c0a73043f8ca66a6e7380b62",
+    "raw/s3-t2-original.metrics.csv": "2f2b3677837cbc0eb39512e1e19a9b62d7d0346f334fa1cd7bf7d9a1cc9ad374",
+    "raw/s3-t2-original.process.json": "67bcc9fd01f1da6652ce33ecc3651d74cd28f92c102fb6da1b33377cc3b14ed4",
+    "raw/s3-t4-compatible.json": "d3e70aa3f02532110e3b979d6eba084ba3793a14da73b4be0407c0ecd6460218",
+    "raw/s3-t4-compatible.metrics.csv": "c2552e833ae9b124b531f9f4db576fda5c5308f65cee781185d825ea204a6592",
+    "raw/s3-t4-compatible.process.json": "b92d6c37b7de0d9db0fa3be961253d333dcfe2d1e66a34cb20d938859a659d73",
+    "raw/s3-t4-original.json": "f1352d71343dd4d5190d1bd91899ee301450aa32afb19321d1e2e1043b4d64b1",
+    "raw/s3-t4-original.metrics.csv": "3f45468c244d1d5bd0365c8d8b2c7addca30e7eec2e4890ebcf486af0db3c3d4",
+    "raw/s3-t4-original.process.json": "6ab2aa065dc5c745b06508c382dc3a20a45dc7f0ca9e1c8b7e6c1781a57d4638",
+    "raw/smoke-compatible.json": "df80f9b24415006f7b948f31fddebdce8b075883a586adc76e031e2812fe1597",
+    "raw/smoke-compatible.metrics.csv": "7b5edbcb499fbd6fbcbde098a70812ef83fed62a2021826c96ccb550977182c8",
+    "raw/smoke-compatible.process.json": "cc838a5e30fbd815a89b5c9bf1c2e821cb617a82348c0a831d19ad17109a4fe8",
+    "raw/smoke-original.json": "9e5b85939068798789b80737a97062887ad6cf4f489d6efa780465a1f9bea114",
+    "raw/smoke-original.metrics.csv": "b1c0794b649930a0a07b8c1a419dee5d4d24f5e4a3ef70cbb3ee4f9bb5744c41",
+    "raw/smoke-original.process.json": "c9d4e0e3184f6519852caec6e700da639846fc5af268467dec96bb2d9668791e"
+  }
+}
