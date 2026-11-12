@@ -25,6 +25,11 @@ CANDIDATES = {
         "two-row-plain",
         "src/integration/q5_ggml_bridge_two_row_plain.cpp",
     ),
+    "two_row_wide": (
+        "EDGELLM_Q5_WIDE",
+        "two-row-wide",
+        "src/integration/q5_ggml_bridge_wide.cpp",
+    ),
 }
 # Rule for the plain candidate. Four-thread decode is held to non-inferiority.
 CEILING_RULE = dict(
@@ -125,7 +130,7 @@ def collect(args):
     if args.kernel_capture is None:
         raise ValueError("This candidate requires its kernel capture")
     identity = candidate_identity(args.build, args.kernel_capture, args.candidate)
-    execute(args.output, args.build)
+    execute(args.output, args.build, versions=args.versions)
     if candidate_identity(args.build, args.kernel_capture, args.candidate) != identity:
         raise ValueError("Candidate changed during measurement")
     write_json(args.output.resolve() / "two_row.json", identity)
@@ -159,6 +164,7 @@ def main():
     run = commands.add_parser("collect")
     run.add_argument("--build", type=Path, required=True)
     run.add_argument("--kernel-capture", type=Path)
+    run.add_argument("--versions", type=Path, help="pin of a second model on the same engine")
     run.add_argument(
         "--candidate",
         choices=sorted((*CANDIDATES, "two_row_adaptive")),

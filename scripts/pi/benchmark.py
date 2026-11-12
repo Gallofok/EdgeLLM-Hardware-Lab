@@ -118,8 +118,14 @@ def preflight(pin, output):
     if command(["git", "-C", str(ROOT / "vendor/llama.cpp"), "status", "--porcelain"]):
         raise ValueError("Dirty llama.cpp checkout; rerun setup with a clean checkout")
     setup = json.loads((ROOT / ".state/setup.json").read_text())
+    # A second model shares the engine pin; setup recorded the default model.
+    engine = {k: v for k, v in pin.items() if k.startswith("llama_")}
     if (
-        setup["versions"] != pin
+        {k: v for k, v in setup["versions"].items() if k.startswith("llama_")} != engine
+        or (
+            pin["model_filename"] == setup["versions"]["model_filename"]
+            and setup["versions"] != pin
+        )
         or setup["binary_sha256"] != sha256(ROOT / "build/llama/bin/llama-bench")
         or setup["cmake_cache_sha256"] != sha256(ROOT / "build/llama/CMakeCache.txt")
     ):
