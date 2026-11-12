@@ -83,3 +83,12 @@ __pycache__/
 !/reports/pi3-q5-wide-kernel-576-20261112/
 !/results/quantized/wide-kernel-960-20261112/
 !/reports/pi3-q5-wide-kernel-960-20261112/
+
+!/results/quantized/dispatch-kernel-576-20261112/
+!/reports/pi3-q5-dispatch-kernel-576-20261112/
+!/results/quantized/dispatch-kernel-960-20261112/
+!/reports/pi3-q5-dispatch-kernel-960-20261112/
+!/results/integration/dispatch-e2e-135m-20261112/
+!/reports/pi3-dispatch-e2e-135m-20261112/
+!/results/integration/dispatch-e2e-360m-20261112/
+!/reports/pi3-dispatch-e2e-360m-20261112/

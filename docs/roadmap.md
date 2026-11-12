@@ -54,7 +54,10 @@ not establish that it passed.
   kernel gate passed, [end-to-end rejected](q5_two_row_analysis.md) on four-thread decode alone.
 - [x] Run the [wide candidate](q5_wide.md) through its predeclared gates:
   [kernel gate failed at width 960](q5_wide_analysis.md) on single-pass weights; no end-to-end run.
-- [ ] Run the [dispatch candidate](q5_dispatch.md) on both models through its predeclared gates.
+- [x] Run the [dispatch candidate](q5_dispatch.md) on both models: kernel gates passed at both
+  widths; [both end-to-end captures gave no decision](q5_dispatch_analysis.md) because the board
+  reached its capping temperature.
+- [ ] Rerun the dispatch end-to-end captures under a protocol that keeps the board below capping.
 - [x] Run the [thread-adaptive two-row candidate](q5_adaptive.md) through its predeclared gates:
   [accepted](q5_adaptive_analysis.md), decode +14.6% and +13.1% at one and two threads.
 - [x] Probe what limits four-thread decode with the
