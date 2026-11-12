@@ -1,0 +1,550 @@
+{
+  "data_kind": "real",
+  "reading": {
+    "hypothesis": "four-thread decode pulls lines from memory at about the rate the board can sustain for four sequential readers",
+    "outcome": "inconclusive",
+    "original_decode_over_stream_at_four_threads": 0.8472674487690502,
+    "supported_at": 0.85,
+    "not_supported_below": 0.7
+  },
+  "stream": [
+    {
+      "threads": 1,
+      "rate": 2067244194.0239086,
+      "per_unit": {
+        "l2d_cache_refill": 0.015655413112395784,
+        "bus_access": 0.06258680481150439,
+        "cpu_cycles": 0.5712626643699512,
+        "inst_retired": 0.2500021713458313,
+        "mem_access": 0.12500009794893369
+      },
+      "lines_per_second": 32363561.861645952,
+      "bus_accesses_per_second": 129382208.86909008,
+      "cycles_per_instruction": 2.2850308111113002,
+      "rounds": [
+        {
+          "l2d_cache_refill": 0.0156552894193618,
+          "bus_access": 0.06256756430766622,
+          "cpu_cycles": 0.5736237016857647,
+          "inst_retired": 0.25000215846984114,
+          "mem_access": 0.1250001204306962,
+          "rate": 2065461901.9013314
+        },
+        {
+          "l2d_cache_refill": 0.015655536805429766,
+          "bus_access": 0.06260604531534257,
+          "cpu_cycles": 0.5689016270541376,
+          "inst_retired": 0.25000218422182147,
+          "mem_access": 0.1250000754671712,
+          "rate": 2069026486.146486
+        }
+      ]
+    },
+    {
+      "threads": 2,
+      "rate": 2298871611.6137557,
+      "per_unit": {
+        "l2d_cache_refill": 0.015654992969597086,
+        "bus_access": 0.06144778638639871,
+        "cpu_cycles": 1.0218612152863953,
+        "inst_retired": 0.25000283779466853,
+        "mem_access": 0.12500006420647397
+      },
+      "lines_per_second": 35988818.91781967,
+      "bus_accesses_per_second": 141260571.72019818,
+      "cycles_per_instruction": 4.0873984643553,
+      "rounds": [
+        {
+          "l2d_cache_refill": 0.01565510472830604,
+          "bus_access": 0.0625892930171069,
+          "cpu_cycles": 1.0239582688492888,
+          "inst_retired": 0.2500031739473343,
+          "mem_access": 0.12500018648364963,
+          "rate": 2295201731.131205
+        },
+        {
+          "l2d_cache_refill": 0.015654881210888132,
+          "bus_access": 0.06030627975569052,
+          "cpu_cycles": 1.0197641617235016,
+          "inst_retired": 0.2500025016420028,
+          "mem_access": 0.1249999419292983,
+          "rate": 2302541492.0963063
+        }
+      ]
+    },
+    {
+      "threads": 3,
+      "rate": 2193222277.42424,
+      "per_unit": {
+        "l2d_cache_refill": 0.015653419121394327,
+        "bus_access": 0.06461243723011152,
+        "cpu_cycles": 1.6084933145973606,
+        "inst_retired": 0.2500044746380864,
+        "mem_access": 0.12500022792003374
+      },
+      "lines_per_second": 34331427.53490061,
+      "bus_accesses_per_second": 141709436.73175594,
+      "cycles_per_instruction": 6.433858101643426,
+      "rounds": [
+        {
+          "l2d_cache_refill": 0.015653402311727405,
+          "bus_access": 0.06657756632193923,
+          "cpu_cycles": 1.6290021943859756,
+          "inst_retired": 0.2500044256448746,
+          "mem_access": 0.12500008940696716,
+          "rate": 2175661357.483649
+        },
+        {
+          "l2d_cache_refill": 0.015653435931061253,
+          "bus_access": 0.06264730813828381,
+          "cpu_cycles": 1.5879844348087455,
+          "inst_retired": 0.25000452363129816,
+          "mem_access": 0.12500036643310028,
+          "rate": 2210783197.3648314
+        }
+      ]
+    },
+    {
+      "threads": 4,
+      "rate": 2077209968.8652134,
+      "per_unit": {
+        "l2d_cache_refill": 0.015650596528772324,
+        "bus_access": 0.06449067309552196,
+        "cpu_cycles": 2.1835697326013754,
+        "inst_retired": 0.2500055798000851,
+        "mem_access": 0.1250003692882371
+      },
+      "lines_per_second": 32509575.128253177,
+      "bus_accesses_per_second": 133960669.05284584,
+      "cycles_per_instruction": 8.73408399263508,
+      "rounds": [
+        {
+          "l2d_cache_refill": 0.015650033950805664,
+          "bus_access": 0.06259168780619098,
+          "cpu_cycles": 2.2305770021292473,
+          "inst_retired": 0.25000584437962503,
+          "mem_access": 0.12500036652049712,
+          "rate": 2083615990.2270887
+        },
+        {
+          "l2d_cache_refill": 0.015651159106738984,
+          "bus_access": 0.06638965838485295,
+          "cpu_cycles": 2.1365624630735036,
+          "inst_retired": 0.2500053152205452,
+          "mem_access": 0.1250003720559771,
+          "rate": 2070803947.5033379
+        }
+      ]
+    }
+  ],
+  "decode": [
+    {
+      "variant": "original",
+      "threads": 1,
+      "rate": 6.1245265,
+      "per_unit": {
+        "l2d_cache_refill": 1678988.0104166665,
+        "bus_access": 6886527.104166667,
+        "cpu_cycles": 192083818.19791666,
+        "inst_retired": 155475897.5520833,
+        "mem_access": 64705420.98958333
+      },
+      "lines_per_second": 10283006.56297915,
+      "bus_accesses_per_second": 42176717.74243701,
+      "cycles_per_instruction": 1.2354572073370405,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1675754.8333333333,
+          "bus_access": 6704442.166666667,
+          "cpu_cycles": 191585892.04166666,
+          "inst_retired": 155475901.25,
+          "mem_access": 64705687.5625,
+          "rate": 6.131118
+        },
+        {
+          "l2d_cache_refill": 1682221.1875,
+          "bus_access": 7068612.041666667,
+          "cpu_cycles": 192581744.35416666,
+          "inst_retired": 155475893.85416666,
+          "mem_access": 64705154.416666664,
+          "rate": 6.117935
+        }
+      ]
+    },
+    {
+      "variant": "original",
+      "threads": 2,
+      "rate": 11.021355,
+      "per_unit": {
+        "l2d_cache_refill": 1685102.3020833335,
+        "bus_access": 6762047.489583334,
+        "cpu_cycles": 211087424.9166667,
+        "inst_retired": 172689920.7916667,
+        "mem_access": 67758485.89583334
+      },
+      "lines_per_second": 18572110.68257766,
+      "bus_accesses_per_second": 74526925.90955673,
+      "cycles_per_instruction": 1.2223494222996534,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1684592.6041666667,
+          "bus_access": 6817258.8125,
+          "cpu_cycles": 211192709.52083334,
+          "inst_retired": 172722461.875,
+          "mem_access": 67763949.04166667,
+          "rate": 11.015541
+        },
+        {
+          "l2d_cache_refill": 1685612.0,
+          "bus_access": 6706836.166666667,
+          "cpu_cycles": 210982140.3125,
+          "inst_retired": 172657379.70833334,
+          "mem_access": 67753022.75,
+          "rate": 11.027169
+        }
+      ]
+    },
+    {
+      "variant": "original",
+      "threads": 3,
+      "rate": 15.0596815,
+      "per_unit": {
+        "l2d_cache_refill": 1684500.75,
+        "bus_access": 6719014.572916667,
+        "cpu_cycles": 230506798.17708334,
+        "inst_retired": 177688247.44791666,
+        "mem_access": 68744827.48958333
+      },
+      "lines_per_second": 25368044.781511124,
+      "bus_accesses_per_second": 101186219.46198353,
+      "cycles_per_instruction": 1.2972540473992162,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1685743.6458333333,
+          "bus_access": 6784176.041666667,
+          "cpu_cycles": 231480232.70833334,
+          "inst_retired": 178496812.66666666,
+          "mem_access": 68879536.08333333,
+          "rate": 15.056979
+        },
+        {
+          "l2d_cache_refill": 1683257.8541666667,
+          "bus_access": 6653853.104166667,
+          "cpu_cycles": 229533363.64583334,
+          "inst_retired": 176879682.22916666,
+          "mem_access": 68610118.89583333,
+          "rate": 15.062384
+        }
+      ]
+    },
+    {
+      "variant": "original",
+      "threads": 4,
+      "rate": 16.345658999999998,
+      "per_unit": {
+        "l2d_cache_refill": 1685114.3645833333,
+        "bus_access": 6714858.197916666,
+        "cpu_cycles": 279440320.9166666,
+        "inst_retired": 199798401.2604167,
+        "mem_access": 72593985.34375
+      },
+      "lines_per_second": 27544304.779480837,
+      "bus_accesses_per_second": 109758782.33650032,
+      "cycles_per_instruction": 1.3986113960563922,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1684360.4583333333,
+          "bus_access": 6710542.25,
+          "cpu_cycles": 279438259.9375,
+          "inst_retired": 199871534.83333334,
+          "mem_access": 72606155.77083333,
+          "rate": 16.355513
+        },
+        {
+          "l2d_cache_refill": 1685868.2708333333,
+          "bus_access": 6719174.145833333,
+          "cpu_cycles": 279442381.8958333,
+          "inst_retired": 199725267.6875,
+          "mem_access": 72581814.91666667,
+          "rate": 16.335805
+        }
+      ]
+    },
+    {
+      "variant": "two_row_plain",
+      "threads": 1,
+      "rate": 6.849937499999999,
+      "per_unit": {
+        "l2d_cache_refill": 1678124.1666666667,
+        "bus_access": 6711949.572916667,
+        "cpu_cycles": 171017124.3333333,
+        "inst_retired": 152027433.03125,
+        "mem_access": 53652229.98958333
+      },
+      "lines_per_second": 11495045.65890625,
+      "bus_accesses_per_second": 45976435.077630855,
+      "cycles_per_instruction": 1.124909635869336,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1679961.6041666667,
+          "bus_access": 6719595.166666667,
+          "cpu_cycles": 171136683.0625,
+          "inst_retired": 152027232.70833334,
+          "mem_access": 53652230.3125,
+          "rate": 6.838779
+        },
+        {
+          "l2d_cache_refill": 1676286.7291666667,
+          "bus_access": 6704303.979166667,
+          "cpu_cycles": 170897565.60416666,
+          "inst_retired": 152027633.35416666,
+          "mem_access": 53652229.666666664,
+          "rate": 6.861096
+        }
+      ]
+    },
+    {
+      "variant": "two_row_plain",
+      "threads": 2,
+      "rate": 12.144547500000002,
+      "per_unit": {
+        "l2d_cache_refill": 1685223.2708333335,
+        "bus_access": 6787696.322916666,
+        "cpu_cycles": 191350756.3125,
+        "inst_retired": 168259706.98958334,
+        "mem_access": 56539901.35416667
+      },
+      "lines_per_second": 20466274.060740788,
+      "bus_accesses_per_second": 82433500.4092368,
+      "cycles_per_instruction": 1.1372345746706083,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1684362.6666666667,
+          "bus_access": 6833493.4375,
+          "cpu_cycles": 190776054.27083334,
+          "inst_retired": 168180734.20833334,
+          "mem_access": 56526758.208333336,
+          "rate": 12.146926
+        },
+        {
+          "l2d_cache_refill": 1686083.875,
+          "bus_access": 6741899.208333333,
+          "cpu_cycles": 191925458.35416666,
+          "inst_retired": 168338679.77083334,
+          "mem_access": 56553044.5,
+          "rate": 12.142169
+        }
+      ]
+    },
+    {
+      "variant": "two_row_plain",
+      "threads": 3,
+      "rate": 16.191132500000002,
+      "per_unit": {
+        "l2d_cache_refill": 1685695.1041666665,
+        "bus_access": 6771739.604166666,
+        "cpu_cycles": 212934695.80208334,
+        "inst_retired": 174323916.125,
+        "mem_access": 57698161.67708333
+      },
+      "lines_per_second": 27293312.786163803,
+      "bus_accesses_per_second": 109642133.18656005,
+      "cycles_per_instruction": 1.221488712136304,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1685562.5833333333,
+          "bus_access": 6730860.875,
+          "cpu_cycles": 211942864.27083334,
+          "inst_retired": 173795668.95833334,
+          "mem_access": 57610103.354166664,
+          "rate": 16.206446
+        },
+        {
+          "l2d_cache_refill": 1685827.625,
+          "bus_access": 6812618.333333333,
+          "cpu_cycles": 213926527.33333334,
+          "inst_retired": 174852163.29166666,
+          "mem_access": 57786220.0,
+          "rate": 16.175819
+        }
+      ]
+    },
+    {
+      "variant": "two_row_plain",
+      "threads": 4,
+      "rate": 16.027072,
+      "per_unit": {
+        "l2d_cache_refill": 1686046.8541666665,
+        "bus_access": 6819504.84375,
+        "cpu_cycles": 286236053.09375,
+        "inst_retired": 208645837.1770833,
+        "mem_access": 63581901.69791667
+      },
+      "lines_per_second": 27022394.327102665,
+      "bus_accesses_per_second": 109296695.13513,
+      "cycles_per_instruction": 1.3718752167138317,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1686036.5625,
+          "bus_access": 6815510.8125,
+          "cpu_cycles": 291084316.1458333,
+          "inst_retired": 216538032.60416666,
+          "mem_access": 64897379.0625,
+          "rate": 15.877696
+        },
+        {
+          "l2d_cache_refill": 1686057.1458333333,
+          "bus_access": 6823498.875,
+          "cpu_cycles": 281387790.0416667,
+          "inst_retired": 200753641.75,
+          "mem_access": 62266424.333333336,
+          "rate": 16.176448
+        }
+      ]
+    },
+    {
+      "variant": "two_row_prefetch",
+      "threads": 1,
+      "rate": 7.0872,
+      "per_unit": {
+        "l2d_cache_refill": 1686266.1979166665,
+        "bus_access": 6733693.03125,
+        "cpu_cycles": 166048659.84375,
+        "inst_retired": 153857201.8125,
+        "mem_access": 54872074.51041667
+      },
+      "lines_per_second": 11950905.797874998,
+      "bus_accesses_per_second": 47723029.251075,
+      "cycles_per_instruction": 1.0792387869246918,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1685712.4583333333,
+          "bus_access": 6722132.479166667,
+          "cpu_cycles": 166557812.85416666,
+          "inst_retired": 153857192.66666666,
+          "mem_access": 54872191.125,
+          "rate": 7.076183
+        },
+        {
+          "l2d_cache_refill": 1686819.9375,
+          "bus_access": 6745253.583333333,
+          "cpu_cycles": 165539506.83333334,
+          "inst_retired": 153857210.95833334,
+          "mem_access": 54871957.895833336,
+          "rate": 7.098217
+        }
+      ]
+    },
+    {
+      "variant": "two_row_prefetch",
+      "threads": 2,
+      "rate": 12.564112,
+      "per_unit": {
+        "l2d_cache_refill": 1685072.15625,
+        "bus_access": 6727023.458333333,
+        "cpu_cycles": 185361369.6458333,
+        "inst_retired": 169861883.76041666,
+        "mem_access": 57721259.63541667
+      },
+      "lines_per_second": 21171435.2992065,
+      "bus_accesses_per_second": 84519076.15712732,
+      "cycles_per_instruction": 1.0912475803416737,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1685507.6666666667,
+          "bus_access": 6865546.833333333,
+          "cpu_cycles": 185381970.35416666,
+          "inst_retired": 170106778.72916666,
+          "mem_access": 57762127.020833336,
+          "rate": 12.560077
+        },
+        {
+          "l2d_cache_refill": 1684636.6458333333,
+          "bus_access": 6588500.083333333,
+          "cpu_cycles": 185340768.9375,
+          "inst_retired": 169616988.79166666,
+          "mem_access": 57680392.25,
+          "rate": 12.568147
+        }
+      ]
+    },
+    {
+      "variant": "two_row_prefetch",
+      "threads": 3,
+      "rate": 16.5785345,
+      "per_unit": {
+        "l2d_cache_refill": 1688710.8958333333,
+        "bus_access": 6809590.6875,
+        "cpu_cycles": 209841346.8125,
+        "inst_retired": 177380081.17708334,
+        "mem_access": 59121659.302083336
+      },
+      "lines_per_second": 27996351.84709882,
+      "bus_accesses_per_second": 112893034.14359747,
+      "cycles_per_instruction": 1.1830040071016186,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1688458.8333333333,
+          "bus_access": 6900935.458333333,
+          "cpu_cycles": 210379514.875,
+          "inst_retired": 177319469.14583334,
+          "mem_access": 59111535.208333336,
+          "rate": 16.577411
+        },
+        {
+          "l2d_cache_refill": 1688962.9583333333,
+          "bus_access": 6718245.916666667,
+          "cpu_cycles": 209303178.75,
+          "inst_retired": 177440693.20833334,
+          "mem_access": 59131783.395833336,
+          "rate": 16.579658
+        }
+      ]
+    },
+    {
+      "variant": "two_row_prefetch",
+      "threads": 4,
+      "rate": 15.6689985,
+      "per_unit": {
+        "l2d_cache_refill": 1689676.0833333333,
+        "bus_access": 6811655.84375,
+        "cpu_cycles": 292820931.1458334,
+        "inst_retired": 211919583.25,
+        "mem_access": 65041272.54166667
+      },
+      "lines_per_second": 26475532.015235875,
+      "bus_accesses_per_second": 106731825.19823499,
+      "cycles_per_instruction": 1.381754940506818,
+      "rounds": [
+        {
+          "l2d_cache_refill": 1690184.1458333333,
+          "bus_access": 6785114.875,
+          "cpu_cycles": 295601257.6875,
+          "inst_retired": 215990248.77083334,
+          "mem_access": 65719592.8125,
+          "rate": 15.590039
+        },
+        {
+          "l2d_cache_refill": 1689168.0208333333,
+          "bus_access": 6838196.8125,
+          "cpu_cycles": 290040604.6041667,
+          "inst_retired": 207848917.72916666,
+          "mem_access": 64362952.270833336,
+          "rate": 15.747958
+        }
+      ]
+    }
+  ],
+  "processes": 64,
+  "telemetry": {
+    "samples": 483,
+    "max_temperature_c": 71.446,
+    "frequencies_mhz": [
+      1200.0
+    ],
+    "raw_throttle": [
+      "0x0"
+    ],
+    "missing_throttle_samples": 0
+  }
+}

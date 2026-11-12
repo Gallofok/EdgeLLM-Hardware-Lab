@@ -72,3 +72,6 @@ __pycache__/
 !/reports/pi3-q5-two-row-plain-kernel-20261112/
 !/results/integration/two-row-plain-e2e-20261112/
 !/reports/pi3-two-row-plain-e2e-20261112/
+
+!/results/profiling/decode-ceiling-20261112/
+!/reports/pi3-decode-ceiling-20261112/

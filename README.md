@@ -258,3 +258,10 @@ margin. It does not raise the board's highest decode throughput, and it covers o
 board and one small model. See the
 [report](reports/pi3-two-row-plain-e2e-20261112/e2e.md) and
 [evidence](results/integration/two-row-plain-e2e-20261112).
+
+A [counter diagnostic](docs/decode_ceiling_diagnostic_analysis.md) probed the
+four-thread decode limit. Its predeclared reading is inconclusive: original
+four-thread decode pulls 0.847 times the memory lines per second of four sequential
+readers, just under the 0.85 set for support. Every build reads the same 1.69 million
+lines per token at every thread count, and none exceeded about 28 million lines per
+second.
