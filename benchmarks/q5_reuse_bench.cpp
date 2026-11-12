@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
                         "edgellm_q5_loop_variant")(),
                     variant.c_str()) ||
         (variant != "two-block" && variant != "two-row-prefetch" &&
-         variant != "two-row-plain"))
+         variant != "two-row-plain" && variant != "two-row-wide"))
       throw std::runtime_error("Measured library identity is wrong");
     const auto dot = original.symbol<Dot>("ggml_vec_dot_q5_0_q8_0");
     const auto configure =

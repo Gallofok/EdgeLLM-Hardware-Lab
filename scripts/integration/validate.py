@@ -18,6 +18,22 @@ HYBRID_GRAPH_CASES = GRAPH_CASES + [(576, 192, n, 1, 1, 1, 1, 0, 0, 0, 0) for n 
 HYBRID = "multi_vector"
 # Hints follow the thread count; the pinned harnesses and their expectations apply.
 ADAPTIVE = "thread_adaptive"
+WIDE = "wide"
+WIDE_WIDTHS = (576, 896, 960)
+WIDE_GRAPH_CASES = (
+    GRAPH_CASES
+    + [
+        case
+        for cols in (896, 960)
+        for case in (
+            *((cols, r, 1, 1, 1, 1, 1, 0, 0, 0, 0) for r in (1, 5, 17, 192)),
+            (cols, 17, 3, 1, 1, 1, 1, 1, 0, 0, 1),
+            (cols, 17, 3, 2, 1, 4, 2, 0, 1, 0, 1),
+            (cols, 17, 3, 1, 1, 1, 1, 0, 1, 1, 1),
+        )
+    ]
+    + [(c, 17, 3, 1, 1, 1, 1, 0, 1, 0, 1) for c in (832, 1024)]
+)
 CASE_FIELDS = (
     "cols",
     "rows",
@@ -66,9 +82,11 @@ def hybrid_counts(r):
 
 
 def validate_graph(rows, fixture=False, policy=None):
-    check(policy in (None, HYBRID), "Unknown dispatch policy")
+    check(policy in (None, HYBRID, WIDE), "Unknown dispatch policy")
     common(rows, fixture)
-    cases = HYBRID_GRAPH_CASES if policy else GRAPH_CASES
+    cases = {HYBRID: HYBRID_GRAPH_CASES, WIDE: WIDE_GRAPH_CASES}.get(policy, GRAPH_CASES)
+    widths = WIDE_WIDTHS if policy == WIDE else (576,)
+    policy = policy if policy == HYBRID else None
     expected = {(c, t, m) for c in range(len(cases)) for t in (1, 2, 4) for m in (0, 1)}
     actual = [(r["case"], r["threads"], r["mode"]) for r in rows]
     check(
@@ -81,7 +99,7 @@ def validate_graph(rows, fixture=False, policy=None):
             tuple(r[k] for k in CASE_FIELDS) == cases[r["case"]],
             "Graph layout differs from protocol",
         )
-        eligible = r["cols"] == 576 and not r["padded_weights"]
+        eligible = r["cols"] in widths and not r["padded_weights"]
         if policy:
             calls, declined = hybrid_counts(r)
             vectors = r["vectors"] * r["x2"] * r["x3"]

@@ -38,7 +38,10 @@ VARIANTS = {
     "two-block": None,
     "two-row-prefetch": "src/integration/q5_ggml_bridge_two_row.cpp",
     "two-row-plain": "src/integration/q5_ggml_bridge_two_row_plain.cpp",
+    "two-row-wide": "src/integration/q5_ggml_bridge_wide.cpp",
 }
+# Captures before the width option measured width 576 and do not record it.
+WIDTHS = (576, 896, 960)
 
 
 def cases():
@@ -63,11 +66,13 @@ def native_ratios(raw):
         raise ValueError("Missing correctness/load/dispatch gate")
     if raw.get("audit_during_timing") is not False or raw.get("threads") != 1:
         raise ValueError("Wrong audit/thread state")
-    if (raw.get("cols"), raw.get("chunk"), raw.get("data_kind")) != (576, 16, "measured_local"):
+    if (raw.get("chunk"), raw.get("data_kind")) != (16, "measured_local"):
         raise ValueError("Wrong workload/data kind")
+    if raw.get("cols") not in WIDTHS:
+        raise ValueError("Unsupported width")
     if raw.get("variant", "two-block") not in VARIANTS:
         raise ValueError("Unknown loop variant")
-    if raw["weight_bytes"] != raw["rows"] * 18 * 22:
+    if raw["weight_bytes"] != raw["rows"] * (raw["cols"] // 32) * 22:
         raise ValueError("Weight footprint differs from the shape")
     pairs, repetitions = raw["pairs"], raw["repetitions"]
     if repetitions <= 0 or repetitions % 2 or len(pairs) != repetitions:
@@ -140,6 +145,7 @@ def collect(args):
         schema_version=1,
         experiment="q5_reuse",
         variant=args.variant,
+        cols=args.cols,
         data_kind="real",
         status="running",
         started_at=utc_now(),
@@ -165,6 +171,8 @@ def collect(args):
             command += ["--repetitions", "6", "--min-ms", "100"]
             if args.variant != "two-block":
                 command += ["--variant", args.variant]
+            if args.cols != 576:
+                command += ["--cols", str(args.cols)]
             raw_path = output / "raw" / (case["id"] + ".json")
             manifest["cases"].append(dict(case))
             write_json(output / "manifest.json", manifest)
@@ -182,8 +190,8 @@ def collect(args):
             native_ratios(raw)
             if any(raw[k] != case[k] for k in ("rows", "reuse", "seed")):
                 raise ValueError("Native workload differs from declared case")
-            if raw.get("variant", "two-block") != args.variant:
-                raise ValueError("Native loop variant differs from declared variant")
+            if raw.get("variant", "two-block") != args.variant or raw["cols"] != args.cols:
+                raise ValueError("Native loop variant or width differs from the declared one")
             print(f"[real] {case['id']} passed", flush=True)
         if any(sha256(ROOT / p) != d for p, d in manifest["source_files_sha256"].items()):
             raise ValueError("Harness/kernel sources changed during collection")
@@ -208,9 +216,9 @@ def replay(input_dir):
         raise ValueError("Incomplete/nonphysical capture")
     if manifest.get("experiment") != "q5_reuse" or manifest["cases"] != list(cases()):
         raise ValueError("Wrong experiment or changed grid")
-    variant = manifest.get("variant", "two-block")
-    if variant not in VARIANTS:
-        raise ValueError("Unknown loop variant")
+    variant, cols = manifest.get("variant", "two-block"), manifest.get("cols", 576)
+    if variant not in VARIANTS or cols not in WIDTHS:
+        raise ValueError("Unknown loop variant or width")
     expected = {
         f"raw/{case['id']}{suffix}"
         for case in manifest["cases"]
@@ -230,8 +238,8 @@ def replay(input_dir):
             raise ValueError("Failed process")
         if any(raw[k] != case[k] for k in ("rows", "reuse", "seed")):
             raise ValueError("Native case identity mismatch")
-        if raw.get("variant", "two-block") != variant:
-            raise ValueError("Native loop variant mismatch")
+        if raw.get("variant", "two-block") != variant or raw["cols"] != cols:
+            raise ValueError("Native loop variant or width mismatch")
         if raw["repetitions"] != 6 or raw["min_sample_ms"] != 100:
             raise ValueError("Changed timing protocol")
         values = native_ratios(raw)
@@ -254,7 +262,7 @@ def replay(input_dir):
             dict(
                 rows=rows,
                 reuse=reuse,
-                weight_bytes=rows * 18 * 22,
+                weight_bytes=rows * (cols // 32) * 22,
                 original_ns_per_row=statistics.mean(s["original_ns_per_row"] for s in sessions),
                 candidate_ns_per_row=statistics.mean(s["candidate_ns_per_row"] for s in sessions),
                 original_over_candidate=statistics.mean(session_means),
@@ -274,6 +282,7 @@ def replay(input_dir):
     return manifest, dict(
         data_kind="real",
         variant=variant,
+        **({} if cols == 576 else dict(cols=cols)),
         **verdict,
         groups=summaries,
         formal_processes=len(manifest["cases"]),
@@ -311,7 +320,8 @@ def report(args):
     lines = [
         f"# {title} loop versus original dot: block reuse and weight footprint",
         "",
-        headline + "Single thread, width 576, 16-row blocks in the engine's traversal order. "
+        headline + f"Single thread, width {summary.get('cols', 576)}, 16-row blocks in the "
+        "engine's traversal order. "
         "Ratios above 1 mean the candidate was faster.",
         "",
         "| Rows | Weight bytes | Vectors per block | Original ns/row | Candidate ns/row | "
@@ -350,6 +360,7 @@ def main():
     run.add_argument("--candidate", type=Path, required=True, help="two-block bin directory")
     run.add_argument("--binary", type=Path, required=True)
     run.add_argument("--variant", choices=sorted(VARIANTS), default="two-block")
+    run.add_argument("--cols", type=int, choices=WIDTHS, default=576)
     run.add_argument("--output", type=Path, required=True)
     show = commands.add_parser("report")
     show.add_argument("--input", type=Path, required=True)

@@ -156,6 +156,14 @@ jobs:
           cmake --build build/ggml-adaptive --target test-ggml-row4 edgellm-llama-bench --parallel 2
           qemu-aarch64 -L /usr/aarch64-linux-gnu build/ggml-adaptive/edgellm-llama-bench --help
           ctest --test-dir build/ggml-adaptive --output-on-failure
+      - name: Wide candidate graph correctness under ARM64 emulation
+        run: |
+          cmake -S integrations/ggml -B build/ggml-wide -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_EDGELLM_Q5_ROW4=ON -DEDGELLM_Q5_WIDE=ON -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            '-DCMAKE_CROSSCOMPILING_EMULATOR=qemu-aarch64;-L;/usr/aarch64-linux-gnu'
+          cmake --build build/ggml-wide --target test-ggml-row4-wide --parallel 2
+          ctest --test-dir build/ggml-wide --output-on-failure
       - name: Hybrid dispatch candidate graph correctness under ARM64 emulation
         run: |
           python3 scripts/integration/prepare.py --variant hybrid
