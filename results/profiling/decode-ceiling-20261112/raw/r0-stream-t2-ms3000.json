@@ -1,0 +1,1 @@
+{"schema_version":1,"benchmark":"mem_stream","data_kind":"measured_local","threads":2,"megabytes_per_thread":64,"requested_ms":3000,"elapsed_ns":3040831558,"passes":104,"bytes":6979321856,"bytes_per_second":2295201731.1312051,"checksum":8153726976}
