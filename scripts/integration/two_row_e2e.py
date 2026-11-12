@@ -48,7 +48,21 @@ CEILING_RULE = dict(
 )
 
 
-def ceiling_verdict(summary):
+# Cleanliness for cooled reruns: usable after the firmware's "has occurred" flags latch.
+GUARDED_CONDITIONS = dict(current_flags=[], max_temperature_below_c=80.0, missing_samples=0)
+
+
+def guarded_clean(summary):
+    """No flag active in any sample, and never at the capping temperature."""
+    return (
+        not summary["current_throttle_flags"]
+        and not summary["missing_throttle_samples"]
+        and summary["max_temperature_c"] is not None
+        and summary["max_temperature_c"] < GUARDED_CONDITIONS["max_temperature_below_c"]
+    )
+
+
+def ceiling_verdict(summary, guarded=False):
     """Five groups must improve; four-thread decode must stay within 1%."""
     held = CEILING_RULE["non_inferior"]
     groups = [
@@ -78,15 +92,20 @@ def ceiling_verdict(summary):
                 and g["pairs_above_one"] >= CEILING_RULE["improve"]["min_pairs_above_one"]
             )
     clean = (
-        summary["throttled_raw"] == CEILING_RULE["clean_throttle_raw"]
-        and not summary["current_throttle_flags"]
-        and not summary["missing_throttle_samples"]
+        guarded_clean(summary)
+        if guarded
+        else (
+            summary["throttled_raw"] == CEILING_RULE["clean_throttle_raw"]
+            and not summary["current_throttle_flags"]
+            and not summary["missing_throttle_samples"]
+        )
     )
     if not clean:
         outcome = "no_decision_unclean_conditions"
     else:
         outcome = "accepted" if all(g["passes"] for g in groups) else "rejected"
-    return dict(rule=CEILING_RULE, outcome=outcome, clean_conditions=clean, groups=groups)
+    rule = dict(CEILING_RULE, conditions=GUARDED_CONDITIONS) if guarded else CEILING_RULE
+    return dict(rule=rule, outcome=outcome, clean_conditions=clean, groups=groups)
 
 
 def candidate_identity(build, kernel_capture, candidate="two_row_prefetch"):
@@ -137,7 +156,13 @@ def collect(args):
     if args.kernel_capture is None:
         raise ValueError("This candidate requires its kernel capture")
     identity = candidate_identity(args.build, args.kernel_capture, args.candidate)
-    execute(args.output, args.build, policy=POLICIES.get(args.candidate), versions=args.versions)
+    execute(
+        args.output,
+        args.build,
+        policy=POLICIES.get(args.candidate),
+        versions=args.versions,
+        cool_to_c=args.cool_to,
+    )
     if candidate_identity(args.build, args.kernel_capture, args.candidate) != identity:
         raise ValueError("Candidate changed during measurement")
     write_json(args.output.resolve() / "two_row.json", identity)
@@ -161,7 +186,10 @@ def report(args):
         result = dict(candidate=identity, **verdict(summary))
         assert result["rule"] == RULE
     else:
-        result = dict(candidate=identity, **ceiling_verdict(summary))
+        # A cooled capture is judged by the guarded conditions fixed with that protocol.
+        result = dict(
+            candidate=identity, **ceiling_verdict(summary, guarded="cool_to_c" in manifest)
+        )
     write_json(Path(args.reports) / "two_row_gate.json", result)
     print(json.dumps(result, indent=2))
 
@@ -173,6 +201,7 @@ def main():
     run.add_argument("--build", type=Path, required=True)
     run.add_argument("--kernel-capture", type=Path)
     run.add_argument("--versions", type=Path, help="pin of a second model on the same engine")
+    run.add_argument("--cool-to", type=float, help="idle to this temperature before each process")
     run.add_argument(
         "--candidate",
         choices=sorted((*CANDIDATES, "two_row_adaptive")),
