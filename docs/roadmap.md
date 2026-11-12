@@ -52,7 +52,8 @@ not establish that it passed.
   [reuse diagnostic](q5_reuse_diagnostic_analysis.md): it loses only on weights read once.
 - [x] Run the [two-row prefetching candidate](q5_two_row.md) through its predeclared gates:
   kernel gate passed, [end-to-end rejected](q5_two_row_analysis.md) on four-thread decode alone.
-- [ ] Establish what limits four-thread decode; exploratory runs suggest a shared ceiling.
+- [ ] Establish what limits four-thread decode with the
+  [counter diagnostic](decode_ceiling_diagnostic.md); exploratory runs suggest a shared ceiling.
 - [x] Run the [plain two-row candidate](q5_two_row_plain.md) through its predeclared gates:
   [accepted](q5_two_row_plain_analysis.md), five groups faster and four-thread decode unchanged.
 - [x] Run the [hybrid dispatch candidate](q5_hybrid_dispatch.md) through its predeclared gates:
