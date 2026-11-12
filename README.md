@@ -259,6 +259,14 @@ board and one small model. See the
 [report](reports/pi3-two-row-plain-e2e-20261112/e2e.md) and
 [evidence](results/integration/two-row-plain-e2e-20261112).
 
+The off-by-default [thread-adaptive candidate](docs/q5_adaptive.md) issues the
+prefetch hints only below the processor count. It was
+[accepted end to end](docs/q5_adaptive_analysis.md) under the same rule: prefill rose
+15.5–17.0%, decode rose 14.6% and 13.1% at one and two threads, and four-thread
+decode was unchanged (-0.31%). Across separate captures it keeps more of the decode
+gain than the plain loop and slightly less of the prefill gain; that comparison is
+not paired.
+
 A [counter diagnostic](docs/decode_ceiling_diagnostic_analysis.md) probed the
 four-thread decode limit. Its predeclared reading is inconclusive: original
 four-thread decode pulls 0.847 times the memory lines per second of four sequential
