@@ -348,8 +348,11 @@ def report(args):
     ]
     (output / "reuse.md").write_text("\n".join(lines))
     print(json.dumps({k: summary[k] for k in ("reading", "kernel_gate_passed") if k in summary}))
-    if summary.get("kernel_gate_passed") is False:
+    # A published failed gate replays as a failure; say so to keep the replay green.
+    if summary.get("kernel_gate_passed") is False and not args.expect_failed:
         raise SystemExit("Kernel gate failed; later gates must not run")
+    if args.expect_failed and summary.get("kernel_gate_passed") is not False:
+        raise SystemExit("Expected a failed kernel gate")
 
 
 def main():
@@ -365,6 +368,7 @@ def main():
     show = commands.add_parser("report")
     show.add_argument("--input", type=Path, required=True)
     show.add_argument("--output", type=Path, required=True)
+    show.add_argument("--expect-failed", action="store_true")
     args = parser.parse_args()
     (collect if args.command == "collect" else report)(args)
 
