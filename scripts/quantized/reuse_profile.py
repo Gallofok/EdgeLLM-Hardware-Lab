@@ -37,6 +37,7 @@ SOURCES = (
 VARIANTS = {
     "two-block": None,
     "two-row-prefetch": "src/integration/q5_ggml_bridge_two_row.cpp",
+    "two-row-plain": "src/integration/q5_ggml_bridge_two_row_plain.cpp",
 }
 
 
