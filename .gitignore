@@ -75,3 +75,6 @@ __pycache__/
 
 !/results/profiling/decode-ceiling-20261112/
 !/reports/pi3-decode-ceiling-20261112/
+
+!/results/integration/adaptive-e2e-20261112/
+!/reports/pi3-adaptive-e2e-20261112/

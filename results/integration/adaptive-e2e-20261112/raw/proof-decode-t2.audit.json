@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "audit": true,
+  "handled": 135552,
+  "rows": 2168832,
+  "disabled": 0,
+  "thread_mask": 3,
+  "hinted_calls": 135552,
+  "plain_calls": 0,
+  "processors": 4
+}

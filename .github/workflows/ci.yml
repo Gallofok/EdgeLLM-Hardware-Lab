@@ -68,6 +68,7 @@ jobs:
           python scripts/integration/two_row_e2e.py report --input results/integration/two-row-e2e-20261112 --reports build/verified-reports/two-row-e2e
           python scripts/quantized/reuse_profile.py report --input results/quantized/two-row-plain-kernel-20261112 --output build/verified-reports/q5-two-row-plain-kernel
           python scripts/integration/two_row_e2e.py report --input results/integration/two-row-plain-e2e-20261112 --reports build/verified-reports/two-row-plain-e2e
+          python scripts/integration/two_row_e2e.py report --input results/integration/adaptive-e2e-20261112 --reports build/verified-reports/adaptive-e2e
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)
         run: |
           cmake -S . -B build/kernels -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

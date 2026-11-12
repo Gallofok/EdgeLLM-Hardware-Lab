@@ -1,0 +1,8 @@
+{
+  "variant": "two_row_adaptive",
+  "dispatch_policy": "thread_adaptive",
+  "libraries_sha256": {
+    "libggml-cpu.so": "173baec3d585c8e6768a1ac073ff60fb94a079e355da9884594eafc92e99e21b",
+    "libggml-base.so": "5949a9bb8a781c41b0991d830e57864a234060ef9019c036a6a2a32e5fb75ded"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "candidate": {
+    "variant": "two_row_adaptive",
+    "dispatch_policy": "thread_adaptive",
+    "libraries_sha256": {
+      "libggml-cpu.so": "173baec3d585c8e6768a1ac073ff60fb94a079e355da9884594eafc92e99e21b",
+      "libggml-base.so": "5949a9bb8a781c41b0991d830e57864a234060ef9019c036a6a2a32e5fb75ded"
+    }
+  },
+  "rule": {
+    "improve": {
+      "mean_paired_ratio_above": 1.0,
+      "min_pairs_above_one": 3
+    },
+    "non_inferior": {
+      "phase": "decode",
+      "threads": 4,
+      "mean_paired_ratio_at_least": 0.99
+    },
+    "groups": 6,
+    "pairs_per_group": 4,
+    "clean_throttle_raw": [
+      "0x0"
+    ]
+  },
+  "outcome": "accepted",
+  "clean_conditions": true,
+  "groups": [
+    {
+      "phase": "prefill",
+      "threads": 1,
+      "change_pct": 16.961422072446286,
+      "paired_ratio_mean": 1.1696142207244629,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 2,
+      "change_pct": 16.490591490279073,
+      "paired_ratio_mean": 1.1649059149027907,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "prefill",
+      "threads": 4,
+      "change_pct": 15.468063905442285,
+      "paired_ratio_mean": 1.1546806390544229,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 1,
+      "change_pct": 14.590364537559974,
+      "paired_ratio_mean": 1.1459036453755997,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 2,
+      "change_pct": 13.078143099136085,
+      "paired_ratio_mean": 1.1307814309913609,
+      "pairs_above_one": 4,
+      "pairs": 4,
+      "requirement": "improve",
+      "passes": true
+    },
+    {
+      "phase": "decode",
+      "threads": 4,
+      "change_pct": -0.30889913786223966,
+      "paired_ratio_mean": 0.9969110086213776,
+      "pairs_above_one": 2,
+      "pairs": 4,
+      "requirement": "non_inferior",
+      "passes": true
+    }
+  ]
+}
