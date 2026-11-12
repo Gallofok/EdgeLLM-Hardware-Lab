@@ -18,6 +18,7 @@ from scripts.kernels.benchmark import operating_conditions
 from scripts.pi.benchmark import OPTIONS, bench_command
 from scripts.pi.benchmark_parser import parse_native
 from scripts.pi.common import ROOT, sha256, utc_now, write_json
+from scripts.pi.model import load_versions
 from scripts.pi.monitor import run_monitored
 from scripts.quantized.neon_run import environment, library_hashes
 from scripts.quantized.run import fixture_process
@@ -162,7 +163,7 @@ def hashes(build, policy=None):
     }
 
 
-def execute(output, build, fixture=False, ablation=False, policy=None):
+def execute(output, build, fixture=False, ablation=False, policy=None, versions=None):
     if policy not in (None, HYBRID, ADAPTIVE) or (policy and (fixture or ablation)):
         raise ValueError("Unsupported dispatch policy")
     output, build = Path(output).resolve(), Path(build).resolve()
@@ -171,7 +172,9 @@ def execute(output, build, fixture=False, ablation=False, policy=None):
     private = ROOT / ".state" / ("e2e-private-" + output.name)
     if not fixture:
         private.mkdir(parents=True, exist_ok=False)
-    pin = json.loads((ROOT / "config/versions.json").read_text())
+    pin = load_versions(versions)
+    if versions is not None and (fixture or ablation):
+        raise ValueError("A second model applies to real paired runs only")
     m = dict(
         schema=2 if ablation else 1,
         data_kind="fixture" if fixture else "real",

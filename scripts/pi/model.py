@@ -22,8 +22,21 @@ def verify_model(path, pin):
         raise ValueError("Model SHA256 mismatch; refusing to benchmark")
 
 
+def load_versions(path=None):
+    """The default pin, or a second model on the same pinned engine."""
+    default = json.loads((ROOT / "config/versions.json").read_text())
+    if path is None:
+        return default
+    pin = json.loads(Path(path).read_text())
+    if set(pin) != set(default) or any(
+        pin[k] != default[k] for k in default if k.startswith("llama_")
+    ):
+        raise ValueError("A second model must keep the pinned engine and the same fields")
+    return pin
+
+
 def main():
-    pin = json.loads((ROOT / "config/versions.json").read_text())
+    pin = load_versions(sys.argv[2] if sys.argv[1:2] == ["--versions"] else None)
     path = ROOT / "models" / pin["model_filename"]
     path.parent.mkdir(exist_ok=True)
     if not path.exists():
@@ -53,8 +66,9 @@ def main():
         temporary.replace(path)
     else:
         verify_model(path, pin)
+    default = pin == load_versions()
     write_json(
-        ROOT / ".state/model.json",
+        ROOT / (".state/model.json" if default else ".state/model-" + path.stem + ".json"),
         {
             "timestamp": utc_now(),
             "filename": path.name,
