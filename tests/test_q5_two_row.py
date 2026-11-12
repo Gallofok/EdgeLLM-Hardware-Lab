@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.integration.two_row_e2e import candidate_identity
+from scripts.integration.two_row_e2e import candidate_identity, ceiling_verdict
 from scripts.pi.common import ROOT, sha256
 from scripts.quantized.reuse_profile import REUSE, ROWS, gate, native_ratios
 
@@ -106,6 +106,68 @@ class TwoRowGateTests(unittest.TestCase):
             (kernel / "manifest.json").write_text(json.dumps(dict(manifest, variant="two-block")))
             with self.assertRaises(ValueError):
                 candidate_identity(build, kernel)
+
+
+class TwoRowPlainTests(unittest.TestCase):
+    def test_plain_candidate_is_the_two_row_source_without_hints(self):
+        hinted = (SOURCE / "q5_ggml_bridge_two_row.cpp").read_text().splitlines()
+        plain = (SOURCE / "q5_ggml_bridge_two_row_plain.cpp").read_text().splitlines()
+        removed = [line.strip() for line in hinted if line not in plain]
+        added = [line.strip() for line in plain if line not in hinted]
+        self.assertEqual(
+            [line for line in removed if not line.startswith("//")],
+            [
+                "for (int r = 0; r < Rows; ++r)",
+                "__builtin_prefetch(&w[(Rows + r) * 18 + b]);",
+                'return "two-row-prefetch";',
+            ],
+        )
+        self.assertEqual(
+            [line for line in added if not line.startswith("//")], ['return "two-row-plain";']
+        )
+        self.assertNotIn("prefetch(", "\n".join(plain))
+
+    def summary(self, ratios):
+        return dict(
+            groups=[
+                dict(
+                    phase=phase,
+                    threads=threads,
+                    change_pct=(ratios[(phase, threads)] - 1) * 100,
+                    paired_ratio_mean=ratios[(phase, threads)],
+                    pairs=[dict(ratio=ratios[(phase, threads)])] * 4,
+                )
+                for phase in ("prefill", "decode")
+                for threads in (1, 2, 4)
+            ],
+            throttled_raw=["0x0"],
+            current_throttle_flags=[],
+            missing_throttle_samples=0,
+        )
+
+    def test_ceiling_rule_holds_only_four_thread_decode_to_non_inferiority(self):
+        ratios = {(p, t): 1.1 for p in ("prefill", "decode") for t in (1, 2, 4)}
+        ratios[("decode", 4)] = 0.995
+        result = ceiling_verdict(self.summary(ratios))
+        self.assertEqual(result["outcome"], "accepted")
+        held = [g for g in result["groups"] if g["requirement"] == "non_inferior"]
+        self.assertEqual([(g["phase"], g["threads"]) for g in held], [("decode", 4)])
+        self.assertEqual(
+            ceiling_verdict(self.summary({**ratios, ("decode", 4): 0.989}))["outcome"],
+            "rejected",
+        )
+        for group in (("decode", 2), ("decode", 1), ("prefill", 4)):
+            self.assertEqual(
+                ceiling_verdict(self.summary({**ratios, group: 0.995}))["outcome"],
+                "rejected",
+            )
+        unclean = self.summary(ratios)
+        unclean["throttled_raw"] = ["0x0", "0x50000"]
+        self.assertEqual(ceiling_verdict(unclean)["outcome"], "no_decision_unclean_conditions")
+        short = self.summary(ratios)
+        short["groups"].pop()
+        with self.assertRaises(ValueError):
+            ceiling_verdict(short)
 
 
 if __name__ == "__main__":
