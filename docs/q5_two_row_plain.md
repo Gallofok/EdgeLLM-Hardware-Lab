@@ -31,7 +31,7 @@ three repetitions:
 - Decode throughput stopped near 16.6 t/s. The original reached it at four threads;
   two-row variants reached about the same figure at three threads and did not exceed
   it at four.
-- Every variant that issued prefetch hints was 2.2–4.2% slower than the original in
+- Every variant that issued prefetch hints was 2.2–5.3% slower than the original in
   four-thread decode, whatever the hint's distance, cache-level target or whether it
   stayed within the current call. The variant without hints was within 0.2% of the
   original there.
