@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 if __package__ in (None, ""):
@@ -25,7 +26,7 @@ from scripts.pi.benchmark import OPTIONS, bench_command
 from scripts.pi.benchmark_parser import parse_native
 from scripts.pi.common import ROOT, sha256, utc_now, write_json
 from scripts.pi.model import load_versions
-from scripts.pi.monitor import run_monitored
+from scripts.pi.monitor import run_monitored, temperature
 from scripts.quantized.neon_run import environment, library_hashes
 from scripts.quantized.run import fixture_process
 
@@ -190,6 +191,23 @@ def proof_valid(evidence, variant, phase, threads, policy=None):
     )
 
 
+def cool_down(limit_c, timeout_s=900, read=temperature, sleep=time.sleep, clock=time.monotonic):
+    """Idle until the board is at or below limit_c; changes no system setting."""
+    started, first = clock(), read()
+    current = first
+    while current > limit_c:
+        if clock() - started >= timeout_s:
+            raise ValueError("Board did not cool to the protocol temperature")
+        sleep(2)
+        current = read()
+    return dict(
+        limit_c=limit_c,
+        waited_s=clock() - started,
+        temperature_before_c=first,
+        temperature_at_start_c=current,
+    )
+
+
 def binaries(build):
     return {
         "original": ROOT / "build/llama/bin/llama-bench",
@@ -207,7 +225,9 @@ def hashes(build, policy=None):
     }
 
 
-def execute(output, build, fixture=False, ablation=False, policy=None, versions=None):
+def execute(
+    output, build, fixture=False, ablation=False, policy=None, versions=None, cool_to_c=None
+):
     if policy not in (None, *POLICY_OPTIONS) or (policy and (fixture or ablation)):
         raise ValueError("Unsupported dispatch policy")
     output, build = Path(output).resolve(), Path(build).resolve()
@@ -234,6 +254,10 @@ def execute(output, build, fixture=False, ablation=False, policy=None, versions=
     )
     if policy:
         m["dispatch_policy"] = policy
+    if cool_to_c is not None:
+        if fixture or ablation or not 30 <= cool_to_c <= 70:
+            raise ValueError("Cool-down applies to real paired runs, between 30 and 70 C")
+        m["cool_to_c"] = cool_to_c
     env = dict(os.environ)
     for k in ("LD_LIBRARY_PATH", "LD_PRELOAD", "EDGELLM_Q5_ROW4", "EDGELLM_Q5_AUDIT"):
         env.pop(k, None)
@@ -278,6 +302,9 @@ def execute(output, build, fixture=False, ablation=False, policy=None, versions=
             write_json(raw, data)
             process = fixture_process(raw, identifier)
         else:
+            if cool_to_c is not None:
+                # Both variants wait under the same rule, so neither inherits heat.
+                record["cool_down"] = cool_down(cool_to_c)
             process, _ = run_monitored(
                 command,
                 raw,
