@@ -60,6 +60,7 @@ jobs:
           python scripts/integration/ablation_report.py --input results/integration/three-way-20261031 --reports build/verified-reports/three-way
           python scripts/quantized/two_block_profile.py report --input results/quantized/two-block-20261101 --output build/verified-reports/q5-two-block
           python scripts/quantized/two_block_model_gate.py report --input results/quantized/two-block-model-20261101
+          python scripts/quantized/reuse_profile.py report --input results/quantized/reuse-20261111 --output build/verified-reports/q5-reuse
           python scripts/integration/two_block_e2e.py report --input results/integration/two-block-e2e-20261111 --reports build/verified-reports/two-block-e2e
           python scripts/integration/hybrid_e2e.py report --input results/integration/hybrid-e2e-20261111 --reports build/verified-reports/hybrid-e2e
       - name: C++17 scalar kernel correctness and benchmark smoke (host only)

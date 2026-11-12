@@ -235,3 +235,8 @@ decode stayed within a 1% non-inferiority margin, about 0.5% slower at 1 and 2
 threads. It is a prompt-processing gain, not a decode speedup, and covers one board
 and one small model. See the [report](reports/pi3-hybrid-e2e-20261111/e2e.md) and
 [evidence](results/integration/hybrid-e2e-20261111).
+
+A [kernel diagnostic](docs/q5_reuse_diagnostic_analysis.md) locates the decode loss:
+with 104 MB of weights the two-block loop is 12.7% faster than the original dot when
+each block serves 16 vectors and 11.9% slower when each block is read once. The
+mechanism is not established.
