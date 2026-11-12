@@ -19,7 +19,7 @@ namespace {
 using namespace q5bench;
 using Clock = std::chrono::steady_clock;
 constexpr const char *names[] = {"original", "candidate"};
-constexpr std::size_t cols = 576, blocks = cols / 32, chunk = 16;
+constexpr std::size_t chunk = 16;
 
 class Engine {
   void *handle_ = nullptr;
@@ -72,14 +72,15 @@ std::size_t positive(const std::string &s) {
 
 int main(int argc, char **argv) {
   try {
-    std::size_t rows = 192, reuse = 1, repetitions = 6, min_ms = 100, seed = 42;
+    std::size_t rows = 192, reuse = 1, repetitions = 6, min_ms = 100, seed = 42,
+                cols = 576;
     std::string original_path, candidate_path, variant = "two-block";
     for (int i = 1; i < argc; ++i) {
       const std::string key = argv[i];
       if (key == "--help") {
         std::cout << "q5-reuse-bench --original LIB --candidate LIB [--variant "
                      "NAME --rows N --reuse N --repetitions N --min-ms N "
-                     "--seed N]\nFixed width576, 16-row blocks, engine "
+                     "--seed N --cols N]\nWidth 576 by default, 16-row blocks, engine "
                      "traversal order. Original dot versus the named "
                      "candidate bridge, auditing off.\n";
         return 0;
@@ -104,10 +105,16 @@ int main(int argc, char **argv) {
           min_ms = n;
         else if (key == "--seed")
           seed = n;
+        else if (key == "--cols")
+          cols = n;
         else
           throw std::invalid_argument("Unknown argument");
       }
     }
+    // An even block count keeps the upstream two-accumulator order well defined.
+    if (cols % 64 || cols > 4096)
+      throw std::invalid_argument("Width must be a multiple of 64 up to 4096");
+    const std::size_t blocks = cols / 32;
     if (rows % chunk || rows > 262144 || reuse > 16 || repetitions > 96 ||
         repetitions % 2 || min_ms > 1000 || original_path.empty() ||
         candidate_path.empty())
@@ -214,9 +221,9 @@ int main(int argc, char **argv) {
                  "\"data_kind\":\"measured_local\",\"correctness_passed\":true,"
                  "\"isolated_namespaces\":true,\"library_identity_passed\":true,"
                  "\"bridge_bitwise_equal\":true,\"audit_during_timing\":false,"
-                 "\"dispatch_proof_passed\":true,\"threads\":1,\"cols\":576,"
-                 "\"chunk\":16,\"variant\":\""
-              << variant << "\",\"rows\":" << rows << ",\"reuse\":" << reuse
+                 "\"dispatch_proof_passed\":true,\"threads\":1,\"cols\":"
+              << cols << ",\"chunk\":16,\"variant\":\"" << variant
+              << "\",\"rows\":" << rows << ",\"reuse\":" << reuse
               << ",\"weight_bytes\":" << w.size() * sizeof(Q5Block)
               << ",\"seed\":" << seed << ",\"repetitions\":" << repetitions
               << ",\"min_sample_ms\":" << min_ms
