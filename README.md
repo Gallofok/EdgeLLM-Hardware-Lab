@@ -273,6 +273,14 @@ a second model, SmolLM2-360M. It [failed its kernel gate at width 960](docs/q5_w
 than L2 that are read once. No end-to-end capture ran, and nothing is claimed for the
 second model.
 
+The [dispatch candidate](docs/q5_dispatch.md) chooses per call between the hinted loop,
+the plain loop and the original dot. It passed its kernel gates at widths 576 and 960
+at 1.25–1.31 times the original, including the single-pass shapes the wide candidate
+lost. Its end-to-end captures on both models
+[gave no decision](docs/q5_dispatch_analysis.md): the board reached its
+frequency-capping temperature, and the rule withholds any verdict then. Nothing is
+claimed for the second model.
+
 A [counter diagnostic](docs/decode_ceiling_diagnostic_analysis.md) probed the
 four-thread decode limit. Its predeclared reading is inconclusive: original
 four-thread decode pulls 0.847 times the memory lines per second of four sequential
