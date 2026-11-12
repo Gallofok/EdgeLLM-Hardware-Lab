@@ -12,6 +12,7 @@ PIN = json.loads((ROOT / "config/versions.json").read_text())["llama_commit"]
 VARIANTS = {
     "row4": ("row4.patch", "source_hashes.json"),
     "hybrid": ("row4_hybrid.patch", "source_hashes_hybrid.json"),
+    "threads": ("row4_threads.patch", "source_hashes_threads.json"),
 }
 
 

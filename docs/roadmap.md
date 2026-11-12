@@ -52,6 +52,7 @@ not establish that it passed.
   [reuse diagnostic](q5_reuse_diagnostic_analysis.md): it loses only on weights read once.
 - [x] Run the [two-row prefetching candidate](q5_two_row.md) through its predeclared gates:
   kernel gate passed, [end-to-end rejected](q5_two_row_analysis.md) on four-thread decode alone.
+- [ ] Run the [thread-adaptive two-row candidate](q5_adaptive.md) through its predeclared gates.
 - [x] Probe what limits four-thread decode with the
   [counter diagnostic](decode_ceiling_diagnostic_analysis.md): predeclared reading inconclusive
   at a ratio of 0.847; every token costs the same 1.69 million memory lines in every build.

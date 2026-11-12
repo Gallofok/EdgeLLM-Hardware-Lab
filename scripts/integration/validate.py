@@ -16,6 +16,8 @@ GRAPH_CASES = (
 # The hybrid harness adds the dispatch boundary: two vectors, one block, two blocks.
 HYBRID_GRAPH_CASES = GRAPH_CASES + [(576, 192, n, 1, 1, 1, 1, 0, 0, 0, 0) for n in (2, 16, 17)]
 HYBRID = "multi_vector"
+# Hints follow the thread count; the pinned harnesses and their expectations apply.
+ADAPTIVE = "thread_adaptive"
 CASE_FIELDS = (
     "cols",
     "rows",
