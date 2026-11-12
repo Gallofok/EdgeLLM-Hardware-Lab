@@ -12,6 +12,7 @@ if __package__ in (None, ""):
 from scripts.integration.perf_report import generate
 from scripts.integration.perf_run import execute
 from scripts.integration.two_block_e2e import RULE, verdict
+from scripts.integration.validate import ADAPTIVE
 from scripts.pi.common import ROOT, sha256, write_json
 
 LIBRARIES = ("libggml-cpu.so", "libggml-base.so")
@@ -101,7 +102,28 @@ def candidate_identity(build, kernel_capture, candidate="two_row_prefetch"):
     )
 
 
+def adaptive_identity(build):
+    """Both loops were kernel-gated as separate libraries; this build has no kernel capture."""
+    build = Path(build).resolve()
+    if "EDGELLM_Q5_ADAPTIVE:BOOL=ON" not in (build / "CMakeCache.txt").read_text().splitlines():
+        raise ValueError("Build does not select the thread-adaptive candidate")
+    return dict(
+        variant="two_row_adaptive",
+        dispatch_policy=ADAPTIVE,
+        libraries_sha256={name: sha256(build / "bin" / name) for name in LIBRARIES},
+    )
+
+
 def collect(args):
+    if args.candidate == "two_row_adaptive":
+        identity = adaptive_identity(args.build)
+        execute(args.output, args.build, policy=ADAPTIVE)
+        if adaptive_identity(args.build) != identity:
+            raise ValueError("Candidate changed during measurement")
+        write_json(args.output.resolve() / "two_row.json", identity)
+        return
+    if args.kernel_capture is None:
+        raise ValueError("This candidate requires its kernel capture")
     identity = candidate_identity(args.build, args.kernel_capture, args.candidate)
     execute(args.output, args.build)
     if candidate_identity(args.build, args.kernel_capture, args.candidate) != identity:
@@ -113,8 +135,10 @@ def report(args):
     source = args.input.resolve()
     identity = json.loads((source / "two_row.json").read_text())
     manifest = json.loads((source / "manifest.json").read_text())
-    if identity.get("variant") not in CANDIDATES:
+    if identity.get("variant") not in (*CANDIDATES, "two_row_adaptive"):
         raise ValueError("Capture is not a two-row candidate")
+    if (identity["variant"] == "two_row_adaptive") != (manifest.get("dispatch_policy") == ADAPTIVE):
+        raise ValueError("Capture policy differs from the recorded candidate")
     for name, digest in identity["libraries_sha256"].items():
         if manifest["artifact_hashes"]["compatible/" + name] != digest:
             raise ValueError("Timed library differs from the recorded candidate")
@@ -134,8 +158,12 @@ def main():
     commands = parser.add_subparsers(dest="command", required=True)
     run = commands.add_parser("collect")
     run.add_argument("--build", type=Path, required=True)
-    run.add_argument("--kernel-capture", type=Path, required=True)
-    run.add_argument("--candidate", choices=sorted(CANDIDATES), default="two_row_prefetch")
+    run.add_argument("--kernel-capture", type=Path)
+    run.add_argument(
+        "--candidate",
+        choices=sorted((*CANDIDATES, "two_row_adaptive")),
+        default="two_row_prefetch",
+    )
     run.add_argument("--output", type=Path, required=True)
     show = commands.add_parser("report")
     show.add_argument("--input", type=Path, required=True)

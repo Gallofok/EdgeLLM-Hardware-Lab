@@ -5,6 +5,8 @@
 #undef main
 #ifdef EDGELLM_Q5_HYBRID
 #include "integration/q5_ggml_bridge_hybrid.h"
+#elif defined(EDGELLM_Q5_ADAPTIVE)
+#include "integration/q5_ggml_bridge_adaptive.h"
 #else
 #include "integration/q5_ggml_bridge.h"
 #endif
@@ -20,6 +22,8 @@ int main(int argc, char **argv) {
   const bool audit = yes("EDGELLM_Q5_AUDIT");
 #ifdef EDGELLM_Q5_HYBRID
   edgellm_q5_configure_hybrid(enabled, audit);
+#elif defined(EDGELLM_Q5_ADAPTIVE)
+  edgellm_q5_configure_adaptive(enabled, audit);
 #else
   edgellm_q5_configure(enabled, audit);
 #endif
@@ -34,6 +38,11 @@ int main(int argc, char **argv) {
     const auto h = edgellm_q5_hybrid_snapshot();
     std::cerr << ",\"single_vector_calls\":" << h.single_vector_calls
               << ",\"single_vector_rows\":" << h.single_vector_rows;
+#elif defined(EDGELLM_Q5_ADAPTIVE)
+    const auto h = edgellm_q5_adaptive_snapshot();
+    std::cerr << ",\"hinted_calls\":" << h.hinted_calls
+              << ",\"plain_calls\":" << h.plain_calls
+              << ",\"processors\":" << h.processors;
 #endif
     std::cerr << "}\n";
   }

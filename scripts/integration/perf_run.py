@@ -13,7 +13,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.integration.run import native_rows, verify_linked_engine
-from scripts.integration.validate import HYBRID, validate_graph, validate_model
+from scripts.integration.validate import ADAPTIVE, HYBRID, validate_graph, validate_model
 from scripts.kernels.benchmark import operating_conditions
 from scripts.pi.benchmark import OPTIONS, bench_command
 from scripts.pi.benchmark_parser import parse_native
@@ -91,8 +91,16 @@ HYBRID_SOURCES = (
 )
 
 
+ADAPTIVE_SOURCES = (
+    "src/integration/q5_ggml_bridge_adaptive.cpp",
+    "src/integration/q5_ggml_bridge_adaptive.h",
+    "integrations/ggml/row4_threads.patch",
+)
+POLICY_OPTIONS = {HYBRID: "EDGELLM_Q5_HYBRID", ADAPTIVE: "EDGELLM_Q5_ADAPTIVE"}
+
+
 def model_gate(policy):
-    return "test-model-row4-hybrid" if policy else "test-model-row4"
+    return "test-model-row4-hybrid" if policy == HYBRID else "test-model-row4"
 
 
 def proof_valid(evidence, variant, phase, threads, policy=None):
@@ -105,7 +113,22 @@ def proof_valid(evidence, variant, phase, threads, policy=None):
             and evidence["thread_mask"] == 0
             and evidence["disabled"] > 0
         )
-    if policy and phase == "decode":
+    if policy == ADAPTIVE:
+        # Every candidate call is hinted below the processor count and plain at it.
+        hinted, plain = evidence["hinted_calls"], evidence["plain_calls"]
+        expected = (
+            (evidence["handled"], 0)
+            if threads < evidence["processors"]
+            else (0, evidence["handled"])
+        )
+        return (
+            evidence["enabled"] is True
+            and evidence["handled"] > 0
+            and evidence["rows"] > 0
+            and 0 < evidence["thread_mask"] < (1 << threads)
+            and (hinted, plain) == expected
+        )
+    if policy == HYBRID and phase == "decode":
         # Hybrid dispatch: single-token decode must stay on the original dot.
         return (
             evidence["enabled"] is True
@@ -135,12 +158,12 @@ def hashes(build, policy=None):
         **{"compatible/" + p.name: sha256(p) for p in sorted((build / "bin").glob("*.so"))},
         **{"original/" + k: v for k, v in library_hashes().items()},
         "test_model": sha256(build / model_gate(policy)),
-        **({"test_graph": sha256(build / "test-ggml-row4-hybrid")} if policy else {}),
+        **({"test_graph": sha256(build / "test-ggml-row4-hybrid")} if policy == HYBRID else {}),
     }
 
 
 def execute(output, build, fixture=False, ablation=False, policy=None):
-    if policy not in (None, HYBRID) or (policy and (fixture or ablation)):
+    if policy not in (None, HYBRID, ADAPTIVE) or (policy and (fixture or ablation)):
         raise ValueError("Unsupported dispatch policy")
     output, build = Path(output).resolve(), Path(build).resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -288,7 +311,8 @@ def execute(output, build, fixture=False, ablation=False, policy=None):
                     "benchmarks/llama_bench_driver.cpp",
                     "src/integration/q5_ggml_bridge.cpp",
                     "src/kernels/quantized/q5_neon.cpp",
-                    *(HYBRID_SOURCES if policy else ()),
+                    *(HYBRID_SOURCES if policy == HYBRID else ()),
+                    *(ADAPTIVE_SOURCES if policy == ADAPTIVE else ()),
                 )
             }
             m["compiler"] = subprocess.check_output(["c++", "--version"], text=True).splitlines()[0]
@@ -311,8 +335,9 @@ def execute(output, build, fixture=False, ablation=False, policy=None):
                     and "GGML_EDGELLM_Q5_ROW4:BOOL=ON" not in cache.splitlines()
                 ):
                     raise ValueError("Integration not compiled")
-                if name == "compatible" and bool(policy) != (
-                    "EDGELLM_Q5_HYBRID:BOOL=ON" in cache.splitlines()
+                if name == "compatible" and any(
+                    (policy == key) != (option + ":BOOL=ON" in cache.splitlines())
+                    for key, option in POLICY_OPTIONS.items()
                 ):
                     raise ValueError("Build and dispatch policy differ")
                 m["builds"][name] = dict(
@@ -333,7 +358,7 @@ def execute(output, build, fixture=False, ablation=False, policy=None):
                 )
                 verify_linked_engine(linked, b, model=True)
                 (private / (name + "-ldd.txt")).write_text(linked)
-            if policy:
+            if policy == HYBRID:
                 raw = output / "raw/graph.jsonl"
                 process, _ = run_monitored(
                     [str(build / "test-ggml-row4-hybrid")],
@@ -357,7 +382,9 @@ def execute(output, build, fixture=False, ablation=False, policy=None):
             )
             if process["returncode"] or process["timed_out"] or process["interrupted"]:
                 raise ValueError("Numerical gate process failed")
-            m["numerical_gate"] = validate_model(native_rows(raw), policy=policy)
+            m["numerical_gate"] = validate_model(
+                native_rows(raw), policy=policy if policy == HYBRID else None
+            )
             for variant in (
                 ("original", "integrated_off", "compatible")
                 if ablation

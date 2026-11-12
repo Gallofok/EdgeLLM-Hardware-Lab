@@ -13,7 +13,13 @@ if __package__ in (None, ""):
 
 from scripts.integration.perf_run import parse_bench, plan, proof_valid, protocol
 from scripts.integration.run import native_rows
-from scripts.integration.validate import HYBRID, check, validate_graph, validate_model
+from scripts.integration.validate import (
+    ADAPTIVE,
+    HYBRID,
+    check,
+    validate_graph,
+    validate_model,
+)
 from scripts.pi.benchmark_parser import parse_native
 from scripts.pi.common import sha256, write_json
 from scripts.pi.monitor import read_metrics
@@ -55,16 +61,20 @@ def summarize(source, ablation=False):
     )
     threads_grid = m["protocol"]["threads"]
     policy = m.get("dispatch_policy")
-    check(policy in (None, HYBRID) and not (policy and (fixture or ablation)), "Unknown policy")
+    check(
+        policy in (None, HYBRID, ADAPTIVE) and not (policy and (fixture or ablation)),
+        "Unknown policy",
+    )
+    hybrid = policy if policy == HYBRID else None
     if not fixture:
         check(
-            validate_model(native_rows(source / "raw/numerical.jsonl"), policy=policy)
+            validate_model(native_rows(source / "raw/numerical.jsonl"), policy=hybrid)
             == m["numerical_gate"],
             "Numerical gate changed",
         )
-        if policy:
+        if hybrid:
             check(
-                validate_graph(native_rows(source / "raw/graph.jsonl"), policy=policy)
+                validate_graph(native_rows(source / "raw/graph.jsonl"), policy=hybrid)
                 == m["graph_gate"],
                 "Graph gate changed",
             )
