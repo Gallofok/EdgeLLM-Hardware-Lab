@@ -246,4 +246,15 @@ gate at 1.28–1.32 times the original on all eight shapes, and was then
 [rejected end to end](docs/q5_two_row_analysis.md) under a rule committed before
 measurement. Prefill rose 16.6–18.2% and decode rose 15.9% and 13.8% at one and two
 threads, but four-thread decode fell 2.5%, and the rule required every group to
-improve. No LLM speedup is claimed.
+improve.
+
+The off-by-default [plain two-row candidate](docs/q5_two_row_plain.md), the same loop
+without prefetch hints, was [accepted end to end](docs/q5_two_row_plain_analysis.md).
+Prefill throughput rose 16.9–17.6% at 1, 2 and 4 threads and decode rose 11.8% and
+10.2% at one and two threads; four-thread decode was unchanged (-0.09%). Its rule,
+committed before measurement but written after the rejection above, required
+improvement in those five groups and held four-thread decode to a 1% non-inferiority
+margin. It does not raise the board's highest decode throughput, and it covers one
+board and one small model. See the
+[report](reports/pi3-two-row-plain-e2e-20261112/e2e.md) and
+[evidence](results/integration/two-row-plain-e2e-20261112).

@@ -67,3 +67,8 @@ __pycache__/
 !/reports/pi3-q5-two-row-kernel-20261112/
 !/results/integration/two-row-e2e-20261112/
 !/reports/pi3-two-row-e2e-20261112/
+
+!/results/quantized/two-row-plain-kernel-20261112/
+!/reports/pi3-q5-two-row-plain-kernel-20261112/
+!/results/integration/two-row-plain-e2e-20261112/
+!/reports/pi3-two-row-plain-e2e-20261112/
